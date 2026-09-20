@@ -1,0 +1,10 @@
+@ main() -> int:
+    let s = "hello world"
+    io.println(str(len(s)))
+    io.println(to_upper(s))
+    io.println(to_lower("HELLO"))
+    io.println(trim("  hi  "))
+    io.println(substr(s, 0, 5))
+    io.println(str(find(s, "world")))
+    io.println(replace(s, "world", "Maxx"))
+    ret 0

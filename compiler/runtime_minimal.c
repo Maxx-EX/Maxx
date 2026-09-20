@@ -58,6 +58,84 @@ bool mx_str_gt(mx_str a, mx_str b) {
     return mx_str_lt(b, a);
 }
 
+/* String manipulation functions. */
+mx_str mx_str_upper(mx_str s) {
+    char* buf = (char*)malloc((size_t)s.len + 1);
+    memcpy(buf, s.ptr, (size_t)s.len);
+    buf[s.len] = '\0';
+    for (int64_t i = 0; i < s.len; i++) {
+        if (buf[i] >= 'a' && buf[i] <= 'z') buf[i] -= 32;
+    }
+    mx_str r = {buf, s.len};
+    return r;
+}
+
+mx_str mx_str_lower(mx_str s) {
+    char* buf = (char*)malloc((size_t)s.len + 1);
+    memcpy(buf, s.ptr, (size_t)s.len);
+    buf[s.len] = '\0';
+    for (int64_t i = 0; i < s.len; i++) {
+        if (buf[i] >= 'A' && buf[i] <= 'Z') buf[i] += 32;
+    }
+    mx_str r = {buf, s.len};
+    return r;
+}
+
+mx_str mx_str_trim(mx_str s) {
+    int64_t start = 0, end = s.len;
+    while (start < end && (s.ptr[start] == ' ' || s.ptr[start] == '\t' || s.ptr[start] == '\n')) start++;
+    while (end > start && (s.ptr[end-1] == ' ' || s.ptr[end-1] == '\t' || s.ptr[end-1] == '\n')) end--;
+    char* buf = (char*)malloc((size_t)(end - start) + 1);
+    memcpy(buf, s.ptr + start, (size_t)(end - start));
+    buf[end - start] = '\0';
+    mx_str r = {buf, end - start};
+    return r;
+}
+
+mx_str mx_str_substr(mx_str s, int64_t start, int64_t len) {
+    if (start < 0) start = 0;
+    if (start > s.len) start = s.len;
+    if (len < 0) len = 0;
+    if (start + len > s.len) len = s.len - start;
+    char* buf = (char*)malloc((size_t)len + 1);
+    memcpy(buf, s.ptr + start, (size_t)len);
+    buf[len] = '\0';
+    mx_str r = {buf, len};
+    return r;
+}
+
+int64_t mx_str_find(mx_str s, mx_str pat) {
+    if (pat.len == 0) return 0;
+    for (int64_t i = 0; i <= s.len - pat.len; i++) {
+        if (memcmp(s.ptr + i, pat.ptr, (size_t)pat.len) == 0) return i;
+    }
+    return -1;
+}
+
+mx_str mx_str_char_at(mx_str s, int64_t idx) {
+    if (idx < 0 || idx >= s.len) return mx_str_lit("");
+    char c[2] = {s.ptr[idx], '\0'};
+    return mx_str_lit(c);
+}
+
+mx_str mx_str_replace(mx_str s, mx_str from, mx_str to) {
+    int64_t pos = mx_str_find(s, from);
+    if (pos < 0) return s;
+    mx_str before = mx_str_substr(s, 0, pos);
+    mx_str after = mx_str_substr(s, pos + from.len, s.len - pos - from.len);
+    mx_str result = mx_str_concat(before, to);
+    result = mx_str_concat(result, after);
+    return result;
+}
+
+int64_t mx_parse_int(mx_str s) {
+    return atoll(s.ptr);
+}
+
+double mx_parse_float(mx_str s) {
+    return atof(s.ptr);
+}
+
 void mx_println(mx_str s) {
     fwrite(s.ptr, 1, (size_t)s.len, stdout);
     fputc('\n', stdout);

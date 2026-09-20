@@ -310,6 +310,17 @@ class CCodegen:
                     return TypeInfo(kind="scalar", name=fname)
                 if fname == "sqrt":
                     return TypeInfo(kind="scalar", name="f64")
+                # String functions return str.
+                str_funcs = {"to_upper", "to_lower", "trim", "substr", "char_at", "replace"}
+                if fname in str_funcs:
+                    return TypeInfo(kind="scalar", name="str")
+                # Numeric functions return int/f64.
+                int_funcs = {"len", "find", "parse_int", "randint"}
+                if fname in int_funcs:
+                    return TypeInfo(kind="scalar", name="int")
+                f64_funcs = {"rand", "parse_float"}
+                if fname in f64_funcs:
+                    return TypeInfo(kind="scalar", name="f64")
                 if fname == "ok":
                     return TypeInfo(kind="result",
                                     ok_type=TypeInfo(kind="scalar", name="int"),
@@ -656,11 +667,64 @@ class CCodegen:
                 "floor": "floor", "ceil": "ceil", "round": "round",
                 "fabs": "fabs", "abs": "llabs",
                 "min": "fmin", "max": "fmax",
+                # Additional math functions.
+                "cbrt": "cbrt", "hypot": "hypot",
+                "sinh": "sinh", "cosh": "cosh", "tanh": "tanh",
+                "asinh": "asinh", "acosh": "acosh", "atanh": "atanh",
+                "erf": "erf", "erfc": "erfc", "tgamma": "tgamma",
+                "lgamma": "lgamma", "expm1": "expm1", "log1p": "log1p",
+                "fmod": "fmod", "remainder": "remainder",
+                "copysign": "copysign", "nan": "nan",
             }
             if name in math_map:
                 c_fn = math_map[name]
                 args = ", ".join(f"(double)({self._gen_expr(a)})" for a in e.args)
                 return f"{c_fn}({args})"
+            # Integer-only functions.
+            if name == "rand":
+                return "((double)rand())"
+            if name == "randint":
+                args_c = ", ".join(self._gen_expr(a) for a in e.args)
+                return f"((double)(rand() % (int)({args_c})))"
+            # String length.
+            if name == "len":
+                arg = self._gen_expr(e.args[0]) if e.args else "0"
+                return f"((double)({arg}.len))"
+            # String conversion functions.
+            if name == "to_upper":
+                arg = self._gen_expr(e.args[0]) if e.args else 'mx_str_lit("")'
+                return f"mx_str_upper({arg})"
+            if name == "to_lower":
+                arg = self._gen_expr(e.args[0]) if e.args else 'mx_str_lit("")'
+                return f"mx_str_lower({arg})"
+            if name == "trim":
+                arg = self._gen_expr(e.args[0]) if e.args else 'mx_str_lit("")'
+                return f"mx_str_trim({arg})"
+            if name == "substr":
+                args_c = ", ".join(self._gen_expr(a) for a in e.args)
+                return f"mx_str_substr({args_c})"
+            if name == "find":
+                args_c = ", ".join(self._gen_expr(a) for a in e.args)
+                return f"((double)mx_str_find({args_c}))"
+            if name == "char_at":
+                arg = self._gen_expr(e.args[0]) if e.args else 'mx_str_lit("")'
+                idx = self._gen_expr(e.args[1]) if len(e.args) > 1 else "0"
+                return f"mx_str_char_at({arg}, (int64_t)({idx}))"
+            if name == "replace":
+                args_c = ", ".join(self._gen_expr(a) for a in e.args)
+                return f"mx_str_replace({args_c})"
+            if name == "split":
+                args_c = ", ".join(self._gen_expr(a) for a in e.args)
+                return f"mx_str_split({args_c})"
+            if name == "parse_int":
+                arg = self._gen_expr(e.args[0]) if e.args else 'mx_str_lit("0")'
+                return f"((double)mx_parse_int({arg}))"
+            if name == "parse_float":
+                arg = self._gen_expr(e.args[0]) if e.args else 'mx_str_lit("0")'
+                return f"mx_parse_float({arg})"
+            if name == "format_int":
+                args_c = ", ".join(self._gen_expr(a) for a in e.args)
+                return f"mx_format_int({args_c})"
             # Time functions.
             if name == "now":
                 return "mx_now_sec()"

@@ -57,4 +57,22 @@ mx_chan_str* mx_chan_str_new(void);
 void mx_chan_str_send(mx_chan_str* ch, mx_str s);
 mx_str mx_chan_str_recv(mx_chan_str* ch);
 
+/* String comparison. */
+bool mx_str_eq(mx_str a, mx_str b);
+bool mx_str_lt(mx_str a, mx_str b);
+bool mx_str_gt(mx_str a, mx_str b);
+
+/* String manipulation. */
+mx_str mx_str_upper(mx_str s);
+mx_str mx_str_lower(mx_str s);
+mx_str mx_str_trim(mx_str s);
+mx_str mx_str_substr(mx_str s, int64_t start, int64_t len);
+int64_t mx_str_find(mx_str s, mx_str pat);
+mx_str mx_str_char_at(mx_str s, int64_t idx);
+mx_str mx_str_replace(mx_str s, mx_str from, mx_str to);
+
+/* Parse functions. */
+int64_t mx_parse_int(mx_str s);
+double mx_parse_float(mx_str s);
+
 #endif /* MAXX_RUNTIME_MINIMAL_H */

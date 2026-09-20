@@ -1,0 +1,6 @@
+@ main() -> int:
+    let n = parse_int("42")
+    io.println(str(n))
+    let f = parse_float("3.14")
+    io.println(str(f))
+    ret 0
