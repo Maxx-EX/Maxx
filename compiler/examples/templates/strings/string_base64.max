@@ -1,0 +1,6 @@
+// string_base64 - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_base64...")
+    // TODO: implement string_base64
+    ret 0

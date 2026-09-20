@@ -1,0 +1,6 @@
+// text_editor - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running text_editor...")
+    // TODO: implement text_editor
+    ret 0

@@ -1,0 +1,6 @@
+// map_view - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running map_view...")
+    // TODO: implement map_view
+    ret 0

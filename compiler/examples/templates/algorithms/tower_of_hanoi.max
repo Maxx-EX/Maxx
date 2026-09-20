@@ -1,0 +1,6 @@
+// tower_of_hanoi - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running tower_of_hanoi...")
+    // TODO: implement tower_of_hanoi
+    ret 0

@@ -1,0 +1,6 @@
+// galaga - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running galaga...")
+    // TODO: implement galaga
+    ret 0

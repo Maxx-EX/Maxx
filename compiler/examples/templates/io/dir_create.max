@@ -1,0 +1,6 @@
+// dir_create - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running dir_create...")
+    // TODO: implement dir_create
+    ret 0

@@ -1,0 +1,6 @@
+// monte_carlo_integration - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running monte_carlo_integration...")
+    // TODO: implement monte_carlo_integration
+    ret 0

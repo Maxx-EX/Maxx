@@ -1,0 +1,6 @@
+// b_plus_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running b_plus_tree...")
+    // TODO: implement b_plus_tree
+    ret 0

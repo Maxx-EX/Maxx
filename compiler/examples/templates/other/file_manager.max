@@ -1,0 +1,6 @@
+// file_manager - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running file_manager...")
+    // TODO: implement file_manager
+    ret 0

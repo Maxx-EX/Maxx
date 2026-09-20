@@ -1,0 +1,6 @@
+// string_join - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_join...")
+    // TODO: implement string_join
+    ret 0

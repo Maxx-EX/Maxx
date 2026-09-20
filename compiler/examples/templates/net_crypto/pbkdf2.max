@@ -1,0 +1,6 @@
+// pbkdf2 - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running pbkdf2...")
+    // TODO: implement pbkdf2
+    ret 0

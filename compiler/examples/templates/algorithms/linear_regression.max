@@ -1,0 +1,6 @@
+// linear_regression - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running linear_regression...")
+    // TODO: implement linear_regression
+    ret 0

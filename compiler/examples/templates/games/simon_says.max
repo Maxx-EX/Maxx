@@ -1,0 +1,6 @@
+// simon_says - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running simon_says...")
+    // TODO: implement simon_says
+    ret 0

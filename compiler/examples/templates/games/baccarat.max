@@ -1,0 +1,6 @@
+// baccarat - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running baccarat...")
+    // TODO: implement baccarat
+    ret 0

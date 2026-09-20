@@ -1,0 +1,6 @@
+// string_word_wrap - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_word_wrap...")
+    // TODO: implement string_word_wrap
+    ret 0

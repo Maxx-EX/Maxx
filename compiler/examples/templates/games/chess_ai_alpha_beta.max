@@ -1,0 +1,6 @@
+// chess_ai_alpha_beta - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running chess_ai_alpha_beta...")
+    // TODO: implement chess_ai_alpha_beta
+    ret 0

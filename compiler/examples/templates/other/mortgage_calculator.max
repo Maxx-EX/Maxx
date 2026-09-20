@@ -1,0 +1,6 @@
+// mortgage_calculator - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running mortgage_calculator...")
+    // TODO: implement mortgage_calculator
+    ret 0

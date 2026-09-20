@@ -1,0 +1,6 @@
+// ping - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running ping...")
+    // TODO: implement ping
+    ret 0

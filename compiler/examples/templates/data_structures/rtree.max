@@ -1,0 +1,6 @@
+// rtree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running rtree...")
+    // TODO: implement rtree
+    ret 0

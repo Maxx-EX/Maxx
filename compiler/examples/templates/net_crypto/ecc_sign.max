@@ -1,0 +1,6 @@
+// ecc_sign - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running ecc_sign...")
+    // TODO: implement ecc_sign
+    ret 0

@@ -1,0 +1,6 @@
+// snackbar - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running snackbar...")
+    // TODO: implement snackbar
+    ret 0

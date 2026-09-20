@@ -1,0 +1,6 @@
+// barrier - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running barrier...")
+    // TODO: implement barrier
+    ret 0

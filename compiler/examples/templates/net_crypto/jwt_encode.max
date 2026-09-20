@@ -1,0 +1,6 @@
+// jwt_encode - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running jwt_encode...")
+    // TODO: implement jwt_encode
+    ret 0

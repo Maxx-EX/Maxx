@@ -1,0 +1,6 @@
+// sudoku_solver - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running sudoku_solver...")
+    // TODO: implement sudoku_solver
+    ret 0

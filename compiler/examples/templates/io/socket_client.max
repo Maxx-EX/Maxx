@@ -1,0 +1,6 @@
+// socket_client - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running socket_client...")
+    // TODO: implement socket_client
+    ret 0

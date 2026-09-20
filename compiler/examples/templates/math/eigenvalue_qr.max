@@ -1,0 +1,6 @@
+// eigenvalue_qr - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running eigenvalue_qr...")
+    // TODO: implement eigenvalue_qr
+    ret 0

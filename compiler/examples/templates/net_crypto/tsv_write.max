@@ -1,0 +1,6 @@
+// tsv_write - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running tsv_write...")
+    // TODO: implement tsv_write
+    ret 0

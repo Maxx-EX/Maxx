@@ -1,0 +1,6 @@
+// http_gzip - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running http_gzip...")
+    // TODO: implement http_gzip
+    ret 0

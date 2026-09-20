@@ -1,0 +1,6 @@
+// string_lancaster_stemmer - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_lancaster_stemmer...")
+    // TODO: implement string_lancaster_stemmer
+    ret 0

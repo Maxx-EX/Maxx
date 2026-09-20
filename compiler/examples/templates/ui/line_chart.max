@@ -1,0 +1,6 @@
+// line_chart - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running line_chart...")
+    // TODO: implement line_chart
+    ret 0

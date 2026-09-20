@@ -1,0 +1,6 @@
+// spinner - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running spinner...")
+    // TODO: implement spinner
+    ret 0

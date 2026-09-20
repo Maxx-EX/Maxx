@@ -1,0 +1,6 @@
+// sudoku - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running sudoku...")
+    // TODO: implement sudoku
+    ret 0

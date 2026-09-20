@@ -1,0 +1,6 @@
+// heap_sort - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running heap_sort...")
+    // TODO: implement heap_sort
+    ret 0

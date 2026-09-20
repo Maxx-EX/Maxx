@@ -1,0 +1,6 @@
+// ecc_verify - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running ecc_verify...")
+    // TODO: implement ecc_verify
+    ret 0

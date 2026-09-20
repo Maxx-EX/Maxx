@@ -1,0 +1,6 @@
+// balanced_bst - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running balanced_bst...")
+    // TODO: implement balanced_bst
+    ret 0

@@ -1,0 +1,6 @@
+// tabu_search - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running tabu_search...")
+    // TODO: implement tabu_search
+    ret 0

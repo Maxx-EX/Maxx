@@ -1,0 +1,6 @@
+// argon2 - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running argon2...")
+    // TODO: implement argon2
+    ret 0

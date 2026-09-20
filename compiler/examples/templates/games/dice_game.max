@@ -1,0 +1,6 @@
+// dice_game - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running dice_game...")
+    // TODO: implement dice_game
+    ret 0

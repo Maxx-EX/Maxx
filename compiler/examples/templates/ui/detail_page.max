@@ -1,0 +1,6 @@
+// detail_page - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running detail_page...")
+    // TODO: implement detail_page
+    ret 0

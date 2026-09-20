@@ -1,0 +1,6 @@
+// location_view - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running location_view...")
+    // TODO: implement location_view
+    ret 0

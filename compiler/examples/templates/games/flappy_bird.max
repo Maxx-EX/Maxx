@@ -1,0 +1,6 @@
+// flappy_bird - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running flappy_bird...")
+    // TODO: implement flappy_bird
+    ret 0

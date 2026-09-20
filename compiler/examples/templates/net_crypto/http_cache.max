@@ -1,0 +1,6 @@
+// http_cache - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running http_cache...")
+    // TODO: implement http_cache
+    ret 0

@@ -1,0 +1,6 @@
+// signal_handler - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running signal_handler...")
+    // TODO: implement signal_handler
+    ret 0

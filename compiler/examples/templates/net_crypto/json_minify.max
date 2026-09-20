@@ -1,0 +1,6 @@
+// json_minify - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running json_minify...")
+    // TODO: implement json_minify
+    ret 0

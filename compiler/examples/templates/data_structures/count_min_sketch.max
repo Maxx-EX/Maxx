@@ -1,0 +1,6 @@
+// count_min_sketch - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running count_min_sketch...")
+    // TODO: implement count_min_sketch
+    ret 0

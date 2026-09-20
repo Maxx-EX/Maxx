@@ -1,0 +1,6 @@
+// attention - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running attention...")
+    // TODO: implement attention
+    ret 0

@@ -1,0 +1,6 @@
+// filter_page - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running filter_page...")
+    // TODO: implement filter_page
+    ret 0

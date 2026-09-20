@@ -1,0 +1,6 @@
+// nonogram - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running nonogram...")
+    // TODO: implement nonogram
+    ret 0

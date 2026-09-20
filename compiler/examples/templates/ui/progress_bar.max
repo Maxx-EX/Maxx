@@ -1,0 +1,6 @@
+// progress_bar - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running progress_bar...")
+    // TODO: implement progress_bar
+    ret 0

@@ -1,0 +1,6 @@
+// minesweeper - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running minesweeper...")
+    // TODO: implement minesweeper
+    ret 0

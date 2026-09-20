@@ -1,0 +1,6 @@
+// dropdown - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running dropdown...")
+    // TODO: implement dropdown
+    ret 0

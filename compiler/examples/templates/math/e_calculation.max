@@ -1,0 +1,6 @@
+// e_calculation - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running e_calculation...")
+    // TODO: implement e_calculation
+    ret 0

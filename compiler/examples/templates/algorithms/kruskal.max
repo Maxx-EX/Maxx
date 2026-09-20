@@ -1,0 +1,6 @@
+// kruskal - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running kruskal...")
+    // TODO: implement kruskal
+    ret 0

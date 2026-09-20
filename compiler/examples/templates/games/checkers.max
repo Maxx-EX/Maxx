@@ -1,0 +1,6 @@
+// checkers - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running checkers...")
+    // TODO: implement checkers
+    ret 0

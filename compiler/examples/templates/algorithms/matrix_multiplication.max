@@ -1,0 +1,6 @@
+// matrix_multiplication - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running matrix_multiplication...")
+    // TODO: implement matrix_multiplication
+    ret 0

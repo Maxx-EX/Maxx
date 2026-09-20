@@ -1,0 +1,6 @@
+// bst - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running bst...")
+    // TODO: implement bst
+    ret 0

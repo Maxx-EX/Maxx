@@ -1,0 +1,6 @@
+// dialog - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running dialog...")
+    // TODO: implement dialog
+    ret 0

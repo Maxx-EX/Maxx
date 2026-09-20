@@ -1,0 +1,6 @@
+// manhattan_distance - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running manhattan_distance...")
+    // TODO: implement manhattan_distance
+    ret 0

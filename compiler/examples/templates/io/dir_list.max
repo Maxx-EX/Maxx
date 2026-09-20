@@ -1,0 +1,6 @@
+// dir_list - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running dir_list...")
+    // TODO: implement dir_list
+    ret 0

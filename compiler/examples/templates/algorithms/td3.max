@@ -1,0 +1,6 @@
+// td3 - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running td3...")
+    // TODO: implement td3
+    ret 0

@@ -1,0 +1,6 @@
+// string_count_consonants - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_count_consonants...")
+    // TODO: implement string_count_consonants
+    ret 0

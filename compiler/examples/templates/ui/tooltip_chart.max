@@ -1,0 +1,6 @@
+// tooltip_chart - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running tooltip_chart...")
+    // TODO: implement tooltip_chart
+    ret 0

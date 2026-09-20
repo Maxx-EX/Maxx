@@ -1,0 +1,6 @@
+// grid_view - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running grid_view...")
+    // TODO: implement grid_view
+    ret 0

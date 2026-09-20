@@ -1,0 +1,6 @@
+// toml_dump - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running toml_dump...")
+    // TODO: implement toml_dump
+    ret 0

@@ -1,0 +1,6 @@
+// thread_create - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running thread_create...")
+    // TODO: implement thread_create
+    ret 0

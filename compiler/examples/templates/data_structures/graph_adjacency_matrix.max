@@ -1,0 +1,6 @@
+// graph_adjacency_matrix - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running graph_adjacency_matrix...")
+    // TODO: implement graph_adjacency_matrix
+    ret 0

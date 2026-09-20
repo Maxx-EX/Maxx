@@ -1,0 +1,6 @@
+// timer - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running timer...")
+    // TODO: implement timer
+    ret 0

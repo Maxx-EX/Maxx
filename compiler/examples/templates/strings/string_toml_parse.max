@@ -1,0 +1,6 @@
+// string_toml_parse - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_toml_parse...")
+    // TODO: implement string_toml_parse
+    ret 0

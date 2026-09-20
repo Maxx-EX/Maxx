@@ -1,0 +1,6 @@
+// hash_table - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running hash_table...")
+    // TODO: implement hash_table
+    ret 0

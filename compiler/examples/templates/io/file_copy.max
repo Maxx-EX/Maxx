@@ -1,0 +1,6 @@
+// file_copy - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running file_copy...")
+    // TODO: implement file_copy
+    ret 0

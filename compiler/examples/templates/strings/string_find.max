@@ -1,0 +1,6 @@
+// string_find - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_find...")
+    // TODO: implement string_find
+    ret 0

@@ -1,0 +1,6 @@
+// string_count_words - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_count_words...")
+    // TODO: implement string_count_words
+    ret 0

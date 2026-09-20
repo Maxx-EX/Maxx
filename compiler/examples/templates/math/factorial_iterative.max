@@ -1,0 +1,6 @@
+// factorial_iterative - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running factorial_iterative...")
+    // TODO: implement factorial_iterative
+    ret 0

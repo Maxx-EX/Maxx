@@ -1,0 +1,6 @@
+// snake - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running snake...")
+    // TODO: implement snake
+    ret 0

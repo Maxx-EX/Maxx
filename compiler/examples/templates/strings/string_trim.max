@@ -1,0 +1,6 @@
+// string_trim - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_trim...")
+    // TODO: implement string_trim
+    ret 0

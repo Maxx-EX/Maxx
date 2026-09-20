@@ -1,0 +1,6 @@
+// time_converter - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running time_converter...")
+    // TODO: implement time_converter
+    ret 0

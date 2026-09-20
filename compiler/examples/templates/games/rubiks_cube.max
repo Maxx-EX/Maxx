@@ -1,0 +1,6 @@
+// rubiks_cube - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running rubiks_cube...")
+    // TODO: implement rubiks_cube
+    ret 0

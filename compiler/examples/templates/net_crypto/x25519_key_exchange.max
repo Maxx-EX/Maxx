@@ -1,0 +1,6 @@
+// x25519_key_exchange - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running x25519_key_exchange...")
+    // TODO: implement x25519_key_exchange
+    ret 0

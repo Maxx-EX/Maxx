@@ -1,0 +1,6 @@
+// union_find - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running union_find...")
+    // TODO: implement union_find
+    ret 0

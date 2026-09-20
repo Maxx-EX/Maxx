@@ -1,0 +1,6 @@
+// binary_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running binary_tree...")
+    // TODO: implement binary_tree
+    ret 0

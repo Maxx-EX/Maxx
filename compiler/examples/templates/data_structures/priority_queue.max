@@ -1,0 +1,6 @@
+// priority_queue - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running priority_queue...")
+    // TODO: implement priority_queue
+    ret 0

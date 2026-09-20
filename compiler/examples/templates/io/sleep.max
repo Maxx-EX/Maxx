@@ -1,0 +1,6 @@
+// sleep - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running sleep...")
+    // TODO: implement sleep
+    ret 0

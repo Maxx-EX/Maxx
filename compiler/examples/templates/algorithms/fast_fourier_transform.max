@@ -1,0 +1,6 @@
+// fast_fourier_transform - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running fast_fourier_transform...")
+    // TODO: implement fast_fourier_transform
+    ret 0

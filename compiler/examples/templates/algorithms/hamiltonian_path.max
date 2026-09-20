@@ -1,0 +1,6 @@
+// hamiltonian_path - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running hamiltonian_path...")
+    // TODO: implement hamiltonian_path
+    ret 0

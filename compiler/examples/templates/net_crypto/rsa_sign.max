@@ -1,0 +1,6 @@
+// rsa_sign - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running rsa_sign...")
+    // TODO: implement rsa_sign
+    ret 0

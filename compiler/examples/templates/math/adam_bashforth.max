@@ -1,0 +1,6 @@
+// adam_bashforth - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running adam_bashforth...")
+    // TODO: implement adam_bashforth
+    ret 0

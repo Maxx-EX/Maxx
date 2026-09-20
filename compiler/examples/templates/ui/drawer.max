@@ -1,0 +1,6 @@
+// drawer - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running drawer...")
+    // TODO: implement drawer
+    ret 0

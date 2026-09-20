@@ -1,0 +1,6 @@
+// string_upper - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_upper...")
+    // TODO: implement string_upper
+    ret 0

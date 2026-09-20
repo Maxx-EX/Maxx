@@ -1,0 +1,6 @@
+// sparse_matrix - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running sparse_matrix...")
+    // TODO: implement sparse_matrix
+    ret 0

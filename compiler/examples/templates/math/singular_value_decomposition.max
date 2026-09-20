@@ -1,0 +1,6 @@
+// singular_value_decomposition - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running singular_value_decomposition...")
+    // TODO: implement singular_value_decomposition
+    ret 0

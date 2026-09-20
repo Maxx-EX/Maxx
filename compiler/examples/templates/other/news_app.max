@@ -1,0 +1,6 @@
+// news_app - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running news_app...")
+    // TODO: implement news_app
+    ret 0

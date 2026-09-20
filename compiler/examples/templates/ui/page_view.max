@@ -1,0 +1,6 @@
+// page_view - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running page_view...")
+    // TODO: implement page_view
+    ret 0

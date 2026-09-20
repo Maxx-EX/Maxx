@@ -1,0 +1,6 @@
+// image_view - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running image_view...")
+    // TODO: implement image_view
+    ret 0

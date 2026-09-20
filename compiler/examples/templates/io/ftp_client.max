@@ -1,0 +1,6 @@
+// ftp_client - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running ftp_client...")
+    // TODO: implement ftp_client
+    ret 0

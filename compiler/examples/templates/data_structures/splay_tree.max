@@ -1,0 +1,6 @@
+// splay_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running splay_tree...")
+    // TODO: implement splay_tree
+    ret 0

@@ -1,0 +1,6 @@
+// string_palindrome - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_palindrome...")
+    // TODO: implement string_palindrome
+    ret 0

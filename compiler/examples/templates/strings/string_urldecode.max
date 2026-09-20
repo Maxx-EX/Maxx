@@ -1,0 +1,6 @@
+// string_urldecode - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_urldecode...")
+    // TODO: implement string_urldecode
+    ret 0

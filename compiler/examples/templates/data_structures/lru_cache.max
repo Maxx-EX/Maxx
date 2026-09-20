@@ -1,0 +1,6 @@
+// lru_cache - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running lru_cache...")
+    // TODO: implement lru_cache
+    ret 0

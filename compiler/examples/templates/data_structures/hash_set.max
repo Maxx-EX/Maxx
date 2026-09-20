@@ -1,0 +1,6 @@
+// hash_set - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running hash_set...")
+    // TODO: implement hash_set
+    ret 0

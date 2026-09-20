@@ -1,0 +1,6 @@
+// heap - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running heap...")
+    // TODO: implement heap
+    ret 0

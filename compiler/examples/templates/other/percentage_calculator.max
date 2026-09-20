@@ -1,0 +1,6 @@
+// percentage_calculator - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running percentage_calculator...")
+    // TODO: implement percentage_calculator
+    ret 0

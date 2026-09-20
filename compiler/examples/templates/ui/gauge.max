@@ -1,0 +1,6 @@
+// gauge - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running gauge...")
+    // TODO: implement gauge
+    ret 0

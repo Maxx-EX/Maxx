@@ -1,0 +1,6 @@
+// z_algorithm - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running z_algorithm...")
+    // TODO: implement z_algorithm
+    ret 0

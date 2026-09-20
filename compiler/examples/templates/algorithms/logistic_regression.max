@@ -1,0 +1,6 @@
+// logistic_regression - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running logistic_regression...")
+    // TODO: implement logistic_regression
+    ret 0

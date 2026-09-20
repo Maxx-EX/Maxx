@@ -1,0 +1,6 @@
+// heatmap - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running heatmap...")
+    // TODO: implement heatmap
+    ret 0

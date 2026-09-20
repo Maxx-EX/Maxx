@@ -1,0 +1,6 @@
+// stdout_write - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running stdout_write...")
+    // TODO: implement stdout_write
+    ret 0

@@ -1,0 +1,6 @@
+// replay_buffer - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running replay_buffer...")
+    // TODO: implement replay_buffer
+    ret 0

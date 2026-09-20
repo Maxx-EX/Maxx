@@ -1,0 +1,6 @@
+// lcm - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running lcm...")
+    // TODO: implement lcm
+    ret 0

@@ -1,0 +1,6 @@
+// naive_bayes - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running naive_bayes...")
+    // TODO: implement naive_bayes
+    ret 0

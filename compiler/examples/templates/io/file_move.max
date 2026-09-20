@@ -1,0 +1,6 @@
+// file_move - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running file_move...")
+    // TODO: implement file_move
+    ret 0

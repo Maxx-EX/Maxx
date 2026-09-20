@@ -1,0 +1,6 @@
+// asteroids - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running asteroids...")
+    // TODO: implement asteroids
+    ret 0

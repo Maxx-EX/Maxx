@@ -1,0 +1,6 @@
+// string_morse - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_morse...")
+    // TODO: implement string_morse
+    ret 0

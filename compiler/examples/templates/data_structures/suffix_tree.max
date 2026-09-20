@@ -1,0 +1,6 @@
+// suffix_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running suffix_tree...")
+    // TODO: implement suffix_tree
+    ret 0

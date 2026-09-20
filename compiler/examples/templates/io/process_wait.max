@@ -1,0 +1,6 @@
+// process_wait - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running process_wait...")
+    // TODO: implement process_wait
+    ret 0

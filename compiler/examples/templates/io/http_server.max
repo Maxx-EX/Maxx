@@ -1,0 +1,6 @@
+// http_server - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running http_server...")
+    // TODO: implement http_server
+    ret 0

@@ -1,0 +1,6 @@
+// string_reverse - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_reverse...")
+    // TODO: implement string_reverse
+    ret 0

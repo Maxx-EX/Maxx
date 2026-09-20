@@ -1,0 +1,6 @@
+// unit_converter - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running unit_converter...")
+    // TODO: implement unit_converter
+    ret 0

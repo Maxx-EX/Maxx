@@ -1,0 +1,6 @@
+// numerical_integration - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running numerical_integration...")
+    // TODO: implement numerical_integration
+    ret 0

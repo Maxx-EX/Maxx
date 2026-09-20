@@ -1,0 +1,6 @@
+// guess_number - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running guess_number...")
+    // TODO: implement guess_number
+    ret 0

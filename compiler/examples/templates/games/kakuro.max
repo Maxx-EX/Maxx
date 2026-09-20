@@ -1,0 +1,6 @@
+// kakuro - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running kakuro...")
+    // TODO: implement kakuro
+    ret 0

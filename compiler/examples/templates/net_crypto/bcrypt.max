@@ -1,0 +1,6 @@
+// bcrypt - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running bcrypt...")
+    // TODO: implement bcrypt
+    ret 0

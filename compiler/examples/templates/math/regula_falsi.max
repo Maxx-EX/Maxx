@@ -1,0 +1,6 @@
+// regula_falsi - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running regula_falsi...")
+    // TODO: implement regula_falsi
+    ret 0

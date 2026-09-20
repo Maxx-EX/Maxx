@@ -1,0 +1,6 @@
+// stdin_read - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running stdin_read...")
+    // TODO: implement stdin_read
+    ret 0

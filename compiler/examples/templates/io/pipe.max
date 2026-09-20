@@ -1,0 +1,6 @@
+// pipe - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running pipe...")
+    // TODO: implement pipe
+    ret 0

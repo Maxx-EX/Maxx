@@ -1,0 +1,6 @@
+// dijkstra - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running dijkstra...")
+    // TODO: implement dijkstra
+    ret 0

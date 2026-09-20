@@ -1,0 +1,6 @@
+// calendar - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running calendar...")
+    // TODO: implement calendar
+    ret 0

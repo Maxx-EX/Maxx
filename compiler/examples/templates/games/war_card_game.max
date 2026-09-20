@@ -1,0 +1,6 @@
+// war_card_game - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running war_card_game...")
+    // TODO: implement war_card_game
+    ret 0

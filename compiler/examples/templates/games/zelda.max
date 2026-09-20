@@ -1,0 +1,6 @@
+// zelda - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running zelda...")
+    // TODO: implement zelda
+    ret 0

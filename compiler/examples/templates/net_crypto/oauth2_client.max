@@ -1,0 +1,6 @@
+// oauth2_client - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running oauth2_client...")
+    // TODO: implement oauth2_client
+    ret 0

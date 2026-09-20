@@ -1,0 +1,6 @@
+// eigenvalue_power_method - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running eigenvalue_power_method...")
+    // TODO: implement eigenvalue_power_method
+    ret 0

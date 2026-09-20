@@ -1,0 +1,6 @@
+// feed_page - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running feed_page...")
+    // TODO: implement feed_page
+    ret 0

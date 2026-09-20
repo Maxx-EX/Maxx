@@ -1,0 +1,6 @@
+// circular_buffer - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running circular_buffer...")
+    // TODO: implement circular_buffer
+    ret 0

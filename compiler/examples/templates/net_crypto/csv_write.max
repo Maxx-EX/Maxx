@@ -1,0 +1,6 @@
+// csv_write - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running csv_write...")
+    // TODO: implement csv_write
+    ret 0

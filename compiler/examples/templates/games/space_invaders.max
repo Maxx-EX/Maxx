@@ -1,0 +1,6 @@
+// space_invaders - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running space_invaders...")
+    // TODO: implement space_invaders
+    ret 0

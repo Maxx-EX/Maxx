@@ -1,0 +1,6 @@
+// stack - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running stack...")
+    // TODO: implement stack
+    ret 0

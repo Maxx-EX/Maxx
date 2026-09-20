@@ -1,0 +1,6 @@
+// polynomial_regression - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running polynomial_regression...")
+    // TODO: implement polynomial_regression
+    ret 0

@@ -1,0 +1,6 @@
+// json_pretty - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running json_pretty...")
+    // TODO: implement json_pretty
+    ret 0

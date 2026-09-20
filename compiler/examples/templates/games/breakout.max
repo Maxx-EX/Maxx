@@ -1,0 +1,6 @@
+// breakout - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running breakout...")
+    // TODO: implement breakout
+    ret 0

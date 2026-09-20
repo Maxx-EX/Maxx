@@ -1,0 +1,6 @@
+// aes_decrypt - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running aes_decrypt...")
+    // TODO: implement aes_decrypt
+    ret 0

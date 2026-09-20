@@ -1,0 +1,6 @@
+// file_picker - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running file_picker...")
+    // TODO: implement file_picker
+    ret 0

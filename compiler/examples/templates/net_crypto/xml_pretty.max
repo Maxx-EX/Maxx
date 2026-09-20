@@ -1,0 +1,6 @@
+// xml_pretty - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running xml_pretty...")
+    // TODO: implement xml_pretty
+    ret 0

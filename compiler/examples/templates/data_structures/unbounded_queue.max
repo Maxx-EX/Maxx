@@ -1,0 +1,6 @@
+// unbounded_queue - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running unbounded_queue...")
+    // TODO: implement unbounded_queue
+    ret 0

@@ -1,0 +1,6 @@
+// http_get - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running http_get...")
+    // TODO: implement http_get
+    ret 0

@@ -1,0 +1,6 @@
+// longest_increasing_subsequence - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running longest_increasing_subsequence...")
+    // TODO: implement longest_increasing_subsequence
+    ret 0

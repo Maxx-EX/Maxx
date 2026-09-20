@@ -1,0 +1,6 @@
+// email_client - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running email_client...")
+    // TODO: implement email_client
+    ret 0

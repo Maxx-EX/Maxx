@@ -1,0 +1,6 @@
+// random_int - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running random_int...")
+    // TODO: implement random_int
+    ret 0

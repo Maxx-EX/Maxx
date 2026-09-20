@@ -1,0 +1,6 @@
+// fibonacci_iterative - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running fibonacci_iterative...")
+    // TODO: implement fibonacci_iterative
+    ret 0

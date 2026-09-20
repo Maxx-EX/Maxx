@@ -1,0 +1,6 @@
+// spqr_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running spqr_tree...")
+    // TODO: implement spqr_tree
+    ret 0

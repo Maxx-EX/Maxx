@@ -1,0 +1,6 @@
+// hyperloglog - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running hyperloglog...")
+    // TODO: implement hyperloglog
+    ret 0

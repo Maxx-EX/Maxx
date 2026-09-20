@@ -1,0 +1,6 @@
+// string_replace - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_replace...")
+    // TODO: implement string_replace
+    ret 0

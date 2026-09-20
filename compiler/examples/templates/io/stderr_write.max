@@ -1,0 +1,6 @@
+// stderr_write - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running stderr_write...")
+    // TODO: implement stderr_write
+    ret 0

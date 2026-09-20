@@ -1,0 +1,6 @@
+// mutex_lock - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running mutex_lock...")
+    // TODO: implement mutex_lock
+    ret 0

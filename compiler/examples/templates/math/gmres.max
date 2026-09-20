@@ -1,0 +1,6 @@
+// gmres - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running gmres...")
+    // TODO: implement gmres
+    ret 0

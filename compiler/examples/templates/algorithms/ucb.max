@@ -1,0 +1,6 @@
+// ucb - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running ucb...")
+    // TODO: implement ucb
+    ret 0

@@ -1,0 +1,6 @@
+// string_lower - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_lower...")
+    // TODO: implement string_lower
+    ret 0

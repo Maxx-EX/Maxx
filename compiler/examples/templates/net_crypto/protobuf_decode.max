@@ -1,0 +1,6 @@
+// protobuf_decode - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running protobuf_decode...")
+    // TODO: implement protobuf_decode
+    ret 0

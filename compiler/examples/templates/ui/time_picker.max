@@ -1,0 +1,6 @@
+// time_picker - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running time_picker...")
+    // TODO: implement time_picker
+    ret 0

@@ -1,0 +1,6 @@
+// fifo - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running fifo...")
+    // TODO: implement fifo
+    ret 0

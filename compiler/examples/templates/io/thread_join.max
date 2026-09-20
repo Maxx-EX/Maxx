@@ -1,0 +1,6 @@
+// thread_join - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running thread_join...")
+    // TODO: implement thread_join
+    ret 0

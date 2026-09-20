@@ -1,0 +1,6 @@
+// hello_world - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running hello_world...")
+    // TODO: implement hello_world
+    ret 0

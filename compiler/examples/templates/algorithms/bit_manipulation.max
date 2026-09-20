@@ -1,0 +1,6 @@
+// bit_manipulation - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running bit_manipulation...")
+    // TODO: implement bit_manipulation
+    ret 0

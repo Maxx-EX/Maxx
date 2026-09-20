@@ -1,0 +1,6 @@
+// string_anagram - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_anagram...")
+    // TODO: implement string_anagram
+    ret 0

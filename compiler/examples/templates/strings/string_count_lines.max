@@ -1,0 +1,6 @@
+// string_count_lines - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_count_lines...")
+    // TODO: implement string_count_lines
+    ret 0

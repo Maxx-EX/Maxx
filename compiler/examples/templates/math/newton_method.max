@@ -1,0 +1,6 @@
+// newton_method - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running newton_method...")
+    // TODO: implement newton_method
+    ret 0

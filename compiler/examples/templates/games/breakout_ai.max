@@ -1,0 +1,6 @@
+// breakout_ai - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running breakout_ai...")
+    // TODO: implement breakout_ai
+    ret 0

@@ -1,0 +1,6 @@
+// uuid_v5 - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running uuid_v5...")
+    // TODO: implement uuid_v5
+    ret 0

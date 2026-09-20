@@ -1,0 +1,6 @@
+// cycle_detection - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running cycle_detection...")
+    // TODO: implement cycle_detection
+    ret 0

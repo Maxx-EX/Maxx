@@ -1,0 +1,6 @@
+// file_delete - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running file_delete...")
+    // TODO: implement file_delete
+    ret 0

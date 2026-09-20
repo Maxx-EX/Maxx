@@ -1,0 +1,6 @@
+// milne_simpson - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running milne_simpson...")
+    // TODO: implement milne_simpson
+    ret 0

@@ -1,0 +1,6 @@
+// atomic_counter - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running atomic_counter...")
+    // TODO: implement atomic_counter
+    ret 0

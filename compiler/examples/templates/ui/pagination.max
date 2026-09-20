@@ -1,0 +1,6 @@
+// pagination - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running pagination...")
+    // TODO: implement pagination
+    ret 0

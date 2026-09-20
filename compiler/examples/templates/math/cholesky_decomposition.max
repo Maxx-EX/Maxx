@@ -1,0 +1,6 @@
+// cholesky_decomposition - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running cholesky_decomposition...")
+    // TODO: implement cholesky_decomposition
+    ret 0

@@ -1,0 +1,6 @@
+// profile_page - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running profile_page...")
+    // TODO: implement profile_page
+    ret 0

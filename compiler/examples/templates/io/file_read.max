@@ -1,0 +1,6 @@
+// file_read - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running file_read...")
+    // TODO: implement file_read
+    ret 0

@@ -1,0 +1,6 @@
+// string_camel_case - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_camel_case...")
+    // TODO: implement string_camel_case
+    ret 0

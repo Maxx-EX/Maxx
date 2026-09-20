@@ -1,0 +1,6 @@
+// slot_machine - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running slot_machine...")
+    // TODO: implement slot_machine
+    ret 0

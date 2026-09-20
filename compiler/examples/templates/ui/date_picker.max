@@ -1,0 +1,6 @@
+// date_picker - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running date_picker...")
+    // TODO: implement date_picker
+    ret 0

@@ -1,0 +1,6 @@
+// thompson_sampling - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running thompson_sampling...")
+    // TODO: implement thompson_sampling
+    ret 0

@@ -1,0 +1,6 @@
+// bar_chart - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running bar_chart...")
+    // TODO: implement bar_chart
+    ret 0

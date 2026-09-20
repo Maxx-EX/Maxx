@@ -1,0 +1,6 @@
+// euclidean_distance - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running euclidean_distance...")
+    // TODO: implement euclidean_distance
+    ret 0

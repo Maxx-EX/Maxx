@@ -1,0 +1,6 @@
+// camera_view - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running camera_view...")
+    // TODO: implement camera_view
+    ret 0

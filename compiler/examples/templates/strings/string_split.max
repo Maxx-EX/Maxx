@@ -1,0 +1,6 @@
+// string_split - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_split...")
+    // TODO: implement string_split
+    ret 0

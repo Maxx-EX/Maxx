@@ -1,0 +1,6 @@
+// positional_encoding - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running positional_encoding...")
+    // TODO: implement positional_encoding
+    ret 0

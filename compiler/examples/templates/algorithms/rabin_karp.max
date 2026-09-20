@@ -1,0 +1,6 @@
+// rabin_karp - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running rabin_karp...")
+    // TODO: implement rabin_karp
+    ret 0

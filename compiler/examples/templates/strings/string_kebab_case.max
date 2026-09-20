@@ -1,0 +1,6 @@
+// string_kebab_case - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_kebab_case...")
+    // TODO: implement string_kebab_case
+    ret 0

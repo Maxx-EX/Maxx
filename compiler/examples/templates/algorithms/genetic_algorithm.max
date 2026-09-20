@@ -1,0 +1,6 @@
+// genetic_algorithm - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running genetic_algorithm...")
+    // TODO: implement genetic_algorithm
+    ret 0

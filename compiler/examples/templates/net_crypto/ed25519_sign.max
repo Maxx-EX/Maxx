@@ -1,0 +1,6 @@
+// ed25519_sign - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running ed25519_sign...")
+    // TODO: implement ed25519_sign
+    ret 0

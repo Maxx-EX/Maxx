@@ -1,0 +1,6 @@
+// word_scramble - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running word_scramble...")
+    // TODO: implement word_scramble
+    ret 0

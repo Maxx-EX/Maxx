@@ -1,0 +1,6 @@
+// vector_angle - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running vector_angle...")
+    // TODO: implement vector_angle
+    ret 0

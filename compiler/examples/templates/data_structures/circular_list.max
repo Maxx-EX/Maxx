@@ -1,0 +1,6 @@
+// circular_list - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running circular_list...")
+    // TODO: implement circular_list
+    ret 0

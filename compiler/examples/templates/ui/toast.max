@@ -1,0 +1,6 @@
+// toast - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running toast...")
+    // TODO: implement toast
+    ret 0

@@ -1,0 +1,6 @@
+// neural_network_forward - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running neural_network_forward...")
+    // TODO: implement neural_network_forward
+    ret 0

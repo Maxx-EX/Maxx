@@ -1,0 +1,6 @@
+// permission_request - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running permission_request...")
+    // TODO: implement permission_request
+    ret 0

@@ -1,0 +1,6 @@
+// label - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running label...")
+    // TODO: implement label
+    ret 0

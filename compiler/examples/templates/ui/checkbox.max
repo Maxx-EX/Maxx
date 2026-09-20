@@ -1,0 +1,6 @@
+// checkbox - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running checkbox...")
+    // TODO: implement checkbox
+    ret 0

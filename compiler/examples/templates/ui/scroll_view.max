@@ -1,0 +1,6 @@
+// scroll_view - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running scroll_view...")
+    // TODO: implement scroll_view
+    ret 0

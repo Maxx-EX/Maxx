@@ -1,0 +1,6 @@
+// merge_sort - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running merge_sort...")
+    // TODO: implement merge_sort
+    ret 0

@@ -1,0 +1,6 @@
+// combination - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running combination...")
+    // TODO: implement combination
+    ret 0

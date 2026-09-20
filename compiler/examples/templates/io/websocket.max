@@ -1,0 +1,6 @@
+// websocket - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running websocket...")
+    // TODO: implement websocket
+    ret 0

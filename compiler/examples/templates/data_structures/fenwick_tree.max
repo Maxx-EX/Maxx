@@ -1,0 +1,6 @@
+// fenwick_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running fenwick_tree...")
+    // TODO: implement fenwick_tree
+    ret 0

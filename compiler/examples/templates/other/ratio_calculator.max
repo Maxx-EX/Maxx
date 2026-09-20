@@ -1,0 +1,6 @@
+// ratio_calculator - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running ratio_calculator...")
+    // TODO: implement ratio_calculator
+    ret 0

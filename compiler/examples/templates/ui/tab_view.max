@@ -1,0 +1,6 @@
+// tab_view - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running tab_view...")
+    // TODO: implement tab_view
+    ret 0

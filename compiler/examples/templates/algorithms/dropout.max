@@ -1,0 +1,6 @@
+// dropout - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running dropout...")
+    // TODO: implement dropout
+    ret 0

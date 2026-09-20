@@ -1,0 +1,6 @@
+// brent_method - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running brent_method...")
+    // TODO: implement brent_method
+    ret 0

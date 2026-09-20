@@ -1,0 +1,6 @@
+// tetris - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running tetris...")
+    // TODO: implement tetris
+    ret 0

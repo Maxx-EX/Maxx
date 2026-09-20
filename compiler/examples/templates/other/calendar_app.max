@@ -1,0 +1,6 @@
+// calendar_app - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running calendar_app...")
+    // TODO: implement calendar_app
+    ret 0

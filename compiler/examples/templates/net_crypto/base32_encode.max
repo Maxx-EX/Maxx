@@ -1,0 +1,6 @@
+// base32_encode - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running base32_encode...")
+    // TODO: implement base32_encode
+    ret 0

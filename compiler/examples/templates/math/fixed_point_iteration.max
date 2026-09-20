@@ -1,0 +1,6 @@
+// fixed_point_iteration - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running fixed_point_iteration...")
+    // TODO: implement fixed_point_iteration
+    ret 0

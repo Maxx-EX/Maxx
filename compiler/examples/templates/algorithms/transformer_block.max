@@ -1,0 +1,6 @@
+// transformer_block - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running transformer_block...")
+    // TODO: implement transformer_block
+    ret 0

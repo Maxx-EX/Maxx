@@ -1,0 +1,6 @@
+// euclidean_algorithm - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running euclidean_algorithm...")
+    // TODO: implement euclidean_algorithm
+    ret 0

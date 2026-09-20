@@ -1,0 +1,6 @@
+// random_bytes - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running random_bytes...")
+    // TODO: implement random_bytes
+    ret 0

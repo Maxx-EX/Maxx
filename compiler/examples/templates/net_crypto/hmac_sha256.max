@@ -1,0 +1,6 @@
+// hmac_sha256 - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running hmac_sha256...")
+    // TODO: implement hmac_sha256
+    ret 0

@@ -1,0 +1,6 @@
+// tamagotchi - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running tamagotchi...")
+    // TODO: implement tamagotchi
+    ret 0

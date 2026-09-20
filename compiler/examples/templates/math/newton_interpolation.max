@@ -1,0 +1,6 @@
+// newton_interpolation - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running newton_interpolation...")
+    // TODO: implement newton_interpolation
+    ret 0

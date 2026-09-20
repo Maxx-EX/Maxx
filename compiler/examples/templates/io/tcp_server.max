@@ -1,0 +1,6 @@
+// tcp_server - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running tcp_server...")
+    // TODO: implement tcp_server
+    ret 0

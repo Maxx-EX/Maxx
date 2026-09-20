@@ -1,0 +1,6 @@
+// scrypt - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running scrypt...")
+    // TODO: implement scrypt
+    ret 0

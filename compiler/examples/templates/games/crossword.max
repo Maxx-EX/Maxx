@@ -1,0 +1,6 @@
+// crossword - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running crossword...")
+    // TODO: implement crossword
+    ret 0

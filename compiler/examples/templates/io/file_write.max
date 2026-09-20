@@ -1,0 +1,6 @@
+// file_write - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running file_write...")
+    // TODO: implement file_write
+    ret 0

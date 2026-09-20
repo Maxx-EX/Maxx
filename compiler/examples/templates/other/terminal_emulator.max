@@ -1,0 +1,6 @@
+// terminal_emulator - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running terminal_emulator...")
+    // TODO: implement terminal_emulator
+    ret 0

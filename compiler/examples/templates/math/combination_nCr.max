@@ -1,0 +1,6 @@
+// combination_nCr - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running combination_nCr...")
+    // TODO: implement combination_nCr
+    ret 0

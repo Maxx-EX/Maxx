@@ -1,0 +1,6 @@
+// octree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running octree...")
+    // TODO: implement octree
+    ret 0

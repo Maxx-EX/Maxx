@@ -1,0 +1,6 @@
+// queue - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running queue...")
+    // TODO: implement queue
+    ret 0

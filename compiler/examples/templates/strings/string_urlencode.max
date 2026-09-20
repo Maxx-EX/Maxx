@@ -1,0 +1,6 @@
+// string_urlencode - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_urlencode...")
+    // TODO: implement string_urlencode
+    ret 0

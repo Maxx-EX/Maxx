@@ -1,0 +1,6 @@
+// process_kill - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running process_kill...")
+    // TODO: implement process_kill
+    ret 0

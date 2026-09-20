@@ -1,0 +1,6 @@
+// avl_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running avl_tree...")
+    // TODO: implement avl_tree
+    ret 0

@@ -1,0 +1,6 @@
+// sha256 - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running sha256...")
+    // TODO: implement sha256
+    ret 0

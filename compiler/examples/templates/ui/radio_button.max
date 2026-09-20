@@ -1,0 +1,6 @@
+// radio_button - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running radio_button...")
+    // TODO: implement radio_button
+    ret 0

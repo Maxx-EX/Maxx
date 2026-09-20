@@ -1,0 +1,6 @@
+// video_view - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running video_view...")
+    // TODO: implement video_view
+    ret 0

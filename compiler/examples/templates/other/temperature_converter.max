@@ -1,0 +1,6 @@
+// temperature_converter - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running temperature_converter...")
+    // TODO: implement temperature_converter
+    ret 0

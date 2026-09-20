@@ -1,0 +1,6 @@
+// treap - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running treap...")
+    // TODO: implement treap
+    ret 0

@@ -1,0 +1,6 @@
+// process_spawn - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running process_spawn...")
+    // TODO: implement process_spawn
+    ret 0

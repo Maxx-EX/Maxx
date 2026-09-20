@@ -1,0 +1,6 @@
+// decision_tree - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running decision_tree...")
+    // TODO: implement decision_tree
+    ret 0

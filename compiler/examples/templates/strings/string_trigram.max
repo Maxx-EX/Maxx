@@ -1,0 +1,6 @@
+// string_trigram - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_trigram...")
+    // TODO: implement string_trigram
+    ret 0

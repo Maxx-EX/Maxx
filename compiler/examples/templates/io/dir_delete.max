@@ -1,0 +1,6 @@
+// dir_delete - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running dir_delete...")
+    // TODO: implement dir_delete
+    ret 0

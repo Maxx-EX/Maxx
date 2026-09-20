@@ -1,0 +1,6 @@
+// digimon - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running digimon...")
+    // TODO: implement digimon
+    ret 0

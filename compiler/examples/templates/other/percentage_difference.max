@@ -1,0 +1,6 @@
+// percentage_difference - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running percentage_difference...")
+    // TODO: implement percentage_difference
+    ret 0

@@ -351,6 +351,16 @@ class Lexer:
             if raw.endswith(suf):
                 raw = raw[: -len(suf)]
                 break
+        # Integer overflow check (P1-5).
+        if not is_float:
+            try:
+                val = int(raw, 0 if raw.startswith("0") else 10)
+                if val > 9223372036854775807 or val < -9223372036854775808:
+                    raise LexError(
+                        f"integer literal overflow (exceeds i64 range): {raw}",
+                        line, col)
+            except ValueError:
+                pass
         self.emit(TOK_FLOAT if is_float else TOK_INT, raw, line, col)
 
     def _lex_ident(self) -> None:

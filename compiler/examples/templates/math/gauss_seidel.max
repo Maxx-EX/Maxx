@@ -1,0 +1,6 @@
+// gauss_seidel - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running gauss_seidel...")
+    // TODO: implement gauss_seidel
+    ret 0

@@ -1,0 +1,6 @@
+// binomial_theorem - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running binomial_theorem...")
+    // TODO: implement binomial_theorem
+    ret 0

@@ -1,0 +1,6 @@
+// actor_critic - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running actor_critic...")
+    // TODO: implement actor_critic
+    ret 0

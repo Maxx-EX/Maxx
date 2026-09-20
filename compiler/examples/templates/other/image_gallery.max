@@ -1,0 +1,6 @@
+// image_gallery - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running image_gallery...")
+    // TODO: implement image_gallery
+    ret 0

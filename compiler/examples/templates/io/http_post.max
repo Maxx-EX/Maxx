@@ -1,0 +1,6 @@
+// http_post - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running http_post...")
+    // TODO: implement http_post
+    ret 0

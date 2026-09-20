@@ -1,0 +1,6 @@
+// md5 - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running md5...")
+    // TODO: implement md5
+    ret 0

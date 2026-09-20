@@ -1,0 +1,6 @@
+// udp_server - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running udp_server...")
+    // TODO: implement udp_server
+    ret 0

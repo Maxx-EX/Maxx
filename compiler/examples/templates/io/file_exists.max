@@ -1,0 +1,6 @@
+// file_exists - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running file_exists...")
+    // TODO: implement file_exists
+    ret 0

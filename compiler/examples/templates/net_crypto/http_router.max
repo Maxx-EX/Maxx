@@ -1,0 +1,6 @@
+// http_router - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running http_router...")
+    // TODO: implement http_router
+    ret 0

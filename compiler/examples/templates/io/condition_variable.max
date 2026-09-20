@@ -1,0 +1,6 @@
+// condition_variable - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running condition_variable...")
+    // TODO: implement condition_variable
+    ret 0

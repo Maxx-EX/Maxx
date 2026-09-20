@@ -1,0 +1,6 @@
+// music_player - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running music_player...")
+    // TODO: implement music_player
+    ret 0

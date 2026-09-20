@@ -1,0 +1,6 @@
+// string_soundex - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_soundex...")
+    // TODO: implement string_soundex
+    ret 0

@@ -1,0 +1,6 @@
+// yaml_dump - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running yaml_dump...")
+    // TODO: implement yaml_dump
+    ret 0

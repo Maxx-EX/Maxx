@@ -1,0 +1,6 @@
+// top_p_sampling - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running top_p_sampling...")
+    // TODO: implement top_p_sampling
+    ret 0

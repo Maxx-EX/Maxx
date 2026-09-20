@@ -1,0 +1,6 @@
+// smtp_client - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running smtp_client...")
+    // TODO: implement smtp_client
+    ret 0

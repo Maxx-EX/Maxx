@@ -1,0 +1,6 @@
+// scatter_plot - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running scatter_plot...")
+    // TODO: implement scatter_plot
+    ret 0

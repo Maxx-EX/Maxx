@@ -1,0 +1,6 @@
+// pokemon - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running pokemon...")
+    // TODO: implement pokemon
+    ret 0

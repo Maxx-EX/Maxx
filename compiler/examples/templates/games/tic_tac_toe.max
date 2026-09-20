@@ -1,0 +1,6 @@
+// tic_tac_toe - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running tic_tac_toe...")
+    // TODO: implement tic_tac_toe
+    ret 0

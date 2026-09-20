@@ -1,0 +1,6 @@
+// reaction_time - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running reaction_time...")
+    // TODO: implement reaction_time
+    ret 0

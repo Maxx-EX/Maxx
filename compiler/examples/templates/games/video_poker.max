@@ -1,0 +1,6 @@
+// video_poker - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running video_poker...")
+    // TODO: implement video_poker
+    ret 0

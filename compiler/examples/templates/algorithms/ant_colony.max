@@ -1,0 +1,6 @@
+// ant_colony - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running ant_colony...")
+    // TODO: implement ant_colony
+    ret 0

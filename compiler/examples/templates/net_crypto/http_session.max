@@ -1,0 +1,6 @@
+// http_session - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running http_session...")
+    // TODO: implement http_session
+    ret 0

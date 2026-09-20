@@ -1,0 +1,6 @@
+// subset_sum - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running subset_sum...")
+    // TODO: implement subset_sum
+    ret 0

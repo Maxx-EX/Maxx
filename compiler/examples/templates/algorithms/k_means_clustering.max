@@ -1,0 +1,6 @@
+// k_means_clustering - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running k_means_clustering...")
+    // TODO: implement k_means_clustering
+    ret 0

@@ -1,0 +1,6 @@
+// search_page - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running search_page...")
+    // TODO: implement search_page
+    ret 0

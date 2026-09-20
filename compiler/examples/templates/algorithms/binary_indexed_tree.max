@@ -1,0 +1,6 @@
+// binary_indexed_tree - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running binary_indexed_tree...")
+    // TODO: implement binary_indexed_tree
+    ret 0

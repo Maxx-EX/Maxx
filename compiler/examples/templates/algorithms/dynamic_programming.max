@@ -1,0 +1,6 @@
+// dynamic_programming - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running dynamic_programming...")
+    // TODO: implement dynamic_programming
+    ret 0

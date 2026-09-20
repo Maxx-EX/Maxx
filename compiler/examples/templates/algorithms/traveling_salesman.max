@@ -1,0 +1,6 @@
+// traveling_salesman - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running traveling_salesman...")
+    // TODO: implement traveling_salesman
+    ret 0

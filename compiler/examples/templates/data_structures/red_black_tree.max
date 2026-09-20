@@ -1,0 +1,6 @@
+// red_black_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running red_black_tree...")
+    // TODO: implement red_black_tree
+    ret 0

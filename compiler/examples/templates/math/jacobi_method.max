@@ -1,0 +1,6 @@
+// jacobi_method - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running jacobi_method...")
+    // TODO: implement jacobi_method
+    ret 0

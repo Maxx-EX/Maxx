@@ -1,0 +1,6 @@
+// hex_decode - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running hex_decode...")
+    // TODO: implement hex_decode
+    ret 0

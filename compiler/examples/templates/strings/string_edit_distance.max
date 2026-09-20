@@ -1,0 +1,6 @@
+// string_edit_distance - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_edit_distance...")
+    // TODO: implement string_edit_distance
+    ret 0

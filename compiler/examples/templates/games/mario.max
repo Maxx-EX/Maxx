@@ -1,0 +1,6 @@
+// mario - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running mario...")
+    // TODO: implement mario
+    ret 0

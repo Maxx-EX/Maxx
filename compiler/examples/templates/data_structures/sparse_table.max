@@ -1,0 +1,6 @@
+// sparse_table - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running sparse_table...")
+    // TODO: implement sparse_table
+    ret 0

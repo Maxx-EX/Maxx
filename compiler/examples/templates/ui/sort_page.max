@@ -1,0 +1,6 @@
+// sort_page - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running sort_page...")
+    // TODO: implement sort_page
+    ret 0

@@ -1,0 +1,6 @@
+// semaphore - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running semaphore...")
+    // TODO: implement semaphore
+    ret 0

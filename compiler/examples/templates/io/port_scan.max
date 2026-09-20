@@ -1,0 +1,6 @@
+// port_scan - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running port_scan...")
+    // TODO: implement port_scan
+    ret 0

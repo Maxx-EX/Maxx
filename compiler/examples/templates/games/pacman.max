@@ -1,0 +1,6 @@
+// pacman - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running pacman...")
+    // TODO: implement pacman
+    ret 0

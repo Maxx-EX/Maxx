@@ -1,0 +1,6 @@
+// url_decode - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running url_decode...")
+    // TODO: implement url_decode
+    ret 0

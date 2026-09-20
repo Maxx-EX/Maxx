@@ -1,0 +1,6 @@
+// pong - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running pong...")
+    // TODO: implement pong
+    ret 0

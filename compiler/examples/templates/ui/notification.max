@@ -1,0 +1,6 @@
+// notification - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running notification...")
+    // TODO: implement notification
+    ret 0

@@ -1,0 +1,6 @@
+// http_cookie - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running http_cookie...")
+    // TODO: implement http_cookie
+    ret 0

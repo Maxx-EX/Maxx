@@ -1,0 +1,6 @@
+// fizzbuzz - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running fizzbuzz...")
+    // TODO: implement fizzbuzz
+    ret 0

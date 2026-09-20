@@ -1,0 +1,6 @@
+// flatten - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running flatten...")
+    // TODO: implement flatten
+    ret 0

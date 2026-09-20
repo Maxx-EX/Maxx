@@ -1,0 +1,6 @@
+// text_input - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running text_input...")
+    // TODO: implement text_input
+    ret 0

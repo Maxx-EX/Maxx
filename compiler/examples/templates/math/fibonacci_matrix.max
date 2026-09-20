@@ -1,0 +1,6 @@
+// fibonacci_matrix - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running fibonacci_matrix...")
+    // TODO: implement fibonacci_matrix
+    ret 0

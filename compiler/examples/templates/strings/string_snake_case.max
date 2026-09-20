@@ -1,0 +1,6 @@
+// string_snake_case - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_snake_case...")
+    // TODO: implement string_snake_case
+    ret 0

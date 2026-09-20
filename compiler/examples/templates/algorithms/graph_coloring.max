@@ -1,0 +1,6 @@
+// graph_coloring - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running graph_coloring...")
+    // TODO: implement graph_coloring
+    ret 0

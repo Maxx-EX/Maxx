@@ -1,0 +1,6 @@
+// longest_common_subsequence - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running longest_common_subsequence...")
+    // TODO: implement longest_common_subsequence
+    ret 0

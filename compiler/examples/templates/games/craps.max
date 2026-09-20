@@ -1,0 +1,6 @@
+// craps - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running craps...")
+    // TODO: implement craps
+    ret 0

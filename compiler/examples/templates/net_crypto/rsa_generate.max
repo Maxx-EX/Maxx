@@ -1,0 +1,6 @@
+// rsa_generate - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running rsa_generate...")
+    // TODO: implement rsa_generate
+    ret 0

@@ -1,0 +1,6 @@
+// toggle_switch - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running toggle_switch...")
+    // TODO: implement toggle_switch
+    ret 0

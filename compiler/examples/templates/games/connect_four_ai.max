@@ -1,0 +1,6 @@
+// connect_four_ai - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running connect_four_ai...")
+    // TODO: implement connect_four_ai
+    ret 0

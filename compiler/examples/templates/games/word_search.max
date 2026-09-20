@@ -1,0 +1,6 @@
+// word_search - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running word_search...")
+    // TODO: implement word_search
+    ret 0

@@ -1,0 +1,6 @@
+// settings_page - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running settings_page...")
+    // TODO: implement settings_page
+    ret 0

@@ -1,0 +1,6 @@
+// netstat - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running netstat...")
+    // TODO: implement netstat
+    ret 0

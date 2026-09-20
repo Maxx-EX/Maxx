@@ -1,0 +1,6 @@
+// ball_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running ball_tree...")
+    // TODO: implement ball_tree
+    ret 0

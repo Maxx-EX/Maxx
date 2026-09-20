@@ -1,0 +1,6 @@
+// color_picker - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running color_picker...")
+    // TODO: implement color_picker
+    ret 0

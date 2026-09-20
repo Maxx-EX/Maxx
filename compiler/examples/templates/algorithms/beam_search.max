@@ -1,0 +1,6 @@
+// beam_search - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running beam_search...")
+    // TODO: implement beam_search
+    ret 0

@@ -1,0 +1,6 @@
+// dns_lookup - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running dns_lookup...")
+    // TODO: implement dns_lookup
+    ret 0

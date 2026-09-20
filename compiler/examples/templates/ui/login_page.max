@@ -1,0 +1,6 @@
+// login_page - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running login_page...")
+    // TODO: implement login_page
+    ret 0

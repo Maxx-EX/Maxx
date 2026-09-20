@@ -1,0 +1,6 @@
+// segment_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running segment_tree...")
+    // TODO: implement segment_tree
+    ret 0

@@ -1,0 +1,6 @@
+// pie_chart - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running pie_chart...")
+    // TODO: implement pie_chart
+    ret 0

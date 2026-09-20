@@ -1,0 +1,6 @@
+// string_length - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_length...")
+    // TODO: implement string_length
+    ret 0

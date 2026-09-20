@@ -1,0 +1,6 @@
+// puzzle_15 - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running puzzle_15...")
+    // TODO: implement puzzle_15
+    ret 0

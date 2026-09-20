@@ -1,0 +1,6 @@
+// blackjack - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running blackjack...")
+    // TODO: implement blackjack
+    ret 0

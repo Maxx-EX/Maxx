@@ -1,0 +1,6 @@
+// bounded_queue - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running bounded_queue...")
+    // TODO: implement bounded_queue
+    ret 0

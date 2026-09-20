@@ -1,0 +1,6 @@
+// chess_ai_minimax - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running chess_ai_minimax...")
+    // TODO: implement chess_ai_minimax
+    ret 0

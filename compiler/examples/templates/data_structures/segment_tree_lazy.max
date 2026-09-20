@@ -1,0 +1,6 @@
+// segment_tree_lazy - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running segment_tree_lazy...")
+    // TODO: implement segment_tree_lazy
+    ret 0

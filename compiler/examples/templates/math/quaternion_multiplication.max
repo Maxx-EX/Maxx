@@ -1,0 +1,6 @@
+// quaternion_multiplication - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running quaternion_multiplication...")
+    // TODO: implement quaternion_multiplication
+    ret 0

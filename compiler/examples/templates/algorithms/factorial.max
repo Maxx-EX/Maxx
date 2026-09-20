@@ -1,0 +1,6 @@
+// factorial - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running factorial...")
+    // TODO: implement factorial
+    ret 0

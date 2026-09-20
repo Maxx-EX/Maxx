@@ -1,0 +1,6 @@
+// quick_sort - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running quick_sort...")
+    // TODO: implement quick_sort
+    ret 0

@@ -1,0 +1,6 @@
+// hangman - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running hangman...")
+    // TODO: implement hangman
+    ret 0

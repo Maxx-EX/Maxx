@@ -1,0 +1,6 @@
+// temperature_sampling - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running temperature_sampling...")
+    // TODO: implement temperature_sampling
+    ret 0

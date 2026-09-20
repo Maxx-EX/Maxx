@@ -1,0 +1,6 @@
+// ppo - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running ppo...")
+    // TODO: implement ppo
+    ret 0

@@ -1,0 +1,6 @@
+// gcd - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running gcd...")
+    // TODO: implement gcd
+    ret 0

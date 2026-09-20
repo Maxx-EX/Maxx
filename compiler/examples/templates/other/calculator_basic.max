@@ -1,0 +1,6 @@
+// calculator_basic - Maxx example template
+// Category: other
+@ main() -> int:
+    io.println("Running calculator_basic...")
+    // TODO: implement calculator_basic
+    ret 0

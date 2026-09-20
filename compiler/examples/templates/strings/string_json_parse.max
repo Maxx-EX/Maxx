@@ -1,0 +1,6 @@
+// string_json_parse - Maxx example template
+// Category: strings
+@ main() -> int:
+    io.println("Running string_json_parse...")
+    // TODO: implement string_json_parse
+    ret 0

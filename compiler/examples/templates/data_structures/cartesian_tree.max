@@ -1,0 +1,6 @@
+// cartesian_tree - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running cartesian_tree...")
+    // TODO: implement cartesian_tree
+    ret 0

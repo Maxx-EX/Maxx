@@ -1,0 +1,6 @@
+// json_validate - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running json_validate...")
+    // TODO: implement json_validate
+    ret 0

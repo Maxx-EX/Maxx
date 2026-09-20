@@ -1,0 +1,6 @@
+// hash_map - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running hash_map...")
+    // TODO: implement hash_map
+    ret 0

@@ -1,0 +1,6 @@
+// tsv_read - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running tsv_read...")
+    // TODO: implement tsv_read
+    ret 0

@@ -1,0 +1,6 @@
+// button_basic - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running button_basic...")
+    // TODO: implement button_basic
+    ret 0

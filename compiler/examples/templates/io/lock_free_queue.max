@@ -1,0 +1,6 @@
+// lock_free_queue - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running lock_free_queue...")
+    // TODO: implement lock_free_queue
+    ret 0

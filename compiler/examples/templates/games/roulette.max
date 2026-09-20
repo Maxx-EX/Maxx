@@ -1,0 +1,6 @@
+// roulette - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running roulette...")
+    // TODO: implement roulette
+    ret 0

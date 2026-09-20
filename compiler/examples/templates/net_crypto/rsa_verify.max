@@ -1,0 +1,6 @@
+// rsa_verify - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running rsa_verify...")
+    // TODO: implement rsa_verify
+    ret 0

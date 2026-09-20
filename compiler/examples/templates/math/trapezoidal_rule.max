@@ -1,0 +1,6 @@
+// trapezoidal_rule - Maxx example template
+// Category: math
+@ main() -> int:
+    io.println("Running trapezoidal_rule...")
+    // TODO: implement trapezoidal_rule
+    ret 0

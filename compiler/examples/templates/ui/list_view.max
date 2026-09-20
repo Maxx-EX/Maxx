@@ -1,0 +1,6 @@
+// list_view - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running list_view...")
+    // TODO: implement list_view
+    ret 0

@@ -1,0 +1,6 @@
+// aes_encrypt - Maxx example template
+// Category: net_crypto
+@ main() -> int:
+    io.println("Running aes_encrypt...")
+    // TODO: implement aes_encrypt
+    ret 0

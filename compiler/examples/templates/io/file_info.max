@@ -1,0 +1,6 @@
+// file_info - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running file_info...")
+    // TODO: implement file_info
+    ret 0

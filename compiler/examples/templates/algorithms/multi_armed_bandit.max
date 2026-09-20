@@ -1,0 +1,6 @@
+// multi_armed_bandit - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running multi_armed_bandit...")
+    // TODO: implement multi_armed_bandit
+    ret 0

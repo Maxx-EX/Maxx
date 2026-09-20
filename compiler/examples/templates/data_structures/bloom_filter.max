@@ -1,0 +1,6 @@
+// bloom_filter - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running bloom_filter...")
+    // TODO: implement bloom_filter
+    ret 0

@@ -1,0 +1,6 @@
+// simulated_annealing - Maxx example template
+// Category: algorithms
+@ main() -> int:
+    io.println("Running simulated_annealing...")
+    // TODO: implement simulated_annealing
+    ret 0

@@ -1,0 +1,6 @@
+// dir_walk - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running dir_walk...")
+    // TODO: implement dir_walk
+    ret 0

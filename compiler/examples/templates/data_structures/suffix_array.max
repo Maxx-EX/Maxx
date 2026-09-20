@@ -1,0 +1,6 @@
+// suffix_array - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running suffix_array...")
+    // TODO: implement suffix_array
+    ret 0

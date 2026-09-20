@@ -1,0 +1,6 @@
+// chess - Maxx example template
+// Category: games
+@ main() -> int:
+    io.println("Running chess...")
+    // TODO: implement chess
+    ret 0

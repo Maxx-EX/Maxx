@@ -1,0 +1,6 @@
+// doubly_linked_list - Maxx example template
+// Category: data_structures
+@ main() -> int:
+    io.println("Running doubly_linked_list...")
+    // TODO: implement doubly_linked_list
+    ret 0

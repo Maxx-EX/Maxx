@@ -1,0 +1,6 @@
+// slider - Maxx example template
+// Category: ui
+@ main() -> int:
+    io.println("Running slider...")
+    // TODO: implement slider
+    ret 0

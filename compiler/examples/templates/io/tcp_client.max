@@ -1,0 +1,6 @@
+// tcp_client - Maxx example template
+// Category: io
+@ main() -> int:
+    io.println("Running tcp_client...")
+    // TODO: implement tcp_client
+    ret 0
