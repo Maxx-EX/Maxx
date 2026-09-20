@@ -44,8 +44,19 @@ from codegen_c import CCodegen  # noqa: E402
 
 
 def _read_source(path: str) -> str:
+    if not os.path.exists(path):
+        print(f"maxxc: error: file not found: {path}", file=sys.stderr)
+        sys.exit(1)
     with open(path, "r", encoding="utf-8") as f:
-        return f.read()
+        src = f.read()
+    if not src.strip():
+        print(f"maxxc: error: empty source file: {path}", file=sys.stderr)
+        sys.exit(1)
+    if "\x00" in src:
+        idx = src.index("\x00")
+        print(f"maxxc: error: NUL byte found in source at byte {idx}", file=sys.stderr)
+        sys.exit(1)
+    return src
 
 
 def _compile_to_binary(c_src: str, runtime_dir: str) -> str:

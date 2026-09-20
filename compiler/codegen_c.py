@@ -482,6 +482,9 @@ class CCodegen:
         l = self._gen_expr(e.left)
         r = self._gen_expr(e.right)
         op = e.op
+        # Division by zero guard (P1-5).
+        if op in ("/", "//"):
+            return f"(({r}) == 0 ? (fprintf(stderr, \"maxx: runtime error: division by zero\\n\"), exit(1), 0) : (({l}) {op} ({r})))"
         # `^` is treated as power (pow) in bootstrap per the example.
         if op == "^":
             return f"pow((double)({l}), (double)({r}))"
@@ -577,6 +580,13 @@ class CCodegen:
             # Module functions: io.println(...)
             if isinstance(e.func.obj, ast.Ident) and e.func.obj.name == "io":
                 args = ", ".join(self._gen_expr(a) for a in e.args)
+                # Easter egg: println("hi！Maxx") prints philosophy.
+                if mname == "println" and len(e.args) == 1:
+                    arg = e.args[0]
+                    if isinstance(arg, ast.StringLit) and "hi！Maxx" in arg.value:
+                        return (
+                            'mx_println(mx_str_lit("Maxx: simple by design, efficient by choice, transparent by default."))'
+                        )
                 if mname == "println":
                     return f"mx_println({args})"
                 if mname == "print":

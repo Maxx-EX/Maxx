@@ -101,7 +101,13 @@ static std::string eval_maxx(const std::string& code) {
                 if (!arg.empty() && arg[0] == '"') {
                     size_t qend = arg.find('"', 1);
                     if (qend != std::string::npos) {
-                        out << arg.substr(1, qend - 1) << "\n";
+                        std::string s = arg.substr(1, qend - 1);
+                        // Easter egg: hi！Maxx prints philosophy.
+                        if (s.find("hi！Maxx") != std::string::npos) {
+                            out << "Maxx: simple by design, efficient by choice, transparent by default.\n";
+                        } else {
+                            out << s << "\n";
+                        }
                         continue;
                     }
                 }
