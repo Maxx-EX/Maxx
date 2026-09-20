@@ -42,6 +42,22 @@ mx_str mx_str_concat(mx_str a, mx_str b) {
     return r;
 }
 
+bool mx_str_eq(mx_str a, mx_str b) {
+    if (a.len != b.len) return false;
+    return memcmp(a.ptr, b.ptr, (size_t)a.len) == 0;
+}
+
+bool mx_str_lt(mx_str a, mx_str b) {
+    size_t min_len = (size_t)(a.len < b.len ? a.len : b.len);
+    int cmp = memcmp(a.ptr, b.ptr, min_len);
+    if (cmp != 0) return cmp < 0;
+    return a.len < b.len;
+}
+
+bool mx_str_gt(mx_str a, mx_str b) {
+    return mx_str_lt(b, a);
+}
+
 void mx_println(mx_str s) {
     fwrite(s.ptr, 1, (size_t)s.len, stdout);
     fputc('\n', stdout);

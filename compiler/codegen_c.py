@@ -304,7 +304,7 @@ class CCodegen:
                 fname = e.func.name
                 if fname in ("str",):
                     return TypeInfo(kind="scalar", name="str")
-                if fname in ("int", "i64"):
+                if fname in ("int", "i64", "i32", "u32", "u64"):
                     return TypeInfo(kind="scalar", name="int")
                 if fname in ("f64", "f32"):
                     return TypeInfo(kind="scalar", name=fname)
@@ -478,6 +478,31 @@ class CCodegen:
         if isinstance(e, ast.StringLit):
             escaped = e.value.replace("\\", "\\\\").replace('"', '\\"')
             return f'mx_str_lit("{escaped}")'
+        if isinstance(e, ast.FStringLit):
+            # Build concatenation of literal parts and interpolated expressions.
+            parts_c = []
+            for text, expr in e.parts:
+                if text:
+                    escaped = text.replace("\\", "\\\\").replace('"', '\\"')
+                    parts_c.append(f'mx_str_lit("{escaped}")')
+                if expr is not None:
+                    # Convert expression to string based on inferred type.
+                    expr_type = self._infer_type(expr)
+                    expr_c = self._gen_expr(expr)
+                    if expr_type.kind == "scalar" and expr_type.name == "str":
+                        parts_c.append(expr_c)  # already a string
+                    elif expr_type.kind == "scalar" and expr_type.name == "f64":
+                        parts_c.append(f"mx_double_to_str({expr_c})")
+                    elif expr_type.kind == "scalar" and expr_type.name == "bool":
+                        parts_c.append(f"mx_bool_to_str({expr_c})")
+                    else:
+                        parts_c.append(f"mx_int_to_str({expr_c})")
+            if not parts_c:
+                return 'mx_str_lit("")'
+            result = parts_c[0]
+            for p in parts_c[1:]:
+                result = f"mx_str_concat({result}, {p})"
+            return result
         if isinstance(e, ast.RawStringLit):
             escaped = e.value.replace("\\", "\\\\").replace('"', '\\"')
             return f'mx_str_lit("{escaped}")'
@@ -548,8 +573,8 @@ class CCodegen:
         return f"/* unhandled expr {type(e).__name__} */"
 
     def _gen_binary(self, e: ast.BinaryOp) -> str:
-        lt = self.checker._check_expr(e.left)
-        rt = self.checker._check_expr(e.right)
+        lt = self._infer_type(e.left)
+        rt = self._infer_type(e.right)
         l = self._gen_expr(e.left)
         r = self._gen_expr(e.right)
         op = e.op
@@ -564,7 +589,27 @@ class CCodegen:
             return f"mx_str_concat({l}, {r})"
         # Comparison / logical.
         if op in ("==", "!=", "<", "<=", ">", ">="):
+            # String comparison uses runtime functions.
+            if lt.kind == "scalar" and lt.name == "str" and rt.kind == "scalar" and rt.name == "str":
+                if op == "==":
+                    return f"mx_str_eq({l}, {r})"
+                if op == "!=":
+                    return f"!mx_str_eq({l}, {r})"
+                if op == "<":
+                    return f"mx_str_lt({l}, {r})"
+                if op == ">":
+                    return f"mx_str_gt({l}, {r})"
+                if op == "<=":
+                    return f"(!mx_str_gt({l}, {r}))"
+                if op == ">=":
+                    return f"(!mx_str_lt({l}, {r}))"
             return f"({l} {op} {r})"
+        if op == "is":
+            # Bootstrap: `x is Type` always returns true (static types are known at compile time).
+            return "true"
+        if op == "as":
+            # Type cast: just return the value (C handles it implicitly).
+            return f"({l})"
         if op == "&&":
             return f"({l} && {r})"
         if op == "||":
@@ -581,6 +626,15 @@ class CCodegen:
             if name == "int" or name == "i64":
                 arg = self._gen_expr(e.args[0]) if e.args else "0"
                 return f"((int64_t)({arg}))"
+            if name == "i32":
+                arg = self._gen_expr(e.args[0]) if e.args else "0"
+                return f"((int32_t)({arg}))"
+            if name == "u32":
+                arg = self._gen_expr(e.args[0]) if e.args else "0"
+                return f"((uint32_t)({arg}))"
+            if name == "u64":
+                arg = self._gen_expr(e.args[0]) if e.args else "0"
+                return f"((uint64_t)({arg}))"
             if name == "f64":
                 arg = self._gen_expr(e.args[0]) if e.args else "0.0"
                 return f"((double)({arg}))"

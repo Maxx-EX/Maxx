@@ -1,0 +1,11 @@
+@ main() -> int:
+    let a = "hello"
+    let b = "hello"
+    let c = "world"
+    if a == b:
+        io.println("equal")
+    if a != c:
+        io.println("not equal")
+    if a < c:
+        io.println("a less than c")
+    ret 0

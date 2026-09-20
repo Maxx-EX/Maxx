@@ -1,0 +1,5 @@
+@ main() -> int:
+    let x = 42
+    if x is int:
+        io.println("x is int")
+    ret 0

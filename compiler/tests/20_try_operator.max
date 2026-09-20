@@ -1,0 +1,9 @@
+@ compute() -> Result<int, str>:
+    ret ok(42)
+
+@ main() -> int:
+    let r = compute()
+    match r:
+        ok(v) => io.println(str(v))
+        err(e) => io.println("error")
+    ret 0

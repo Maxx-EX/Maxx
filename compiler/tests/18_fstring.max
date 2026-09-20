@@ -1,0 +1,5 @@
+@ main() -> int:
+    let name = "Maxx"
+    let version = 1
+    io.println(f"Hello {name} v{version}")
+    ret 0

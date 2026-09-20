@@ -1,0 +1,7 @@
+@ main() -> int:
+    let x = 10
+    let y = f64(x)
+    io.println(str(y))
+    let z = i32(42)
+    io.println(str(z))
+    ret 0

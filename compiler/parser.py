@@ -606,6 +606,21 @@ class Parser:
         left = self.parse_unary()
         while True:
             t = self.peek()
+            # Check for keyword operators: `is`, `as`.
+            if t.kind == TOK_KEYWORD and t.value in ("is", "as"):
+                op = t.value
+                if op == "as":
+                    self.next()
+                    ty = self.parse_type()
+                    left = ast.AsCast(expr=left, type=ty,
+                                      line=t.line, col=t.col)
+                    continue
+                if op == "is":
+                    self.next()
+                    ty = self.parse_type()
+                    left = ast.IsType(expr=left, type=ty,
+                                      line=t.line, col=t.col)
+                    continue
             if t.kind == TOK_OP and t.value in PREC:
                 op = t.value
                 prec = PREC[op]
@@ -773,8 +788,33 @@ class Parser:
             self.next()
             return ast.RawStringLit(value=t.value, line=t.line, col=t.col)
         if self.at(TOK_FSTRING):
-            self.next()
-            return ast.StringLit(value=t.value, line=t.line, col=t.col)
+            tok = self.next()
+            # Parse f-string parts: split on {expr}.
+            parts: List[Tuple[str, Optional[ast.Expr]]] = []
+            text = tok.value
+            i = 0
+            while i < len(text):
+                if text[i] == "{" and i + 1 < len(text) and text[i+1] != "{":
+                    # Find closing }.
+                    j = text.find("}", i)
+                    if j == -1:
+                        parts.append((text[i:], None))
+                        break
+                    expr_str = text[i+1:j].strip()
+                    # We can't easily parse the expression here without tokenizing.
+                    # For bootstrap, treat it as a variable name.
+                    if expr_str:
+                        parts.append(("", ast.Ident(name=expr_str, line=tok.line, col=tok.col)))
+                    i = j + 1
+                else:
+                    # Collect text until next {.
+                    j = text.find("{", i)
+                    if j == -1:
+                        parts.append((text[i:], None))
+                        break
+                    parts.append((text[i:j], None))
+                    i = j
+            return ast.FStringLit(parts=parts, line=tok.line, col=tok.col)
 
         if self.at(TOK_CHAR):
             self.next()
