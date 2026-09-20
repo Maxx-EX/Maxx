@@ -1,0 +1,123 @@
+//! todo.maxui — 待办清单 App
+//! 演示：State<Vec>、TextField on_change、动态生成子组件、删除/勾选
+
+~ maxx.ui
+~ std.collections::Vec
+
+# TodoItem:
+    text: str
+    done: bool
+
+@ todo_view() -> View:
+    // 状态：待办列表 + 输入框当前文本
+    let items = State<Vec<TodoItem>>(Vec::new())
+    let input_text = State<str>("")
+
+    // 添加新待办
+    let add_item = fn():
+        let text = input_text.get()
+        if text.len() > 0:
+            let mut list = items.get()
+            list.push(TodoItem{ text = text, done = false })
+            items.set(list)
+            input_text.set("")
+
+    // 切换完成状态
+    let toggle = fn(idx: int):
+        let mut list = items.get()
+        let mut item = list.at(idx)
+        item.done = !item.done
+        list.set(idx, item)
+        items.set(list)
+
+    // 删除
+    let remove = fn(idx: int):
+        let mut list = items.get()
+        list.remove(idx)
+        items.set(list)
+
+    // 动态生成待办行
+    let mut todo_rows = Vec<View>::new()
+    let list = items.get()
+    var i = 0
+    while i < list.len():
+        let item = list.at(i)
+        let display = if item.done:
+            "[x] " + item.text
+        else:
+            "[ ] " + item.text
+        let color = if item.done:
+            Color::gray()
+        else:
+            Color::black()
+        todo_rows.push(Row{
+            children = [
+                Text{content = display, size = 16, color = color, bold = false},
+                Spacer{weight = 1},
+                Button{
+                    label = "✓",
+                    on_click = fn(): toggle(i),
+                    enabled = true,
+                },
+                Button{
+                    label = "✗",
+                    on_click = fn(): remove(i),
+                    enabled = true,
+                },
+            ],
+            spacing = 8,
+            padding = EdgeInsets::all(4),
+            align = Align::Center,
+        })
+        i += 1
+
+    ret Column{
+        children = [
+            Text{
+                content = "Todo List (" + str(list.len()) + ")",
+                size = 24,
+                color = Color::black(),
+                bold = true,
+            },
+            // 输入区
+            Row{
+                children = [
+                    TextField{
+                        hint = "Add a task...",
+                        value = input_text.get(),
+                        on_change = fn(s: str): input_text.set(s),
+                    },
+                    Button{
+                        label = "Add",
+                        on_click = add_item,
+                        enabled = true,
+                    },
+                ],
+                spacing = 8,
+                padding = EdgeInsets::all(8),
+                align = Align::Center,
+            },
+            // 待办列表
+            Column{
+                children = todo_rows,
+                spacing = 4,
+                padding = EdgeInsets::all(8),
+                align = Align::Start,
+            },
+        ],
+        spacing = 16,
+        padding = EdgeInsets::all(16),
+        align = Align::Start,
+    }
+
+@ main() -> ():
+    let app = App{
+        name = "Todo",
+        home = todo_view(),
+        theme = Theme{
+            primary = Color::hex("#4CAF50"),
+            background = Color::white(),
+            text_color = Color::black(),
+        },
+    }
+    run_app(app)

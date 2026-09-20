@@ -1,0 +1,135 @@
+//! calculator.maxui — 简易计算器
+//! 演示：State<str>（显示文本）、4×4 按钮网格、运算符逻辑、点击链
+
+~ maxx.ui
+~ std.text
+~ std.collections::Vec
+
+@ calculator_view() -> View:
+    // 状态：当前显示的表达式
+    let display = State<str>("0")
+
+    // 按钮点击处理
+    let press = fn(key: str):
+        let cur = display.get()
+        if key == "C":
+            display.set("0")
+        elif key == "=":
+            // 简化：直接求值（引导阶段不支持完整表达式解析，Level 2+ 加 eval）
+            display.set(eval_simple(cur))
+        else:
+            if cur == "0" && key != ".":
+                display.set(key)
+            else:
+                display.set(cur + key)
+
+    // 按钮工厂
+    let btn = fn(label: str) -> View:
+        Button{
+            label = label,
+            on_click = fn(): press(label),
+            enabled = true,
+        }
+
+    ret Column{
+        children = [
+            // 显示区
+            Stack{
+                children = [
+                    Text{
+                        content = display.get(),
+                        size = 32,
+                        color = Color::black(),
+                        bold = true,
+                    },
+                ],
+                padding = EdgeInsets::all(16),
+            },
+            // 第 1 行：7 8 9 /
+            Row{
+                children = [btn("7"), btn("8"), btn("9"), btn("/")],
+                spacing = 8,
+                padding = EdgeInsets::all(4),
+                align = Align::Center,
+            },
+            // 第 2 行：4 5 6 *
+            Row{
+                children = [btn("4"), btn("5"), btn("6"), btn("*")],
+                spacing = 8,
+                padding = EdgeInsets::all(4),
+                align = Align::Center,
+            },
+            // 第 3 行：1 2 3 -
+            Row{
+                children = [btn("1"), btn("2"), btn("3"), btn("-")],
+                spacing = 8,
+                padding = EdgeInsets::all(4),
+                align = Align::Center,
+            },
+            // 第 4 行：C 0 . +
+            Row{
+                children = [btn("C"), btn("0"), btn("."), btn("+")],
+                spacing = 8,
+                padding = EdgeInsets::all(4),
+                align = Align::Center,
+            },
+            // 第 5 行：= （占满整行）
+            Row{
+                children = [
+                    Spacer{weight = 1},
+                    btn("="),
+                    Spacer{weight = 1},
+                ],
+                spacing = 8,
+                padding = EdgeInsets::all(4),
+                align = Align::Center,
+            },
+        ],
+        spacing = 8,
+        padding = EdgeInsets::all(16),
+        align = Align::Start,
+    }
+
+// 简化求值：只支持 a op b（二元运算）
+@ eval_simple(expr: str) -> str:
+    // 引导阶段：查找运算符，左右操作数
+    let ops = ["+", "-", "*", "/"]
+    var i = 0
+    while i < ops.len():
+        let op = ops.at(i)
+        match expr.index_of(op):
+            some(idx):
+                let left = expr.slice(0, idx).unwrap()
+                let right = expr.slice(idx + 1, expr.len()).unwrap()
+                match left.parse_float():
+                    ok(a):
+                        match right.parse_float():
+                            ok(b):
+                                let result = match op:
+                                    "+": a + b
+                                    "-": a - b
+                                    "*": a * b
+                                    "/": if b != 0.0: a / b else: 0.0
+                                ret float_to_str(result)
+                            err(_): ret "Error"
+                        err(_): ret "Error"
+                none: ret "Error"
+            none: ()
+        i += 1
+    ret expr
+
+@ float_to_str(x: f64) -> str:
+    // 引导阶段：简化
+    ret ""
+
+@ main() -> ():
+    let app = App{
+        name = "Calculator",
+        home = calculator_view(),
+        theme = Theme{
+            primary = Color::hex("#2196F3"),
+            background = Color::white(),
+            text_color = Color::black(),
+        },
+    }
+    run_app(app)

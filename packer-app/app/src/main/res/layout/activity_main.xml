@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maxx Packer"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#9C27B0"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="把 .maxproj 打包成 APK"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/select_project"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="选择 .maxproj 项目"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/pack_demo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="打包演示项目"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/pack_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="▶ 打包 APK"
+        android:backgroundTint="#9C27B0"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/status_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:background="#F5F5F5"
+        android:fontFamily="monospace"
+        android:textSize="12sp"
+        android:text="就绪。选择项目或点演示。" />
+
+</LinearLayout>

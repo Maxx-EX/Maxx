@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Maxx 图标背景：渐变深色 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="#e94560"
+        android:endColor="#0f3460"
+        android:angle="135"
+        android:type="linear" />
+</shape>

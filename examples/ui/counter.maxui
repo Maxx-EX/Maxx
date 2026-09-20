@@ -1,0 +1,66 @@
+//! counter.maxui — 计数器 App
+//! 演示：State<int>、Button on_click、Column/Row 布局、三按钮（加/减/重置）
+
+~ maxx.ui
+~ std.io
+
+@ counter_view() -> View:
+    let count = State<int>(0)
+
+    ret Column{
+        children = [
+            // 标题
+            Text{
+                content = "Counter",
+                size = 20,
+                color = Color::gray(),
+                bold = false,
+            },
+            // 计数显示
+            Text{
+                content = str(count.get()),
+                size = 64,
+                color = Color::black(),
+                bold = true,
+            },
+            // 按钮行：- 和 +
+            Row{
+                children = [
+                    Button{
+                        label = "−",
+                        on_click = fn(): count.set(count.get() - 1),
+                        enabled = true,
+                    },
+                    Button{
+                        label = "+",
+                        on_click = fn(): count.set(count.get() + 1),
+                        enabled = true,
+                    },
+                ],
+                spacing = 24,
+                padding = EdgeInsets::all(8),
+                align = Align::Center,
+            },
+            // 重置按钮
+            Button{
+                label = "Reset",
+                on_click = fn(): count.set(0),
+                enabled = true,
+            },
+        ],
+        spacing = 32,
+        padding = EdgeInsets::all(32),
+        align = Align::Center,
+    }
+
+@ main() -> ():
+    let app = App{
+        name = "Counter",
+        home = counter_view(),
+        theme = Theme{
+            primary = Color::hex("#9C27B0"),
+            background = Color::white(),
+            text_color = Color::black(),
+        },
+    }
+    run_app(app)

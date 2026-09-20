@@ -3,39 +3,137 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:background="@drawable/bg_gradient">
 
-    <EditText
-        android:id="@+id/code_editor"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="top|start"
-        android:hint="Write Maxx code here..."
-        android:inputType="textMultiLine"
-        android:textSize="13sp"
-        android:background="#1e1e1e"
-        android:textColor="#d4d4d4"
-        android:padding="8dp" />
-
-    <Button
-        android:id="@+id/run_button"
+    <!-- Title bar -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="▶ Run Maxx"
-        android:textSize="16sp" />
+        android:background="@drawable/bg_title_bar"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/output_view"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Maxx 编译器"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/save_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂无修改"
+                android:textColor="#CCFFFFFF"
+                android:textSize="12sp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/run_button"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="▶ 运行"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:background="@drawable/bg_run_button"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginRight="8dp" />
+
+        <Button
+            android:id="@+id/menu_button"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="⋮ 菜单"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:background="@drawable/bg_tool_btn"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp" />
+    </LinearLayout>
+
+    <!-- Code editor with line numbers -->
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="top|start"
-        android:fontFamily="monospace"
-        android:text="Output will appear here..."
-        android:textSize="13sp"
-        android:background="#2d2d2d"
-        android:textColor="#9cdcfe"
-        android:padding="8dp" />
+        android:scrollbars="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/bg_editor">
+
+            <!-- Line numbers -->
+            <TextView
+                android:id="@+id/line_numbers"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:textColor="@color/line_number"
+                android:fontFamily="monospace"
+                android:textSize="13sp"
+                android:gravity="top|end"
+                android:text="1" />
+
+            <!-- Code input -->
+            <EditText
+                android:id="@+id/code_editor"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="top|start"
+                android:hint="// Write Maxx code here..."
+                android:textColorHint="#606060"
+                android:inputType="textMultiLine|textNoSuggestions"
+                android:textSize="13sp"
+                android:textColor="@color/editor_text"
+                android:fontFamily="monospace"
+                android:background="@android:color/transparent"
+                android:padding="8dp"
+                android:scrollbars="vertical"
+                android:minWidth="300dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Keyboard toolbar row 1 -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/bg_light"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/toolbar_row1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="4dp" />
+    </HorizontalScrollView>
+
+    <!-- Keyboard toolbar row 2 -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/bg_light"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/toolbar_row2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="4dp" />
+    </HorizontalScrollView>
 
 </LinearLayout>

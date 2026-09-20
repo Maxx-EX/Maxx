@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Plain Material Design -->
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="accent">#FF4081</color>
+    <color name="bg_light">#F5F5F5</color>
+    <color name="bg_editor">#1E1E1E</color>
+    <color name="editor_text">#D4D4D4</color>
+    <color name="line_number">#606060</color>
+    <color name="syntax_keyword">#C586C0</color>
+    <color name="syntax_control">#569CD6</color>
+    <color name="syntax_type">#4EC9B0</color>
+    <color name="syntax_string">#6A9955</color>
+    <color name="syntax_comment">#808080</color>
+    <color name="syntax_number">#B5CEA8</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="output_text">#9cdcfe</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>
