@@ -1,0 +1,12 @@
+// compression_xz - Maxx standard library module
+// Category: data
+// Description: compression xz implementation
+// Status: available (bootstrap)
+
+# compression_xz:
+
+@ new_compression_xz() -> void:
+    ret
+
+@ compression_xz_process(data: Vec<int>) -> Vec<int>:
+    ret data

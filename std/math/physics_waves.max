@@ -1,0 +1,12 @@
+// physics_waves - Maxx standard library module
+// Category: math
+// Description: physics waves implementation
+// Status: available (bootstrap)
+
+# physics_waves:
+
+@ new_physics_waves() -> void:
+    ret
+
+@ physics_waves_process(data: Vec<int>) -> Vec<int>:
+    ret data

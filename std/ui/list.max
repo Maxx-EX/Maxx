@@ -1,0 +1,6 @@
+// list - Maxx standard library module
+// Category: ui
+# list:
+
+@ list_init() -> void:
+    ret

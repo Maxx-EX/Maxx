@@ -1,0 +1,12 @@
+// proxy_ssr - Maxx standard library module
+// Category: net
+// Description: proxy ssr implementation
+// Status: available (bootstrap)
+
+# proxy_ssr:
+
+@ new_proxy_ssr() -> void:
+    ret
+
+@ proxy_ssr_process(data: Vec<int>) -> Vec<int>:
+    ret data

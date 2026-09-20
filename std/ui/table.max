@@ -1,0 +1,6 @@
+// table - Maxx standard library module
+// Category: ui
+# table:
+
+@ table_init() -> void:
+    ret

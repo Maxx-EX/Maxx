@@ -1,0 +1,12 @@
+// compression_lzo - Maxx standard library module
+// Category: data
+// Description: compression lzo implementation
+// Status: available (bootstrap)
+
+# compression_lzo:
+
+@ new_compression_lzo() -> void:
+    ret
+
+@ compression_lzo_process(data: Vec<int>) -> Vec<int>:
+    ret data

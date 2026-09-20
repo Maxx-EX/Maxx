@@ -1,0 +1,12 @@
+// validator_ip - Maxx standard library module
+// Category: text
+// Description: validator ip implementation
+// Status: available (bootstrap)
+
+# validator_ip:
+
+@ new_validator_ip() -> void:
+    ret
+
+@ validator_ip_process(data: Vec<int>) -> Vec<int>:
+    ret data

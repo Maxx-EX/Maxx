@@ -1,0 +1,12 @@
+// validator_credit_card - Maxx standard library module
+// Category: text
+// Description: validator credit card implementation
+// Status: available (bootstrap)
+
+# validator_credit_card:
+
+@ new_validator_credit_card() -> void:
+    ret
+
+@ validator_credit_card_process(data: Vec<int>) -> Vec<int>:
+    ret data

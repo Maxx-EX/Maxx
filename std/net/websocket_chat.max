@@ -1,0 +1,12 @@
+// websocket_chat - Maxx standard library module
+// Category: net
+// Description: websocket chat implementation
+// Status: available (bootstrap)
+
+# websocket_chat:
+
+@ new_websocket_chat() -> void:
+    ret
+
+@ websocket_chat_process(data: Vec<int>) -> Vec<int>:
+    ret data

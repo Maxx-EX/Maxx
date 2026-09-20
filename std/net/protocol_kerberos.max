@@ -1,0 +1,12 @@
+// protocol_kerberos - Maxx standard library module
+// Category: net
+// Description: protocol kerberos implementation
+// Status: available (bootstrap)
+
+# protocol_kerberos:
+
+@ new_protocol_kerberos() -> void:
+    ret
+
+@ protocol_kerberos_process(data: Vec<int>) -> Vec<int>:
+    ret data

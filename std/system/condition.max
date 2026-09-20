@@ -1,0 +1,6 @@
+// condition - Maxx standard library module
+// Category: system
+# condition:
+
+@ condition_init() -> void:
+    ret

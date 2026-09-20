@@ -1,0 +1,12 @@
+// socket_blocking - Maxx standard library module
+// Category: net
+// Description: socket blocking implementation
+// Status: available (bootstrap)
+
+# socket_blocking:
+
+@ new_socket_blocking() -> void:
+    ret
+
+@ socket_blocking_process(data: Vec<int>) -> Vec<int>:
+    ret data

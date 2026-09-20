@@ -1,0 +1,6 @@
+// registry - Maxx standard library module
+// Category: system
+# registry:
+
+@ registry_init() -> void:
+    ret

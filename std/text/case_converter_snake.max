@@ -1,0 +1,12 @@
+// case_converter_snake - Maxx standard library module
+// Category: text
+// Description: case converter snake implementation
+// Status: available (bootstrap)
+
+# case_converter_snake:
+
+@ new_case_converter_snake() -> void:
+    ret
+
+@ case_converter_snake_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// asymmetric_rainbow - Maxx standard library module
+// Category: crypto
+// Description: asymmetric rainbow implementation
+// Status: available (bootstrap)
+
+# asymmetric_rainbow:
+
+@ new_asymmetric_rainbow() -> void:
+    ret
+
+@ asymmetric_rainbow_process(data: Vec<int>) -> Vec<int>:
+    ret data

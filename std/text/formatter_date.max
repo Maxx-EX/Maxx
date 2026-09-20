@@ -1,0 +1,12 @@
+// formatter_date - Maxx standard library module
+// Category: text
+// Description: formatter date implementation
+// Status: available (bootstrap)
+
+# formatter_date:
+
+@ new_formatter_date() -> void:
+    ret
+
+@ formatter_date_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// geometry_circle - Maxx standard library module
+// Category: math
+// Description: geometry circle implementation
+// Status: available (bootstrap)
+
+# geometry_circle:
+
+@ new_geometry_circle() -> void:
+    ret
+
+@ geometry_circle_process(data: Vec<int>) -> Vec<int>:
+    ret data

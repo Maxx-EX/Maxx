@@ -1,0 +1,12 @@
+// cipher_aes_gcm - Maxx standard library module
+// Category: crypto
+// Description: cipher aes gcm implementation
+// Status: available (bootstrap)
+
+# cipher_aes_gcm:
+
+@ new_cipher_aes_gcm() -> void:
+    ret
+
+@ cipher_aes_gcm_process(data: Vec<int>) -> Vec<int>:
+    ret data

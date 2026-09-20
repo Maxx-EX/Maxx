@@ -1,0 +1,12 @@
+// kdf_pkcs12 - Maxx standard library module
+// Category: crypto
+// Description: kdf pkcs12 implementation
+// Status: available (bootstrap)
+
+# kdf_pkcs12:
+
+@ new_kdf_pkcs12() -> void:
+    ret
+
+@ kdf_pkcs12_process(data: Vec<int>) -> Vec<int>:
+    ret data

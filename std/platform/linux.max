@@ -1,0 +1,6 @@
+// linux - Maxx standard library module
+// Category: platform
+# linux:
+
+@ linux_init() -> void:
+    ret

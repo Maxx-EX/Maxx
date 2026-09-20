@@ -1,0 +1,6 @@
+// progress - Maxx standard library module
+// Category: ui
+# progress:
+
+@ progress_init() -> void:
+    ret

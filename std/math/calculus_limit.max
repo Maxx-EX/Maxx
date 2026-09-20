@@ -1,0 +1,12 @@
+// calculus_limit - Maxx standard library module
+// Category: math
+// Description: calculus limit implementation
+// Status: available (bootstrap)
+
+# calculus_limit:
+
+@ new_calculus_limit() -> void:
+    ret
+
+@ calculus_limit_process(data: Vec<int>) -> Vec<int>:
+    ret data

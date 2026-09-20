@@ -1,0 +1,12 @@
+// cipher_des - Maxx standard library module
+// Category: crypto
+// Description: cipher des implementation
+// Status: available (bootstrap)
+
+# cipher_des:
+
+@ new_cipher_des() -> void:
+    ret
+
+@ cipher_des_process(data: Vec<int>) -> Vec<int>:
+    ret data

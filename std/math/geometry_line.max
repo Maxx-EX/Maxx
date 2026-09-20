@@ -1,0 +1,12 @@
+// geometry_line - Maxx standard library module
+// Category: math
+// Description: geometry line implementation
+// Status: available (bootstrap)
+
+# geometry_line:
+
+@ new_geometry_line() -> void:
+    ret
+
+@ geometry_line_process(data: Vec<int>) -> Vec<int>:
+    ret data

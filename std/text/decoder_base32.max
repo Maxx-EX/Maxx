@@ -1,0 +1,12 @@
+// decoder_base32 - Maxx standard library module
+// Category: text
+// Description: decoder base32 implementation
+// Status: available (bootstrap)
+
+# decoder_base32:
+
+@ new_decoder_base32() -> void:
+    ret
+
+@ decoder_base32_process(data: Vec<int>) -> Vec<int>:
+    ret data

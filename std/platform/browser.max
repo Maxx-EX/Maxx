@@ -1,0 +1,6 @@
+// browser - Maxx standard library module
+// Category: platform
+# browser:
+
+@ browser_init() -> void:
+    ret

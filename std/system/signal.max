@@ -1,0 +1,6 @@
+// signal - Maxx standard library module
+// Category: system
+# signal:
+
+@ signal_init() -> void:
+    ret

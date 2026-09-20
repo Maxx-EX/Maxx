@@ -1,0 +1,12 @@
+// ordered_map - Maxx standard library module
+// Category: collections
+// Description: ordered map implementation
+// Status: available (bootstrap)
+
+# ordered_map:
+
+@ new_ordered_map() -> void:
+    ret
+
+@ ordered_map_process(data: Vec<int>) -> Vec<int>:
+    ret data

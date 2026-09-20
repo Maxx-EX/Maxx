@@ -1,0 +1,12 @@
+// dynamic_bitmap - Maxx standard library module
+// Category: collections
+// Description: dynamic bitmap implementation
+// Status: available (bootstrap)
+
+# dynamic_bitmap:
+
+@ new_dynamic_bitmap() -> void:
+    ret
+
+@ dynamic_bitmap_process(data: Vec<int>) -> Vec<int>:
+    ret data

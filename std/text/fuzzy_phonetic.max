@@ -1,0 +1,12 @@
+// fuzzy_phonetic - Maxx standard library module
+// Category: text
+// Description: fuzzy phonetic implementation
+// Status: available (bootstrap)
+
+# fuzzy_phonetic:
+
+@ new_fuzzy_phonetic() -> void:
+    ret
+
+@ fuzzy_phonetic_process(data: Vec<int>) -> Vec<int>:
+    ret data

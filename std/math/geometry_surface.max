@@ -1,0 +1,12 @@
+// geometry_surface - Maxx standard library module
+// Category: math
+// Description: geometry surface implementation
+// Status: available (bootstrap)
+
+# geometry_surface:
+
+@ new_geometry_surface() -> void:
+    ret
+
+@ geometry_surface_process(data: Vec<int>) -> Vec<int>:
+    ret data

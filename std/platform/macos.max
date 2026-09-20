@@ -1,0 +1,6 @@
+// macos - Maxx standard library module
+// Category: platform
+# macos:
+
+@ macos_init() -> void:
+    ret

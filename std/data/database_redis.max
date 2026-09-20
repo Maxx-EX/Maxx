@@ -1,0 +1,12 @@
+// database_redis - Maxx standard library module
+// Category: data
+// Description: database redis implementation
+// Status: available (bootstrap)
+
+# database_redis:
+
+@ new_database_redis() -> void:
+    ret
+
+@ database_redis_process(data: Vec<int>) -> Vec<int>:
+    ret data

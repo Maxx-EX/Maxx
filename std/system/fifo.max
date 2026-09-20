@@ -1,0 +1,6 @@
+// fifo - Maxx standard library module
+// Category: system
+# fifo:
+
+@ fifo_init() -> void:
+    ret

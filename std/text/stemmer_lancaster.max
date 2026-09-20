@@ -1,0 +1,12 @@
+// stemmer_lancaster - Maxx standard library module
+// Category: text
+// Description: stemmer lancaster implementation
+// Status: available (bootstrap)
+
+# stemmer_lancaster:
+
+@ new_stemmer_lancaster() -> void:
+    ret
+
+@ stemmer_lancaster_process(data: Vec<int>) -> Vec<int>:
+    ret data

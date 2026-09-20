@@ -1,0 +1,12 @@
+// geometry_triangle - Maxx standard library module
+// Category: math
+// Description: geometry triangle implementation
+// Status: available (bootstrap)
+
+# geometry_triangle:
+
+@ new_geometry_triangle() -> void:
+    ret
+
+@ geometry_triangle_process(data: Vec<int>) -> Vec<int>:
+    ret data

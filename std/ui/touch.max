@@ -1,0 +1,6 @@
+// touch - Maxx standard library module
+// Category: ui
+# touch:
+
+@ touch_init() -> void:
+    ret

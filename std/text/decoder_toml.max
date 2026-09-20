@@ -1,0 +1,12 @@
+// decoder_toml - Maxx standard library module
+// Category: text
+// Description: decoder toml implementation
+// Status: available (bootstrap)
+
+# decoder_toml:
+
+@ new_decoder_toml() -> void:
+    ret
+
+@ decoder_toml_process(data: Vec<int>) -> Vec<int>:
+    ret data

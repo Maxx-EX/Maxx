@@ -1,0 +1,12 @@
+// protocol_ssh - Maxx standard library module
+// Category: net
+// Description: protocol ssh implementation
+// Status: available (bootstrap)
+
+# protocol_ssh:
+
+@ new_protocol_ssh() -> void:
+    ret
+
+@ protocol_ssh_process(data: Vec<int>) -> Vec<int>:
+    ret data

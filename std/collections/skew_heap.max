@@ -1,0 +1,12 @@
+// skew_heap - Maxx standard library module
+// Category: collections
+// Description: skew heap implementation
+// Status: available (bootstrap)
+
+# skew_heap:
+
+@ new_skew_heap() -> void:
+    ret
+
+@ skew_heap_process(data: Vec<int>) -> Vec<int>:
+    ret data

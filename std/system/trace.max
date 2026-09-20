@@ -1,0 +1,6 @@
+// trace - Maxx standard library module
+// Category: system
+# trace:
+
+@ trace_init() -> void:
+    ret

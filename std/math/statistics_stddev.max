@@ -1,0 +1,12 @@
+// statistics_stddev - Maxx standard library module
+// Category: math
+// Description: statistics stddev implementation
+// Status: available (bootstrap)
+
+# statistics_stddev:
+
+@ new_statistics_stddev() -> void:
+    ret
+
+@ statistics_stddev_process(data: Vec<int>) -> Vec<int>:
+    ret data

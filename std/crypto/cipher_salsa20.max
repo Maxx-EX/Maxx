@@ -1,0 +1,12 @@
+// cipher_salsa20 - Maxx standard library module
+// Category: crypto
+// Description: cipher salsa20 implementation
+// Status: available (bootstrap)
+
+# cipher_salsa20:
+
+@ new_cipher_salsa20() -> void:
+    ret
+
+@ cipher_salsa20_process(data: Vec<int>) -> Vec<int>:
+    ret data

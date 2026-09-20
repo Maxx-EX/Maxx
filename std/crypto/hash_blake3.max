@@ -1,0 +1,12 @@
+// hash_blake3 - Maxx standard library module
+// Category: crypto
+// Description: hash blake3 implementation
+// Status: available (bootstrap)
+
+# hash_blake3:
+
+@ new_hash_blake3() -> void:
+    ret
+
+@ hash_blake3_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// http_middleware_rate_limit - Maxx standard library module
+// Category: net
+// Description: http middleware rate limit implementation
+// Status: available (bootstrap)
+
+# http_middleware_rate_limit:
+
+@ new_http_middleware_rate_limit() -> void:
+    ret
+
+@ http_middleware_rate_limit_process(data: Vec<int>) -> Vec<int>:
+    ret data

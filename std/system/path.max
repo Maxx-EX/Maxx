@@ -1,0 +1,6 @@
+// path - Maxx standard library module
+// Category: system
+# path:
+
+@ path_init() -> void:
+    ret

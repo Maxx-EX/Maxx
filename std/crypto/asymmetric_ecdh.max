@@ -1,0 +1,12 @@
+// asymmetric_ecdh - Maxx standard library module
+// Category: crypto
+// Description: asymmetric ecdh implementation
+// Status: available (bootstrap)
+
+# asymmetric_ecdh:
+
+@ new_asymmetric_ecdh() -> void:
+    ret
+
+@ asymmetric_ecdh_process(data: Vec<int>) -> Vec<int>:
+    ret data

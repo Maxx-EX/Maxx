@@ -1,0 +1,12 @@
+// rope - Maxx standard library module
+// Category: collections
+// Description: rope implementation
+// Status: available (bootstrap)
+
+# rope:
+
+@ new_rope() -> void:
+    ret
+
+@ rope_process(data: Vec<int>) -> Vec<int>:
+    ret data

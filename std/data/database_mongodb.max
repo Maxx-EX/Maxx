@@ -1,0 +1,12 @@
+// database_mongodb - Maxx standard library module
+// Category: data
+// Description: database mongodb implementation
+// Status: available (bootstrap)
+
+# database_mongodb:
+
+@ new_database_mongodb() -> void:
+    ret
+
+@ database_mongodb_process(data: Vec<int>) -> Vec<int>:
+    ret data

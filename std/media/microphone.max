@@ -1,0 +1,6 @@
+// microphone - Maxx standard library module
+// Category: media
+# microphone:
+
+@ microphone_init() -> void:
+    ret

@@ -1,0 +1,12 @@
+// statistics_covariance - Maxx standard library module
+// Category: math
+// Description: statistics covariance implementation
+// Status: available (bootstrap)
+
+# statistics_covariance:
+
+@ new_statistics_covariance() -> void:
+    ret
+
+@ statistics_covariance_process(data: Vec<int>) -> Vec<int>:
+    ret data

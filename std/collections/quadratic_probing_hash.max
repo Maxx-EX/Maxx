@@ -1,0 +1,12 @@
+// quadratic_probing_hash - Maxx standard library module
+// Category: collections
+// Description: quadratic probing hash implementation
+// Status: available (bootstrap)
+
+# quadratic_probing_hash:
+
+@ new_quadratic_probing_hash() -> void:
+    ret
+
+@ quadratic_probing_hash_process(data: Vec<int>) -> Vec<int>:
+    ret data

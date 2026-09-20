@@ -1,0 +1,6 @@
+// file - Maxx standard library module
+// Category: system
+# file:
+
+@ file_init() -> void:
+    ret

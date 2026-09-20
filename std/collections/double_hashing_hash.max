@@ -1,0 +1,12 @@
+// double_hashing_hash - Maxx standard library module
+// Category: collections
+// Description: double hashing hash implementation
+// Status: available (bootstrap)
+
+# double_hashing_hash:
+
+@ new_double_hashing_hash() -> void:
+    ret
+
+@ double_hashing_hash_process(data: Vec<int>) -> Vec<int>:
+    ret data

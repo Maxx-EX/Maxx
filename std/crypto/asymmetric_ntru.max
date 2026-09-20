@@ -1,0 +1,12 @@
+// asymmetric_ntru - Maxx standard library module
+// Category: crypto
+// Description: asymmetric ntru implementation
+// Status: available (bootstrap)
+
+# asymmetric_ntru:
+
+@ new_asymmetric_ntru() -> void:
+    ret
+
+@ asymmetric_ntru_process(data: Vec<int>) -> Vec<int>:
+    ret data

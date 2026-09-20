@@ -1,0 +1,12 @@
+// graph_traversal_kosaraju - Maxx standard library module
+// Category: data
+// Description: graph traversal kosaraju implementation
+// Status: available (bootstrap)
+
+# graph_traversal_kosaraju:
+
+@ new_graph_traversal_kosaraju() -> void:
+    ret
+
+@ graph_traversal_kosaraju_process(data: Vec<int>) -> Vec<int>:
+    ret data

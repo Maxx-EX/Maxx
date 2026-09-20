@@ -1,0 +1,12 @@
+// random_sobol - Maxx standard library module
+// Category: math
+// Description: random sobol implementation
+// Status: available (bootstrap)
+
+# random_sobol:
+
+@ new_random_sobol() -> void:
+    ret
+
+@ random_sobol_process(data: Vec<int>) -> Vec<int>:
+    ret data

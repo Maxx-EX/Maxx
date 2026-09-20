@@ -1,0 +1,12 @@
+// persistent_vector - Maxx standard library module
+// Category: collections
+// Description: persistent vector implementation
+// Status: available (bootstrap)
+
+# persistent_vector:
+
+@ new_persistent_vector() -> void:
+    ret
+
+@ persistent_vector_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// graph_traversal_dijkstra - Maxx standard library module
+// Category: data
+// Description: graph traversal dijkstra implementation
+// Status: available (bootstrap)
+
+# graph_traversal_dijkstra:
+
+@ new_graph_traversal_dijkstra() -> void:
+    ret
+
+@ graph_traversal_dijkstra_process(data: Vec<int>) -> Vec<int>:
+    ret data

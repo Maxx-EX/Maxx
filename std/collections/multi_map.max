@@ -1,0 +1,12 @@
+// multi_map - Maxx standard library module
+// Category: collections
+// Description: multi map implementation
+// Status: available (bootstrap)
+
+# multi_map:
+
+@ new_multi_map() -> void:
+    ret
+
+@ multi_map_process(data: Vec<int>) -> Vec<int>:
+    ret data

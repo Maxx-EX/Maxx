@@ -1,0 +1,12 @@
+// cipher_aes_siv - Maxx standard library module
+// Category: crypto
+// Description: cipher aes siv implementation
+// Status: available (bootstrap)
+
+# cipher_aes_siv:
+
+@ new_cipher_aes_siv() -> void:
+    ret
+
+@ cipher_aes_siv_process(data: Vec<int>) -> Vec<int>:
+    ret data

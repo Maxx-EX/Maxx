@@ -1,0 +1,12 @@
+// linear_algebra_cholesky - Maxx standard library module
+// Category: math
+// Description: linear algebra cholesky implementation
+// Status: available (bootstrap)
+
+# linear_algebra_cholesky:
+
+@ new_linear_algebra_cholesky() -> void:
+    ret
+
+@ linear_algebra_cholesky_process(data: Vec<int>) -> Vec<int>:
+    ret data

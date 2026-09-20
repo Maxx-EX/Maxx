@@ -1,0 +1,6 @@
+// menu - Maxx standard library module
+// Category: ui
+# menu:
+
+@ menu_init() -> void:
+    ret

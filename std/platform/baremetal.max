@@ -1,0 +1,6 @@
+// baremetal - Maxx standard library module
+// Category: platform
+# baremetal:
+
+@ baremetal_init() -> void:
+    ret

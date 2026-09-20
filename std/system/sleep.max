@@ -1,0 +1,6 @@
+// sleep - Maxx standard library module
+// Category: system
+# sleep:
+
+@ sleep_init() -> void:
+    ret

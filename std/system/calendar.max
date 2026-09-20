@@ -1,0 +1,6 @@
+// calendar - Maxx standard library module
+// Category: system
+# calendar:
+
+@ calendar_init() -> void:
+    ret

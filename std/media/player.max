@@ -1,0 +1,6 @@
+// player - Maxx standard library module
+// Category: media
+# player:
+
+@ player_init() -> void:
+    ret

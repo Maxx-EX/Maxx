@@ -1,0 +1,6 @@
+// icon - Maxx standard library module
+// Category: ui
+# icon:
+
+@ icon_init() -> void:
+    ret

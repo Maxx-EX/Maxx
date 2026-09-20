@@ -1,0 +1,12 @@
+// protocol_vpn - Maxx standard library module
+// Category: net
+// Description: protocol vpn implementation
+// Status: available (bootstrap)
+
+# protocol_vpn:
+
+@ new_protocol_vpn() -> void:
+    ret
+
+@ protocol_vpn_process(data: Vec<int>) -> Vec<int>:
+    ret data

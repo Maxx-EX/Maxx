@@ -1,0 +1,12 @@
+// calculus_fourier - Maxx standard library module
+// Category: math
+// Description: calculus fourier implementation
+// Status: available (bootstrap)
+
+# calculus_fourier:
+
+@ new_calculus_fourier() -> void:
+    ret
+
+@ calculus_fourier_process(data: Vec<int>) -> Vec<int>:
+    ret data

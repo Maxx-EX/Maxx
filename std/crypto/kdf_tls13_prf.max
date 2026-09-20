@@ -1,0 +1,12 @@
+// kdf_tls13_prf - Maxx standard library module
+// Category: crypto
+// Description: kdf tls13 prf implementation
+// Status: available (bootstrap)
+
+# kdf_tls13_prf:
+
+@ new_kdf_tls13_prf() -> void:
+    ret
+
+@ kdf_tls13_prf_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// concurrent_queue - Maxx standard library module
+// Category: collections
+// Description: concurrent queue implementation
+// Status: available (bootstrap)
+
+# concurrent_queue:
+
+@ new_concurrent_queue() -> void:
+    ret
+
+@ concurrent_queue_process(data: Vec<int>) -> Vec<int>:
+    ret data

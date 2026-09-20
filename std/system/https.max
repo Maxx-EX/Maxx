@@ -1,0 +1,6 @@
+// https - Maxx standard library module
+// Category: system
+# https:
+
+@ https_init() -> void:
+    ret

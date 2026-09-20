@@ -1,0 +1,12 @@
+// structure_trie - Maxx standard library module
+// Category: data
+// Description: structure trie implementation
+// Status: available (bootstrap)
+
+# structure_trie:
+
+@ new_structure_trie() -> void:
+    ret
+
+@ structure_trie_process(data: Vec<int>) -> Vec<int>:
+    ret data

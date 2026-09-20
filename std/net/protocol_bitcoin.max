@@ -1,0 +1,12 @@
+// protocol_bitcoin - Maxx standard library module
+// Category: net
+// Description: protocol bitcoin implementation
+// Status: available (bootstrap)
+
+# protocol_bitcoin:
+
+@ new_protocol_bitcoin() -> void:
+    ret
+
+@ protocol_bitcoin_process(data: Vec<int>) -> Vec<int>:
+    ret data

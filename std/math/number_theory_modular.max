@@ -1,0 +1,12 @@
+// number_theory_modular - Maxx standard library module
+// Category: math
+// Description: number theory modular implementation
+// Status: available (bootstrap)
+
+# number_theory_modular:
+
+@ new_number_theory_modular() -> void:
+    ret
+
+@ number_theory_modular_process(data: Vec<int>) -> Vec<int>:
+    ret data

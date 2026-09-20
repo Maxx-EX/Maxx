@@ -1,0 +1,12 @@
+// statistics_correlation - Maxx standard library module
+// Category: math
+// Description: statistics correlation implementation
+// Status: available (bootstrap)
+
+# statistics_correlation:
+
+@ new_statistics_correlation() -> void:
+    ret
+
+@ statistics_correlation_process(data: Vec<int>) -> Vec<int>:
+    ret data

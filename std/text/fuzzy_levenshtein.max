@@ -1,0 +1,12 @@
+// fuzzy_levenshtein - Maxx standard library module
+// Category: text
+// Description: fuzzy levenshtein implementation
+// Status: available (bootstrap)
+
+# fuzzy_levenshtein:
+
+@ new_fuzzy_levenshtein() -> void:
+    ret
+
+@ fuzzy_levenshtein_process(data: Vec<int>) -> Vec<int>:
+    ret data

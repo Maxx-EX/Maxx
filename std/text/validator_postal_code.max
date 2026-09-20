@@ -1,0 +1,12 @@
+// validator_postal_code - Maxx standard library module
+// Category: text
+// Description: validator postal code implementation
+// Status: available (bootstrap)
+
+# validator_postal_code:
+
+@ new_validator_postal_code() -> void:
+    ret
+
+@ validator_postal_code_process(data: Vec<int>) -> Vec<int>:
+    ret data

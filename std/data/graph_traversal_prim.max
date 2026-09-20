@@ -1,0 +1,12 @@
+// graph_traversal_prim - Maxx standard library module
+// Category: data
+// Description: graph traversal prim implementation
+// Status: available (bootstrap)
+
+# graph_traversal_prim:
+
+@ new_graph_traversal_prim() -> void:
+    ret
+
+@ graph_traversal_prim_process(data: Vec<int>) -> Vec<int>:
+    ret data

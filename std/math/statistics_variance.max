@@ -1,0 +1,12 @@
+// statistics_variance - Maxx standard library module
+// Category: math
+// Description: statistics variance implementation
+// Status: available (bootstrap)
+
+# statistics_variance:
+
+@ new_statistics_variance() -> void:
+    ret
+
+@ statistics_variance_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// serialization_csv - Maxx standard library module
+// Category: data
+// Description: serialization csv implementation
+// Status: available (bootstrap)
+
+# serialization_csv:
+
+@ new_serialization_csv() -> void:
+    ret
+
+@ serialization_csv_process(data: Vec<int>) -> Vec<int>:
+    ret data

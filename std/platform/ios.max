@@ -1,0 +1,6 @@
+// ios - Maxx standard library module
+// Category: platform
+# ios:
+
+@ ios_init() -> void:
+    ret

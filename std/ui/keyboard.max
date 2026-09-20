@@ -1,0 +1,6 @@
+// keyboard - Maxx standard library module
+// Category: ui
+# keyboard:
+
+@ keyboard_init() -> void:
+    ret

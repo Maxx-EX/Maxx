@@ -1,0 +1,6 @@
+// radio - Maxx standard library module
+// Category: ui
+# radio:
+
+@ radio_init() -> void:
+    ret

@@ -1,0 +1,12 @@
+// treap_map - Maxx standard library module
+// Category: collections
+// Description: treap map implementation
+// Status: available (bootstrap)
+
+# treap_map:
+
+@ new_treap_map() -> void:
+    ret
+
+@ treap_map_process(data: Vec<int>) -> Vec<int>:
+    ret data

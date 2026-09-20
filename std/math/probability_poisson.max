@@ -1,0 +1,12 @@
+// probability_poisson - Maxx standard library module
+// Category: math
+// Description: probability poisson implementation
+// Status: available (bootstrap)
+
+# probability_poisson:
+
+@ new_probability_poisson() -> void:
+    ret
+
+@ probability_poisson_process(data: Vec<int>) -> Vec<int>:
+    ret data

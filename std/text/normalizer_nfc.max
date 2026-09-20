@@ -1,0 +1,12 @@
+// normalizer_nfc - Maxx standard library module
+// Category: text
+// Description: normalizer nfc implementation
+// Status: available (bootstrap)
+
+# normalizer_nfc:
+
+@ new_normalizer_nfc() -> void:
+    ret
+
+@ normalizer_nfc_process(data: Vec<int>) -> Vec<int>:
+    ret data

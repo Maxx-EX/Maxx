@@ -1,0 +1,6 @@
+// ssh - Maxx standard library module
+// Category: system
+# ssh:
+
+@ ssh_init() -> void:
+    ret

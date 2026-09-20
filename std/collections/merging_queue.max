@@ -1,0 +1,12 @@
+// merging_queue - Maxx standard library module
+// Category: collections
+// Description: merging queue implementation
+// Status: available (bootstrap)
+
+# merging_queue:
+
+@ new_merging_queue() -> void:
+    ret
+
+@ merging_queue_process(data: Vec<int>) -> Vec<int>:
+    ret data

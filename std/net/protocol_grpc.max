@@ -1,0 +1,12 @@
+// protocol_grpc - Maxx standard library module
+// Category: net
+// Description: protocol grpc implementation
+// Status: available (bootstrap)
+
+# protocol_grpc:
+
+@ new_protocol_grpc() -> void:
+    ret
+
+@ protocol_grpc_process(data: Vec<int>) -> Vec<int>:
+    ret data

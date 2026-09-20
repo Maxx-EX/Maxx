@@ -1,0 +1,4 @@
+@ main() -> int:
+    let x = sqrt(16.0)
+    io.println(str(x))
+    ret 0

@@ -1,0 +1,12 @@
+// database_elasticsearch - Maxx standard library module
+// Category: data
+// Description: database elasticsearch implementation
+// Status: available (bootstrap)
+
+# database_elasticsearch:
+
+@ new_database_elasticsearch() -> void:
+    ret
+
+@ database_elasticsearch_process(data: Vec<int>) -> Vec<int>:
+    ret data

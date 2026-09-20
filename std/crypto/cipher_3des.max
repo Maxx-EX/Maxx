@@ -1,0 +1,12 @@
+// cipher_3des - Maxx standard library module
+// Category: crypto
+// Description: cipher 3des implementation
+// Status: available (bootstrap)
+
+# cipher_3des:
+
+@ new_cipher_3des() -> void:
+    ret
+
+@ cipher_3des_process(data: Vec<int>) -> Vec<int>:
+    ret data

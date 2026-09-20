@@ -1,0 +1,12 @@
+// asymmetric_x448 - Maxx standard library module
+// Category: crypto
+// Description: asymmetric x448 implementation
+// Status: available (bootstrap)
+
+# asymmetric_x448:
+
+@ new_asymmetric_x448() -> void:
+    ret
+
+@ asymmetric_x448_process(data: Vec<int>) -> Vec<int>:
+    ret data

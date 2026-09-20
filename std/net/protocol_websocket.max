@@ -1,0 +1,12 @@
+// protocol_websocket - Maxx standard library module
+// Category: net
+// Description: protocol websocket implementation
+// Status: available (bootstrap)
+
+# protocol_websocket:
+
+@ new_protocol_websocket() -> void:
+    ret
+
+@ protocol_websocket_process(data: Vec<int>) -> Vec<int>:
+    ret data

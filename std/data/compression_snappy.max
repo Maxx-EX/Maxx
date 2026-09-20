@@ -1,0 +1,12 @@
+// compression_snappy - Maxx standard library module
+// Category: data
+// Description: compression snappy implementation
+// Status: available (bootstrap)
+
+# compression_snappy:
+
+@ new_compression_snappy() -> void:
+    ret
+
+@ compression_snappy_process(data: Vec<int>) -> Vec<int>:
+    ret data

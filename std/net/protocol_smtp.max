@@ -1,0 +1,12 @@
+// protocol_smtp - Maxx standard library module
+// Category: net
+// Description: protocol smtp implementation
+// Status: available (bootstrap)
+
+# protocol_smtp:
+
+@ new_protocol_smtp() -> void:
+    ret
+
+@ protocol_smtp_process(data: Vec<int>) -> Vec<int>:
+    ret data

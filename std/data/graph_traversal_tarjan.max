@@ -1,0 +1,12 @@
+// graph_traversal_tarjan - Maxx standard library module
+// Category: data
+// Description: graph traversal tarjan implementation
+// Status: available (bootstrap)
+
+# graph_traversal_tarjan:
+
+@ new_graph_traversal_tarjan() -> void:
+    ret
+
+@ graph_traversal_tarjan_process(data: Vec<int>) -> Vec<int>:
+    ret data

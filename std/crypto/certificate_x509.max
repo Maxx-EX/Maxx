@@ -1,0 +1,12 @@
+// certificate_x509 - Maxx standard library module
+// Category: crypto
+// Description: certificate x509 implementation
+// Status: available (bootstrap)
+
+# certificate_x509:
+
+@ new_certificate_x509() -> void:
+    ret
+
+@ certificate_x509_process(data: Vec<int>) -> Vec<int>:
+    ret data

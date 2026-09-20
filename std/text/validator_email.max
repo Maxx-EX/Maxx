@@ -1,0 +1,12 @@
+// validator_email - Maxx standard library module
+// Category: text
+// Description: validator email implementation
+// Status: available (bootstrap)
+
+# validator_email:
+
+@ new_validator_email() -> void:
+    ret
+
+@ validator_email_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// lemmatizer_spacy - Maxx standard library module
+// Category: text
+// Description: lemmatizer spacy implementation
+// Status: available (bootstrap)
+
+# lemmatizer_spacy:
+
+@ new_lemmatizer_spacy() -> void:
+    ret
+
+@ lemmatizer_spacy_process(data: Vec<int>) -> Vec<int>:
+    ret data

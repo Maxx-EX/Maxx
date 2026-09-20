@@ -1,0 +1,12 @@
+// tokenizer_sentence - Maxx standard library module
+// Category: text
+// Description: tokenizer sentence implementation
+// Status: available (bootstrap)
+
+# tokenizer_sentence:
+
+@ new_tokenizer_sentence() -> void:
+    ret
+
+@ tokenizer_sentence_process(data: Vec<int>) -> Vec<int>:
+    ret data

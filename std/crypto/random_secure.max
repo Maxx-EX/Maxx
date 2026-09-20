@@ -1,0 +1,12 @@
+// random_secure - Maxx standard library module
+// Category: crypto
+// Description: random secure implementation
+// Status: available (bootstrap)
+
+# random_secure:
+
+@ new_random_secure() -> void:
+    ret
+
+@ random_secure_process(data: Vec<int>) -> Vec<int>:
+    ret data

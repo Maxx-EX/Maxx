@@ -1,0 +1,12 @@
+// compression_rle - Maxx standard library module
+// Category: data
+// Description: compression rle implementation
+// Status: available (bootstrap)
+
+# compression_rle:
+
+@ new_compression_rle() -> void:
+    ret
+
+@ compression_rle_process(data: Vec<int>) -> Vec<int>:
+    ret data

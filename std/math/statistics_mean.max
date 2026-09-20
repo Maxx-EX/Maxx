@@ -1,0 +1,12 @@
+// statistics_mean - Maxx standard library module
+// Category: math
+// Description: statistics mean implementation
+// Status: available (bootstrap)
+
+# statistics_mean:
+
+@ new_statistics_mean() -> void:
+    ret
+
+@ statistics_mean_process(data: Vec<int>) -> Vec<int>:
+    ret data

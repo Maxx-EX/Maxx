@@ -1,0 +1,6 @@
+// config - Maxx standard library module
+// Category: system
+# config:
+
+@ config_init() -> void:
+    ret

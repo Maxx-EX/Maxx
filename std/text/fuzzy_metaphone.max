@@ -1,0 +1,12 @@
+// fuzzy_metaphone - Maxx standard library module
+// Category: text
+// Description: fuzzy metaphone implementation
+// Status: available (bootstrap)
+
+# fuzzy_metaphone:
+
+@ new_fuzzy_metaphone() -> void:
+    ret
+
+@ fuzzy_metaphone_process(data: Vec<int>) -> Vec<int>:
+    ret data

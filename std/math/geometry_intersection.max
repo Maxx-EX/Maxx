@@ -1,0 +1,12 @@
+// geometry_intersection - Maxx standard library module
+// Category: math
+// Description: geometry intersection implementation
+// Status: available (bootstrap)
+
+# geometry_intersection:
+
+@ new_geometry_intersection() -> void:
+    ret
+
+@ geometry_intersection_process(data: Vec<int>) -> Vec<int>:
+    ret data

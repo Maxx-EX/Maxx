@@ -1,0 +1,12 @@
+// compression_brotli - Maxx standard library module
+// Category: data
+// Description: compression brotli implementation
+// Status: available (bootstrap)
+
+# compression_brotli:
+
+@ new_compression_brotli() -> void:
+    ret
+
+@ compression_brotli_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// transition - Maxx standard library module
+// Category: media
+# transition:
+
+@ transition_init() -> void:
+    ret

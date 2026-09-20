@@ -1,0 +1,12 @@
+// algorithm_sort_merge - Maxx standard library module
+// Category: data
+// Description: algorithm sort merge implementation
+// Status: available (bootstrap)
+
+# algorithm_sort_merge:
+
+@ new_algorithm_sort_merge() -> void:
+    ret
+
+@ algorithm_sort_merge_process(data: Vec<int>) -> Vec<int>:
+    ret data

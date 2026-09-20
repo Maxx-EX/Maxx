@@ -1,0 +1,12 @@
+// probability_uniform - Maxx standard library module
+// Category: math
+// Description: probability uniform implementation
+// Status: available (bootstrap)
+
+# probability_uniform:
+
+@ new_probability_uniform() -> void:
+    ret
+
+@ probability_uniform_process(data: Vec<int>) -> Vec<int>:
+    ret data

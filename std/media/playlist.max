@@ -1,0 +1,6 @@
+// playlist - Maxx standard library module
+// Category: media
+# playlist:
+
+@ playlist_init() -> void:
+    ret

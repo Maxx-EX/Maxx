@@ -1,0 +1,12 @@
+// socket_unix - Maxx standard library module
+// Category: net
+// Description: socket unix implementation
+// Status: available (bootstrap)
+
+# socket_unix:
+
+@ new_socket_unix() -> void:
+    ret
+
+@ socket_unix_process(data: Vec<int>) -> Vec<int>:
+    ret data

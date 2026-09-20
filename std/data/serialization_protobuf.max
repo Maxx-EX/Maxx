@@ -1,0 +1,12 @@
+// serialization_protobuf - Maxx standard library module
+// Category: data
+// Description: serialization protobuf implementation
+// Status: available (bootstrap)
+
+# serialization_protobuf:
+
+@ new_serialization_protobuf() -> void:
+    ret
+
+@ serialization_protobuf_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// segmenter_line - Maxx standard library module
+// Category: text
+// Description: segmenter line implementation
+// Status: available (bootstrap)
+
+# segmenter_line:
+
+@ new_segmenter_line() -> void:
+    ret
+
+@ segmenter_line_process(data: Vec<int>) -> Vec<int>:
+    ret data

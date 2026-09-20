@@ -1,0 +1,12 @@
+// structure_lsm_tree - Maxx standard library module
+// Category: data
+// Description: structure lsm tree implementation
+// Status: available (bootstrap)
+
+# structure_lsm_tree:
+
+@ new_structure_lsm_tree() -> void:
+    ret
+
+@ structure_lsm_tree_process(data: Vec<int>) -> Vec<int>:
+    ret data

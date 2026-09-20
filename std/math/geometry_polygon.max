@@ -1,0 +1,12 @@
+// geometry_polygon - Maxx standard library module
+// Category: math
+// Description: geometry polygon implementation
+// Status: available (bootstrap)
+
+# geometry_polygon:
+
+@ new_geometry_polygon() -> void:
+    ret
+
+@ geometry_polygon_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,4 @@
+@ main() -> int:
+    let x = 42
+    io.println(str(x))
+    ret 0

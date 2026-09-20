@@ -1,0 +1,6 @@
+// umask - Maxx standard library module
+// Category: system
+# umask:
+
+@ umask_init() -> void:
+    ret

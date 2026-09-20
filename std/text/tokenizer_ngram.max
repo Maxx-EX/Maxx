@@ -1,0 +1,12 @@
+// tokenizer_ngram - Maxx standard library module
+// Category: text
+// Description: tokenizer ngram implementation
+// Status: available (bootstrap)
+
+# tokenizer_ngram:
+
+@ new_tokenizer_ngram() -> void:
+    ret
+
+@ tokenizer_ngram_process(data: Vec<int>) -> Vec<int>:
+    ret data

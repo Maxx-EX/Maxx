@@ -1,0 +1,12 @@
+// cipher_rc4 - Maxx standard library module
+// Category: crypto
+// Description: cipher rc4 implementation
+// Status: available (bootstrap)
+
+# cipher_rc4:
+
+@ new_cipher_rc4() -> void:
+    ret
+
+@ cipher_rc4_process(data: Vec<int>) -> Vec<int>:
+    ret data

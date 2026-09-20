@@ -1,0 +1,12 @@
+// algorithm_sort_quick - Maxx standard library module
+// Category: data
+// Description: algorithm sort quick implementation
+// Status: available (bootstrap)
+
+# algorithm_sort_quick:
+
+@ new_algorithm_sort_quick() -> void:
+    ret
+
+@ algorithm_sort_quick_process(data: Vec<int>) -> Vec<int>:
+    ret data

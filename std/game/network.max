@@ -1,0 +1,6 @@
+// network - Maxx standard library module
+// Category: game
+# network:
+
+@ network_init() -> void:
+    ret

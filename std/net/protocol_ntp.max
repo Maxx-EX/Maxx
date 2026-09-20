@@ -1,0 +1,12 @@
+// protocol_ntp - Maxx standard library module
+// Category: net
+// Description: protocol ntp implementation
+// Status: available (bootstrap)
+
+# protocol_ntp:
+
+@ new_protocol_ntp() -> void:
+    ret
+
+@ protocol_ntp_process(data: Vec<int>) -> Vec<int>:
+    ret data

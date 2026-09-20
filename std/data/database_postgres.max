@@ -1,0 +1,12 @@
+// database_postgres - Maxx standard library module
+// Category: data
+// Description: database postgres implementation
+// Status: available (bootstrap)
+
+# database_postgres:
+
+@ new_database_postgres() -> void:
+    ret
+
+@ database_postgres_process(data: Vec<int>) -> Vec<int>:
+    ret data

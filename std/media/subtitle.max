@@ -1,0 +1,6 @@
+// subtitle - Maxx standard library module
+// Category: media
+# subtitle:
+
+@ subtitle_init() -> void:
+    ret

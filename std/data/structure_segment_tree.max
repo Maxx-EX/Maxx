@@ -1,0 +1,12 @@
+// structure_segment_tree - Maxx standard library module
+// Category: data
+// Description: structure segment tree implementation
+// Status: available (bootstrap)
+
+# structure_segment_tree:
+
+@ new_structure_segment_tree() -> void:
+    ret
+
+@ structure_segment_tree_process(data: Vec<int>) -> Vec<int>:
+    ret data

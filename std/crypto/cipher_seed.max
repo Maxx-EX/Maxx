@@ -1,0 +1,12 @@
+// cipher_seed - Maxx standard library module
+// Category: crypto
+// Description: cipher seed implementation
+// Status: available (bootstrap)
+
+# cipher_seed:
+
+@ new_cipher_seed() -> void:
+    ret
+
+@ cipher_seed_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// encoder_base32 - Maxx standard library module
+// Category: text
+// Description: encoder base32 implementation
+// Status: available (bootstrap)
+
+# encoder_base32:
+
+@ new_encoder_base32() -> void:
+    ret
+
+@ encoder_base32_process(data: Vec<int>) -> Vec<int>:
+    ret data

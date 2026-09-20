@@ -1,0 +1,6 @@
+// layout - Maxx standard library module
+// Category: ui
+# layout:
+
+@ layout_init() -> void:
+    ret

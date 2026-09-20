@@ -1,0 +1,12 @@
+// protocol_zeronet - Maxx standard library module
+// Category: net
+// Description: protocol zeronet implementation
+// Status: available (bootstrap)
+
+# protocol_zeronet:
+
+@ new_protocol_zeronet() -> void:
+    ret
+
+@ protocol_zeronet_process(data: Vec<int>) -> Vec<int>:
+    ret data

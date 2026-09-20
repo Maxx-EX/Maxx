@@ -1,0 +1,12 @@
+// number_theory_fermat - Maxx standard library module
+// Category: math
+// Description: number theory fermat implementation
+// Status: available (bootstrap)
+
+# number_theory_fermat:
+
+@ new_number_theory_fermat() -> void:
+    ret
+
+@ number_theory_fermat_process(data: Vec<int>) -> Vec<int>:
+    ret data

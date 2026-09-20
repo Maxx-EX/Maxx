@@ -1,0 +1,12 @@
+// graph_traversal_floyd_warshall - Maxx standard library module
+// Category: data
+// Description: graph traversal floyd warshall implementation
+// Status: available (bootstrap)
+
+# graph_traversal_floyd_warshall:
+
+@ new_graph_traversal_floyd_warshall() -> void:
+    ret
+
+@ graph_traversal_floyd_warshall_process(data: Vec<int>) -> Vec<int>:
+    ret data

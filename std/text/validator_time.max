@@ -1,0 +1,12 @@
+// validator_time - Maxx standard library module
+// Category: text
+// Description: validator time implementation
+// Status: available (bootstrap)
+
+# validator_time:
+
+@ new_validator_time() -> void:
+    ret
+
+@ validator_time_process(data: Vec<int>) -> Vec<int>:
+    ret data

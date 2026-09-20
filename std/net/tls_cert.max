@@ -1,0 +1,12 @@
+// tls_cert - Maxx standard library module
+// Category: net
+// Description: tls cert implementation
+// Status: available (bootstrap)
+
+# tls_cert:
+
+@ new_tls_cert() -> void:
+    ret
+
+@ tls_cert_process(data: Vec<int>) -> Vec<int>:
+    ret data

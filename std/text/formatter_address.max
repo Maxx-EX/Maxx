@@ -1,0 +1,12 @@
+// formatter_address - Maxx standard library module
+// Category: text
+// Description: formatter address implementation
+// Status: available (bootstrap)
+
+# formatter_address:
+
+@ new_formatter_address() -> void:
+    ret
+
+@ formatter_address_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// normalizer_strip_accents - Maxx standard library module
+// Category: text
+// Description: normalizer strip accents implementation
+// Status: available (bootstrap)
+
+# normalizer_strip_accents:
+
+@ new_normalizer_strip_accents() -> void:
+    ret
+
+@ normalizer_strip_accents_process(data: Vec<int>) -> Vec<int>:
+    ret data

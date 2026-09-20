@@ -1,0 +1,12 @@
+// asymmetric_kyber - Maxx standard library module
+// Category: crypto
+// Description: asymmetric kyber implementation
+// Status: available (bootstrap)
+
+# asymmetric_kyber:
+
+@ new_asymmetric_kyber() -> void:
+    ret
+
+@ asymmetric_kyber_process(data: Vec<int>) -> Vec<int>:
+    ret data

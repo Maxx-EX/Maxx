@@ -1,0 +1,6 @@
+// timer - Maxx standard library module
+// Category: system
+# timer:
+
+@ timer_init() -> void:
+    ret

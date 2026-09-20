@@ -1,0 +1,12 @@
+// http_middleware_logging - Maxx standard library module
+// Category: net
+// Description: http middleware logging implementation
+// Status: available (bootstrap)
+
+# http_middleware_logging:
+
+@ new_http_middleware_logging() -> void:
+    ret
+
+@ http_middleware_logging_process(data: Vec<int>) -> Vec<int>:
+    ret data

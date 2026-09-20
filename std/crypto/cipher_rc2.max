@@ -1,0 +1,12 @@
+// cipher_rc2 - Maxx standard library module
+// Category: crypto
+// Description: cipher rc2 implementation
+// Status: available (bootstrap)
+
+# cipher_rc2:
+
+@ new_cipher_rc2() -> void:
+    ret
+
+@ cipher_rc2_process(data: Vec<int>) -> Vec<int>:
+    ret data

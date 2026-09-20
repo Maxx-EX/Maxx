@@ -1,0 +1,12 @@
+// random_seed - Maxx standard library module
+// Category: crypto
+// Description: random seed implementation
+// Status: available (bootstrap)
+
+# random_seed:
+
+@ new_random_seed() -> void:
+    ret
+
+@ random_seed_process(data: Vec<int>) -> Vec<int>:
+    ret data

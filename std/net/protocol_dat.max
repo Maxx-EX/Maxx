@@ -1,0 +1,12 @@
+// protocol_dat - Maxx standard library module
+// Category: net
+// Description: protocol dat implementation
+// Status: available (bootstrap)
+
+# protocol_dat:
+
+@ new_protocol_dat() -> void:
+    ret
+
+@ protocol_dat_process(data: Vec<int>) -> Vec<int>:
+    ret data

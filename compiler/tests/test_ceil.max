@@ -1,0 +1,4 @@
+@ main() -> int:
+    let x = ceil(3.2)
+    io.println(str(x))
+    ret 0

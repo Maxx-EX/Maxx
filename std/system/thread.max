@@ -1,0 +1,6 @@
+// thread - Maxx standard library module
+// Category: system
+# thread:
+
+@ thread_init() -> void:
+    ret

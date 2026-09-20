@@ -1,0 +1,12 @@
+// linear_algebra_lu - Maxx standard library module
+// Category: math
+// Description: linear algebra lu implementation
+// Status: available (bootstrap)
+
+# linear_algebra_lu:
+
+@ new_linear_algebra_lu() -> void:
+    ret
+
+@ linear_algebra_lu_process(data: Vec<int>) -> Vec<int>:
+    ret data

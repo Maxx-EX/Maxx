@@ -1,0 +1,12 @@
+// proxy_trojan - Maxx standard library module
+// Category: net
+// Description: proxy trojan implementation
+// Status: available (bootstrap)
+
+# proxy_trojan:
+
+@ new_proxy_trojan() -> void:
+    ret
+
+@ proxy_trojan_process(data: Vec<int>) -> Vec<int>:
+    ret data

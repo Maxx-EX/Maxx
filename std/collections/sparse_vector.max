@@ -1,0 +1,12 @@
+// sparse_vector - Maxx standard library module
+// Category: collections
+// Description: sparse vector implementation
+// Status: available (bootstrap)
+
+# sparse_vector:
+
+@ new_sparse_vector() -> void:
+    ret
+
+@ sparse_vector_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// toolbar - Maxx standard library module
+// Category: ui
+# toolbar:
+
+@ toolbar_init() -> void:
+    ret

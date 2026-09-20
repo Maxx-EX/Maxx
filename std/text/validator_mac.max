@@ -1,0 +1,12 @@
+// validator_mac - Maxx standard library module
+// Category: text
+// Description: validator mac implementation
+// Status: available (bootstrap)
+
+# validator_mac:
+
+@ new_validator_mac() -> void:
+    ret
+
+@ validator_mac_process(data: Vec<int>) -> Vec<int>:
+    ret data

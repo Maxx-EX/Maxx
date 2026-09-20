@@ -1,0 +1,6 @@
+// shader - Maxx standard library module
+// Category: game
+# shader:
+
+@ shader_init() -> void:
+    ret

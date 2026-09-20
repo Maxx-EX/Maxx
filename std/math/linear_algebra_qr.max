@@ -1,0 +1,12 @@
+// linear_algebra_qr - Maxx standard library module
+// Category: math
+// Description: linear algebra qr implementation
+// Status: available (bootstrap)
+
+# linear_algebra_qr:
+
+@ new_linear_algebra_qr() -> void:
+    ret
+
+@ linear_algebra_qr_process(data: Vec<int>) -> Vec<int>:
+    ret data

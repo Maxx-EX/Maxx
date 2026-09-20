@@ -1,0 +1,12 @@
+// formatter_name - Maxx standard library module
+// Category: text
+// Description: formatter name implementation
+// Status: available (bootstrap)
+
+# formatter_name:
+
+@ new_formatter_name() -> void:
+    ret
+
+@ formatter_name_process(data: Vec<int>) -> Vec<int>:
+    ret data

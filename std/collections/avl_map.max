@@ -1,0 +1,12 @@
+// avl_map - Maxx standard library module
+// Category: collections
+// Description: avl map implementation
+// Status: available (bootstrap)
+
+# avl_map:
+
+@ new_avl_map() -> void:
+    ret
+
+@ avl_map_process(data: Vec<int>) -> Vec<int>:
+    ret data

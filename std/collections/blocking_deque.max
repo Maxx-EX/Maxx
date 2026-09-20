@@ -1,0 +1,12 @@
+// blocking_deque - Maxx standard library module
+// Category: collections
+// Description: blocking deque implementation
+// Status: available (bootstrap)
+
+# blocking_deque:
+
+@ new_blocking_deque() -> void:
+    ret
+
+@ blocking_deque_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// ftp - Maxx standard library module
+// Category: system
+# ftp:
+
+@ ftp_init() -> void:
+    ret

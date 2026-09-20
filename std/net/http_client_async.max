@@ -1,0 +1,12 @@
+// http_client_async - Maxx standard library module
+// Category: net
+// Description: http client async implementation
+// Status: available (bootstrap)
+
+# http_client_async:
+
+@ new_http_client_async() -> void:
+    ret
+
+@ http_client_async_process(data: Vec<int>) -> Vec<int>:
+    ret data

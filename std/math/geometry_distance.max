@@ -1,0 +1,12 @@
+// geometry_distance - Maxx standard library module
+// Category: math
+// Description: geometry distance implementation
+// Status: available (bootstrap)
+
+# geometry_distance:
+
+@ new_geometry_distance() -> void:
+    ret
+
+@ geometry_distance_process(data: Vec<int>) -> Vec<int>:
+    ret data

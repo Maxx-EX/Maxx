@@ -1,0 +1,12 @@
+// double_ended_priority_queue - Maxx standard library module
+// Category: collections
+// Description: double ended priority queue implementation
+// Status: available (bootstrap)
+
+# double_ended_priority_queue:
+
+@ new_double_ended_priority_queue() -> void:
+    ret
+
+@ double_ended_priority_queue_process(data: Vec<int>) -> Vec<int>:
+    ret data

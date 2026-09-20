@@ -1,0 +1,12 @@
+// cipher_idea - Maxx standard library module
+// Category: crypto
+// Description: cipher idea implementation
+// Status: available (bootstrap)
+
+# cipher_idea:
+
+@ new_cipher_idea() -> void:
+    ret
+
+@ cipher_idea_process(data: Vec<int>) -> Vec<int>:
+    ret data

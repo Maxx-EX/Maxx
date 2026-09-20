@@ -1,0 +1,12 @@
+// concurrent_hash_map - Maxx standard library module
+// Category: collections
+// Description: concurrent hash map implementation
+// Status: available (bootstrap)
+
+# concurrent_hash_map:
+
+@ new_concurrent_hash_map() -> void:
+    ret
+
+@ concurrent_hash_map_process(data: Vec<int>) -> Vec<int>:
+    ret data

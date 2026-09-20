@@ -1,0 +1,12 @@
+// geometry_point - Maxx standard library module
+// Category: math
+// Description: geometry point implementation
+// Status: available (bootstrap)
+
+# geometry_point:
+
+@ new_geometry_point() -> void:
+    ret
+
+@ geometry_point_process(data: Vec<int>) -> Vec<int>:
+    ret data

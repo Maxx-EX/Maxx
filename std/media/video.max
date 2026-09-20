@@ -1,0 +1,6 @@
+// video - Maxx standard library module
+// Category: media
+# video:
+
+@ video_init() -> void:
+    ret

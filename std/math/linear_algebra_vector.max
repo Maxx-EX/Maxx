@@ -1,0 +1,12 @@
+// linear_algebra_vector - Maxx standard library module
+// Category: math
+// Description: linear algebra vector implementation
+// Status: available (bootstrap)
+
+# linear_algebra_vector:
+
+@ new_linear_algebra_vector() -> void:
+    ret
+
+@ linear_algebra_vector_process(data: Vec<int>) -> Vec<int>:
+    ret data

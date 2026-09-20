@@ -1,0 +1,12 @@
+// validator_phone - Maxx standard library module
+// Category: text
+// Description: validator phone implementation
+// Status: available (bootstrap)
+
+# validator_phone:
+
+@ new_validator_phone() -> void:
+    ret
+
+@ validator_phone_process(data: Vec<int>) -> Vec<int>:
+    ret data

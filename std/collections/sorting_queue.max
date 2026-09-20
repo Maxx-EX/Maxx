@@ -1,0 +1,12 @@
+// sorting_queue - Maxx standard library module
+// Category: collections
+// Description: sorting queue implementation
+// Status: available (bootstrap)
+
+# sorting_queue:
+
+@ new_sorting_queue() -> void:
+    ret
+
+@ sorting_queue_process(data: Vec<int>) -> Vec<int>:
+    ret data

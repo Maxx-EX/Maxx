@@ -1,0 +1,12 @@
+// proxy_naive - Maxx standard library module
+// Category: net
+// Description: proxy naive implementation
+// Status: available (bootstrap)
+
+# proxy_naive:
+
+@ new_proxy_naive() -> void:
+    ret
+
+@ proxy_naive_process(data: Vec<int>) -> Vec<int>:
+    ret data

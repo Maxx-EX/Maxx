@@ -1,0 +1,12 @@
+// graph_traversal_kruskal - Maxx standard library module
+// Category: data
+// Description: graph traversal kruskal implementation
+// Status: available (bootstrap)
+
+# graph_traversal_kruskal:
+
+@ new_graph_traversal_kruskal() -> void:
+    ret
+
+@ graph_traversal_kruskal_process(data: Vec<int>) -> Vec<int>:
+    ret data

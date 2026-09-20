@@ -1,0 +1,6 @@
+// physics - Maxx standard library module
+// Category: game
+# physics:
+
+@ physics_init() -> void:
+    ret

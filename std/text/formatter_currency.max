@@ -1,0 +1,12 @@
+// formatter_currency - Maxx standard library module
+// Category: text
+// Description: formatter currency implementation
+// Status: available (bootstrap)
+
+# formatter_currency:
+
+@ new_formatter_currency() -> void:
+    ret
+
+@ formatter_currency_process(data: Vec<int>) -> Vec<int>:
+    ret data

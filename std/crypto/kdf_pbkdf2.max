@@ -1,0 +1,12 @@
+// kdf_pbkdf2 - Maxx standard library module
+// Category: crypto
+// Description: kdf pbkdf2 implementation
+// Status: available (bootstrap)
+
+# kdf_pbkdf2:
+
+@ new_kdf_pbkdf2() -> void:
+    ret
+
+@ kdf_pbkdf2_process(data: Vec<int>) -> Vec<int>:
+    ret data

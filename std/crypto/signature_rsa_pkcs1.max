@@ -1,0 +1,12 @@
+// signature_rsa_pkcs1 - Maxx standard library module
+// Category: crypto
+// Description: signature rsa pkcs1 implementation
+// Status: available (bootstrap)
+
+# signature_rsa_pkcs1:
+
+@ new_signature_rsa_pkcs1() -> void:
+    ret
+
+@ signature_rsa_pkcs1_process(data: Vec<int>) -> Vec<int>:
+    ret data

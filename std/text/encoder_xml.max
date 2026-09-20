@@ -1,0 +1,12 @@
+// encoder_xml - Maxx standard library module
+// Category: text
+// Description: encoder xml implementation
+// Status: available (bootstrap)
+
+# encoder_xml:
+
+@ new_encoder_xml() -> void:
+    ret
+
+@ encoder_xml_process(data: Vec<int>) -> Vec<int>:
+    ret data

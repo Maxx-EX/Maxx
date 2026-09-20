@@ -1,0 +1,12 @@
+// tokenizer_paragraph - Maxx standard library module
+// Category: text
+// Description: tokenizer paragraph implementation
+// Status: available (bootstrap)
+
+# tokenizer_paragraph:
+
+@ new_tokenizer_paragraph() -> void:
+    ret
+
+@ tokenizer_paragraph_process(data: Vec<int>) -> Vec<int>:
+    ret data

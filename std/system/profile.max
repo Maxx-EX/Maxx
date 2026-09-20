@@ -1,0 +1,6 @@
+// profile - Maxx standard library module
+// Category: system
+# profile:
+
+@ profile_init() -> void:
+    ret

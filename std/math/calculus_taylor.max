@@ -1,0 +1,12 @@
+// calculus_taylor - Maxx standard library module
+// Category: math
+// Description: calculus taylor implementation
+// Status: available (bootstrap)
+
+# calculus_taylor:
+
+@ new_calculus_taylor() -> void:
+    ret
+
+@ calculus_taylor_process(data: Vec<int>) -> Vec<int>:
+    ret data

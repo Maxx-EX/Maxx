@@ -1,0 +1,12 @@
+// certificate_pkcs7 - Maxx standard library module
+// Category: crypto
+// Description: certificate pkcs7 implementation
+// Status: available (bootstrap)
+
+# certificate_pkcs7:
+
+@ new_certificate_pkcs7() -> void:
+    ret
+
+@ certificate_pkcs7_process(data: Vec<int>) -> Vec<int>:
+    ret data

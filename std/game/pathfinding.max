@@ -1,0 +1,6 @@
+// pathfinding - Maxx standard library module
+// Category: game
+# pathfinding:
+
+@ pathfinding_init() -> void:
+    ret

@@ -1,0 +1,12 @@
+// hash_gost - Maxx standard library module
+// Category: crypto
+// Description: hash gost implementation
+// Status: available (bootstrap)
+
+# hash_gost:
+
+@ new_hash_gost() -> void:
+    ret
+
+@ hash_gost_process(data: Vec<int>) -> Vec<int>:
+    ret data

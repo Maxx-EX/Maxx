@@ -1,0 +1,6 @@
+// pipe - Maxx standard library module
+// Category: system
+# pipe:
+
+@ pipe_init() -> void:
+    ret

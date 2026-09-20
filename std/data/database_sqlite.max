@@ -1,0 +1,12 @@
+// database_sqlite - Maxx standard library module
+// Category: data
+// Description: database sqlite implementation
+// Status: available (bootstrap)
+
+# database_sqlite:
+
+@ new_database_sqlite() -> void:
+    ret
+
+@ database_sqlite_process(data: Vec<int>) -> Vec<int>:
+    ret data

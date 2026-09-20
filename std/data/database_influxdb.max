@@ -1,0 +1,12 @@
+// database_influxdb - Maxx standard library module
+// Category: data
+// Description: database influxdb implementation
+// Status: available (bootstrap)
+
+# database_influxdb:
+
+@ new_database_influxdb() -> void:
+    ret
+
+@ database_influxdb_process(data: Vec<int>) -> Vec<int>:
+    ret data

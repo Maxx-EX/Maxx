@@ -1,0 +1,6 @@
+// shared_memory - Maxx standard library module
+// Category: system
+# shared_memory:
+
+@ shared_memory_init() -> void:
+    ret

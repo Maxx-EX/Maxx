@@ -1,0 +1,12 @@
+// compression_deflate - Maxx standard library module
+// Category: data
+// Description: compression deflate implementation
+// Status: available (bootstrap)
+
+# compression_deflate:
+
+@ new_compression_deflate() -> void:
+    ret
+
+@ compression_deflate_process(data: Vec<int>) -> Vec<int>:
+    ret data

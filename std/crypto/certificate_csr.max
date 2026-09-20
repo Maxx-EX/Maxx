@@ -1,0 +1,12 @@
+// certificate_csr - Maxx standard library module
+// Category: crypto
+// Description: certificate csr implementation
+// Status: available (bootstrap)
+
+# certificate_csr:
+
+@ new_certificate_csr() -> void:
+    ret
+
+@ certificate_csr_process(data: Vec<int>) -> Vec<int>:
+    ret data

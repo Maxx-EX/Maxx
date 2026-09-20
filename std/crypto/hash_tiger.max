@@ -1,0 +1,12 @@
+// hash_tiger - Maxx standard library module
+// Category: crypto
+// Description: hash tiger implementation
+// Status: available (bootstrap)
+
+# hash_tiger:
+
+@ new_hash_tiger() -> void:
+    ret
+
+@ hash_tiger_process(data: Vec<int>) -> Vec<int>:
+    ret data

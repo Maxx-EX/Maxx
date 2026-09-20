@@ -1,0 +1,12 @@
+// protocol_ftp - Maxx standard library module
+// Category: net
+// Description: protocol ftp implementation
+// Status: available (bootstrap)
+
+# protocol_ftp:
+
+@ new_protocol_ftp() -> void:
+    ret
+
+@ protocol_ftp_process(data: Vec<int>) -> Vec<int>:
+    ret data

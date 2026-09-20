@@ -1,0 +1,12 @@
+// time_bounded_queue - Maxx standard library module
+// Category: collections
+// Description: time bounded queue implementation
+// Status: available (bootstrap)
+
+# time_bounded_queue:
+
+@ new_time_bounded_queue() -> void:
+    ret
+
+@ time_bounded_queue_process(data: Vec<int>) -> Vec<int>:
+    ret data

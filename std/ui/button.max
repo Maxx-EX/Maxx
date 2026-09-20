@@ -1,0 +1,6 @@
+// button - Maxx standard library module
+// Category: ui
+# button:
+
+@ button_init() -> void:
+    ret

@@ -1,0 +1,6 @@
+// args - Maxx standard library module
+// Category: system
+# args:
+
+@ args_init() -> void:
+    ret

@@ -1,0 +1,6 @@
+// ip - Maxx standard library module
+// Category: system
+# ip:
+
+@ ip_init() -> void:
+    ret

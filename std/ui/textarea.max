@@ -1,0 +1,6 @@
+// textarea - Maxx standard library module
+// Category: ui
+# textarea:
+
+@ textarea_init() -> void:
+    ret

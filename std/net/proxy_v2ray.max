@@ -1,0 +1,12 @@
+// proxy_v2ray - Maxx standard library module
+// Category: net
+// Description: proxy v2ray implementation
+// Status: available (bootstrap)
+
+# proxy_v2ray:
+
+@ new_proxy_v2ray() -> void:
+    ret
+
+@ proxy_v2ray_process(data: Vec<int>) -> Vec<int>:
+    ret data

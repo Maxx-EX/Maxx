@@ -1,0 +1,12 @@
+// socket_tcp - Maxx standard library module
+// Category: net
+// Description: socket tcp implementation
+// Status: available (bootstrap)
+
+# socket_tcp:
+
+@ new_socket_tcp() -> void:
+    ret
+
+@ socket_tcp_process(data: Vec<int>) -> Vec<int>:
+    ret data

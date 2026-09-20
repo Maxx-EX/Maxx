@@ -1,0 +1,12 @@
+// serialization_thrift - Maxx standard library module
+// Category: data
+// Description: serialization thrift implementation
+// Status: available (bootstrap)
+
+# serialization_thrift:
+
+@ new_serialization_thrift() -> void:
+    ret
+
+@ serialization_thrift_process(data: Vec<int>) -> Vec<int>:
+    ret data

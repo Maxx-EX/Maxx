@@ -1,0 +1,12 @@
+// http_server_sync - Maxx standard library module
+// Category: net
+// Description: http server sync implementation
+// Status: available (bootstrap)
+
+# http_server_sync:
+
+@ new_http_server_sync() -> void:
+    ret
+
+@ http_server_sync_process(data: Vec<int>) -> Vec<int>:
+    ret data

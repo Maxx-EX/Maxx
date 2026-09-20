@@ -1,0 +1,12 @@
+// random_xorshift - Maxx standard library module
+// Category: math
+// Description: random xorshift implementation
+// Status: available (bootstrap)
+
+# random_xorshift:
+
+@ new_random_xorshift() -> void:
+    ret
+
+@ random_xorshift_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// sprite - Maxx standard library module
+// Category: game
+# sprite:
+
+@ sprite_init() -> void:
+    ret

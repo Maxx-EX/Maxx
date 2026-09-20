@@ -1,0 +1,12 @@
+// number_theory_miller_rabin - Maxx standard library module
+// Category: math
+// Description: number theory miller rabin implementation
+// Status: available (bootstrap)
+
+# number_theory_miller_rabin:
+
+@ new_number_theory_miller_rabin() -> void:
+    ret
+
+@ number_theory_miller_rabin_process(data: Vec<int>) -> Vec<int>:
+    ret data

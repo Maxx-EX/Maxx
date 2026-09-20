@@ -1,0 +1,12 @@
+// circular_queue - Maxx standard library module
+// Category: collections
+// Description: circular queue implementation
+// Status: available (bootstrap)
+
+# circular_queue:
+
+@ new_circular_queue() -> void:
+    ret
+
+@ circular_queue_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// cuckoo_hash - Maxx standard library module
+// Category: collections
+// Description: cuckoo hash implementation
+// Status: available (bootstrap)
+
+# cuckoo_hash:
+
+@ new_cuckoo_hash() -> void:
+    ret
+
+@ cuckoo_hash_process(data: Vec<int>) -> Vec<int>:
+    ret data

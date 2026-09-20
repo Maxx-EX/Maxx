@@ -1,0 +1,12 @@
+// compression_gzip - Maxx standard library module
+// Category: data
+// Description: compression gzip implementation
+// Status: available (bootstrap)
+
+# compression_gzip:
+
+@ new_compression_gzip() -> void:
+    ret
+
+@ compression_gzip_process(data: Vec<int>) -> Vec<int>:
+    ret data

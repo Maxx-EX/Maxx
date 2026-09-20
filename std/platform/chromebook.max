@@ -1,0 +1,6 @@
+// chromebook - Maxx standard library module
+// Category: platform
+# chromebook:
+
+@ chromebook_init() -> void:
+    ret

@@ -1,0 +1,12 @@
+// serialization_json - Maxx standard library module
+// Category: data
+// Description: serialization json implementation
+// Status: available (bootstrap)
+
+# serialization_json:
+
+@ new_serialization_json() -> void:
+    ret
+
+@ serialization_json_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// deduping_queue - Maxx standard library module
+// Category: collections
+// Description: deduping queue implementation
+// Status: available (bootstrap)
+
+# deduping_queue:
+
+@ new_deduping_queue() -> void:
+    ret
+
+@ deduping_queue_process(data: Vec<int>) -> Vec<int>:
+    ret data

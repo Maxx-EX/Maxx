@@ -1,0 +1,12 @@
+// signature_dsa - Maxx standard library module
+// Category: crypto
+// Description: signature dsa implementation
+// Status: available (bootstrap)
+
+# signature_dsa:
+
+@ new_signature_dsa() -> void:
+    ret
+
+@ signature_dsa_process(data: Vec<int>) -> Vec<int>:
+    ret data

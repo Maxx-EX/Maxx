@@ -1,0 +1,6 @@
+// android - Maxx standard library module
+// Category: platform
+# android:
+
+@ android_init() -> void:
+    ret

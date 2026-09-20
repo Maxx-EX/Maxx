@@ -1,0 +1,12 @@
+// encoder_ascii85 - Maxx standard library module
+// Category: text
+// Description: encoder ascii85 implementation
+// Status: available (bootstrap)
+
+# encoder_ascii85:
+
+@ new_encoder_ascii85() -> void:
+    ret
+
+@ encoder_ascii85_process(data: Vec<int>) -> Vec<int>:
+    ret data

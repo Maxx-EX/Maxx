@@ -1,0 +1,12 @@
+// probability_chi_square - Maxx standard library module
+// Category: math
+// Description: probability chi square implementation
+// Status: available (bootstrap)
+
+# probability_chi_square:
+
+@ new_probability_chi_square() -> void:
+    ret
+
+@ probability_chi_square_process(data: Vec<int>) -> Vec<int>:
+    ret data

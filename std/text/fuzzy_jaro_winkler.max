@@ -1,0 +1,12 @@
+// fuzzy_jaro_winkler - Maxx standard library module
+// Category: text
+// Description: fuzzy jaro winkler implementation
+// Status: available (bootstrap)
+
+# fuzzy_jaro_winkler:
+
+@ new_fuzzy_jaro_winkler() -> void:
+    ret
+
+@ fuzzy_jaro_winkler_process(data: Vec<int>) -> Vec<int>:
+    ret data

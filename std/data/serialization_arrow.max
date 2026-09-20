@@ -1,0 +1,12 @@
+// serialization_arrow - Maxx standard library module
+// Category: data
+// Description: serialization arrow implementation
+// Status: available (bootstrap)
+
+# serialization_arrow:
+
+@ new_serialization_arrow() -> void:
+    ret
+
+@ serialization_arrow_process(data: Vec<int>) -> Vec<int>:
+    ret data

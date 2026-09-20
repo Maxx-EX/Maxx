@@ -1,0 +1,12 @@
+// protocol_mqtt - Maxx standard library module
+// Category: net
+// Description: protocol mqtt implementation
+// Status: available (bootstrap)
+
+# protocol_mqtt:
+
+@ new_protocol_mqtt() -> void:
+    ret
+
+@ protocol_mqtt_process(data: Vec<int>) -> Vec<int>:
+    ret data

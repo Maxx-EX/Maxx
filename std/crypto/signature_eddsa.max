@@ -1,0 +1,12 @@
+// signature_eddsa - Maxx standard library module
+// Category: crypto
+// Description: signature eddsa implementation
+// Status: available (bootstrap)
+
+# signature_eddsa:
+
+@ new_signature_eddsa() -> void:
+    ret
+
+@ signature_eddsa_process(data: Vec<int>) -> Vec<int>:
+    ret data

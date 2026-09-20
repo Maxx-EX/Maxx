@@ -1,0 +1,4 @@
+@ main() -> int:
+    let flag = true
+    io.println(str(flag))
+    ret 0

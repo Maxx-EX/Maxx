@@ -1,0 +1,12 @@
+// validator_url - Maxx standard library module
+// Category: text
+// Description: validator url implementation
+// Status: available (bootstrap)
+
+# validator_url:
+
+@ new_validator_url() -> void:
+    ret
+
+@ validator_url_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// graphics - Maxx standard library module
+// Category: game
+# graphics:
+
+@ graphics_init() -> void:
+    ret

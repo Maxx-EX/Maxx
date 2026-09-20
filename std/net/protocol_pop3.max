@@ -1,0 +1,12 @@
+// protocol_pop3 - Maxx standard library module
+// Category: net
+// Description: protocol pop3 implementation
+// Status: available (bootstrap)
+
+# protocol_pop3:
+
+@ new_protocol_pop3() -> void:
+    ret
+
+@ protocol_pop3_process(data: Vec<int>) -> Vec<int>:
+    ret data

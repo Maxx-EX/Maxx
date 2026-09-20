@@ -1,0 +1,12 @@
+// decoder_hex - Maxx standard library module
+// Category: text
+// Description: decoder hex implementation
+// Status: available (bootstrap)
+
+# decoder_hex:
+
+@ new_decoder_hex() -> void:
+    ret
+
+@ decoder_hex_process(data: Vec<int>) -> Vec<int>:
+    ret data

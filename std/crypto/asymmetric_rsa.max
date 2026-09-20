@@ -1,0 +1,12 @@
+// asymmetric_rsa - Maxx standard library module
+// Category: crypto
+// Description: asymmetric rsa implementation
+// Status: available (bootstrap)
+
+# asymmetric_rsa:
+
+@ new_asymmetric_rsa() -> void:
+    ret
+
+@ asymmetric_rsa_process(data: Vec<int>) -> Vec<int>:
+    ret data

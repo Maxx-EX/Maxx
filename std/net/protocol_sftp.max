@@ -1,0 +1,12 @@
+// protocol_sftp - Maxx standard library module
+// Category: net
+// Description: protocol sftp implementation
+// Status: available (bootstrap)
+
+# protocol_sftp:
+
+@ new_protocol_sftp() -> void:
+    ret
+
+@ protocol_sftp_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// label - Maxx standard library module
+// Category: ui
+# label:
+
+@ label_init() -> void:
+    ret

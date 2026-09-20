@@ -1,0 +1,12 @@
+// normalizer_unicode - Maxx standard library module
+// Category: text
+// Description: normalizer unicode implementation
+// Status: available (bootstrap)
+
+# normalizer_unicode:
+
+@ new_normalizer_unicode() -> void:
+    ret
+
+@ normalizer_unicode_process(data: Vec<int>) -> Vec<int>:
+    ret data

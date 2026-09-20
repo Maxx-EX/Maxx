@@ -1,0 +1,12 @@
+// tls_ticket - Maxx standard library module
+// Category: net
+// Description: tls ticket implementation
+// Status: available (bootstrap)
+
+# tls_ticket:
+
+@ new_tls_ticket() -> void:
+    ret
+
+@ tls_ticket_process(data: Vec<int>) -> Vec<int>:
+    ret data

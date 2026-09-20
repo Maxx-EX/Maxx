@@ -1,0 +1,12 @@
+// database_mysql - Maxx standard library module
+// Category: data
+// Description: database mysql implementation
+// Status: available (bootstrap)
+
+# database_mysql:
+
+@ new_database_mysql() -> void:
+    ret
+
+@ database_mysql_process(data: Vec<int>) -> Vec<int>:
+    ret data

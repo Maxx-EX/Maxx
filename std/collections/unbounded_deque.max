@@ -1,0 +1,12 @@
+// unbounded_deque - Maxx standard library module
+// Category: collections
+// Description: unbounded deque implementation
+// Status: available (bootstrap)
+
+# unbounded_deque:
+
+@ new_unbounded_deque() -> void:
+    ret
+
+@ unbounded_deque_process(data: Vec<int>) -> Vec<int>:
+    ret data

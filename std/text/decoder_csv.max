@@ -1,0 +1,12 @@
+// decoder_csv - Maxx standard library module
+// Category: text
+// Description: decoder csv implementation
+// Status: available (bootstrap)
+
+# decoder_csv:
+
+@ new_decoder_csv() -> void:
+    ret
+
+@ decoder_csv_process(data: Vec<int>) -> Vec<int>:
+    ret data

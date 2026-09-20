@@ -1,0 +1,12 @@
+// protocol_ethereum - Maxx standard library module
+// Category: net
+// Description: protocol ethereum implementation
+// Status: available (bootstrap)
+
+# protocol_ethereum:
+
+@ new_protocol_ethereum() -> void:
+    ret
+
+@ protocol_ethereum_process(data: Vec<int>) -> Vec<int>:
+    ret data

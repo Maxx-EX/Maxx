@@ -1,0 +1,12 @@
+// socket_async - Maxx standard library module
+// Category: net
+// Description: socket async implementation
+// Status: available (bootstrap)
+
+# socket_async:
+
+@ new_socket_async() -> void:
+    ret
+
+@ socket_async_process(data: Vec<int>) -> Vec<int>:
+    ret data

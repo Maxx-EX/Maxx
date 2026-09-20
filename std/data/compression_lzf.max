@@ -1,0 +1,12 @@
+// compression_lzf - Maxx standard library module
+// Category: data
+// Description: compression lzf implementation
+// Status: available (bootstrap)
+
+# compression_lzf:
+
+@ new_compression_lzf() -> void:
+    ret
+
+@ compression_lzf_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// graph_traversal_label_propagation - Maxx standard library module
+// Category: data
+// Description: graph traversal label propagation implementation
+// Status: available (bootstrap)
+
+# graph_traversal_label_propagation:
+
+@ new_graph_traversal_label_propagation() -> void:
+    ret
+
+@ graph_traversal_label_propagation_process(data: Vec<int>) -> Vec<int>:
+    ret data

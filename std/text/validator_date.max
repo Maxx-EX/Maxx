@@ -1,0 +1,12 @@
+// validator_date - Maxx standard library module
+// Category: text
+// Description: validator date implementation
+// Status: available (bootstrap)
+
+# validator_date:
+
+@ new_validator_date() -> void:
+    ret
+
+@ validator_date_process(data: Vec<int>) -> Vec<int>:
+    ret data

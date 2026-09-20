@@ -1,0 +1,12 @@
+// algorithm_sort_counting - Maxx standard library module
+// Category: data
+// Description: algorithm sort counting implementation
+// Status: available (bootstrap)
+
+# algorithm_sort_counting:
+
+@ new_algorithm_sort_counting() -> void:
+    ret
+
+@ algorithm_sort_counting_process(data: Vec<int>) -> Vec<int>:
+    ret data

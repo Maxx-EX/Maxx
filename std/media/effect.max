@@ -1,0 +1,6 @@
+// effect - Maxx standard library module
+// Category: media
+# effect:
+
+@ effect_init() -> void:
+    ret

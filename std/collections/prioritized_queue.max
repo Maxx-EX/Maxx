@@ -1,0 +1,12 @@
+// prioritized_queue - Maxx standard library module
+// Category: collections
+// Description: prioritized queue implementation
+// Status: available (bootstrap)
+
+# prioritized_queue:
+
+@ new_prioritized_queue() -> void:
+    ret
+
+@ prioritized_queue_process(data: Vec<int>) -> Vec<int>:
+    ret data

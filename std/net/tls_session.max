@@ -1,0 +1,12 @@
+// tls_session - Maxx standard library module
+// Category: net
+// Description: tls session implementation
+// Status: available (bootstrap)
+
+# tls_session:
+
+@ new_tls_session() -> void:
+    ret
+
+@ tls_session_process(data: Vec<int>) -> Vec<int>:
+    ret data

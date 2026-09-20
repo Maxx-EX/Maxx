@@ -1,0 +1,6 @@
+// network - Maxx standard library module
+// Category: system
+# network:
+
+@ network_init() -> void:
+    ret

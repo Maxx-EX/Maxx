@@ -1,0 +1,12 @@
+// protocol_radius - Maxx standard library module
+// Category: net
+// Description: protocol radius implementation
+// Status: available (bootstrap)
+
+# protocol_radius:
+
+@ new_protocol_radius() -> void:
+    ret
+
+@ protocol_radius_process(data: Vec<int>) -> Vec<int>:
+    ret data

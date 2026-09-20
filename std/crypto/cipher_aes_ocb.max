@@ -1,0 +1,12 @@
+// cipher_aes_ocb - Maxx standard library module
+// Category: crypto
+// Description: cipher aes ocb implementation
+// Status: available (bootstrap)
+
+# cipher_aes_ocb:
+
+@ new_cipher_aes_ocb() -> void:
+    ret
+
+@ cipher_aes_ocb_process(data: Vec<int>) -> Vec<int>:
+    ret data

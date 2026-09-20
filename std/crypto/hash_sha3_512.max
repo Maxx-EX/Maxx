@@ -1,0 +1,12 @@
+// hash_sha3_512 - Maxx standard library module
+// Category: crypto
+// Description: hash sha3 512 implementation
+// Status: available (bootstrap)
+
+# hash_sha3_512:
+
+@ new_hash_sha3_512() -> void:
+    ret
+
+@ hash_sha3_512_process(data: Vec<int>) -> Vec<int>:
+    ret data

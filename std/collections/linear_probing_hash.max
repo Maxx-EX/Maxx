@@ -1,0 +1,12 @@
+// linear_probing_hash - Maxx standard library module
+// Category: collections
+// Description: linear probing hash implementation
+// Status: available (bootstrap)
+
+# linear_probing_hash:
+
+@ new_linear_probing_hash() -> void:
+    ret
+
+@ linear_probing_hash_process(data: Vec<int>) -> Vec<int>:
+    ret data

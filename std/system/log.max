@@ -1,0 +1,6 @@
+// log - Maxx standard library module
+// Category: system
+# log:
+
+@ log_init() -> void:
+    ret

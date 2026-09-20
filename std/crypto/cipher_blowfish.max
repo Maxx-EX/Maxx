@@ -1,0 +1,12 @@
+// cipher_blowfish - Maxx standard library module
+// Category: crypto
+// Description: cipher blowfish implementation
+// Status: available (bootstrap)
+
+# cipher_blowfish:
+
+@ new_cipher_blowfish() -> void:
+    ret
+
+@ cipher_blowfish_process(data: Vec<int>) -> Vec<int>:
+    ret data

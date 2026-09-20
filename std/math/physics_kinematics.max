@@ -1,0 +1,12 @@
+// physics_kinematics - Maxx standard library module
+// Category: math
+// Description: physics kinematics implementation
+// Status: available (bootstrap)
+
+# physics_kinematics:
+
+@ new_physics_kinematics() -> void:
+    ret
+
+@ physics_kinematics_process(data: Vec<int>) -> Vec<int>:
+    ret data

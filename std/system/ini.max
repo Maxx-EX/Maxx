@@ -1,0 +1,6 @@
+// ini - Maxx standard library module
+// Category: system
+# ini:
+
+@ ini_init() -> void:
+    ret

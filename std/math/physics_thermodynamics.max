@@ -1,0 +1,12 @@
+// physics_thermodynamics - Maxx standard library module
+// Category: math
+// Description: physics thermodynamics implementation
+// Status: available (bootstrap)
+
+# physics_thermodynamics:
+
+@ new_physics_thermodynamics() -> void:
+    ret
+
+@ physics_thermodynamics_process(data: Vec<int>) -> Vec<int>:
+    ret data

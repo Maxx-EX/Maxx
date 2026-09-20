@@ -1,0 +1,6 @@
+// rtos - Maxx standard library module
+// Category: platform
+# rtos:
+
+@ rtos_init() -> void:
+    ret

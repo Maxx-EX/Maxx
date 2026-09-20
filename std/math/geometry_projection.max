@@ -1,0 +1,12 @@
+// geometry_projection - Maxx standard library module
+// Category: math
+// Description: geometry projection implementation
+// Status: available (bootstrap)
+
+# geometry_projection:
+
+@ new_geometry_projection() -> void:
+    ret
+
+@ geometry_projection_process(data: Vec<int>) -> Vec<int>:
+    ret data

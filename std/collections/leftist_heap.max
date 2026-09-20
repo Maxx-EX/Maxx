@@ -1,0 +1,12 @@
+// leftist_heap - Maxx standard library module
+// Category: collections
+// Description: leftist heap implementation
+// Status: available (bootstrap)
+
+# leftist_heap:
+
+@ new_leftist_heap() -> void:
+    ret
+
+@ leftist_heap_process(data: Vec<int>) -> Vec<int>:
+    ret data

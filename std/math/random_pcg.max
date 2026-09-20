@@ -1,0 +1,12 @@
+// random_pcg - Maxx standard library module
+// Category: math
+// Description: random pcg implementation
+// Status: available (bootstrap)
+
+# random_pcg:
+
+@ new_random_pcg() -> void:
+    ret
+
+@ random_pcg_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// cipher_cast5 - Maxx standard library module
+// Category: crypto
+// Description: cipher cast5 implementation
+// Status: available (bootstrap)
+
+# cipher_cast5:
+
+@ new_cipher_cast5() -> void:
+    ret
+
+@ cipher_cast5_process(data: Vec<int>) -> Vec<int>:
+    ret data

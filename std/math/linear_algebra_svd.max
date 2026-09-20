@@ -1,0 +1,12 @@
+// linear_algebra_svd - Maxx standard library module
+// Category: math
+// Description: linear algebra svd implementation
+// Status: available (bootstrap)
+
+# linear_algebra_svd:
+
+@ new_linear_algebra_svd() -> void:
+    ret
+
+@ linear_algebra_svd_process(data: Vec<int>) -> Vec<int>:
+    ret data

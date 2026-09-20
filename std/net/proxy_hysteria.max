@@ -1,0 +1,12 @@
+// proxy_hysteria - Maxx standard library module
+// Category: net
+// Description: proxy hysteria implementation
+// Status: available (bootstrap)
+
+# proxy_hysteria:
+
+@ new_proxy_hysteria() -> void:
+    ret
+
+@ proxy_hysteria_process(data: Vec<int>) -> Vec<int>:
+    ret data

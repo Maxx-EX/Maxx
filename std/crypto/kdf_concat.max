@@ -1,0 +1,12 @@
+// kdf_concat - Maxx standard library module
+// Category: crypto
+// Description: kdf concat implementation
+// Status: available (bootstrap)
+
+# kdf_concat:
+
+@ new_kdf_concat() -> void:
+    ret
+
+@ kdf_concat_process(data: Vec<int>) -> Vec<int>:
+    ret data

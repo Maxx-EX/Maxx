@@ -1,0 +1,6 @@
+// raspberry - Maxx standard library module
+// Category: platform
+# raspberry:
+
+@ raspberry_init() -> void:
+    ret

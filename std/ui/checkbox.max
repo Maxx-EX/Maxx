@@ -1,0 +1,6 @@
+// checkbox - Maxx standard library module
+// Category: ui
+# checkbox:
+
+@ checkbox_init() -> void:
+    ret

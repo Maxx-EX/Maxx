@@ -1,0 +1,6 @@
+// domain - Maxx standard library module
+// Category: system
+# domain:
+
+@ domain_init() -> void:
+    ret

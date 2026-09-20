@@ -1,0 +1,12 @@
+// lemmatizer_wordnet - Maxx standard library module
+// Category: text
+// Description: lemmatizer wordnet implementation
+// Status: available (bootstrap)
+
+# lemmatizer_wordnet:
+
+@ new_lemmatizer_wordnet() -> void:
+    ret
+
+@ lemmatizer_wordnet_process(data: Vec<int>) -> Vec<int>:
+    ret data

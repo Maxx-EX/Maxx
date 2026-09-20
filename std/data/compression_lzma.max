@@ -1,0 +1,12 @@
+// compression_lzma - Maxx standard library module
+// Category: data
+// Description: compression lzma implementation
+// Status: available (bootstrap)
+
+# compression_lzma:
+
+@ new_compression_lzma() -> void:
+    ret
+
+@ compression_lzma_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// dns_forwarder - Maxx standard library module
+// Category: net
+// Description: dns forwarder implementation
+// Status: available (bootstrap)
+
+# dns_forwarder:
+
+@ new_dns_forwarder() -> void:
+    ret
+
+@ dns_forwarder_process(data: Vec<int>) -> Vec<int>:
+    ret data

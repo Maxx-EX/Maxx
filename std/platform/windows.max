@@ -1,0 +1,6 @@
+// windows - Maxx standard library module
+// Category: platform
+# windows:
+
+@ windows_init() -> void:
+    ret

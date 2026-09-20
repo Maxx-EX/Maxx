@@ -1,0 +1,12 @@
+// kdf_hkdf - Maxx standard library module
+// Category: crypto
+// Description: kdf hkdf implementation
+// Status: available (bootstrap)
+
+# kdf_hkdf:
+
+@ new_kdf_hkdf() -> void:
+    ret
+
+@ kdf_hkdf_process(data: Vec<int>) -> Vec<int>:
+    ret data

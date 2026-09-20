@@ -1,0 +1,12 @@
+// lemmatizer_nltk - Maxx standard library module
+// Category: text
+// Description: lemmatizer nltk implementation
+// Status: available (bootstrap)
+
+# lemmatizer_nltk:
+
+@ new_lemmatizer_nltk() -> void:
+    ret
+
+@ lemmatizer_nltk_process(data: Vec<int>) -> Vec<int>:
+    ret data

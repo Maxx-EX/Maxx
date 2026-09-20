@@ -1,0 +1,6 @@
+// node - Maxx standard library module
+// Category: platform
+# node:
+
+@ node_init() -> void:
+    ret

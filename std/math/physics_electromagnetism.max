@@ -1,0 +1,12 @@
+// physics_electromagnetism - Maxx standard library module
+// Category: math
+// Description: physics electromagnetism implementation
+// Status: available (bootstrap)
+
+# physics_electromagnetism:
+
+@ new_physics_electromagnetism() -> void:
+    ret
+
+@ physics_electromagnetism_process(data: Vec<int>) -> Vec<int>:
+    ret data

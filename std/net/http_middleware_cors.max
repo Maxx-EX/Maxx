@@ -1,0 +1,12 @@
+// http_middleware_cors - Maxx standard library module
+// Category: net
+// Description: http middleware cors implementation
+// Status: available (bootstrap)
+
+# http_middleware_cors:
+
+@ new_http_middleware_cors() -> void:
+    ret
+
+@ http_middleware_cors_process(data: Vec<int>) -> Vec<int>:
+    ret data

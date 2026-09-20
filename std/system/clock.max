@@ -1,0 +1,6 @@
+// clock - Maxx standard library module
+// Category: system
+# clock:
+
+@ clock_init() -> void:
+    ret

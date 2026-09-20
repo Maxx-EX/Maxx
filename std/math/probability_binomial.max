@@ -1,0 +1,12 @@
+// probability_binomial - Maxx standard library module
+// Category: math
+// Description: probability binomial implementation
+// Status: available (bootstrap)
+
+# probability_binomial:
+
+@ new_probability_binomial() -> void:
+    ret
+
+@ probability_binomial_process(data: Vec<int>) -> Vec<int>:
+    ret data

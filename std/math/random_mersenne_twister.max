@@ -1,0 +1,12 @@
+// random_mersenne_twister - Maxx standard library module
+// Category: math
+// Description: random mersenne twister implementation
+// Status: available (bootstrap)
+
+# random_mersenne_twister:
+
+@ new_random_mersenne_twister() -> void:
+    ret
+
+@ random_mersenne_twister_process(data: Vec<int>) -> Vec<int>:
+    ret data

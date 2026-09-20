@@ -1,0 +1,12 @@
+// decoder_yaml - Maxx standard library module
+// Category: text
+// Description: decoder yaml implementation
+// Status: available (bootstrap)
+
+# decoder_yaml:
+
+@ new_decoder_yaml() -> void:
+    ret
+
+@ decoder_yaml_process(data: Vec<int>) -> Vec<int>:
+    ret data

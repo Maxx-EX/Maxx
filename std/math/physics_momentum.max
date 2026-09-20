@@ -1,0 +1,12 @@
+// physics_momentum - Maxx standard library module
+// Category: math
+// Description: physics momentum implementation
+// Status: available (bootstrap)
+
+# physics_momentum:
+
+@ new_physics_momentum() -> void:
+    ret
+
+@ physics_momentum_process(data: Vec<int>) -> Vec<int>:
+    ret data

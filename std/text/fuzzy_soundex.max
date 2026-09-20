@@ -1,0 +1,12 @@
+// fuzzy_soundex - Maxx standard library module
+// Category: text
+// Description: fuzzy soundex implementation
+// Status: available (bootstrap)
+
+# fuzzy_soundex:
+
+@ new_fuzzy_soundex() -> void:
+    ret
+
+@ fuzzy_soundex_process(data: Vec<int>) -> Vec<int>:
+    ret data

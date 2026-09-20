@@ -1,0 +1,12 @@
+// proxy_socks - Maxx standard library module
+// Category: net
+// Description: proxy socks implementation
+// Status: available (bootstrap)
+
+# proxy_socks:
+
+@ new_proxy_socks() -> void:
+    ret
+
+@ proxy_socks_process(data: Vec<int>) -> Vec<int>:
+    ret data

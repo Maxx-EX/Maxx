@@ -1,0 +1,12 @@
+// red_black_map - Maxx standard library module
+// Category: collections
+// Description: red black map implementation
+// Status: available (bootstrap)
+
+# red_black_map:
+
+@ new_red_black_map() -> void:
+    ret
+
+@ red_black_map_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// pairing_heap - Maxx standard library module
+// Category: collections
+// Description: pairing heap implementation
+// Status: available (bootstrap)
+
+# pairing_heap:
+
+@ new_pairing_heap() -> void:
+    ret
+
+@ pairing_heap_process(data: Vec<int>) -> Vec<int>:
+    ret data

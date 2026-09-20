@@ -1,0 +1,6 @@
+// memory - Maxx standard library module
+// Category: system
+# memory:
+
+@ memory_init() -> void:
+    ret

@@ -1,0 +1,12 @@
+// validator_ssn - Maxx standard library module
+// Category: text
+// Description: validator ssn implementation
+// Status: available (bootstrap)
+
+# validator_ssn:
+
+@ new_validator_ssn() -> void:
+    ret
+
+@ validator_ssn_process(data: Vec<int>) -> Vec<int>:
+    ret data

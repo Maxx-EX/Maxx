@@ -1,0 +1,12 @@
+// algorithm_sort_insertion - Maxx standard library module
+// Category: data
+// Description: algorithm sort insertion implementation
+// Status: available (bootstrap)
+
+# algorithm_sort_insertion:
+
+@ new_algorithm_sort_insertion() -> void:
+    ret
+
+@ algorithm_sort_insertion_process(data: Vec<int>) -> Vec<int>:
+    ret data

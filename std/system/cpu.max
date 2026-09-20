@@ -1,0 +1,6 @@
+// cpu - Maxx standard library module
+// Category: system
+# cpu:
+
+@ cpu_init() -> void:
+    ret

@@ -1,0 +1,5 @@
+@ main() -> int:
+    let a = true
+    let b = true
+    io.println(str(a && b))
+    ret 0

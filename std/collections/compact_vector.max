@@ -1,0 +1,12 @@
+// compact_vector - Maxx standard library module
+// Category: collections
+// Description: compact vector implementation
+// Status: available (bootstrap)
+
+# compact_vector:
+
+@ new_compact_vector() -> void:
+    ret
+
+@ compact_vector_process(data: Vec<int>) -> Vec<int>:
+    ret data

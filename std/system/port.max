@@ -1,0 +1,6 @@
+// port - Maxx standard library module
+// Category: system
+# port:
+
+@ port_init() -> void:
+    ret

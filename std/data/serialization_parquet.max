@@ -1,0 +1,12 @@
+// serialization_parquet - Maxx standard library module
+// Category: data
+// Description: serialization parquet implementation
+// Status: available (bootstrap)
+
+# serialization_parquet:
+
+@ new_serialization_parquet() -> void:
+    ret
+
+@ serialization_parquet_process(data: Vec<int>) -> Vec<int>:
+    ret data

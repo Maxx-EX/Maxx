@@ -1,0 +1,6 @@
+// process - Maxx standard library module
+// Category: system
+# process:
+
+@ process_init() -> void:
+    ret

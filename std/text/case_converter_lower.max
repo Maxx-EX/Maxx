@@ -1,0 +1,12 @@
+// case_converter_lower - Maxx standard library module
+// Category: text
+// Description: case converter lower implementation
+// Status: available (bootstrap)
+
+# case_converter_lower:
+
+@ new_case_converter_lower() -> void:
+    ret
+
+@ case_converter_lower_process(data: Vec<int>) -> Vec<int>:
+    ret data

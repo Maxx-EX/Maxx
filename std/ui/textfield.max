@@ -1,0 +1,6 @@
+// textfield - Maxx standard library module
+// Category: ui
+# textfield:
+
+@ textfield_init() -> void:
+    ret

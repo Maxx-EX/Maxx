@@ -1,0 +1,12 @@
+// normalizer_compose - Maxx standard library module
+// Category: text
+// Description: normalizer compose implementation
+// Status: available (bootstrap)
+
+# normalizer_compose:
+
+@ new_normalizer_compose() -> void:
+    ret
+
+@ normalizer_compose_process(data: Vec<int>) -> Vec<int>:
+    ret data

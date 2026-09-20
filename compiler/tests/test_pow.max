@@ -1,0 +1,4 @@
+@ main() -> int:
+    let x = pow(2.0, 3.0)
+    io.println(str(x))
+    ret 0

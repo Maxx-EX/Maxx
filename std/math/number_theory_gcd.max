@@ -1,0 +1,12 @@
+// number_theory_gcd - Maxx standard library module
+// Category: math
+// Description: number theory gcd implementation
+// Status: available (bootstrap)
+
+# number_theory_gcd:
+
+@ new_number_theory_gcd() -> void:
+    ret
+
+@ number_theory_gcd_process(data: Vec<int>) -> Vec<int>:
+    ret data

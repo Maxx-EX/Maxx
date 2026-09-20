@@ -1,0 +1,12 @@
+// tokenizer_whitespace - Maxx standard library module
+// Category: text
+// Description: tokenizer whitespace implementation
+// Status: available (bootstrap)
+
+# tokenizer_whitespace:
+
+@ new_tokenizer_whitespace() -> void:
+    ret
+
+@ tokenizer_whitespace_process(data: Vec<int>) -> Vec<int>:
+    ret data

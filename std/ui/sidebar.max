@@ -1,0 +1,6 @@
+// sidebar - Maxx standard library module
+// Category: ui
+# sidebar:
+
+@ sidebar_init() -> void:
+    ret

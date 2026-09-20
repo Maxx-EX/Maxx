@@ -1,0 +1,6 @@
+// freertos - Maxx standard library module
+// Category: platform
+# freertos:
+
+@ freertos_init() -> void:
+    ret

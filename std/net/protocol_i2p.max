@@ -1,0 +1,12 @@
+// protocol_i2p - Maxx standard library module
+// Category: net
+// Description: protocol i2p implementation
+// Status: available (bootstrap)
+
+# protocol_i2p:
+
+@ new_protocol_i2p() -> void:
+    ret
+
+@ protocol_i2p_process(data: Vec<int>) -> Vec<int>:
+    ret data

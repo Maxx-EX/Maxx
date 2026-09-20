@@ -1,0 +1,12 @@
+// number_theory_lcm - Maxx standard library module
+// Category: math
+// Description: number theory lcm implementation
+// Status: available (bootstrap)
+
+# number_theory_lcm:
+
+@ new_number_theory_lcm() -> void:
+    ret
+
+@ number_theory_lcm_process(data: Vec<int>) -> Vec<int>:
+    ret data

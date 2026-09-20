@@ -1,0 +1,12 @@
+// dns_cache - Maxx standard library module
+// Category: net
+// Description: dns cache implementation
+// Status: available (bootstrap)
+
+# dns_cache:
+
+@ new_dns_cache() -> void:
+    ret
+
+@ dns_cache_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// input - Maxx standard library module
+// Category: game
+# input:
+
+@ input_init() -> void:
+    ret

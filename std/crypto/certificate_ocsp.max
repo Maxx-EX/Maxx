@@ -1,0 +1,12 @@
+// certificate_ocsp - Maxx standard library module
+// Category: crypto
+// Description: certificate ocsp implementation
+// Status: available (bootstrap)
+
+# certificate_ocsp:
+
+@ new_certificate_ocsp() -> void:
+    ret
+
+@ certificate_ocsp_process(data: Vec<int>) -> Vec<int>:
+    ret data

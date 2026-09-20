@@ -1,0 +1,12 @@
+// proxy_http - Maxx standard library module
+// Category: net
+// Description: proxy http implementation
+// Status: available (bootstrap)
+
+# proxy_http:
+
+@ new_proxy_http() -> void:
+    ret
+
+@ proxy_http_process(data: Vec<int>) -> Vec<int>:
+    ret data

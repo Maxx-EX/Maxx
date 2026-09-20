@@ -1,0 +1,12 @@
+// case_converter_constant - Maxx standard library module
+// Category: text
+// Description: case converter constant implementation
+// Status: available (bootstrap)
+
+# case_converter_constant:
+
+@ new_case_converter_constant() -> void:
+    ret
+
+@ case_converter_constant_process(data: Vec<int>) -> Vec<int>:
+    ret data

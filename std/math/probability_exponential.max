@@ -1,0 +1,12 @@
+// probability_exponential - Maxx standard library module
+// Category: math
+// Description: probability exponential implementation
+// Status: available (bootstrap)
+
+# probability_exponential:
+
+@ new_probability_exponential() -> void:
+    ret
+
+@ probability_exponential_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// random_system - Maxx standard library module
+// Category: crypto
+// Description: random system implementation
+// Status: available (bootstrap)
+
+# random_system:
+
+@ new_random_system() -> void:
+    ret
+
+@ random_system_process(data: Vec<int>) -> Vec<int>:
+    ret data

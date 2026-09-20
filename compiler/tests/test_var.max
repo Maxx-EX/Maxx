@@ -1,0 +1,5 @@
+@ main() -> int:
+    var x = 1
+    x = 2
+    io.println(str(x))
+    ret 0

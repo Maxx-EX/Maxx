@@ -1,0 +1,12 @@
+// number_theory_euler_totient - Maxx standard library module
+// Category: math
+// Description: number theory euler totient implementation
+// Status: available (bootstrap)
+
+# number_theory_euler_totient:
+
+@ new_number_theory_euler_totient() -> void:
+    ret
+
+@ number_theory_euler_totient_process(data: Vec<int>) -> Vec<int>:
+    ret data

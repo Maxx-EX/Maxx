@@ -1,0 +1,6 @@
+// embedded - Maxx standard library module
+// Category: platform
+# embedded:
+
+@ embedded_init() -> void:
+    ret

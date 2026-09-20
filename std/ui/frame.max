@@ -1,0 +1,6 @@
+// frame - Maxx standard library module
+// Category: ui
+# frame:
+
+@ frame_init() -> void:
+    ret

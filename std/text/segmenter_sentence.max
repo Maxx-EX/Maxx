@@ -1,0 +1,12 @@
+// segmenter_sentence - Maxx standard library module
+// Category: text
+// Description: segmenter sentence implementation
+// Status: available (bootstrap)
+
+# segmenter_sentence:
+
+@ new_segmenter_sentence() -> void:
+    ret
+
+@ segmenter_sentence_process(data: Vec<int>) -> Vec<int>:
+    ret data

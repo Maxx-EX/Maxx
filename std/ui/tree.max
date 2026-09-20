@@ -1,0 +1,6 @@
+// tree - Maxx standard library module
+// Category: ui
+# tree:
+
+@ tree_init() -> void:
+    ret

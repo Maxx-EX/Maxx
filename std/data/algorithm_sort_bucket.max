@@ -1,0 +1,12 @@
+// algorithm_sort_bucket - Maxx standard library module
+// Category: data
+// Description: algorithm sort bucket implementation
+// Status: available (bootstrap)
+
+# algorithm_sort_bucket:
+
+@ new_algorithm_sort_bucket() -> void:
+    ret
+
+@ algorithm_sort_bucket_process(data: Vec<int>) -> Vec<int>:
+    ret data

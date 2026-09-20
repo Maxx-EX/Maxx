@@ -1,0 +1,12 @@
+// serialization_yaml - Maxx standard library module
+// Category: data
+// Description: serialization yaml implementation
+// Status: available (bootstrap)
+
+# serialization_yaml:
+
+@ new_serialization_yaml() -> void:
+    ret
+
+@ serialization_yaml_process(data: Vec<int>) -> Vec<int>:
+    ret data

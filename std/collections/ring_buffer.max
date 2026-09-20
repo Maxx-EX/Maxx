@@ -1,0 +1,12 @@
+// ring_buffer - Maxx standard library module
+// Category: collections
+// Description: ring buffer implementation
+// Status: available (bootstrap)
+
+# ring_buffer:
+
+@ new_ring_buffer() -> void:
+    ret
+
+@ ring_buffer_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// http_middleware_compression - Maxx standard library module
+// Category: net
+// Description: http middleware compression implementation
+// Status: available (bootstrap)
+
+# http_middleware_compression:
+
+@ new_http_middleware_compression() -> void:
+    ret
+
+@ http_middleware_compression_process(data: Vec<int>) -> Vec<int>:
+    ret data

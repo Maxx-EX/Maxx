@@ -1,0 +1,12 @@
+// piece_table - Maxx standard library module
+// Category: collections
+// Description: piece table implementation
+// Status: available (bootstrap)
+
+# piece_table:
+
+@ new_piece_table() -> void:
+    ret
+
+@ piece_table_process(data: Vec<int>) -> Vec<int>:
+    ret data

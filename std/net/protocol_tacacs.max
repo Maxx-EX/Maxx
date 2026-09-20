@@ -1,0 +1,12 @@
+// protocol_tacacs - Maxx standard library module
+// Category: net
+// Description: protocol tacacs implementation
+// Status: available (bootstrap)
+
+# protocol_tacacs:
+
+@ new_protocol_tacacs() -> void:
+    ret
+
+@ protocol_tacacs_process(data: Vec<int>) -> Vec<int>:
+    ret data

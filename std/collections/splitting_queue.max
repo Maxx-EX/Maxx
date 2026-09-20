@@ -1,0 +1,12 @@
+// splitting_queue - Maxx standard library module
+// Category: collections
+// Description: splitting queue implementation
+// Status: available (bootstrap)
+
+# splitting_queue:
+
+@ new_splitting_queue() -> void:
+    ret
+
+@ splitting_queue_process(data: Vec<int>) -> Vec<int>:
+    ret data

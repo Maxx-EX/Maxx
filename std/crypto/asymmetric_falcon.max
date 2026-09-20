@@ -1,0 +1,12 @@
+// asymmetric_falcon - Maxx standard library module
+// Category: crypto
+// Description: asymmetric falcon implementation
+// Status: available (bootstrap)
+
+# asymmetric_falcon:
+
+@ new_asymmetric_falcon() -> void:
+    ret
+
+@ asymmetric_falcon_process(data: Vec<int>) -> Vec<int>:
+    ret data

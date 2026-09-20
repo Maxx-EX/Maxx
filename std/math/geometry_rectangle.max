@@ -1,0 +1,12 @@
+// geometry_rectangle - Maxx standard library module
+// Category: math
+// Description: geometry rectangle implementation
+// Status: available (bootstrap)
+
+# geometry_rectangle:
+
+@ new_geometry_rectangle() -> void:
+    ret
+
+@ geometry_rectangle_process(data: Vec<int>) -> Vec<int>:
+    ret data

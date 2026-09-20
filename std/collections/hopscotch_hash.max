@@ -1,0 +1,12 @@
+// hopscotch_hash - Maxx standard library module
+// Category: collections
+// Description: hopscotch hash implementation
+// Status: available (bootstrap)
+
+# hopscotch_hash:
+
+@ new_hopscotch_hash() -> void:
+    ret
+
+@ hopscotch_hash_process(data: Vec<int>) -> Vec<int>:
+    ret data

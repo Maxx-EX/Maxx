@@ -1,0 +1,12 @@
+// http_client_sync - Maxx standard library module
+// Category: net
+// Description: http client sync implementation
+// Status: available (bootstrap)
+
+# http_client_sync:
+
+@ new_http_client_sync() -> void:
+    ret
+
+@ http_client_sync_process(data: Vec<int>) -> Vec<int>:
+    ret data

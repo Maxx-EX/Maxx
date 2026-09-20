@@ -1,0 +1,12 @@
+// dns_negative - Maxx standard library module
+// Category: net
+// Description: dns negative implementation
+// Status: available (bootstrap)
+
+# dns_negative:
+
+@ new_dns_negative() -> void:
+    ret
+
+@ dns_negative_process(data: Vec<int>) -> Vec<int>:
+    ret data

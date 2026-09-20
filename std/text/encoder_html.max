@@ -1,0 +1,12 @@
+// encoder_html - Maxx standard library module
+// Category: text
+// Description: encoder html implementation
+// Status: available (bootstrap)
+
+# encoder_html:
+
+@ new_encoder_html() -> void:
+    ret
+
+@ encoder_html_process(data: Vec<int>) -> Vec<int>:
+    ret data

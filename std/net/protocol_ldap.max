@@ -1,0 +1,12 @@
+// protocol_ldap - Maxx standard library module
+// Category: net
+// Description: protocol ldap implementation
+// Status: available (bootstrap)
+
+# protocol_ldap:
+
+@ new_protocol_ldap() -> void:
+    ret
+
+@ protocol_ldap_process(data: Vec<int>) -> Vec<int>:
+    ret data

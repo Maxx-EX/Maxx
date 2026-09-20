@@ -1,0 +1,12 @@
+// tls_server - Maxx standard library module
+// Category: net
+// Description: tls server implementation
+// Status: available (bootstrap)
+
+# tls_server:
+
+@ new_tls_server() -> void:
+    ret
+
+@ tls_server_process(data: Vec<int>) -> Vec<int>:
+    ret data

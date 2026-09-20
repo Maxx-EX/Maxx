@@ -1,0 +1,12 @@
+// priority_deque - Maxx standard library module
+// Category: collections
+// Description: priority deque implementation
+// Status: available (bootstrap)
+
+# priority_deque:
+
+@ new_priority_deque() -> void:
+    ret
+
+@ priority_deque_process(data: Vec<int>) -> Vec<int>:
+    ret data

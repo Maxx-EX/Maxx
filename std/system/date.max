@@ -1,0 +1,6 @@
+// date - Maxx standard library module
+// Category: system
+# date:
+
+@ date_init() -> void:
+    ret

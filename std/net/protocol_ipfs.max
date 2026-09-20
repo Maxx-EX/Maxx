@@ -1,0 +1,12 @@
+// protocol_ipfs - Maxx standard library module
+// Category: net
+// Description: protocol ipfs implementation
+// Status: available (bootstrap)
+
+# protocol_ipfs:
+
+@ new_protocol_ipfs() -> void:
+    ret
+
+@ protocol_ipfs_process(data: Vec<int>) -> Vec<int>:
+    ret data

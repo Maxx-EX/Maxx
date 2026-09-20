@@ -1,0 +1,12 @@
+// protocol_telnet - Maxx standard library module
+// Category: net
+// Description: protocol telnet implementation
+// Status: available (bootstrap)
+
+# protocol_telnet:
+
+@ new_protocol_telnet() -> void:
+    ret
+
+@ protocol_telnet_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// protocol_dhcp - Maxx standard library module
+// Category: net
+// Description: protocol dhcp implementation
+// Status: available (bootstrap)
+
+# protocol_dhcp:
+
+@ new_protocol_dhcp() -> void:
+    ret
+
+@ protocol_dhcp_process(data: Vec<int>) -> Vec<int>:
+    ret data

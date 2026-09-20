@@ -1,0 +1,12 @@
+// statistics_median - Maxx standard library module
+// Category: math
+// Description: statistics median implementation
+// Status: available (bootstrap)
+
+# statistics_median:
+
+@ new_statistics_median() -> void:
+    ret
+
+@ statistics_median_process(data: Vec<int>) -> Vec<int>:
+    ret data

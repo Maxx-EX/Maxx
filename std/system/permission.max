@@ -1,0 +1,6 @@
+// permission - Maxx standard library module
+// Category: system
+# permission:
+
+@ permission_init() -> void:
+    ret

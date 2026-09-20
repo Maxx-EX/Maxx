@@ -1,0 +1,12 @@
+// socket_raw - Maxx standard library module
+// Category: net
+// Description: socket raw implementation
+// Status: available (bootstrap)
+
+# socket_raw:
+
+@ new_socket_raw() -> void:
+    ret
+
+@ socket_raw_process(data: Vec<int>) -> Vec<int>:
+    ret data

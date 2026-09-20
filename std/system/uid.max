@@ -1,0 +1,6 @@
+// uid - Maxx standard library module
+// Category: system
+# uid:
+
+@ uid_init() -> void:
+    ret

@@ -1,0 +1,12 @@
+// number_theory_prime - Maxx standard library module
+// Category: math
+// Description: number theory prime implementation
+// Status: available (bootstrap)
+
+# number_theory_prime:
+
+@ new_number_theory_prime() -> void:
+    ret
+
+@ number_theory_prime_process(data: Vec<int>) -> Vec<int>:
+    ret data

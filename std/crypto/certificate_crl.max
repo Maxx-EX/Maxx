@@ -1,0 +1,12 @@
+// certificate_crl - Maxx standard library module
+// Category: crypto
+// Description: certificate crl implementation
+// Status: available (bootstrap)
+
+# certificate_crl:
+
+@ new_certificate_crl() -> void:
+    ret
+
+@ certificate_crl_process(data: Vec<int>) -> Vec<int>:
+    ret data

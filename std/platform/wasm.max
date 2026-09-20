@@ -1,0 +1,6 @@
+// wasm - Maxx standard library module
+// Category: platform
+# wasm:
+
+@ wasm_init() -> void:
+    ret

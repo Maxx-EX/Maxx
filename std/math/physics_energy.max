@@ -1,0 +1,12 @@
+// physics_energy - Maxx standard library module
+// Category: math
+// Description: physics energy implementation
+// Status: available (bootstrap)
+
+# physics_energy:
+
+@ new_physics_energy() -> void:
+    ret
+
+@ physics_energy_process(data: Vec<int>) -> Vec<int>:
+    ret data

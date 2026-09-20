@@ -1,0 +1,6 @@
+// ai - Maxx standard library module
+// Category: game
+# ai:
+
+@ ai_init() -> void:
+    ret

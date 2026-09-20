@@ -1,0 +1,12 @@
+// formatter_phone - Maxx standard library module
+// Category: text
+// Description: formatter phone implementation
+// Status: available (bootstrap)
+
+# formatter_phone:
+
+@ new_formatter_phone() -> void:
+    ret
+
+@ formatter_phone_process(data: Vec<int>) -> Vec<int>:
+    ret data

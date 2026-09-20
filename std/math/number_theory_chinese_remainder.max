@@ -1,0 +1,12 @@
+// number_theory_chinese_remainder - Maxx standard library module
+// Category: math
+// Description: number theory chinese remainder implementation
+// Status: available (bootstrap)
+
+# number_theory_chinese_remainder:
+
+@ new_number_theory_chinese_remainder() -> void:
+    ret
+
+@ number_theory_chinese_remainder_process(data: Vec<int>) -> Vec<int>:
+    ret data

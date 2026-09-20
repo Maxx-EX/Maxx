@@ -1,0 +1,6 @@
+// engine - Maxx standard library module
+// Category: game
+# engine:
+
+@ engine_init() -> void:
+    ret

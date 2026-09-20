@@ -1,0 +1,12 @@
+// hash_blake2b - Maxx standard library module
+// Category: crypto
+// Description: hash blake2b implementation
+// Status: available (bootstrap)
+
+# hash_blake2b:
+
+@ new_hash_blake2b() -> void:
+    ret
+
+@ hash_blake2b_process(data: Vec<int>) -> Vec<int>:
+    ret data

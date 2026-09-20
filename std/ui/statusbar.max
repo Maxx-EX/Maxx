@@ -1,0 +1,6 @@
+// statusbar - Maxx standard library module
+// Category: ui
+# statusbar:
+
+@ statusbar_init() -> void:
+    ret

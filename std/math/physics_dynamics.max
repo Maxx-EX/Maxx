@@ -1,0 +1,12 @@
+// physics_dynamics - Maxx standard library module
+// Category: math
+// Description: physics dynamics implementation
+// Status: available (bootstrap)
+
+# physics_dynamics:
+
+@ new_physics_dynamics() -> void:
+    ret
+
+@ physics_dynamics_process(data: Vec<int>) -> Vec<int>:
+    ret data

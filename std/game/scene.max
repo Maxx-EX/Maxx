@@ -1,0 +1,6 @@
+// scene - Maxx standard library module
+// Category: game
+# scene:
+
+@ scene_init() -> void:
+    ret

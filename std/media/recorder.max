@@ -1,0 +1,6 @@
+// recorder - Maxx standard library module
+// Category: media
+# recorder:
+
+@ recorder_init() -> void:
+    ret

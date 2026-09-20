@@ -1,0 +1,12 @@
+// database_cassandra - Maxx standard library module
+// Category: data
+// Description: database cassandra implementation
+// Status: available (bootstrap)
+
+# database_cassandra:
+
+@ new_database_cassandra() -> void:
+    ret
+
+@ database_cassandra_process(data: Vec<int>) -> Vec<int>:
+    ret data

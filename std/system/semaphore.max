@@ -1,0 +1,6 @@
+// semaphore - Maxx standard library module
+// Category: system
+# semaphore:
+
+@ semaphore_init() -> void:
+    ret

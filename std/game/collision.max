@@ -1,0 +1,6 @@
+// collision - Maxx standard library module
+// Category: game
+# collision:
+
+@ collision_init() -> void:
+    ret

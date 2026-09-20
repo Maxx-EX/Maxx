@@ -1,0 +1,6 @@
+// caption - Maxx standard library module
+// Category: media
+# caption:
+
+@ caption_init() -> void:
+    ret

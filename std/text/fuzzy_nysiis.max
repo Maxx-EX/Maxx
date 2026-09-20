@@ -1,0 +1,12 @@
+// fuzzy_nysiis - Maxx standard library module
+// Category: text
+// Description: fuzzy nysiis implementation
+// Status: available (bootstrap)
+
+# fuzzy_nysiis:
+
+@ new_fuzzy_nysiis() -> void:
+    ret
+
+@ fuzzy_nysiis_process(data: Vec<int>) -> Vec<int>:
+    ret data

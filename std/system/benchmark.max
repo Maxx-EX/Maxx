@@ -1,0 +1,6 @@
+// benchmark - Maxx standard library module
+// Category: system
+# benchmark:
+
+@ benchmark_init() -> void:
+    ret

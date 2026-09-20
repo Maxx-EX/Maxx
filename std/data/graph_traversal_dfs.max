@@ -1,0 +1,12 @@
+// graph_traversal_dfs - Maxx standard library module
+// Category: data
+// Description: graph traversal dfs implementation
+// Status: available (bootstrap)
+
+# graph_traversal_dfs:
+
+@ new_graph_traversal_dfs() -> void:
+    ret
+
+@ graph_traversal_dfs_process(data: Vec<int>) -> Vec<int>:
+    ret data

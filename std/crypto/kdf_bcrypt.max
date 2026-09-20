@@ -1,0 +1,12 @@
+// kdf_bcrypt - Maxx standard library module
+// Category: crypto
+// Description: kdf bcrypt implementation
+// Status: available (bootstrap)
+
+# kdf_bcrypt:
+
+@ new_kdf_bcrypt() -> void:
+    ret
+
+@ kdf_bcrypt_process(data: Vec<int>) -> Vec<int>:
+    ret data

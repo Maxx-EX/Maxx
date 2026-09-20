@@ -1,0 +1,6 @@
+// json - Maxx standard library module
+// Category: system
+# json:
+
+@ json_init() -> void:
+    ret

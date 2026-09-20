@@ -1,0 +1,12 @@
+// geometry_volume - Maxx standard library module
+// Category: math
+// Description: geometry volume implementation
+// Status: available (bootstrap)
+
+# geometry_volume:
+
+@ new_geometry_volume() -> void:
+    ret
+
+@ geometry_volume_process(data: Vec<int>) -> Vec<int>:
+    ret data

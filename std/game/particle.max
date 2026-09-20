@@ -1,0 +1,6 @@
+// particle - Maxx standard library module
+// Category: game
+# particle:
+
+@ particle_init() -> void:
+    ret

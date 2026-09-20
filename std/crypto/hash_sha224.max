@@ -1,0 +1,12 @@
+// hash_sha224 - Maxx standard library module
+// Category: crypto
+// Description: hash sha224 implementation
+// Status: available (bootstrap)
+
+# hash_sha224:
+
+@ new_hash_sha224() -> void:
+    ret
+
+@ hash_sha224_process(data: Vec<int>) -> Vec<int>:
+    ret data

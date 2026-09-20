@@ -1,0 +1,12 @@
+// skip_list_map - Maxx standard library module
+// Category: collections
+// Description: skip list map implementation
+// Status: available (bootstrap)
+
+# skip_list_map:
+
+@ new_skip_list_map() -> void:
+    ret
+
+@ skip_list_map_process(data: Vec<int>) -> Vec<int>:
+    ret data

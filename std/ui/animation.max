@@ -1,0 +1,6 @@
+// animation - Maxx standard library module
+// Category: ui
+# animation:
+
+@ animation_init() -> void:
+    ret

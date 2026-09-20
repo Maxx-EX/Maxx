@@ -1,0 +1,12 @@
+// statistics_skewness - Maxx standard library module
+// Category: math
+// Description: statistics skewness implementation
+// Status: available (bootstrap)
+
+# statistics_skewness:
+
+@ new_statistics_skewness() -> void:
+    ret
+
+@ statistics_skewness_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// filter - Maxx standard library module
+// Category: media
+# filter:
+
+@ filter_init() -> void:
+    ret

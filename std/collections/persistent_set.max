@@ -1,0 +1,12 @@
+// persistent_set - Maxx standard library module
+// Category: collections
+// Description: persistent set implementation
+// Status: available (bootstrap)
+
+# persistent_set:
+
+@ new_persistent_set() -> void:
+    ret
+
+@ persistent_set_process(data: Vec<int>) -> Vec<int>:
+    ret data

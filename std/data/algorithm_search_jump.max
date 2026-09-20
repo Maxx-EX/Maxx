@@ -1,0 +1,12 @@
+// algorithm_search_jump - Maxx standard library module
+// Category: data
+// Description: algorithm search jump implementation
+// Status: available (bootstrap)
+
+# algorithm_search_jump:
+
+@ new_algorithm_search_jump() -> void:
+    ret
+
+@ algorithm_search_jump_process(data: Vec<int>) -> Vec<int>:
+    ret data

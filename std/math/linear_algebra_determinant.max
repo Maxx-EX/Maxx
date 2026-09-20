@@ -1,0 +1,12 @@
+// linear_algebra_determinant - Maxx standard library module
+// Category: math
+// Description: linear algebra determinant implementation
+// Status: available (bootstrap)
+
+# linear_algebra_determinant:
+
+@ new_linear_algebra_determinant() -> void:
+    ret
+
+@ linear_algebra_determinant_process(data: Vec<int>) -> Vec<int>:
+    ret data

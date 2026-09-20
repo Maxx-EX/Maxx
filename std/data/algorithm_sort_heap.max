@@ -1,0 +1,12 @@
+// algorithm_sort_heap - Maxx standard library module
+// Category: data
+// Description: algorithm sort heap implementation
+// Status: available (bootstrap)
+
+# algorithm_sort_heap:
+
+@ new_algorithm_sort_heap() -> void:
+    ret
+
+@ algorithm_sort_heap_process(data: Vec<int>) -> Vec<int>:
+    ret data

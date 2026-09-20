@@ -1,0 +1,6 @@
+// camera - Maxx standard library module
+// Category: media
+# camera:
+
+@ camera_init() -> void:
+    ret

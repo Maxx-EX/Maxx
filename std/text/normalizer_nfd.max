@@ -1,0 +1,12 @@
+// normalizer_nfd - Maxx standard library module
+// Category: text
+// Description: normalizer nfd implementation
+// Status: available (bootstrap)
+
+# normalizer_nfd:
+
+@ new_normalizer_nfd() -> void:
+    ret
+
+@ normalizer_nfd_process(data: Vec<int>) -> Vec<int>:
+    ret data

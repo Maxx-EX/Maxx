@@ -1,0 +1,6 @@
+// gesture - Maxx standard library module
+// Category: ui
+# gesture:
+
+@ gesture_init() -> void:
+    ret

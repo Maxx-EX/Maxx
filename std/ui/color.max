@@ -1,0 +1,6 @@
+// color - Maxx standard library module
+// Category: ui
+# color:
+
+@ color_init() -> void:
+    ret

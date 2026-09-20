@@ -1,0 +1,12 @@
+// tokenizer_regex - Maxx standard library module
+// Category: text
+// Description: tokenizer regex implementation
+// Status: available (bootstrap)
+
+# tokenizer_regex:
+
+@ new_tokenizer_regex() -> void:
+    ret
+
+@ tokenizer_regex_process(data: Vec<int>) -> Vec<int>:
+    ret data

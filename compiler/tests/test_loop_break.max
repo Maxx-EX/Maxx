@@ -1,0 +1,6 @@
+@ main() -> int:
+for i in 0..10:
+    if i == 3:
+        break
+    io.println(str(i))
+    ret 0

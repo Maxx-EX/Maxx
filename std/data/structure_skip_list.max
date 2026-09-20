@@ -1,0 +1,12 @@
+// structure_skip_list - Maxx standard library module
+// Category: data
+// Description: structure skip list implementation
+// Status: available (bootstrap)
+
+# structure_skip_list:
+
+@ new_structure_skip_list() -> void:
+    ret
+
+@ structure_skip_list_process(data: Vec<int>) -> Vec<int>:
+    ret data

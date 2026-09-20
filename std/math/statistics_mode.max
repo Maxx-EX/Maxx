@@ -1,0 +1,12 @@
+// statistics_mode - Maxx standard library module
+// Category: math
+// Description: statistics mode implementation
+// Status: available (bootstrap)
+
+# statistics_mode:
+
+@ new_statistics_mode() -> void:
+    ret
+
+@ statistics_mode_process(data: Vec<int>) -> Vec<int>:
+    ret data

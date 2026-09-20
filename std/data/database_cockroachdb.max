@@ -1,0 +1,12 @@
+// database_cockroachdb - Maxx standard library module
+// Category: data
+// Description: database cockroachdb implementation
+// Status: available (bootstrap)
+
+# database_cockroachdb:
+
+@ new_database_cockroachdb() -> void:
+    ret
+
+@ database_cockroachdb_process(data: Vec<int>) -> Vec<int>:
+    ret data

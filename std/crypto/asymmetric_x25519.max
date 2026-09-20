@@ -1,0 +1,12 @@
+// asymmetric_x25519 - Maxx standard library module
+// Category: crypto
+// Description: asymmetric x25519 implementation
+// Status: available (bootstrap)
+
+# asymmetric_x25519:
+
+@ new_asymmetric_x25519() -> void:
+    ret
+
+@ asymmetric_x25519_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// gap_buffer - Maxx standard library module
+// Category: collections
+// Description: gap buffer implementation
+// Status: available (bootstrap)
+
+# gap_buffer:
+
+@ new_gap_buffer() -> void:
+    ret
+
+@ gap_buffer_process(data: Vec<int>) -> Vec<int>:
+    ret data

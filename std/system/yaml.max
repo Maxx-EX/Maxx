@@ -1,0 +1,6 @@
+// yaml - Maxx standard library module
+// Category: system
+# yaml:
+
+@ yaml_init() -> void:
+    ret

@@ -1,0 +1,4 @@
+@ main() -> int:
+    let a = true
+    io.println(str(!a))
+    ret 0

@@ -1,0 +1,12 @@
+// cipher_xchacha20 - Maxx standard library module
+// Category: crypto
+// Description: cipher xchacha20 implementation
+// Status: available (bootstrap)
+
+# cipher_xchacha20:
+
+@ new_cipher_xchacha20() -> void:
+    ret
+
+@ cipher_xchacha20_process(data: Vec<int>) -> Vec<int>:
+    ret data

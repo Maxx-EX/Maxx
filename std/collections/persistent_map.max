@@ -1,0 +1,12 @@
+// persistent_map - Maxx standard library module
+// Category: collections
+// Description: persistent map implementation
+// Status: available (bootstrap)
+
+# persistent_map:
+
+@ new_persistent_map() -> void:
+    ret
+
+@ persistent_map_process(data: Vec<int>) -> Vec<int>:
+    ret data

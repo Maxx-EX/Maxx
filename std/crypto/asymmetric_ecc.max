@@ -1,0 +1,12 @@
+// asymmetric_ecc - Maxx standard library module
+// Category: crypto
+// Description: asymmetric ecc implementation
+// Status: available (bootstrap)
+
+# asymmetric_ecc:
+
+@ new_asymmetric_ecc() -> void:
+    ret
+
+@ asymmetric_ecc_process(data: Vec<int>) -> Vec<int>:
+    ret data

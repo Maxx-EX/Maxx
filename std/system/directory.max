@@ -1,0 +1,6 @@
+// directory - Maxx standard library module
+// Category: system
+# directory:
+
+@ directory_init() -> void:
+    ret

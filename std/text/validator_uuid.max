@@ -1,0 +1,12 @@
+// validator_uuid - Maxx standard library module
+// Category: text
+// Description: validator uuid implementation
+// Status: available (bootstrap)
+
+# validator_uuid:
+
+@ new_validator_uuid() -> void:
+    ret
+
+@ validator_uuid_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// encoder_yaml - Maxx standard library module
+// Category: text
+// Description: encoder yaml implementation
+// Status: available (bootstrap)
+
+# encoder_yaml:
+
+@ new_encoder_yaml() -> void:
+    ret
+
+@ encoder_yaml_process(data: Vec<int>) -> Vec<int>:
+    ret data

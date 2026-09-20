@@ -1,0 +1,12 @@
+// random_bootstrap - Maxx standard library module
+// Category: math
+// Description: random bootstrap implementation
+// Status: available (bootstrap)
+
+# random_bootstrap:
+
+@ new_random_bootstrap() -> void:
+    ret
+
+@ random_bootstrap_process(data: Vec<int>) -> Vec<int>:
+    ret data

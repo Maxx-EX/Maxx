@@ -1,0 +1,6 @@
+// user - Maxx standard library module
+// Category: system
+# user:
+
+@ user_init() -> void:
+    ret

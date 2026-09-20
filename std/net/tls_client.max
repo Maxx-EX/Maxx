@@ -1,0 +1,12 @@
+// tls_client - Maxx standard library module
+// Category: net
+// Description: tls client implementation
+// Status: available (bootstrap)
+
+# tls_client:
+
+@ new_tls_client() -> void:
+    ret
+
+@ tls_client_process(data: Vec<int>) -> Vec<int>:
+    ret data

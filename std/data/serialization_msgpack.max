@@ -1,0 +1,12 @@
+// serialization_msgpack - Maxx standard library module
+// Category: data
+// Description: serialization msgpack implementation
+// Status: available (bootstrap)
+
+# serialization_msgpack:
+
+@ new_serialization_msgpack() -> void:
+    ret
+
+@ serialization_msgpack_process(data: Vec<int>) -> Vec<int>:
+    ret data

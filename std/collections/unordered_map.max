@@ -1,0 +1,12 @@
+// unordered_map - Maxx standard library module
+// Category: collections
+// Description: unordered map implementation
+// Status: available (bootstrap)
+
+# unordered_map:
+
+@ new_unordered_map() -> void:
+    ret
+
+@ unordered_map_process(data: Vec<int>) -> Vec<int>:
+    ret data

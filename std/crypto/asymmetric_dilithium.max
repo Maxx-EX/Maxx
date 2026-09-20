@@ -1,0 +1,12 @@
+// asymmetric_dilithium - Maxx standard library module
+// Category: crypto
+// Description: asymmetric dilithium implementation
+// Status: available (bootstrap)
+
+# asymmetric_dilithium:
+
+@ new_asymmetric_dilithium() -> void:
+    ret
+
+@ asymmetric_dilithium_process(data: Vec<int>) -> Vec<int>:
+    ret data

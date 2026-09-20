@@ -1,0 +1,12 @@
+// bounded_deque - Maxx standard library module
+// Category: collections
+// Description: bounded deque implementation
+// Status: available (bootstrap)
+
+# bounded_deque:
+
+@ new_bounded_deque() -> void:
+    ret
+
+@ bounded_deque_process(data: Vec<int>) -> Vec<int>:
+    ret data

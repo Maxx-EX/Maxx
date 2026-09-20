@@ -1,0 +1,6 @@
+// panel - Maxx standard library module
+// Category: ui
+# panel:
+
+@ panel_init() -> void:
+    ret

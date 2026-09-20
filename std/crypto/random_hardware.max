@@ -1,0 +1,12 @@
+// random_hardware - Maxx standard library module
+// Category: crypto
+// Description: random hardware implementation
+// Status: available (bootstrap)
+
+# random_hardware:
+
+@ new_random_hardware() -> void:
+    ret
+
+@ random_hardware_process(data: Vec<int>) -> Vec<int>:
+    ret data

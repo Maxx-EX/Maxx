@@ -1,0 +1,12 @@
+// random_quasi - Maxx standard library module
+// Category: math
+// Description: random quasi implementation
+// Status: available (bootstrap)
+
+# random_quasi:
+
+@ new_random_quasi() -> void:
+    ret
+
+@ random_quasi_process(data: Vec<int>) -> Vec<int>:
+    ret data

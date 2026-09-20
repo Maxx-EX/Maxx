@@ -1,0 +1,6 @@
+// group - Maxx standard library module
+// Category: system
+# group:
+
+@ group_init() -> void:
+    ret

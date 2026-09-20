@@ -1,0 +1,12 @@
+// algorithm_sort_radix - Maxx standard library module
+// Category: data
+// Description: algorithm sort radix implementation
+// Status: available (bootstrap)
+
+# algorithm_sort_radix:
+
+@ new_algorithm_sort_radix() -> void:
+    ret
+
+@ algorithm_sort_radix_process(data: Vec<int>) -> Vec<int>:
+    ret data

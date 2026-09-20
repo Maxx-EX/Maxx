@@ -1,0 +1,12 @@
+// algorithm_search_interpolation - Maxx standard library module
+// Category: data
+// Description: algorithm search interpolation implementation
+// Status: available (bootstrap)
+
+# algorithm_search_interpolation:
+
+@ new_algorithm_search_interpolation() -> void:
+    ret
+
+@ algorithm_search_interpolation_process(data: Vec<int>) -> Vec<int>:
+    ret data

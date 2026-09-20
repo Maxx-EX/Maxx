@@ -1,0 +1,12 @@
+// certificate_pkcs12 - Maxx standard library module
+// Category: crypto
+// Description: certificate pkcs12 implementation
+// Status: available (bootstrap)
+
+# certificate_pkcs12:
+
+@ new_certificate_pkcs12() -> void:
+    ret
+
+@ certificate_pkcs12_process(data: Vec<int>) -> Vec<int>:
+    ret data

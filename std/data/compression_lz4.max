@@ -1,0 +1,12 @@
+// compression_lz4 - Maxx standard library module
+// Category: data
+// Description: compression lz4 implementation
+// Status: available (bootstrap)
+
+# compression_lz4:
+
+@ new_compression_lz4() -> void:
+    ret
+
+@ compression_lz4_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// dialog - Maxx standard library module
+// Category: ui
+# dialog:
+
+@ dialog_init() -> void:
+    ret

@@ -1,0 +1,12 @@
+// database_timescaledb - Maxx standard library module
+// Category: data
+// Description: database timescaledb implementation
+// Status: available (bootstrap)
+
+# database_timescaledb:
+
+@ new_database_timescaledb() -> void:
+    ret
+
+@ database_timescaledb_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// tab - Maxx standard library module
+// Category: ui
+# tab:
+
+@ tab_init() -> void:
+    ret

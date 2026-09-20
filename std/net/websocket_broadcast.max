@@ -1,0 +1,12 @@
+// websocket_broadcast - Maxx standard library module
+// Category: net
+// Description: websocket broadcast implementation
+// Status: available (bootstrap)
+
+# websocket_broadcast:
+
+@ new_websocket_broadcast() -> void:
+    ret
+
+@ websocket_broadcast_process(data: Vec<int>) -> Vec<int>:
+    ret data

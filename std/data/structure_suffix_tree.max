@@ -1,0 +1,12 @@
+// structure_suffix_tree - Maxx standard library module
+// Category: data
+// Description: structure suffix tree implementation
+// Status: available (bootstrap)
+
+# structure_suffix_tree:
+
+@ new_structure_suffix_tree() -> void:
+    ret
+
+@ structure_suffix_tree_process(data: Vec<int>) -> Vec<int>:
+    ret data

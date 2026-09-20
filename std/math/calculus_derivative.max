@@ -1,0 +1,12 @@
+// calculus_derivative - Maxx standard library module
+// Category: math
+// Description: calculus derivative implementation
+// Status: available (bootstrap)
+
+# calculus_derivative:
+
+@ new_calculus_derivative() -> void:
+    ret
+
+@ calculus_derivative_process(data: Vec<int>) -> Vec<int>:
+    ret data

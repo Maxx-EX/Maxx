@@ -1,0 +1,12 @@
+// tls_handshake - Maxx standard library module
+// Category: net
+// Description: tls handshake implementation
+// Status: available (bootstrap)
+
+# tls_handshake:
+
+@ new_tls_handshake() -> void:
+    ret
+
+@ tls_handshake_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// bloom_filter - Maxx standard library module
+// Category: collections
+// Description: bloom filter implementation
+// Status: available (bootstrap)
+
+# bloom_filter:
+
+@ new_bloom_filter() -> void:
+    ret
+
+@ bloom_filter_process(data: Vec<int>) -> Vec<int>:
+    ret data

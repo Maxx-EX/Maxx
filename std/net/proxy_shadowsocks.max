@@ -1,0 +1,12 @@
+// proxy_shadowsocks - Maxx standard library module
+// Category: net
+// Description: proxy shadowsocks implementation
+// Status: available (bootstrap)
+
+# proxy_shadowsocks:
+
+@ new_proxy_shadowsocks() -> void:
+    ret
+
+@ proxy_shadowsocks_process(data: Vec<int>) -> Vec<int>:
+    ret data

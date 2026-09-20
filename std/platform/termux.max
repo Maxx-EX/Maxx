@@ -1,0 +1,6 @@
+// termux - Maxx standard library module
+// Category: platform
+# termux:
+
+@ termux_init() -> void:
+    ret

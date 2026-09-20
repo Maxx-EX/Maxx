@@ -1,0 +1,12 @@
+// normalizer_nfkc - Maxx standard library module
+// Category: text
+// Description: normalizer nfkc implementation
+// Status: available (bootstrap)
+
+# normalizer_nfkc:
+
+@ new_normalizer_nfkc() -> void:
+    ret
+
+@ normalizer_nfkc_process(data: Vec<int>) -> Vec<int>:
+    ret data

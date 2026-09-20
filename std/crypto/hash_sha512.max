@@ -1,0 +1,12 @@
+// hash_sha512 - Maxx standard library module
+// Category: crypto
+// Description: hash sha512 implementation
+// Status: available (bootstrap)
+
+# hash_sha512:
+
+@ new_hash_sha512() -> void:
+    ret
+
+@ hash_sha512_process(data: Vec<int>) -> Vec<int>:
+    ret data

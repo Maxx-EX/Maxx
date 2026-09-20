@@ -1,0 +1,12 @@
+// serialization_avro - Maxx standard library module
+// Category: data
+// Description: serialization avro implementation
+// Status: available (bootstrap)
+
+# serialization_avro:
+
+@ new_serialization_avro() -> void:
+    ret
+
+@ serialization_avro_process(data: Vec<int>) -> Vec<int>:
+    ret data

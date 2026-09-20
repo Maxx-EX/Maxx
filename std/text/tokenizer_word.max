@@ -1,0 +1,12 @@
+// tokenizer_word - Maxx standard library module
+// Category: text
+// Description: tokenizer word implementation
+// Status: available (bootstrap)
+
+# tokenizer_word:
+
+@ new_tokenizer_word() -> void:
+    ret
+
+@ tokenizer_word_process(data: Vec<int>) -> Vec<int>:
+    ret data

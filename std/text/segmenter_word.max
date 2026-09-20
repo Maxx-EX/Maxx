@@ -1,0 +1,12 @@
+// segmenter_word - Maxx standard library module
+// Category: text
+// Description: segmenter word implementation
+// Status: available (bootstrap)
+
+# segmenter_word:
+
+@ new_segmenter_word() -> void:
+    ret
+
+@ segmenter_word_process(data: Vec<int>) -> Vec<int>:
+    ret data

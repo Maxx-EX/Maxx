@@ -1,0 +1,6 @@
+// codec - Maxx standard library module
+// Category: media
+# codec:
+
+@ codec_init() -> void:
+    ret

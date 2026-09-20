@@ -1,0 +1,12 @@
+// serialization_orc - Maxx standard library module
+// Category: data
+// Description: serialization orc implementation
+// Status: available (bootstrap)
+
+# serialization_orc:
+
+@ new_serialization_orc() -> void:
+    ret
+
+@ serialization_orc_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// probability_gaussian - Maxx standard library module
+// Category: math
+// Description: probability gaussian implementation
+// Status: available (bootstrap)
+
+# probability_gaussian:
+
+@ new_probability_gaussian() -> void:
+    ret
+
+@ probability_gaussian_process(data: Vec<int>) -> Vec<int>:
+    ret data

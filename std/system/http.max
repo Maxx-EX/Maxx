@@ -1,0 +1,6 @@
+// http - Maxx standard library module
+// Category: system
+# http:
+
+@ http_init() -> void:
+    ret

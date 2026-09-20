@@ -1,0 +1,12 @@
+// asymmetric_mldsa - Maxx standard library module
+// Category: crypto
+// Description: asymmetric mldsa implementation
+// Status: available (bootstrap)
+
+# asymmetric_mldsa:
+
+@ new_asymmetric_mldsa() -> void:
+    ret
+
+@ asymmetric_mldsa_process(data: Vec<int>) -> Vec<int>:
+    ret data

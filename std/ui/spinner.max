@@ -1,0 +1,6 @@
+// spinner - Maxx standard library module
+// Category: ui
+# spinner:
+
+@ spinner_init() -> void:
+    ret

@@ -1,0 +1,6 @@
+// hostname - Maxx standard library module
+// Category: system
+# hostname:
+
+@ hostname_init() -> void:
+    ret

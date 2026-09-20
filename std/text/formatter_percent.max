@@ -1,0 +1,12 @@
+// formatter_percent - Maxx standard library module
+// Category: text
+// Description: formatter percent implementation
+// Status: available (bootstrap)
+
+# formatter_percent:
+
+@ new_formatter_percent() -> void:
+    ret
+
+@ formatter_percent_process(data: Vec<int>) -> Vec<int>:
+    ret data

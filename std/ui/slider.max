@@ -1,0 +1,6 @@
+// slider - Maxx standard library module
+// Category: ui
+# slider:
+
+@ slider_init() -> void:
+    ret

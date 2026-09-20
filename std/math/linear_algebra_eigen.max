@@ -1,0 +1,12 @@
+// linear_algebra_eigen - Maxx standard library module
+// Category: math
+// Description: linear algebra eigen implementation
+// Status: available (bootstrap)
+
+# linear_algebra_eigen:
+
+@ new_linear_algebra_eigen() -> void:
+    ret
+
+@ linear_algebra_eigen_process(data: Vec<int>) -> Vec<int>:
+    ret data

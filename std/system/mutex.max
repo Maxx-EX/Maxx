@@ -1,0 +1,6 @@
+// mutex - Maxx standard library module
+// Category: system
+# mutex:
+
+@ mutex_init() -> void:
+    ret

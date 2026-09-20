@@ -1,0 +1,12 @@
+// algorithm_search_linear - Maxx standard library module
+// Category: data
+// Description: algorithm search linear implementation
+// Status: available (bootstrap)
+
+# algorithm_search_linear:
+
+@ new_algorithm_search_linear() -> void:
+    ret
+
+@ algorithm_search_linear_process(data: Vec<int>) -> Vec<int>:
+    ret data

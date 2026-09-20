@@ -1,0 +1,12 @@
+// asymmetric_eddsa - Maxx standard library module
+// Category: crypto
+// Description: asymmetric eddsa implementation
+// Status: available (bootstrap)
+
+# asymmetric_eddsa:
+
+@ new_asymmetric_eddsa() -> void:
+    ret
+
+@ asymmetric_eddsa_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// protocol_pppoe - Maxx standard library module
+// Category: net
+// Description: protocol pppoe implementation
+// Status: available (bootstrap)
+
+# protocol_pppoe:
+
+@ new_protocol_pppoe() -> void:
+    ret
+
+@ protocol_pppoe_process(data: Vec<int>) -> Vec<int>:
+    ret data

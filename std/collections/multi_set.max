@@ -1,0 +1,12 @@
+// multi_set - Maxx standard library module
+// Category: collections
+// Description: multi set implementation
+// Status: available (bootstrap)
+
+# multi_set:
+
+@ new_multi_set() -> void:
+    ret
+
+@ multi_set_process(data: Vec<int>) -> Vec<int>:
+    ret data

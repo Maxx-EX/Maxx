@@ -1,0 +1,12 @@
+// websocket_room - Maxx standard library module
+// Category: net
+// Description: websocket room implementation
+// Status: available (bootstrap)
+
+# websocket_room:
+
+@ new_websocket_room() -> void:
+    ret
+
+@ websocket_room_process(data: Vec<int>) -> Vec<int>:
+    ret data

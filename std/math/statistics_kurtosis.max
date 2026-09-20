@@ -1,0 +1,12 @@
+// statistics_kurtosis - Maxx standard library module
+// Category: math
+// Description: statistics kurtosis implementation
+// Status: available (bootstrap)
+
+# statistics_kurtosis:
+
+@ new_statistics_kurtosis() -> void:
+    ret
+
+@ statistics_kurtosis_process(data: Vec<int>) -> Vec<int>:
+    ret data

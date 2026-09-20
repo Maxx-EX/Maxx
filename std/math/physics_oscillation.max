@@ -1,0 +1,12 @@
+// physics_oscillation - Maxx standard library module
+// Category: math
+// Description: physics oscillation implementation
+// Status: available (bootstrap)
+
+# physics_oscillation:
+
+@ new_physics_oscillation() -> void:
+    ret
+
+@ physics_oscillation_process(data: Vec<int>) -> Vec<int>:
+    ret data

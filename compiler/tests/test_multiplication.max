@@ -1,0 +1,5 @@
+@ main() -> int:
+    let a = 4
+    let b = 5
+    io.println(str(a * b))
+    ret 0

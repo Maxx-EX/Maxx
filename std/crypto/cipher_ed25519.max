@@ -1,0 +1,12 @@
+// cipher_ed25519 - Maxx standard library module
+// Category: crypto
+// Description: cipher ed25519 implementation
+// Status: available (bootstrap)
+
+# cipher_ed25519:
+
+@ new_cipher_ed25519() -> void:
+    ret
+
+@ cipher_ed25519_process(data: Vec<int>) -> Vec<int>:
+    ret data

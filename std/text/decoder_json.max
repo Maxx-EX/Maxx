@@ -1,0 +1,12 @@
+// decoder_json - Maxx standard library module
+// Category: text
+// Description: decoder json implementation
+// Status: available (bootstrap)
+
+# decoder_json:
+
+@ new_decoder_json() -> void:
+    ret
+
+@ decoder_json_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// texture - Maxx standard library module
+// Category: game
+# texture:
+
+@ texture_init() -> void:
+    ret

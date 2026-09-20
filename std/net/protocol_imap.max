@@ -1,0 +1,12 @@
+// protocol_imap - Maxx standard library module
+// Category: net
+// Description: protocol imap implementation
+// Status: available (bootstrap)
+
+# protocol_imap:
+
+@ new_protocol_imap() -> void:
+    ret
+
+@ protocol_imap_process(data: Vec<int>) -> Vec<int>:
+    ret data

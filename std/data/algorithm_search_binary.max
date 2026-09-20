@@ -1,0 +1,12 @@
+// algorithm_search_binary - Maxx standard library module
+// Category: data
+// Description: algorithm search binary implementation
+// Status: available (bootstrap)
+
+# algorithm_search_binary:
+
+@ new_algorithm_search_binary() -> void:
+    ret
+
+@ algorithm_search_binary_process(data: Vec<int>) -> Vec<int>:
+    ret data

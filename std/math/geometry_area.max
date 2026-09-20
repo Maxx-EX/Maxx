@@ -1,0 +1,12 @@
+// geometry_area - Maxx standard library module
+// Category: math
+// Description: geometry area implementation
+// Status: available (bootstrap)
+
+# geometry_area:
+
+@ new_geometry_area() -> void:
+    ret
+
+@ geometry_area_process(data: Vec<int>) -> Vec<int>:
+    ret data

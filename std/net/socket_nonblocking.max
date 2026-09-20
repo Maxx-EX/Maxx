@@ -1,0 +1,12 @@
+// socket_nonblocking - Maxx standard library module
+// Category: net
+// Description: socket nonblocking implementation
+// Status: available (bootstrap)
+
+# socket_nonblocking:
+
+@ new_socket_nonblocking() -> void:
+    ret
+
+@ socket_nonblocking_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// database_neo4j - Maxx standard library module
+// Category: data
+// Description: database neo4j implementation
+// Status: available (bootstrap)
+
+# database_neo4j:
+
+@ new_database_neo4j() -> void:
+    ret
+
+@ database_neo4j_process(data: Vec<int>) -> Vec<int>:
+    ret data

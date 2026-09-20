@@ -1,0 +1,12 @@
+// calculus_laplace - Maxx standard library module
+// Category: math
+// Description: calculus laplace implementation
+// Status: available (bootstrap)
+
+# calculus_laplace:
+
+@ new_calculus_laplace() -> void:
+    ret
+
+@ calculus_laplace_process(data: Vec<int>) -> Vec<int>:
+    ret data

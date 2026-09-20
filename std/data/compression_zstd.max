@@ -1,0 +1,12 @@
+// compression_zstd - Maxx standard library module
+// Category: data
+// Description: compression zstd implementation
+// Status: available (bootstrap)
+
+# compression_zstd:
+
+@ new_compression_zstd() -> void:
+    ret
+
+@ compression_zstd_process(data: Vec<int>) -> Vec<int>:
+    ret data

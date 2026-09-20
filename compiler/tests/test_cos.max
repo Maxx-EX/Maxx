@@ -1,0 +1,4 @@
+@ main() -> int:
+    let x = cos(0.0)
+    io.println(str(x))
+    ret 0

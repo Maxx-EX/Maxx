@@ -1,0 +1,12 @@
+// compression_bzip2 - Maxx standard library module
+// Category: data
+// Description: compression bzip2 implementation
+// Status: available (bootstrap)
+
+# compression_bzip2:
+
+@ new_compression_bzip2() -> void:
+    ret
+
+@ compression_bzip2_process(data: Vec<int>) -> Vec<int>:
+    ret data

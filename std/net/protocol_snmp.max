@@ -1,0 +1,12 @@
+// protocol_snmp - Maxx standard library module
+// Category: net
+// Description: protocol snmp implementation
+// Status: available (bootstrap)
+
+# protocol_snmp:
+
+@ new_protocol_snmp() -> void:
+    ret
+
+@ protocol_snmp_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// segmenter_token - Maxx standard library module
+// Category: text
+// Description: segmenter token implementation
+// Status: available (bootstrap)
+
+# segmenter_token:
+
+@ new_segmenter_token() -> void:
+    ret
+
+@ segmenter_token_process(data: Vec<int>) -> Vec<int>:
+    ret data

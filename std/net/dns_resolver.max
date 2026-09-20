@@ -1,0 +1,12 @@
+// dns_resolver - Maxx standard library module
+// Category: net
+// Description: dns resolver implementation
+// Status: available (bootstrap)
+
+# dns_resolver:
+
+@ new_dns_resolver() -> void:
+    ret
+
+@ dns_resolver_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,12 @@
+// socket_udp - Maxx standard library module
+// Category: net
+// Description: socket udp implementation
+// Status: available (bootstrap)
+
+# socket_udp:
+
+@ new_socket_udp() -> void:
+    ret
+
+@ socket_udp_process(data: Vec<int>) -> Vec<int>:
+    ret data

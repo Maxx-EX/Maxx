@@ -1,0 +1,12 @@
+// concurrent_stack - Maxx standard library module
+// Category: collections
+// Description: concurrent stack implementation
+// Status: available (bootstrap)
+
+# concurrent_stack:
+
+@ new_concurrent_stack() -> void:
+    ret
+
+@ concurrent_stack_process(data: Vec<int>) -> Vec<int>:
+    ret data

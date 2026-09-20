@@ -1,0 +1,12 @@
+// http_middleware_auth - Maxx standard library module
+// Category: net
+// Description: http middleware auth implementation
+// Status: available (bootstrap)
+
+# http_middleware_auth:
+
+@ new_http_middleware_auth() -> void:
+    ret
+
+@ http_middleware_auth_process(data: Vec<int>) -> Vec<int>:
+    ret data

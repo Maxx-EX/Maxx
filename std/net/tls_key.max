@@ -1,0 +1,12 @@
+// tls_key - Maxx standard library module
+// Category: net
+// Description: tls key implementation
+// Status: available (bootstrap)
+
+# tls_key:
+
+@ new_tls_key() -> void:
+    ret
+
+@ tls_key_process(data: Vec<int>) -> Vec<int>:
+    ret data

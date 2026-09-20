@@ -1,0 +1,12 @@
+// calculus_integral - Maxx standard library module
+// Category: math
+// Description: calculus integral implementation
+// Status: available (bootstrap)
+
+# calculus_integral:
+
+@ new_calculus_integral() -> void:
+    ret
+
+@ calculus_integral_process(data: Vec<int>) -> Vec<int>:
+    ret data

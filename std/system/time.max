@@ -1,0 +1,6 @@
+// time - Maxx standard library module
+// Category: system
+# time:
+
+@ time_init() -> void:
+    ret

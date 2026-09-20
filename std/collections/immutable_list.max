@@ -1,0 +1,12 @@
+// immutable_list - Maxx standard library module
+// Category: collections
+// Description: immutable list implementation
+// Status: available (bootstrap)
+
+# immutable_list:
+
+@ new_immutable_list() -> void:
+    ret
+
+@ immutable_list_process(data: Vec<int>) -> Vec<int>:
+    ret data

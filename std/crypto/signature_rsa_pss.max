@@ -1,0 +1,12 @@
+// signature_rsa_pss - Maxx standard library module
+// Category: crypto
+// Description: signature rsa pss implementation
+// Status: available (bootstrap)
+
+# signature_rsa_pss:
+
+@ new_signature_rsa_pss() -> void:
+    ret
+
+@ signature_rsa_pss_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// socket - Maxx standard library module
+// Category: system
+# socket:
+
+@ socket_init() -> void:
+    ret

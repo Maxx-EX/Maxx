@@ -1,0 +1,6 @@
+// image - Maxx standard library module
+// Category: media
+# image:
+
+@ image_init() -> void:
+    ret

@@ -1,0 +1,6 @@
+// audio - Maxx standard library module
+// Category: game
+# audio:
+
+@ audio_init() -> void:
+    ret

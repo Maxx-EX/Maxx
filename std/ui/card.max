@@ -1,0 +1,6 @@
+// card - Maxx standard library module
+// Category: ui
+# card:
+
+@ card_init() -> void:
+    ret

@@ -1,0 +1,6 @@
+// dns - Maxx standard library module
+// Category: system
+# dns:
+
+@ dns_init() -> void:
+    ret

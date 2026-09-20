@@ -1,0 +1,12 @@
+// kdf_argon2d - Maxx standard library module
+// Category: crypto
+// Description: kdf argon2d implementation
+// Status: available (bootstrap)
+
+# kdf_argon2d:
+
+@ new_kdf_argon2d() -> void:
+    ret
+
+@ kdf_argon2d_process(data: Vec<int>) -> Vec<int>:
+    ret data

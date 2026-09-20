@@ -1,0 +1,12 @@
+// protocol_tor - Maxx standard library module
+// Category: net
+// Description: protocol tor implementation
+// Status: available (bootstrap)
+
+# protocol_tor:
+
+@ new_protocol_tor() -> void:
+    ret
+
+@ protocol_tor_process(data: Vec<int>) -> Vec<int>:
+    ret data

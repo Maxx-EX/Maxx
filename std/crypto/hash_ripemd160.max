@@ -1,0 +1,12 @@
+// hash_ripemd160 - Maxx standard library module
+// Category: crypto
+// Description: hash ripemd160 implementation
+// Status: available (bootstrap)
+
+# hash_ripemd160:
+
+@ new_hash_ripemd160() -> void:
+    ret
+
+@ hash_ripemd160_process(data: Vec<int>) -> Vec<int>:
+    ret data

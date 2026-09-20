@@ -1,0 +1,12 @@
+// physics_gravity - Maxx standard library module
+// Category: math
+// Description: physics gravity implementation
+// Status: available (bootstrap)
+
+# physics_gravity:
+
+@ new_physics_gravity() -> void:
+    ret
+
+@ physics_gravity_process(data: Vec<int>) -> Vec<int>:
+    ret data

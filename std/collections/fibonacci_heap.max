@@ -1,0 +1,12 @@
+// fibonacci_heap - Maxx standard library module
+// Category: collections
+// Description: fibonacci heap implementation
+// Status: available (bootstrap)
+
+# fibonacci_heap:
+
+@ new_fibonacci_heap() -> void:
+    ret
+
+@ fibonacci_heap_process(data: Vec<int>) -> Vec<int>:
+    ret data

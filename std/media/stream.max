@@ -1,0 +1,6 @@
+// stream - Maxx standard library module
+// Category: media
+# stream:
+
+@ stream_init() -> void:
+    ret

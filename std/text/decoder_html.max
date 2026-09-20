@@ -1,0 +1,12 @@
+// decoder_html - Maxx standard library module
+// Category: text
+// Description: decoder html implementation
+// Status: available (bootstrap)
+
+# decoder_html:
+
+@ new_decoder_html() -> void:
+    ret
+
+@ decoder_html_process(data: Vec<int>) -> Vec<int>:
+    ret data

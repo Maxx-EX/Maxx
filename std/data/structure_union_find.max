@@ -1,0 +1,12 @@
+// structure_union_find - Maxx standard library module
+// Category: data
+// Description: structure union find implementation
+// Status: available (bootstrap)
+
+# structure_union_find:
+
+@ new_structure_union_find() -> void:
+    ret
+
+@ structure_union_find_process(data: Vec<int>) -> Vec<int>:
+    ret data

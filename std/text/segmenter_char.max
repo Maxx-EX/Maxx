@@ -1,0 +1,12 @@
+// segmenter_char - Maxx standard library module
+// Category: text
+// Description: segmenter char implementation
+// Status: available (bootstrap)
+
+# segmenter_char:
+
+@ new_segmenter_char() -> void:
+    ret
+
+@ segmenter_char_process(data: Vec<int>) -> Vec<int>:
+    ret data

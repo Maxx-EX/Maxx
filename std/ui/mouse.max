@@ -1,0 +1,6 @@
+// mouse - Maxx standard library module
+// Category: ui
+# mouse:
+
+@ mouse_init() -> void:
+    ret

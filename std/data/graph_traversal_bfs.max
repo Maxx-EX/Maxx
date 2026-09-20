@@ -1,0 +1,12 @@
+// graph_traversal_bfs - Maxx standard library module
+// Category: data
+// Description: graph traversal bfs implementation
+// Status: available (bootstrap)
+
+# graph_traversal_bfs:
+
+@ new_graph_traversal_bfs() -> void:
+    ret
+
+@ graph_traversal_bfs_process(data: Vec<int>) -> Vec<int>:
+    ret data

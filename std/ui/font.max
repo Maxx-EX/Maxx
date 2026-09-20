@@ -1,0 +1,6 @@
+// font - Maxx standard library module
+// Category: ui
+# font:
+
+@ font_init() -> void:
+    ret

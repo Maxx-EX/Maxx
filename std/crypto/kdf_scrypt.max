@@ -1,0 +1,12 @@
+// kdf_scrypt - Maxx standard library module
+// Category: crypto
+// Description: kdf scrypt implementation
+// Status: available (bootstrap)
+
+# kdf_scrypt:
+
+@ new_kdf_scrypt() -> void:
+    ret
+
+@ kdf_scrypt_process(data: Vec<int>) -> Vec<int>:
+    ret data

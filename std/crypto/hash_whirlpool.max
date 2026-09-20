@@ -1,0 +1,12 @@
+// hash_whirlpool - Maxx standard library module
+// Category: crypto
+// Description: hash whirlpool implementation
+// Status: available (bootstrap)
+
+# hash_whirlpool:
+
+@ new_hash_whirlpool() -> void:
+    ret
+
+@ hash_whirlpool_process(data: Vec<int>) -> Vec<int>:
+    ret data

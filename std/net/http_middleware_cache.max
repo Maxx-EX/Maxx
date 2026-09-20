@@ -1,0 +1,12 @@
+// http_middleware_cache - Maxx standard library module
+// Category: net
+// Description: http middleware cache implementation
+// Status: available (bootstrap)
+
+# http_middleware_cache:
+
+@ new_http_middleware_cache() -> void:
+    ret
+
+@ http_middleware_cache_process(data: Vec<int>) -> Vec<int>:
+    ret data

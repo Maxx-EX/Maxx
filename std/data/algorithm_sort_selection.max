@@ -1,0 +1,12 @@
+// algorithm_sort_selection - Maxx standard library module
+// Category: data
+// Description: algorithm sort selection implementation
+// Status: available (bootstrap)
+
+# algorithm_sort_selection:
+
+@ new_algorithm_sort_selection() -> void:
+    ret
+
+@ algorithm_sort_selection_process(data: Vec<int>) -> Vec<int>:
+    ret data

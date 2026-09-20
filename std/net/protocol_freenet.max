@@ -1,0 +1,12 @@
+// protocol_freenet - Maxx standard library module
+// Category: net
+// Description: protocol freenet implementation
+// Status: available (bootstrap)
+
+# protocol_freenet:
+
+@ new_protocol_freenet() -> void:
+    ret
+
+@ protocol_freenet_process(data: Vec<int>) -> Vec<int>:
+    ret data

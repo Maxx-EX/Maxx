@@ -1,0 +1,12 @@
+// protocol_dns - Maxx standard library module
+// Category: net
+// Description: protocol dns implementation
+// Status: available (bootstrap)
+
+# protocol_dns:
+
+@ new_protocol_dns() -> void:
+    ret
+
+@ protocol_dns_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// canvas - Maxx standard library module
+// Category: ui
+# canvas:
+
+@ canvas_init() -> void:
+    ret

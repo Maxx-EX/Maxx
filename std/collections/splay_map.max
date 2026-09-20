@@ -1,0 +1,12 @@
+// splay_map - Maxx standard library module
+// Category: collections
+// Description: splay map implementation
+// Status: available (bootstrap)
+
+# splay_map:
+
+@ new_splay_map() -> void:
+    ret
+
+@ splay_map_process(data: Vec<int>) -> Vec<int>:
+    ret data

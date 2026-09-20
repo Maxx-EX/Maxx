@@ -1,0 +1,12 @@
+// bimap - Maxx standard library module
+// Category: collections
+// Description: bimap implementation
+// Status: available (bootstrap)
+
+# bimap:
+
+@ new_bimap() -> void:
+    ret
+
+@ bimap_process(data: Vec<int>) -> Vec<int>:
+    ret data

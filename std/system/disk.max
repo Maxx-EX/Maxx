@@ -1,0 +1,6 @@
+// disk - Maxx standard library module
+// Category: system
+# disk:
+
+@ disk_init() -> void:
+    ret

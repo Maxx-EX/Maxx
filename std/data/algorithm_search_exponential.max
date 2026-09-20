@@ -1,0 +1,12 @@
+// algorithm_search_exponential - Maxx standard library module
+// Category: data
+// Description: algorithm search exponential implementation
+// Status: available (bootstrap)
+
+# algorithm_search_exponential:
+
+@ new_algorithm_search_exponential() -> void:
+    ret
+
+@ algorithm_search_exponential_process(data: Vec<int>) -> Vec<int>:
+    ret data

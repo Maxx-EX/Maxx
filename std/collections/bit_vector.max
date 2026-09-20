@@ -1,0 +1,12 @@
+// bit_vector - Maxx standard library module
+// Category: collections
+// Description: bit vector implementation
+// Status: available (bootstrap)
+
+# bit_vector:
+
+@ new_bit_vector() -> void:
+    ret
+
+@ bit_vector_process(data: Vec<int>) -> Vec<int>:
+    ret data

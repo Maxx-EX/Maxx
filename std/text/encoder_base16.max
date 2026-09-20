@@ -1,0 +1,12 @@
+// encoder_base16 - Maxx standard library module
+// Category: text
+// Description: encoder base16 implementation
+// Status: available (bootstrap)
+
+# encoder_base16:
+
+@ new_encoder_base16() -> void:
+    ret
+
+@ encoder_base16_process(data: Vec<int>) -> Vec<int>:
+    ret data

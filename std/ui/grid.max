@@ -1,0 +1,6 @@
+// grid - Maxx standard library module
+// Category: ui
+# grid:
+
+@ grid_init() -> void:
+    ret

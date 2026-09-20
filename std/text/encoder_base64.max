@@ -1,0 +1,12 @@
+// encoder_base64 - Maxx standard library module
+// Category: text
+// Description: encoder base64 implementation
+// Status: available (bootstrap)
+
+# encoder_base64:
+
+@ new_encoder_base64() -> void:
+    ret
+
+@ encoder_base64_process(data: Vec<int>) -> Vec<int>:
+    ret data

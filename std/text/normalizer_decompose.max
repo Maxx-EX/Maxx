@@ -1,0 +1,12 @@
+// normalizer_decompose - Maxx standard library module
+// Category: text
+// Description: normalizer decompose implementation
+// Status: available (bootstrap)
+
+# normalizer_decompose:
+
+@ new_normalizer_decompose() -> void:
+    ret
+
+@ normalizer_decompose_process(data: Vec<int>) -> Vec<int>:
+    ret data

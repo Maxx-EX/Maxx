@@ -1,0 +1,6 @@
+// window - Maxx standard library module
+// Category: ui
+# window:
+
+@ window_init() -> void:
+    ret

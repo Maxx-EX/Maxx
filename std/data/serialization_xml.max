@@ -1,0 +1,12 @@
+// serialization_xml - Maxx standard library module
+// Category: data
+// Description: serialization xml implementation
+// Status: available (bootstrap)
+
+# serialization_xml:
+
+@ new_serialization_xml() -> void:
+    ret
+
+@ serialization_xml_process(data: Vec<int>) -> Vec<int>:
+    ret data

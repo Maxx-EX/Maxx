@@ -1,0 +1,12 @@
+// decoder_url - Maxx standard library module
+// Category: text
+// Description: decoder url implementation
+// Status: available (bootstrap)
+
+# decoder_url:
+
+@ new_decoder_url() -> void:
+    ret
+
+@ decoder_url_process(data: Vec<int>) -> Vec<int>:
+    ret data

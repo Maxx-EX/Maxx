@@ -1,0 +1,6 @@
+// debug - Maxx standard library module
+// Category: system
+# debug:
+
+@ debug_init() -> void:
+    ret

@@ -1,0 +1,12 @@
+// stemmer_porter - Maxx standard library module
+// Category: text
+// Description: stemmer porter implementation
+// Status: available (bootstrap)
+
+# stemmer_porter:
+
+@ new_stemmer_porter() -> void:
+    ret
+
+@ stemmer_porter_process(data: Vec<int>) -> Vec<int>:
+    ret data

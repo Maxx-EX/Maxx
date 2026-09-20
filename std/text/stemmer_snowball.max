@@ -1,0 +1,12 @@
+// stemmer_snowball - Maxx standard library module
+// Category: text
+// Description: stemmer snowball implementation
+// Status: available (bootstrap)
+
+# stemmer_snowball:
+
+@ new_stemmer_snowball() -> void:
+    ret
+
+@ stemmer_snowball_process(data: Vec<int>) -> Vec<int>:
+    ret data

@@ -1,0 +1,6 @@
+// gid - Maxx standard library module
+// Category: system
+# gid:
+
+@ gid_init() -> void:
+    ret

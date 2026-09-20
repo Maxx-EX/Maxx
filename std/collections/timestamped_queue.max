@@ -1,0 +1,12 @@
+// timestamped_queue - Maxx standard library module
+// Category: collections
+// Description: timestamped queue implementation
+// Status: available (bootstrap)
+
+# timestamped_queue:
+
+@ new_timestamped_queue() -> void:
+    ret
+
+@ timestamped_queue_process(data: Vec<int>) -> Vec<int>:
+    ret data
