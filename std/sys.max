@@ -1,0 +1,40 @@
+//! std.sys — 系统信息（真实实现）。
+
+~ std.time::Duration
+
+// 运行时原语
+@ sys_os_name() -> str
+@ sys_arch() -> str
+@ sys_cpu_count() -> int
+@ sys_total_memory() -> i64
+@ sys_free_memory() -> i64
+@ sys_hostname() -> str
+@ sys_uptime() -> i64
+
+/// 操作系统名
+pub @ os_name() -> str:
+    ret sys_os_name()
+
+/// CPU 架构
+pub @ arch() -> str:
+    ret sys_arch()
+
+/// CPU 核心数
+pub @ cpu_count() -> int:
+    ret sys_cpu_count()
+
+/// 总内存（字节）
+pub @ total_memory() -> i64:
+    ret sys_total_memory()
+
+/// 可用内存（字节）
+pub @ free_memory() -> i64:
+    ret sys_free_memory()
+
+/// 主机名
+pub @ hostname() -> str:
+    ret sys_hostname()
+
+/// 系统运行时间
+pub @ uptime() -> Duration:
+    ret Duration::seconds(sys_uptime())

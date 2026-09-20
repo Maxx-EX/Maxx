@@ -359,45 +359,106 @@ def cmd_run(args) -> int:
 # ---------------------------------------------------------------------------
 
 def cmd_repl(args) -> int:
-    """Maxx interactive REPL."""
+    """Maxx interactive REPL with history and multi-line support."""
     runtime_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Load command history.
+    history_file = os.path.expanduser("~/.maxx_repl_history")
+    try:
+        import readline
+        readline.read_history_file(history_file)
+        readline.set_history_length(1000)
+    except Exception:
+        pass
+
+    history = []
+    hist_idx = 0
 
     print("Maxx REPL (Level 1 bootstrap). Type :help for commands, :quit to exit.")
 
     while True:
-        try:
-            line = input("maxx> ").strip()
-        except (EOFError, KeyboardInterrupt):
-            print()
+        # Multi-line block accumulation.
+        block_lines = []
+        prompt = "maxx> "
+
+        while True:
+            try:
+                line = input(prompt)
+            except (EOFError, KeyboardInterrupt):
+                print()
+                # Save history on exit.
+                try:
+                    import readline
+                    readline.write_history_file(history_file)
+                except Exception:
+                    pass
+                return 0
+
+            stripped = line.strip()
+
+            if not stripped and not block_lines:
+                break
+
+            if stripped.startswith(":") and not block_lines:
+                cmd = stripped[1:].strip()
+                if cmd in ("quit", "exit", "q"):
+                    try:
+                        import readline
+                        readline.write_history_file(history_file)
+                    except Exception:
+                        pass
+                    return 0
+                elif cmd == "reset":
+                    print("(REPL reset)")
+                    break
+                elif cmd == "history":
+                    print("Command history:")
+                    for i, h in enumerate(history[-20:]):
+                        print(f"  {i+1}: {h}")
+                    break
+                elif cmd == "help":
+                    print("Maxx REPL commands:")
+                    print("  :help       show this help")
+                    print("  :history    show command history")
+                    print("  :reset      reset REPL state")
+                    print("  :quit       exit the REPL")
+                    print("")
+                    print("Features:")
+                    print("  - Up/Down arrows: browse history")
+                    print("  - Multi-line: type a block, blank line to execute")
+                    print("  - input(prompt): read from stdin")
+                    print("")
+                    print("Examples:")
+                    print("  io.println(\"hello\")")
+                    print("  let x = 42")
+                    print("  io.println(str(sqrt(16.0)))")
+                    break
+                else:
+                    print(f"unknown command: :{cmd}")
+                    break
+
+            # Accumulate block.
+            block_lines.append(line)
+            history.append(stripped)
+
+            # Auto-continue if line ends with ':' or starts with block keywords.
+            if stripped.endswith(":") or stripped.startswith(("@", "#", "if ", "for ", "while ", "match ")):
+                prompt = "..... "
+                continue
+
+            # If we have a block and current line is empty, execute.
+            if not stripped and block_lines:
+                break
+
+            # Single line complete.
             break
 
-        if not line:
+        if not block_lines:
             continue
 
-        if line.startswith(":"):
-            cmd = line[1:].strip()
-            if cmd in ("quit", "exit", "q"):
-                break
-            elif cmd == "reset":
-                print("(REPL reset)")
-                continue
-            elif cmd == "help":
-                print("Maxx REPL commands:")
-                print("  :help     show this help")
-                print("  :reset    reset REPL state")
-                print("  :quit     exit the REPL")
-                print("")
-                print("Examples:")
-                print("  io.println(\"hello\")")
-                print("  let x = 42")
-                print("  io.println(str(sqrt(16.0)))")
-                continue
-            else:
-                print(f"unknown command: :{cmd}")
-                continue
-
-        # Wrap line in a complete main() function.
-        wrapper = f"@ main() -> int:\n    {line}\n    ret 0\n"
+        # Build wrapper.
+        indented = "\n".join("    " + l if l.strip() else "" for l in block_lines)
+        wrapper = f"@ main() -> int:\n{indented}\n    ret 0\n"
 
         try:
             tokens = Lexer(wrapper, "<repl>").tokenize()
@@ -417,7 +478,6 @@ def cmd_repl(args) -> int:
             if run.stdout:
                 print(run.stdout, end="")
             if run.stderr:
-                # Filter out compilation noise
                 for l in run.stderr.splitlines():
                     if not l.startswith("# compiling"):
                         print(l, file=sys.stderr)

@@ -1,0 +1,70 @@
+//! std.geo — 地理坐标（真实实现）。
+
+~ std.math::{sqrt, sin, cos, atan2, PI}
+
+# LatLng:
+    lat: f64
+    lng: f64
+
+/// 构造坐标
+pub @ LatLng::new(lat: f64, lng: f64) -> LatLng:
+    ret LatLng{ lat: lat, lng: lng }
+
+/// Haversine 距离（米）
+pub @ distance(a: LatLng, b: LatLng) -> f64:
+    let R = 6371000.0
+    let dlat = (b.lat - a.lat) * PI / 180.0
+    let dlng = (b.lng - a.lng) * PI / 180.0
+    let la1 = a.lat * PI / 180.0
+    let la2 = b.lat * PI / 180.0
+    let h = sin(dlat/2) * sin(dlat/2) + cos(la1) * cos(la2) * sin(dlng/2) * sin(dlng/2)
+    ret 2.0 * R * atan2(sqrt(h), sqrt(1.0 - h))
+
+/// 纬度差
+pub @ lat_diff(a: LatLng, b: LatLng) -> f64:
+    ret abs(a.lat - b.lat)
+
+/// 经度差
+pub @ lng_diff(a: LatLng, b: LatLng) -> f64:
+    ret abs(a.lng - b.lng)
+
+/// 点在多边形内（射线法）
+pub @ in_polygon(p: LatLng, polygon: Vec<LatLng>) -> bool:
+    let n = polygon.len()
+    if n < 3:
+        ret false
+    var inside = false
+    var j = n - 1
+    var i = 0
+    while i < n:
+        let pi = polygon.at(i)
+        let pj = polygon.at(j)
+        if ((pi.lat > p.lat) != (pj.lat > p.lat)):
+            let x_inter = (pj.lng - pi.lng) * (p.lat - pi.lat) / (pj.lat - pi.lat) + pi.lng
+            if p.lng < x_inter:
+                inside = !inside
+        j = i
+        i += 1
+    ret inside
+
+/// 边界框
+pub @ bbox(points: Vec<LatLng>) -> (LatLng, LatLng):
+    if points.len() == 0:
+        ret (LatLng::new(0.0, 0.0), LatLng::new(0.0, 0.0))
+    let mut min_lat = points.at(0).lat
+    let mut max_lat = min_lat
+    let mut min_lng = points.at(0).lng
+    let mut max_lng = min_lng
+    var i = 1
+    while i < points.len():
+        let p = points.at(i)
+        if p.lat < min_lat: min_lat = p.lat
+        if p.lat > max_lat: max_lat = p.lat
+        if p.lng < min_lng: min_lng = p.lng
+        if p.lng > max_lng: max_lng = p.lng
+        i += 1
+    ret (LatLng::new(min_lat, min_lng), LatLng::new(max_lat, max_lng))
+
+/// 点是否在边界框内
+pub @ in_bbox(p: LatLng, sw: LatLng, ne: LatLng) -> bool:
+    ret p.lat >= sw.lat && p.lat <= ne.lat && p.lng >= sw.lng && p.lng <= ne.lng

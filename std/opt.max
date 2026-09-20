@@ -1,0 +1,88 @@
+//! std.opt — 可选值操作（真实实现）。
+
+/// map：对 some 值应用函数
+pub @ map<A, B>(o: ?A, f: fn(A) -> B) -> ?B:
+    match o:
+        some(v): ret some(f(v))
+        none: ret none
+
+/// flatMap：对 some 值应用返回 ?B 的函数
+pub @ flatMap<A, B>(o: ?A, f: fn(A) -> ?B) -> ?B:
+    match o:
+        some(v): ret f(v)
+        none: ret none
+
+/// unwrap：取 some 值，否则返回 default
+pub @ unwrap<A>(o: ?A, default: A) -> A:
+    match o:
+        some(v): ret v
+        none: ret default
+
+/// unwrapOrThrow：取 some 值，否则 panic
+pub @ unwrapOrThrow<A>(o: ?A) -> A:
+    match o:
+        some(v): ret v
+        none: panic("unwrap on none")
+
+/// orElse：o 为 none 时返回 alt
+pub @ orElse<A>(o: ?A, alt: ?A) -> ?A:
+    match o:
+        some(v): ret some(v)
+        none: ret alt
+
+/// isSome
+pub @ isSome<A>(o: ?A) -> bool:
+    match o:
+        some(_): ret true
+        none: ret false
+
+/// isNone
+pub @ isNone<A>(o: ?A) -> bool:
+    ret !isSome(o)
+
+/// toResult：把 ?A 转成 Result<A,E>
+pub @ toResult<A, E>(o: ?A, err: E) -> Result<A, E>:
+    match o:
+        some(v): ret ok(v)
+        none: ret err(err)
+
+/// filter：谓词过滤
+pub @ filter<A>(o: ?A, pred: fn(A) -> bool) -> ?A:
+    match o:
+        some(v):
+            if pred(v): ret some(v)
+            ret none
+        none: ret none
+
+/// flatten：去除一层嵌套
+pub @ flatten<A>(o: ??A) -> ?A:
+    match o:
+        some(inner): ret inner
+        none: ret none
+
+/// zip：合并两个 ?
+pub @ zip<A, B>(a: ?A, b: ?B) -> ?(A, B):
+    match a:
+        some(va):
+            match b:
+                some(vb): ret some((va, vb))
+                none: ret none
+        none: ret none
+
+/// tap：对 some 值执行副作用
+pub @ tap<A>(o: ?A, f: fn(A) -> ()) -> ?A:
+    match o:
+        some(v):
+            f(v)
+            ret some(v)
+        none: ret none
+
+/// getOrElse：懒求值默认值
+pub @ getOrElse<A>(o: ?A, f: fn() -> A) -> A:
+    match o:
+        some(v): ret v
+        none: ret f()
+
+// 测试示例：
+//   let x: ?int = some(42)
+//   opt.map(x, fn(v: int) -> int: v * 2)  // some(84)

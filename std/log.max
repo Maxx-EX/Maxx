@@ -1,0 +1,41 @@
+//! std.log — 日志（真实实现）。
+
+var _level: int = 1   // 0=debug, 1=info, 2=warn, 3=error
+var _to_file: bool = false
+var _log_path: str = "maxx.log"
+
+// 运行时原语
+@ sys_log_write(level: int, msg: str) -> ()
+
+/// 设置日志级别
+pub @ set_level(level: int) -> ():
+    _level = level
+
+/// 输出到文件
+pub @ log_to_file(path: str) -> ():
+    _to_file = true
+    _log_path = path
+
+/// debug 级别
+pub @ debug(msg: str) -> ():
+    if _level <= 0:
+        sys_log_write(0, f"[DEBUG] {msg}")
+
+/// info 级别
+pub @ info(msg: str) -> ():
+    if _level <= 1:
+        sys_log_write(1, f"[INFO] {msg}")
+
+/// warn 级别
+pub @ warn(msg: str) -> ():
+    if _level <= 2:
+        sys_log_write(2, f"[WARN] {msg}")
+
+/// error 级别
+pub @ error(msg: str) -> ():
+    if _level <= 3:
+        sys_log_write(3, f"[ERROR] {msg}")
+
+/// 带标签的日志
+pub @ tagged(tag: str, msg: str) -> ():
+    info(f"[{tag}] {msg}")

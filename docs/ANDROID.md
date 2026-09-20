@@ -464,3 +464,98 @@ Java_com_maxx_madk_NativeBridge_evaluateAsync(JNIEnv *env, jobject thiz, jstring
 ---
 
 > **Maxx 之道在 Android 上的体现**：人写得少（手机上触控键盘写代码），机器做得多（自动编译、自动 GC、自动调度），但一切透明（JNI 边界清晰、GC 堆隔离、内存预算明确）。
+
+---
+
+## 11. Termux 一键安装
+
+在 Termux 中运行以下命令即可一键安装 Maxx：
+
+```bash
+pkg install git -y
+git clone https://github.com/Maxx-EX/Maxx.git
+cd Maxx
+bash tools/install-maxx.sh
+```
+
+安装脚本自动完成：
+1. 安装 Python + Clang 依赖
+2. 拷贝 `maxxc` 到 `~/.local/bin/`
+3. 配置 shell 补全（bash/zsh）
+4. 设置 `MAXX_HOME` 环境变量
+5. 验证安装
+
+安装完成后：
+```bash
+source ~/.bashrc   # 或 ~/.zshrc
+maxxc run hello.max
+maxxc repl
+```
+
+支持命令：`tokenize` / `parse` / `ir` / `codegen` / `build` / `pack` / `archive` / `run` / `repl`
+
+---
+
+## 附：Termux 一键安装
+
+### 前置条件
+- 已安装 [Termux](https://f-droid.org/packages/com.termux/)（F-Droid 版，不要用 Play Store 版，已过时）
+- 至少 200MB 存储空间
+
+### 安装步骤
+
+```bash
+# 1. 克隆 Maxx 仓库
+git clone https://github.com/Maxx-EX/Maxx.git
+cd Maxx
+
+# 2. 一键安装
+bash tools/install-maxx.sh
+
+# 3. 重载 shell
+source ~/.bashrc
+```
+
+### 安装脚本做了什么
+
+| 步骤 | 操作 |
+|---|---|
+| 1 | `pkg update && pkg install python clang` |
+| 2 | 拷贝 `maxxc.py` → `~/.local/bin/maxxc`（加执行权限） |
+| 3 | 拷贝 `std/` → `~/.local/share/maxx-compiler/std/` |
+| 4 | 配置 `PATH` 和 `MAXX_HOME` 环境变量 |
+| 5 | 配置 bash 自动补全（`.max` 文件名） |
+| 6 | 验证安装（`maxxc --version`） |
+
+### 验证安装
+
+```bash
+maxxc run examples/hello.max
+# 输出: Hello, Maxx!
+
+maxxc repl
+# 进入交互式 REPL
+```
+
+### 交互式输入
+
+Maxx 支持交互式输入：
+
+```maxx
+~ std.io
+
+@ main() -> ():
+    let name = input("你的名字: ")
+    println("你好, " + name + "!")
+```
+
+`input(prompt)` 打印提示并从 stdin 读一行，由 codegen 映射到 `fgets()`。
+
+### 常见问题
+
+| 问题 | 解决 |
+|---|---|
+| `maxxc: command not found` | 运行 `source ~/.bashrc` 或重启 Termux |
+| `clang: command not found` | 运行 `pkg install clang` |
+| 编译太慢 | Termux 上用 `maxxc build --debug`（不优化） |
+| 内存不足 | 关闭其他 App，Termux 限制约 2GB |

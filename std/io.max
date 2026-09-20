@@ -73,6 +73,16 @@ pub @ read_line() -> ?str:
 @ byte_to_char(b: u8) -> char:
     ret b as char
 
+/// 交互式输入：打印 prompt，然后从 stdin 读一行
+/// 示例：
+///   let name = input("Your name: ")
+///   println("Hello, " + name)
+pub @ input(prompt: str) -> str:
+    print(prompt)
+    match read_line():
+        some(s): ret s
+        none: ret ""
+
 /// 读取一行并解析为 int
 pub @ read_int() -> Result<int, str>:
     match read_line():

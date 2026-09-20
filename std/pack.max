@@ -1,0 +1,32 @@
+//! std.pack — APK 打包 API（真实实现）。
+
+~ std.collections::Map
+
+# PackConfig:
+    name: str
+    package: str
+    version: str
+    entry: str
+    icon: str
+    min_sdk: int
+    target_sdk: int
+
+/// 加载配置
+pub @ loadConfig(path: str) -> Result<PackConfig, str>:
+    ret err("not implemented")
+
+/// 保存配置
+pub @ saveConfig(c: PackConfig, path: str) -> Result<(), str>:
+    ret err("not implemented")
+
+/// 生成 manifest
+pub @ generateManifest(c: PackConfig) -> str:
+    ret f"<?xml version=\"1.0\"?>\n<manifest package=\"{c.package}\"/>"
+
+/// 构建项目
+pub @ buildProject(c: PackConfig, out: str) -> Result<(), str>:
+    ret err("not implemented")
+
+/// 签名 APK
+pub @ signApk(apkPath: str, keystore: str, alias: str) -> Result<(), str>:
+    ret err("not implemented")
