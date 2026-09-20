@@ -194,7 +194,16 @@ Java_com_maxx_app_MainActivity_runMaxx(
         jobject /* this */,
         jstring code) {
     const char* code_str = env->GetStringUTFChars(code, nullptr);
-    std::string result = eval_maxx(code_str);
+    std::string code_input(code_str);
+
+    // Easter egg: detect "hi！Maxx" (full-width exclamation) before parsing.
+    if (code_input.find("hi！Maxx") != std::string::npos) {
+        env->ReleaseStringUTFChars(code, code_str);
+        return env->NewStringUTF(
+            "Maxx: simple by design, efficient by choice, transparent by default.\n");
+    }
+
+    std::string result = eval_maxx(code_input);
     env->ReleaseStringUTFChars(code, code_str);
     return env->NewStringUTF(result.c_str());
 }
