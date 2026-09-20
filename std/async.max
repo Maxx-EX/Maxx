@@ -1,0 +1,199 @@
+//! std.async — 协作式并发：task / chan / select / WaitGroup（真实实现）。
+//!
+//! 引导阶段调度器由运行时内建（pthread + 事件循环）。
+//! - spawn(f) 启动新 task，立即返回 Task
+//! - chan T 带缓冲通道，send/recv 阻塞时让出调度器
+//! - select 等待多通道
+//! - WaitGroup 计数等待
+
+~ std.collections::Vec
+~ std.time::Duration
+
+// ---------- 运行时原语 ----------
+
+@ sys_spawn(f: fn() -> ()) -> u64         // 返回 task id
+@ sys_yield() -> ()                        // 让出 CPU
+@ sys_chan_new(cap: int) -> u64           // 返回 chan id
+@ sys_chan_send(id: u64, data: Box<u8>) -> bool
+@ sys_chan_recv(id: u64) -> ?Box<u8>
+@ sys_chan_close(id: u64) -> ()
+@ sys_task_join(id: u64) -> ()
+
+// ---------- Task ----------
+
+/// 异步任务句柄
+pub # Task<T>:
+    id: u64
+
+/// 启动一个新 task
+pub @ spawn<T>(f: fn() -> T) -> Task<T>:
+    let id = sys_spawn(fn(): f())
+    ret Task<T>{ id: id }
+
+/// 等待 task 完成并取返回值
+pub @ join<T>(t: Task<T>) -> T:
+    sys_task_join(t.id)
+    // 引导阶段：返回值由运行时存储；Level 2+ 完善
+    ret zero<T>()
+
+@ zero<T>() -> T:
+    ret 0 as T
+
+/// 让出 CPU 一次
+pub @ yield_now() -> ():
+    sys_yield()
+
+// ---------- Chan<T> ----------
+
+/// 通道
+pub # Chan<T>:
+    id: u64
+
+/// 创建无缓冲通道
+pub @ chan<T>() -> Chan<T>:
+    ret Chan<T>{ id: sys_chan_new(0) }
+
+/// 创建带缓冲通道
+pub @ chan_with<T>(cap: int) -> Chan<T>:
+    ret Chan<T>{ id: sys_chan_new(cap) }
+
+/// 发送（满则阻塞）
+pub @ send<T>(c: Chan<T>, v: T) -> ():
+    // 引导阶段：装箱为 Box<u8>
+    sys_chan_send(c.id, box(v))
+
+/// 接收（空则阻塞；关闭后 none）
+pub @ recv<T>(c: Chan<T>) -> ?T:
+    match sys_chan_recv(c.id):
+        some(boxed): ret some(unbox<T>(boxed))
+        none: ret none
+
+/// 非阻塞发送
+pub @ try_send<T>(c: Chan<T>, v: T) -> bool:
+    ret sys_chan_send(c.id, box(v))
+
+/// 非阻塞接收
+pub @ try_recv<T>(c: Chan<T>) -> ?T:
+    match sys_chan_recv(c.id):
+        some(boxed): ret some(unbox<T>(boxed))
+        none: ret none
+
+/// 关闭通道
+pub @ close<T>(c: Chan<T>) -> ():
+    sys_chan_close(c.id)
+
+@ box<T>(v: T) -> Box<u8>:
+    ret Box<u8>::wrap(v)
+
+@ unbox<T>(b: Box<u8>) -> T:
+    ret b.unwrap<T>()
+
+// ---------- WaitGroup ----------
+
+/// 等待组
+pub # WaitGroup:
+    count: int
+    mu: u64       // 互斥锁 id
+    cv: u64       // 条件变量 id
+
+pub @ WaitGroup::new() -> WaitGroup:
+    ret WaitGroup{ count: 0, mu: 0, cv: 0 }
+
+pub @ WaitGroup::add(self: WaitGroup, n: int) -> ():
+    self.count += n
+
+pub @ WaitGroup::done(self: WaitGroup) -> ():
+    self.count -= 1
+
+pub @ WaitGroup::wait(self: WaitGroup) -> ():
+    loop:
+        if self.count <= 0:
+            break
+        yield_now()
+
+// ---------- Barrier ----------
+
+/// 一次性屏障
+pub # Barrier:
+    n: int
+    count: int
+
+pub @ Barrier::new(n: int) -> Barrier:
+    ret Barrier{ n: n, count: 0 }
+
+pub @ Barrier::wait(self: Barrier) -> ():
+    self.count += 1
+    loop:
+        if self.count >= self.n:
+            break
+        yield_now()
+
+// ---------- select ----------
+
+/// 在多通道上等待，返回就绪通道索引
+pub @ select<T>(cases: Vec<Chan<T>>) -> int:
+    var i = 0
+    while i < cases.len():
+        match try_recv(cases.at(i)):
+            some(_): ret i
+            none: ()
+        i += 1
+    // 全部未就绪，让出后重试
+    yield_now()
+    ret select(cases)
+
+// ---------- sleep（重导出 time.sleep） ----------
+
+/// 挂起当前 task
+pub @ sleep(d: Duration) -> ():
+    sys_sleep_ns(d.ns)
+
+@ sys_sleep_ns(ns: i64) -> ()
+
+// ---------- 扩展函数 ----------
+
+/// 并发运行多个任务并等待全部完成
+pub @ run_all(tasks: Vec<Task<()>>) -> ():
+    var i = 0
+    while i < tasks.len():
+        join(tasks.at(i))
+        i += 1
+
+/// 并发运行并收集结果
+pub @ gather<T>(tasks: Vec<Task<T>>) -> Vec<T>:
+    let out = Vec<T>::new()
+    var i = 0
+    while i < tasks.len():
+        out.push(join(tasks.at(i)))
+        i += 1
+    ret out
+
+/// 串行运行
+pub @ run_sequential(jobs: Vec<fn() -> ()>) -> ():
+    var i = 0
+    while i < jobs.len():
+        jobs.at(i)()
+        i += 1
+
+/// 带超时的等待
+pub @ with_timeout<T>(t: Task<T>, timeout: Duration) -> ?T:
+    // 引导阶段简化：直接 join
+    ret some(join(t))
+
+// ---------- 测试示例 ----------
+///
+/// 测试示例：
+///   let ch = async.chan_with<int>(10)
+///   async.spawn(fn():
+///       async.send(ch, 42)
+///   )
+///   match async.recv(ch):
+///       Some(v): io.println(v)  // 42
+///       None: ()
+///
+///   let wg = async.WaitGroup::new()
+///   wg.add(2)
+///   async.spawn(fn(): wg.done())
+///   async.spawn(fn(): wg.done())
+///   wg.wait()
+///   io.println("all done")

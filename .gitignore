@@ -1,0 +1,39 @@
+# Build artifacts
+*.apk
+*.zip
+*.exe
+*.o
+*.so
+*.dll
+*.dylib
+*.bin
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Temp files
+tmp*.c
+tmp*.c.bin
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Android build
+android-app/.gradle/
+android-app/app/build/
+android-app/build/
+android-app/local.properties
+android-app/.idea/
+android-app/app/.cxx/
+android-app/app/.externalNativeBuild/
+*.iml
+
+# Node (if any)
+node_modules/

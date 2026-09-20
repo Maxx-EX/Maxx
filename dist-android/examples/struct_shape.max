@@ -1,0 +1,57 @@
+//! struct_shape.max — 结构体 + ADT + match。
+//! 演示：# 结构体、带方法结构体、enum 风格 ADT、match 表达式。
+
+~ std.io
+~ std.math::PI
+
+/// 普通结构体
+# Point:
+    x: f64
+    y: f64
+
+@ Point::dist(self: Point, o: Point) -> f64:
+    let dx = self.x - o.x
+    let dy = self.y - o.y
+    ret sqrt(dx * dx + dy * dy)
+
+/// 代数数据类型（enum with payload）
+# Shape:
+    Circle(r: f64)
+    Rect(w: f64, h: f64)
+    Triangle(a: f64, b: f64, c: f64)
+    Dot
+
+@ area(s: Shape) -> f64:
+    match s:
+        Circle(r):
+            ret PI * r * r
+        Rect(w, h):
+            ret w * h
+        Triangle(a, b, c):
+            // 海伦公式
+            let p = (a + b + c) / 2.0
+            ret sqrt(p * (p-a) * (p-b) * (p-c))
+        Dot:
+            ret 0.0
+
+@ describe(s: Shape) -> str:
+    match s:
+        Circle(r):  ret f"Circle(r={r})"
+        Rect(w,h):  ret f"Rect({w}x{h})"
+        Triangle(a,b,c): ret f"Triangle({a},{b},{c})"
+        Dot:        ret "Dot"
+
+@ main() -> int:
+    let shapes = [
+        Circle{ r: 1.0 },
+        Rect{ w: 3.0, h: 4.0 },
+        Triangle{ a: 3.0, b: 4.0, c: 5.0 },
+        Dot,
+    ]
+    for s in shapes:
+        io.println(f"{describe(s)}  area = {area(s)}")
+
+    let p = Point{ x: 3.0, y: 4.0 }
+    let q = Point{ x: 0.0, y: 0.0 }
+    io.println(f"dist = {p.dist(q)}")
+    ret 0

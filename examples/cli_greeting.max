@@ -1,0 +1,20 @@
+//! cli_greeting.max — 简单 CLI 交互。
+//! 演示：stdin 读取、错误处理、循环。
+
+~ std.io
+
+@ main() -> int:
+    io.println("=== Maxx CLI Greeting ===")
+    io.print("你的名字？ ")
+
+    match io.read_line():
+        some(name):
+            let trimmed = name.trim()
+            if trimmed.len() == 0:
+                io.println("你没输入名字哦。")
+                ret 1
+            io.println(f"你好，{trimmed}！欢迎来到 Maxx。")
+            ret 0
+        none:
+            io.println("（EOF，没有读到名字）")
+            ret 1

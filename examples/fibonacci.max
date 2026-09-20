@@ -1,0 +1,28 @@
+//! fibonacci.max — 斐波那契。
+//! 演示：递归函数、循环、累加、整数运算。
+
+~ std.io
+
+/// 递归版（n <= 40 适用）
+@ fib_rec(n: int) -> int:
+    if n < 2:
+        ret n
+    ret fib_rec(n - 1) + fib_rec(n - 2)
+
+/// 迭代版（O(n) 时间，O(1) 空间）
+@ fib_iter(n: int) -> int:
+    var a = 0
+    var b = 1
+    for _ in 0..n:
+        let t = a + b
+        a = b
+        b = t
+    ret a
+
+@ main() -> int:
+    io.println("斐波那契前 10 项（迭代）：")
+    for i in 0..10:
+        io.println(f"fib({i}) = {fib_iter(i)}")
+
+    io.println("递归验证 fib(10) = " + str(fib_rec(10)))
+    ret 0

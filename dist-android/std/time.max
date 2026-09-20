@@ -1,0 +1,107 @@
+//! std.time — 时间与延时（真实实现）。
+//!
+//! Duration 表示时间段；Instant 表示时间点。
+//! 平台差异由运行时抽象（POSIX clock_gettime / Windows QPC / Android Looper）。
+//! 引导阶段时间原语由 sys_time_* 内建提供。
+
+// ---------- 运行时原语 ----------
+
+@ sys_monotonic_ns() -> i64          // 单调时钟（纳秒）
+@ sys_realtime_ns() -> i64           // 墙钟（纳秒，自 epoch）
+@ sys_sleep_ns(ns: i64) -> ()        // 挂起当前 task
+
+// ---------- Duration ----------
+
+/// 时间段（纳秒精度）
+pub # Duration:
+    ns: i64
+
+pub @ Duration::nanos(n: i64) -> Duration:
+    ret Duration{ ns: n }
+
+pub @ Duration::micros(n: i64) -> Duration:
+    ret Duration{ ns: n * 1000 }
+
+pub @ Duration::millis(n: i64) -> Duration:
+    ret Duration{ ns: n * 1_000_000 }
+
+pub @ Duration::seconds(n: i64) -> Duration:
+    ret Duration{ ns: n * 1_000_000_000 }
+
+pub @ Duration::minutes(n: i64) -> Duration:
+    ret Duration{ ns: n * 60 * 1_000_000_000 }
+
+pub @ Duration::hours(n: i64) -> Duration:
+    ret Duration{ ns: n * 3600 * 1_000_000_000 }
+
+pub @ Duration::as_nanos(self: Duration) -> i64:
+    ret self.ns
+
+pub @ Duration::as_micros(self: Duration) -> i64:
+    ret self.ns / 1000
+
+pub @ Duration::as_millis(self: Duration) -> i64:
+    ret self.ns / 1_000_000
+
+pub @ Duration::as_secs(self: Duration) -> i64:
+    ret self.ns / 1_000_000_000
+
+pub @ Duration::as_secs_f64(self: Duration) -> f64:
+    ret f64(self.ns) / 1_000_000_000.0
+
+/// 两 Duration 相加
+pub @ Duration::add(self: Duration, other: Duration) -> Duration:
+    ret Duration{ ns: self.ns + other.ns }
+
+/// 两 Duration 相减
+pub @ Duration::sub(self: Duration, other: Duration) -> Duration:
+    ret Duration{ ns: self.ns - other.ns }
+
+// ---------- Instant ----------
+
+/// 时间点
+pub # Instant:
+    t: i64   // 单调时钟读数（纳秒）
+
+/// 单调时钟当前时刻
+pub @ now() -> Instant:
+    ret Instant{ t: sys_monotonic_ns() }
+
+/// 自起经过时间（调用 now() 到现在）
+pub @ Instant::elapsed(self: Instant) -> Duration:
+    let cur = sys_monotonic_ns()
+    ret Duration{ ns: cur - self.t }
+
+/// 与另一时刻差
+pub @ Instant::duration_since(self: Instant, since: Instant) -> Duration:
+    ret Duration{ ns: self.t - since.t }
+
+// ---------- 墙钟 ----------
+
+/// 当前墙钟时间（自 Unix epoch 秒）
+pub @ unix_time() -> i64:
+    ret sys_realtime_ns() / 1_000_000_000
+
+/// 当前墙钟时间（毫秒）
+pub @ unix_time_millis() -> i64:
+    ret sys_realtime_ns() / 1_000_000
+
+// ---------- 延时 ----------
+
+/// 挂起当前 task 至少 d
+pub @ sleep(d: Duration) -> ():
+    sys_sleep_ns(d.ns)
+
+/// 高精度单调时钟（用于 benchmark）
+pub @ precise_now() -> Instant:
+    // 引导阶段与 now() 相同；Level 2+ 用更高精度计数器
+    ret now()
+
+// ---------- 测试示例 ----------
+///
+/// 测试示例：
+///   let start = now()
+///   sleep(Duration::millis(100))
+///   let d = start.elapsed()
+///   io.println(f"elapsed: {d.as_millis()} ms")
+///   io.println(f"unix time: {unix_time()}")

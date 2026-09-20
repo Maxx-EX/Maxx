@@ -1,0 +1,17 @@
+~ std.io
+~ std.math::sqrt
+
+// Struct with method
+# Point:
+    x: f64
+    y: f64
+
+@ Point::dist(self: Point, o: Point) -> f64:
+    ret sqrt((self.x-o.x)^2 + (self.y-o.y)^2)
+
+@ main() -> int:
+    let p = Point{x: 3.0, y: 4.0}
+    let q = Point{x: 0.0, y: 0.0}
+    let d = p.dist(q)
+    io.println("dist = " + str(d))
+    ret 0

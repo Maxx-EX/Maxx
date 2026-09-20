@@ -1,0 +1,22 @@
+~ std.io
+
+// ADT (algebraic data type) with match
+# Shape:
+    Circle(r: f64)
+    Rect(w: f64, h: f64)
+    Dot
+
+@ area(s: Shape) -> f64:
+    match s:
+        Circle(r):   ret 3.14159265 * r * r
+        Rect(w, h):  ret w * h
+        Dot:         ret 0.0
+
+@ main() -> int:
+    let c = Circle{r: 2.0}
+    let rc = Rect{w: 3.0, h: 4.0}
+    let d = Dot
+    io.println("circle area = " + str(area(c)))
+    io.println("rect area = " + str(area(rc)))
+    io.println("dot area = " + str(area(d)))
+    ret 0

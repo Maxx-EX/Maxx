@@ -1,0 +1,52 @@
+//! std.test — 单元测试框架。
+//!
+//! 在源码中用 `#[test]` 标记的函数会在 `maxx test` 时被自动收集。
+//! 断言失败不崩溃，记录失败并继续，最后输出汇总。
+
+/// 测试标记（由编译器识别）
+//  #[test]
+//  @ my_test() -> ():
+//      assert_eq(2 + 2, 4)
+
+/// 无条件断言
+pub @ assert(cond: bool, msg: str) -> ()
+
+/// 断言相等
+pub @ assert_eq<T>(a: T, b: T) -> ()
+
+/// 断言不等
+pub @ assert_ne<T>(a: T, b: T) -> ()
+
+/// 断言大约相等（用于浮点）
+pub @ assert_close(a: f64, b: f64, eps: f64) -> ()
+
+/// 断言为 true
+pub @ assert_true(v: bool) -> ()
+
+/// 断言为 false
+pub @ assert_false(v: bool) -> ()
+
+/// 断言 option 为 some(v)
+pub @ assert_some<T>(v: ?T, expected: T) -> ()
+
+/// 断言 option 为 none
+pub @ assert_none<T>(v: ?T) -> ()
+
+/// 断言 result 为 ok(v)
+pub @ assert_ok<T, E>(v: Result<T, E>, expected: T) -> ()
+
+/// 断言 result 为 err
+pub @ assert_err<T, E>(v: Result<T, E>) -> ()
+
+/// 跳过当前用例
+pub @ skip(reason: str) -> ()
+
+/// 临时标记（预期失败）
+pub @ expect_fail(reason: str) -> ()
+
+/// 测试套件统计
+pub # TestStats:
+    total: int
+    passed: int
+    failed: int
+    skipped: int

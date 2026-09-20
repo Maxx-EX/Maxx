@@ -1,0 +1,16 @@
+~ std.io
+
+// Result and ? propagation (simplified for bootstrap)
+@ safe_div(a: f64, b: f64) -> Result<f64, str>:
+    if b == 0.0:
+        ret err("div by zero")
+    ret ok(a / b)
+
+@ main() -> int:
+    let r = safe_div(10.0, 2.0)
+    if r.tag == 0:
+        io.println("safe_div(10,2) = " + str(r.ok_val))
+    else:
+        io.println("error: " + r.err_val)
+    io.println("option_result test passed")
+    ret 0

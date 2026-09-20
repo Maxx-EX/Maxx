@@ -1,0 +1,41 @@
+//! primes.max — 埃拉托斯特尼筛法。
+//! 演示：数组/vec 操作、布尔标记、算法复杂度。
+
+~ std.io
+~ std.collections::Vec
+
+/// 返回 <= n 的所有素数
+@ sieve(n: int) -> Vec<int>:
+    if n < 2:
+        ret Vec<int>::new()
+
+    // flags[i] = true 表示 i 是素数
+    var flags = Vec<bool>::new()
+    for _ in 0..=n:
+        flags.push(true)
+    flags.set(0, false)
+    flags.set(1, false)
+
+    var p = 2
+    while p * p <= n:
+        if flags.get(p).unwrap():
+            var m = p * p
+            while m <= n:
+                flags.set(m, false)
+                m += p
+        p += 1
+
+    let result = Vec<int>::new()
+    for i in 0..=n:
+        if flags.get(i).unwrap():
+            result.push(i)
+    ret result
+
+@ main() -> int:
+    let limit = 50
+    let primes = sieve(limit)
+    io.println(f"素数 <= {limit} 共 {primes.len()} 个：")
+    for p in primes:
+        io.print(str(p) + " ")
+    io.println("")
+    ret 0

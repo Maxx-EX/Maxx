@@ -1,0 +1,52 @@
+//! generics.max — 泛型。
+//! 演示：泛型函数、泛型结构体、调用点类型推断。
+
+~ std.io
+
+/// 恒等函数
+@ identity<T>(x: T) -> T:
+    ret x
+
+/// 泛型 pair
+# Pair<A, B>:
+    first: A
+    second: B
+
+@ Pair::new<A, B>(a: A, b: B) -> Pair<A, B>:
+    ret Pair<A, B>{ first: a, second: b }
+
+@ Pair::swap<A, B>(self: Pair<A, B>) -> Pair<B, A>:
+    ret Pair<B, A>{ first: self.second, second: self.first }
+
+/// 泛型 box（堆分配单值）
+# Box<T>:
+    value: T
+
+@ Box::new<T>(v: T) -> Box<T>:
+    ret Box<T>{ value: v }
+
+@ Box::deref<T>(self: Box<T>) -> T:
+    ret self.value
+
+/// 泛型最大值（要求 T 可比较）
+@ pick_max<T>(a: T, b: T) -> T:
+    if a > b:
+        ret a
+    ret b
+
+@ main() -> int:
+    io.println(f"identity(42) = {identity(42)}")
+    io.println(f"identity(\"hi\") = {identity(\"hi\")}")
+
+    let p = Pair::new(1, "one")
+    io.println(f"pair = ({p.first}, {p.second})")
+    let q = p.swap()
+    io.println(f"swapped = ({q.first}, {q.second})")
+
+    let b = Box::new(3.14)
+    io.println(f"boxed value = {b.deref()}")
+
+    io.println(f"max(3, 7) = {pick_max(3, 7)}")
+    io.println(f"max(\"apple\", \"banana\") = {pick_max(\"apple\", \"banana\")}")
+
+    ret 0

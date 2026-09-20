@@ -1,0 +1,47 @@
+//! collections.max — Vec / Map / Set。
+//! 演示：动态数组、哈希表、集合、迭代器适配器。
+
+~ std.io
+~ std.collections::Vec
+~ std.collections::Map
+~ std.collections::Set
+
+@ main() -> int:
+    // ---- Vec ----
+    let v = Vec<int>::new()
+    v.push(10)
+    v.push(20)
+    v.push(30)
+    v.push(40)
+    io.println(f"vec len = {v.len()}")
+    io.println(f"v[2] = {v.get(2).unwrap()}")
+
+    let evens = v.filter(fn(x: int) -> bool: ret x % 2 == 0)
+    io.print("evens: ")
+    for x in evens:
+        io.print(str(x) + " ")
+    io.println("")
+
+    let squares = v.map(fn(x: int) -> int: ret x * x)
+    io.println(f"squares sum = {squares.fold(0, fn(acc: int, x: int) -> int: ret acc + x)}")
+
+    // ---- Map ----
+    let m = Map<str, int>::new()
+    m.set("alice", 90)
+    m.set("bob", 85)
+    m.set("carol", 95)
+    io.println(f"bob's score = {m.get(\"bob\").unwrap()}")
+    io.println(f"map len = {m.len()}")
+
+    for k in m.keys():
+        io.println(f"  {k} -> {m.get(k).unwrap()}")
+
+    // ---- Set ----
+    let s1 = Set<int>::new()
+    s1.insert(1); s1.insert(2); s1.insert(3)
+    let s2 = Set<int>::new()
+    s2.insert(2); s2.insert(3); s2.insert(4)
+    io.println(f"union len = {s1.union(s2).len()}")
+    io.println(f"intersect len = {s1.intersect(s2).len()}")
+
+    ret 0

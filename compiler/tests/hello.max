@@ -1,0 +1,6 @@
+~ std.io
+
+// Hello world - the simplest Maxx program.
+@ main() -> int:
+    io.println("Hello, Maxx!")
+    ret 0

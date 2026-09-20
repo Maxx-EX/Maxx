@@ -1,0 +1,26 @@
+~ std.io
+
+// Control flow and loops
+@ sum(n: int) -> int:
+    var total = 0
+    for i in 1..=n:
+        total += i
+    while total > 100:
+        total -= 10
+    ret total
+
+@ demo(n: int) -> str:
+    if n < 0:
+        ret "neg"
+    elif n == 0:
+        ret "zero"
+    else:
+        ret "pos"
+
+@ main() -> int:
+    io.println("sum(10) = " + str(sum(10)))
+    io.println("sum(100) = " + str(sum(100)))
+    io.println("demo(-5) = " + demo(-5))
+    io.println("demo(0) = " + demo(0))
+    io.println("demo(42) = " + demo(42))
+    ret 0

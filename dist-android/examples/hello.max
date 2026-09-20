@@ -1,0 +1,10 @@
+//! hello.max — 第一个 Maxx 程序。
+//! 演示：导入、函数声明、字符串插值、main 入口。
+
+~ std.io
+
+@ main() -> int:
+    io.println("Hello, Maxx!")
+    let name = "world"
+    io.println(f"Hello, {name}!")
+    ret 0

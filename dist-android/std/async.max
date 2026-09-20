@@ -1,0 +1,67 @@
+//! std.async — 协作式并发：task / chan / select / WaitGroup。
+//!
+//! 调度器在运行时内建（goroutine 风格 M:N）。
+//! - `task f(args...)` 启动一个新 task，立即返回。
+//! - `chan T` 是带缓冲/无缓冲通道；send/recv 阻塞时让出调度器。
+//! - `select` 在多个分支上等待，取先就绪者。
+
+~ std.time::Duration
+
+/// 启动新 task 运行 f
+pub @ task<T>(f: fn() -> T) -> Task<T>
+
+/// Task 句柄
+pub # Task<T>:
+    id: u64
+
+/// 等待 task 结束并取返回值
+pub @ Task::join<T>(self: Task<T>) -> T
+
+/// 是否完成
+pub @ Task::is_done<T>(self: Task<T>) -> bool
+
+/// 通道（类型 chan T 由编译器识别；这里列出操作）
+// 语法：let ch = chan T            // 无缓冲
+//      let ch = chan T with cap N // 有缓冲
+pub @ chan<T>::new(cap: int) -> chan<T>
+
+/// 发送（满则阻塞）
+pub @ chan<T>::send(self: chan<T>, v: T) -> ()
+
+/// 接收（空则阻塞；关闭后 none）
+pub @ chan<T>::recv(self: chan<T>) -> ?T
+
+/// 非阻塞发送
+pub @ chan<T>::try_send(self: chan<T>, v: T) -> bool
+
+/// 非阻塞接收
+pub @ chan<T>::try_recv(self: chan<T>) -> ?T
+
+/// 关闭通道
+pub @ chan<T>::close(self: chan<T>) -> ()
+
+/// select 分支
+pub # SelectBranch<T>:
+    Recv(chan<T>)
+    Send(chan<T>, T)
+    Default
+
+/// 在多分支上等待
+pub @ select<T>(branches: std.collections::Vec<SelectBranch<T>>) -> int
+
+/// 等待组
+pub # WaitGroup:
+    count: i64
+
+pub @ WaitGroup::new() -> WaitGroup
+pub @ WaitGroup::add(self: WaitGroup, n: int) -> ()
+pub @ WaitGroup::done(self: WaitGroup) -> ()
+pub @ WaitGroup::wait(self: WaitGroup) -> ()
+
+/// 一次性屏障
+pub # Barrier:
+    n: int
+    count: int
+
+pub @ Barrier::new(n: int) -> Barrier
+pub @ Barrier::wait(self: Barrier) -> ()

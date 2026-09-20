@@ -1,0 +1,24 @@
+~ std.io
+~ std.math::sqrt
+
+// Math library demo
+@ main() -> int:
+    let a = sqrt(16.0)
+    io.println("sqrt(16) = " + str(a))
+
+    let b = sin(3.14159 / 2.0)
+    io.println("sin(pi/2) = " + str(b))
+
+    let c = pow(2.0, 10.0)
+    io.println("2^10 = " + str(c))
+
+    let d = floor(3.7)
+    io.println("floor(3.7) = " + str(d))
+
+    let e = ceil(3.2)
+    io.println("ceil(3.2) = " + str(e))
+
+    let f = abs(-42)
+    io.println("abs(-42) = " + str(f))
+
+    ret 0

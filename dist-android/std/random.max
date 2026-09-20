@@ -1,0 +1,41 @@
+//! std.random — 伪随机数生成。
+//!
+//! 默认算法：xoshiro256**（快速、可移植、无系统调用）。
+//! 安全随机（/dev/urandom / BCryptGenRandom）见 std.crypto。
+
+/// RNG 状态
+pub # Rng:
+    s0: u64
+    s1: u64
+    s2: u64
+    s3: u64
+
+/// 以种子创建 Rng
+pub @ Rng::seed(seed: u64) -> Rng
+
+/// 从系统熵创建 Rng
+pub @ Rng::from_system() -> Rng
+
+/// 下一 u64
+pub @ Rng::next_u64(self: Rng) -> u64
+
+/// 下一 int
+pub @ Rng::next_int(self: Rng) -> int
+
+/// [0, 1) 的 f64
+pub @ Rng::next_f64(self: Rng) -> f64
+
+/// [lo, hi) 的均匀 int
+pub @ Rng::range(self: Rng, lo: int, hi: int) -> int
+
+/// 从切片随机取一个（空则 none）
+pub @ Rng::pick<T>(self: Rng, items: std.collections::Vec<T>) -> ?T
+
+/// 洗牌（Fisher-Yates）
+pub @ Rng::shuffle<T>(self: Rng, items: std.collections::Vec<T>) -> ()
+
+/// 掷硬币 p 概率为 true
+pub @ Rng::chance(self: Rng, p: f64) -> bool
+
+/// 全局 Rng（线程局部）
+pub @ global_rng() -> Rng

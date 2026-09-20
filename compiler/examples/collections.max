@@ -1,0 +1,29 @@
+~ std.io
+
+// Collections and loops demo
+# Counter:
+    name: str
+    count: int
+
+@ Counter::increment(self: Counter) -> Counter:
+    ret Counter{name: self.name, count: self.count + 1}
+
+@ main() -> int:
+    var c = Counter{name: "visits", count: 0}
+
+    for i in 1..=5:
+        c = c.increment()
+
+    io.println("counter after 5 increments: " + str(c.count))
+
+    var total = 0
+    for i in 1..=100:
+        total += i
+    io.println("sum(1..100) = " + str(total))
+
+    var n = 10
+    while n > 0:
+        n -= 1
+    io.println("countdown done, n = " + str(n))
+
+    ret 0

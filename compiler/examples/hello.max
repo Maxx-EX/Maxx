@@ -1,0 +1,7 @@
+~ std.io
+
+// Hello world example
+@ main() -> int:
+    io.println("Hello from Maxx!")
+    io.println("This is a bootstrap compiler demo.")
+    ret 0

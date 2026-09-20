@@ -1,0 +1,23 @@
+//! math_demo.max — 数学函数与字符串插值。
+//! 演示：f64 数学库、字符串插值、管道 |>。
+
+~ std.io
+~ std.math::{sqrt, sin, cos, PI, E}
+
+@ main() -> int:
+    io.println(f"PI = {PI}")
+    io.println(f"e  = {E}")
+    io.println(f"sqrt(2) = {sqrt(2.0)}")
+    io.println(f"sin(PI/6) = {sin(PI / 6.0)}")
+    io.println(f"cos(PI/3) = {cos(PI / 3.0)}")
+
+    // 管道：(10.0 + 5.0) |> sqrt  ≡  sqrt(15.0)
+    let r = (3.0 * 3.0 + 4.0 * 4.0) |> sqrt
+    io.println(f"hypot(3,4) via pipe = {r}")
+
+    // 插值嵌套
+    let name = "Maxx"
+    let ver = "0.1"
+    io.println(f"Welcome to {name} v{ver}!")
+
+    ret 0

@@ -1,0 +1,13 @@
+~ std.io
+
+@ main() -> int:
+    io.println("Hello from Maxx on Android!")
+    io.println("This is the Level 1 bootstrap runtime.")
+
+    let x = 42
+    io.println("x = " + str(x))
+
+    let y = sqrt(16.0)
+    io.println("sqrt(16) = " + str(y))
+
+    ret 0

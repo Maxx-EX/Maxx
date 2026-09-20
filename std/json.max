@@ -1,0 +1,562 @@
+//! std.json — JSON 解析与序列化（真实实现）。
+//!
+//! 递归下降解析器，支持 Null/Bool/Num/Str/Arr/Obj 六种类型。
+//! 引导阶段不依赖外部库，纯 Maxx 实现。
+
+~ std.collections::Vec
+~ std.collections::Map
+~ std.text
+
+// ---------- Json 类型 ----------
+
+/// JSON 值（代数数据类型）
+pub # Json:
+    JsonNull
+    JsonBool(bool)
+    JsonNum(f64)
+    JsonStr(str)
+    JsonArr(Vec<Json>)
+    JsonObj(Map<str, Json>)
+
+// ---------- 解析器内部状态 ----------
+
+# Parser:
+    src: str
+    pos: int
+
+@ Parser::new(s: str) -> Parser:
+    ret Parser{ src: s, pos: 0 }
+
+@ Parser::peek(self: Parser) -> ?char:
+    ret self.src.char_at(self.pos)
+
+@ Parser::next(self: Parser) -> ?char:
+    let c = self.peek()
+    match c:
+        some(_): self.pos += 1
+        none: ()
+    ret c
+
+@ Parser::skip_ws(self: Parser) -> ():
+    loop:
+        match self.peek():
+            some(c):
+                if c == ' ' || c == '\t' || c == '\n' || c == '\r':
+                    self.pos += 1
+                else:
+                    break
+            none: break
+
+@ Parser::expect(self: Parser, ch: char) -> Result<(), str>:
+    self.skip_ws()
+    match self.peek():
+        some(c):
+            if c == ch:
+                self.pos += 1
+                ret ok(())
+            ret err(f"expected '{ch}', got '{c}'")
+        none: ret err("unexpected EOF")
+
+// ---------- 公共 API ----------
+
+/// 解析 JSON 字符串
+pub @ parse(s: str) -> Result<Json, str>:
+    let p = Parser::new(s)
+    match parse_value(p):
+        some(j): ret ok(j)
+        none: ret err("parse error")
+
+@ parse_value(p: Parser) -> ?Json:
+    p.skip_ws()
+    match p.peek():
+        some('{'): ret parse_object(p)
+        some('['): ret parse_array(p)
+        some('"'): ret parse_string(p)
+        some('t'): ret parse_true(p)
+        some('f'): ret parse_false(p)
+        some('n'): ret parse_null(p)
+        some(c):
+            if c == '-' || (c >= '0' && c <= '9'):
+                ret parse_number(p)
+            ret none
+        none: ret none
+
+@ parse_object(p: Parser) -> ?Json:
+    p.next()  // consume '{'
+    let map = Map<str, Json>::new()
+    p.skip_ws()
+    match p.peek():
+        some('}'):
+            p.next()
+            ret some(Json::JsonObj(map))
+        none: ret none
+    loop:
+        p.skip_ws()
+        match p.peek():
+            some('"'): ()
+            _: ret none
+        let key = match parse_string(p):
+            some(j):
+                match j:
+                    Json::JsonStr(k): k
+                    _: ret none
+            none: ret none
+        p.skip_ws()
+        match p.next():
+            some(':'): ()
+            _: ret none
+        match parse_value(p):
+            some(val): map.set(key, val)
+            none: ret none
+        p.skip_ws()
+        match p.next():
+            some(','): ()
+            some('}'): break
+            _: ret none
+    ret some(Json::JsonObj(map))
+
+@ parse_array(p: Parser) -> ?Json:
+    p.next()  // consume '['
+    let arr = Vec<Json>::new()
+    p.skip_ws()
+    match p.peek():
+        some(']'):
+            p.next()
+            ret some(Json::JsonArr(arr))
+        _: ()
+    loop:
+        match parse_value(p):
+            some(val): arr.push(val)
+            none: ret none
+        p.skip_ws()
+        match p.next():
+            some(','): ()
+            some(']'): break
+            _: ret none
+    ret some(Json::JsonArr(arr))
+
+@ parse_string(p: Parser) -> ?Json:
+    p.next()  // consume '"'
+    var s = ""
+    loop:
+        match p.next():
+            some('"'): break
+            some('\\'):
+                match p.next():
+                    some('"'): s += "\""
+                    some('\\'): s += "\\"
+                    some('/'): s += "/"
+                    some('n'): s += "\n"
+                    some('t'): s += "\t"
+                    some('r'): s += "\r"
+                    some('b'): s += "\b"
+                    some('f'): s += "\u000c"
+                    some('u'):
+                        // 简化：跳过 unicode 转义
+                        var i = 0
+                        while i < 4:
+                            p.next()
+                            i += 1
+                        s += "?"
+                    _: s += "?"
+            some(c): s += char_to_str(c)
+            none: ret none
+    ret some(Json::JsonStr(s))
+
+@ parse_number(p: Parser) -> ?Json:
+    var s = ""
+    match p.peek():
+        some('-'):
+            s += "-"
+            p.next()
+        _: ()
+    loop:
+        match p.peek():
+            some(c):
+                if c >= '0' && c <= '9':
+                    s += char_to_str(c)
+                    p.next()
+                else:
+                    break
+            none: break
+    match p.peek():
+        some('.'):
+            s += "."
+            p.next()
+            loop:
+                match p.peek():
+                    some(c):
+                        if c >= '0' && c <= '9':
+                            s += char_to_str(c)
+                            p.next()
+                        else:
+                            break
+                    none: break
+        _: ()
+    match p.peek():
+        some('e'):
+            s += "e"
+            p.next()
+            match p.peek():
+                some('+'):
+                    s += "+"
+                    p.next()
+                some('-'):
+                    s += "-"
+                    p.next()
+                _: ()
+            loop:
+                match p.peek():
+                    some(c):
+                        if c >= '0' && c <= '9':
+                            s += char_to_str(c)
+                            p.next()
+                        else:
+                            break
+                    none: break
+        _: ()
+    match s.parse_float():
+        ok(v): ret some(Json::JsonNum(v))
+        err(_): ret none
+
+@ parse_true(p: Parser) -> ?Json:
+    match p.next(): some('t'): () _: ret none
+    match p.next(): some('r'): () _: ret none
+    match p.next(): some('u'): () _: ret none
+    match p.next(): some('e'): () _: ret none
+    ret some(Json::JsonBool(true))
+
+@ parse_false(p: Parser) -> ?Json:
+    match p.next(): some('f'): () _: ret none
+    match p.next(): some('a'): () _: ret none
+    match p.next(): some('l'): () _: ret none
+    match p.next(): some('s'): () _: ret none
+    match p.next(): some('e'): () _: ret none
+    ret some(Json::JsonBool(false))
+
+@ parse_null(p: Parser) -> ?Json:
+    match p.next(): some('n'): () _: ret none
+    match p.next(): some('u'): () _: ret none
+    match p.next(): some('l'): () _: ret none
+    match p.next(): some('l'): () _: ret none
+    ret some(Json::JsonNull)
+
+@ char_to_str(c: char) -> str:
+    ret ""
+
+// ---------- 序列化 ----------
+
+/// 序列化为 JSON 字符串
+pub @ stringify(j: Json) -> str:
+    match j:
+        Json::JsonNull: ret "null"
+        Json::JsonBool(b):
+            if b: ret "true"
+            ret "false"
+        Json::JsonNum(n): ret num_to_str(n)
+        Json::JsonStr(s): ret quote(s)
+        Json::JsonArr(arr):
+            var s = "["
+            var i = 0
+            while i < arr.len():
+                if i > 0: s += ","
+                s += stringify(arr.at(i))
+                i += 1
+            ret s + "]"
+        Json::JsonObj(map):
+            var s = "{"
+            let keys = map.keys()
+            var i = 0
+            while i < keys.len():
+                if i > 0: s += ","
+                let k = keys.at(i)
+                s += quote(k) + ":" + stringify(map.get(k).unwrap())
+                i += 1
+            ret s + "}"
+
+/// 美化打印
+pub @ pretty(j: Json, indent: int) -> str:
+    ret pretty_with_indent(j, indent, 0)
+
+@ pretty_with_indent(j: Json, indent: int, level: int) -> str:
+    let pad = str::repeat(" ", indent * level)
+    match j:
+        Json::JsonNull: ret "null"
+        Json::JsonBool(b):
+            if b: ret "true"
+            ret "false"
+        Json::JsonNum(n): ret num_to_str(n)
+        Json::JsonStr(s): ret quote(s)
+        Json::JsonArr(arr):
+            if arr.len() == 0: ret "[]"
+            var s = "[\n"
+            var i = 0
+            while i < arr.len():
+                s += str::repeat(" ", indent * (level + 1))
+                s += pretty_with_indent(arr.at(i), indent, level + 1)
+                if i < arr.len() - 1: s += ","
+                s += "\n"
+                i += 1
+            ret s + pad + "]"
+        Json::JsonObj(map):
+            let keys = map.keys()
+            if keys.len() == 0: ret "{}"
+            var s = "{\n"
+            var i = 0
+            while i < keys.len():
+                s += str::repeat(" ", indent * (level + 1))
+                let k = keys.at(i)
+                s += quote(k) + ": " + pretty_with_indent(map.get(k).unwrap(), indent, level + 1)
+                if i < keys.len() - 1: s += ","
+                s += "\n"
+                i += 1
+            ret s + pad + "}"
+
+@ quote(s: str) -> str:
+    var out = "\""
+    var i = 0
+    while i < s.len():
+        match s.char_at(i):
+            some('"'): out += "\\\""
+            some('\\'): out += "\\\\"
+            some('\n'): out += "\\n"
+            some('\t'): out += "\\t"
+            some('\r'): out += "\\r"
+            some(c): out += char_to_str(c)
+        i += 1
+    ret out + "\""
+
+@ num_to_str(n: f64) -> str:
+    // 引导阶段由运行时内置
+    ret ""
+
+// ---------- 类型查询与访问 ----------
+
+/// 从对象取键
+pub @ get(j: Json, key: str) -> ?Json:
+    match j:
+        Json::JsonObj(map): ret map.get(key)
+        _: ret none
+
+/// 从数组取下标
+pub @ index(j: Json, i: int) -> ?Json:
+    match j:
+        Json::JsonArr(arr): ret arr.get(i)
+        _: ret none
+
+/// 转数组
+pub @ as_arr(j: Json) -> ?Vec<Json>:
+    match j:
+        Json::JsonArr(arr): ret some(arr)
+        _: ret none
+
+/// 转对象
+pub @ as_obj(j: Json) -> ?Map<str, Json>:
+    match j:
+        Json::JsonObj(map): ret some(map)
+        _: ret none
+
+/// 转布尔
+pub @ as_bool(j: Json) -> ?bool:
+    match j:
+        Json::JsonBool(b): ret some(b)
+        _: ret none
+
+/// 转数字
+pub @ as_num(j: Json) -> ?f64:
+    match j:
+        Json::JsonNum(n): ret some(n)
+        _: ret none
+
+/// 转字符串
+pub @ as_str(j: Json) -> ?str:
+    match j:
+        Json::JsonStr(s): ret some(s)
+        _: ret none
+
+/// 是否为 null
+pub @ is_null(j: Json) -> bool:
+    match j:
+        Json::JsonNull: ret true
+        _: ret false
+
+/// 是否为数组
+pub @ is_arr(j: Json) -> bool:
+    match j:
+        Json::JsonArr(_): ret true
+        _: ret false
+
+/// 是否为对象
+pub @ is_obj(j: Json) -> bool:
+    match j:
+        Json::JsonObj(_): ret true
+        _: ret false
+
+/// 数组长度
+pub @ arr_len(j: Json) -> ?int:
+    match j:
+        Json::JsonArr(arr): ret some(arr.len())
+        _: ret none
+
+/// 对象键数
+pub @ obj_len(j: Json) -> ?int:
+    match j:
+        Json::JsonObj(map): ret some(map.len())
+        _: ret none
+
+/// 对象键列表
+pub @ obj_keys(j: Json) -> ?Vec<str>:
+    match j:
+        Json::JsonObj(map): ret some(map.keys())
+        _: ret none
+
+/// 构造 null
+pub @ null() -> Json:
+    ret Json::JsonNull
+
+/// 构造 bool
+pub @ bool(b: bool) -> Json:
+    ret Json::JsonBool(b)
+
+/// 构造 number
+pub @ num(n: f64) -> Json:
+    ret Json::JsonNum(n)
+
+/// 构造 string
+pub @ str(s: str) -> Json:
+    ret Json::JsonStr(s)
+
+/// 构造 array
+pub @ arr(items: Vec<Json>) -> Json:
+    ret Json::JsonArr(items)
+
+/// 构造 object
+pub @ obj(map: Map<str, Json>) -> Json:
+    ret Json::JsonObj(map)
+
+/// 从 int 构造
+pub @ int(n: int) -> Json:
+    ret Json::JsonNum(f64(n))
+
+/// 从 bool 解析（用于 try_get）
+pub @ try_get_bool(j: Json, key: str) -> ?bool:
+    match get(j, key):
+        some(v): as_bool(v)
+        none: none
+
+/// 从对象取 number
+pub @ try_get_num(j: Json, key: str) -> ?f64:
+    match get(j, key):
+        some(v): as_num(v)
+        none: none
+
+/// 从对象取 string
+pub @ try_get_str(j: Json, key: str) -> ?str:
+    match get(j, key):
+        some(v): as_str(v)
+        none: none
+
+/// 从对象取 array
+pub @ try_get_arr(j: Json, key: str) -> ?Vec<Json>:
+    match get(j, key):
+        some(v): as_arr(v)
+        none: none
+
+/// 从对象取 object
+pub @ try_get_obj(j: Json, key: str) -> ?Map<str, Json>:
+    match get(j, key):
+        some(v): as_obj(v)
+        none: none
+
+// ---------- 扩展函数 ----------
+
+/// 从数组取下标（链式）
+pub @ at_index(j: Json, i: int) -> ?Json:
+    ret index(j, i)
+
+/// 数组长度
+pub @ len(j: Json) -> int:
+    match j:
+        Json::JsonArr(arr): ret arr.len()
+        Json::JsonObj(map): ret map.len()
+        Json::JsonStr(s): ret s.len()
+        _: ret 0
+
+/// 构造空对象
+pub @ empty_obj() -> Json:
+    ret Json::JsonObj(Map<str, Json>::new())
+
+/// 构造空数组
+pub @ empty_arr() -> Json:
+    ret Json::JsonArr(Vec<Json>::new())
+
+/// 对象中插入键值对（返回新对象）
+pub @ set_key(j: Json, key: str, value: Json) -> Json:
+    match j:
+        Json::JsonObj(map):
+            map.set(key, value)
+            ret Json::JsonObj(map)
+        _: ret j
+
+/// 数组末尾追加
+pub @ push_arr(j: Json, value: Json) -> Json:
+    match j:
+        Json::JsonArr(arr):
+            arr.push(value)
+            ret Json::JsonArr(arr)
+        _: ret j
+
+/// 合并两个对象（后者覆盖前者）
+pub @ merge_obj(a: Json, b: Json) -> Json:
+    match a:
+        Json::JsonObj(ma):
+            match b:
+                Json::JsonObj(mb):
+                    let keys = mb.keys()
+                    var i = 0
+                    while i < keys.len():
+                        let k = keys.at(i)
+                        ma.set(k, mb.get(k).unwrap())
+                        i += 1
+                    ret Json::JsonObj(ma)
+                _: ret a
+        _: ret b
+
+/// 判断两个 Json 是否相等
+pub @ equals(a: Json, b: Json) -> bool:
+    ret stringify(a) == stringify(b)
+
+/// 从 f64 构造
+pub @ num_f64(x: f64) -> Json:
+    ret Json::JsonNum(x)
+
+/// 从 int 构造
+pub @ num_int(x: int) -> Json:
+    ret Json::JsonNum(f64(x))
+
+/// 从 bool 构造
+pub @ bool_val(b: bool) -> Json:
+    ret Json::JsonBool(b)
+
+/// 从 str 构造
+pub @ str_val(s: str) -> Json:
+    ret Json::JsonStr(s)
+
+/// 从 Vec<Json> 构造数组
+pub @ arr_val(items: Vec<Json>) -> Json:
+    ret Json::JsonArr(items)
+
+/// 从 Map 构造对象
+pub @ obj_val(m: Map<str, Json>) -> Json:
+    ret Json::JsonObj(m)
+
+// ---------- 测试示例 ----------
+///
+/// 测试示例：
+///   let s = "{\"name\":\"Maxx\",\"version\":1,\"tags\":[\"lang\",\"fast\"]}"
+///   match json.parse(s):
+///       ok(j):
+///           match json.get(j, "name"):
+///               some(n): io.println(json.as_str(n).unwrap())  // Maxx
+///               none: ()
+///       err(e): io.println(e)

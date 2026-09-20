@@ -1,0 +1,384 @@
+//! std.math — 数学常量与函数（真实实现）。
+//!
+//! 所有三角函数以弧度为单位；浮点默认 f64。
+//! 引导阶段本模块被 codegen 为 C；算法仅使用基础算术、分支与循环。
+
+// ---------- 常量 ----------
+
+pub const PI: f64 = 3.14159265358979323846
+pub const E: f64 = 2.71828182845904523536
+pub const PHI: f64 = 1.61803398874989484820
+pub const INF: f64 = 1.0 / 0.0
+pub const NAN: f64 = 0.0 / 0.0
+pub const EPSILON: f64 = 2.220446049250313e-16
+
+const LN2: f64 = 0.6931471805599453
+const LOG2E: f64 = 1.4426950408889634
+const LN10: f64 = 2.302585092994046
+
+// ---------- 基本工具 ----------
+
+/// 绝对值
+pub @ abs(x: f64) -> f64:
+    if x < 0.0:
+        ret -x
+    ret x
+
+/// 截断到整数部分（向零）
+pub @ trunc(x: f64) -> f64:
+    let i = int(x)
+    ret f64(i)
+
+/// 向下取整
+pub @ floor(x: f64) -> f64:
+    let t = trunc(x)
+    if x < t:
+        ret t - 1.0
+    ret t
+
+/// 向上取整
+pub @ ceil(x: f64) -> f64:
+    let t = trunc(x)
+    if x > t:
+        ret t + 1.0
+    ret t
+
+/// 四舍五入到最近整数
+pub @ round(x: f64) -> f64:
+    if x >= 0.0:
+        ret floor(x + 0.5)
+    ret ceil(x - 0.5)
+
+/// 两数较大
+pub @ max(a: f64, b: f64) -> f64:
+    if a > b:
+        ret a
+    ret b
+
+/// 两数较小
+pub @ min(a: f64, b: f64) -> f64:
+    if a < b:
+        ret a
+    ret b
+
+/// 限制到 [lo, hi]
+pub @ clamp(x: f64, lo: f64, hi: f64) -> f64:
+    if x < lo:
+        ret lo
+    if x > hi:
+        ret hi
+    ret x
+
+/// 线性插值
+pub @ lerp(a: f64, b: f64, t: f64) -> f64:
+    ret a + (b - a) * t
+
+/// 符号位
+pub @ sign(x: f64) -> f64:
+    if x < 0.0:
+        ret -1.0
+    if x > 0.0:
+        ret 1.0
+    ret 0.0
+
+// ---------- 幂与对数 ----------
+
+/// 平方根（牛顿迭代）
+pub @ sqrt(x: f64) -> f64:
+    if x < 0.0:
+        ret NAN
+    if x == 0.0:
+        ret 0.0
+    var g = x / 2.0
+    if g < 1.0:
+        g = 1.0
+    var i = 0
+    while i < 60:
+        let next = (g + x / g) / 2.0
+        if abs(next - g) < EPSILON * g:
+            g = next
+            break
+        g = next
+        i += 1
+    ret g
+
+/// 立方根
+pub @ cbrt(x: f64) -> f64:
+    if x == 0.0:
+        ret 0.0
+    var g = x / 3.0
+    var i = 0
+    while i < 60:
+        let g2 = g * g
+        let next = (2.0 * g + x / g2) / 3.0
+        if abs(next - g) < EPSILON * abs(g):
+            g = next
+            break
+        g = next
+        i += 1
+    ret g
+
+/// 2^x（整数部分移位，小数部分泰勒）
+@ pow2(x: f64) -> f64:
+    let i = int(floor(x))
+    let f = x - f64(i)
+    var p = 1.0
+    var j = 0
+    while j < i:
+        p *= 2.0
+        j += 1
+    while j > i:
+        p /= 2.0
+        j -= 1
+    let y = f * LN2
+    ret p * (1.0 + y + y*y/2.0 + y*y*y/6.0)
+
+/// 自然指数 e^x
+pub @ exp(x: f64) -> f64:
+    if x == 0.0:
+        ret 1.0
+    var neg = false
+    var ax = x
+    if ax < 0.0:
+        neg = true
+        ax = -ax
+    let k = int(ax / LN2)
+    let r = ax - f64(k) * LN2
+    var sum = 1.0
+    var term = 1.0
+    var n = 1
+    while n <= 20:
+        term = term * r / f64(n)
+        sum += term
+        if abs(term) < EPSILON:
+            break
+        n += 1
+    var result = sum * pow2(f64(k) * LOG2E)
+    if neg:
+        ret 1.0 / result
+    ret result
+
+/// 自然对数 ln(x)
+pub @ ln(x: f64) -> f64:
+    if x <= 0.0:
+        ret NAN
+    if x == 1.0:
+        ret 0.0
+    var k = 0
+    var m = x
+    while m >= 2.0:
+        m /= 2.0
+        k += 1
+    while m < 1.0:
+        m *= 2.0
+        k -= 1
+    let t = (m - 1.0) / (m + 1.0)
+    var sum = t
+    var term = t
+    var n = 1
+    let t2 = t * t
+    while n < 30:
+        term *= t2
+        sum += term / f64(2 * n + 1)
+        n += 1
+    ret f64(k) * LN2 + 2.0 * sum
+
+/// 以 2 为底的对数
+pub @ log2(x: f64) -> f64:
+    ret ln(x) * LOG2E
+
+/// 以 10 为底的对数
+pub @ log10(x: f64) -> f64:
+    ret ln(x) / LN10
+
+/// 一般对数 log_b(x)
+pub @ log(x: f64, base: f64) -> f64:
+    ret ln(x) / ln(base)
+
+/// x^y = e^(y*ln(x))
+pub @ pow(x: f64, y: f64) -> f64:
+    if x == 0.0:
+        if y > 0.0:
+            ret 0.0
+        ret INF
+    if y == 0.0:
+        ret 1.0
+    if x < 0.0:
+        let i = int(y)
+        if f64(i) == y:
+            var r = 1.0
+            var j = 0
+            while j < abs(i):
+                r *= -x
+                j += 1
+            if i < 0:
+                ret 1.0 / r
+            ret r
+        ret NAN
+    ret exp(y * ln(x))
+
+// ---------- 三角函数 ----------
+
+/// 把 x 归约到 [-π, π]
+@ reduce(x: f64) -> f64:
+    var r = x
+    let two_pi = 2.0 * PI
+    while r > PI:
+        r -= two_pi
+    while r < -PI:
+        r += two_pi
+    ret r
+
+/// 正弦（泰勒展开）
+pub @ sin(x: f64) -> f64:
+    let t = reduce(x)
+    var sum = t
+    var term = t
+    var n = 1
+    var sign = 1.0
+    while n < 15:
+        sign = -sign
+        term *= t * t / f64((2*n) * (2*n + 1))
+        sum += sign * term
+        n += 1
+    ret sum
+
+/// 余弦（泰勒展开）
+pub @ cos(x: f64) -> f64:
+    let t = reduce(x)
+    var sum = 1.0
+    var term = 1.0
+    var n = 1
+    var sign = -1.0
+    while n < 15:
+        term *= t * t / f64((2*n - 1) * (2*n))
+        sum += sign * term
+        sign = -sign
+        n += 1
+    ret sum
+
+/// 正切
+pub @ tan(x: f64) -> f64:
+    let c = cos(x)
+    if abs(c) < EPSILON:
+        ret INF
+    ret sin(x) / c
+
+/// 反正弦
+pub @ asin(x: f64) -> f64:
+    if x < -1.0 || x > 1.0:
+        ret NAN
+    if x == 1.0:
+        ret PI / 2.0
+    if x == -1.0:
+        ret -PI / 2.0
+    var sum = x
+    var term = x
+    var n = 1
+    while n < 20:
+        term *= x * x * f64(2*n - 1) * f64(2*n - 1) / f64(2*n) / f64(2*n + 1)
+        sum += term
+        n += 1
+    ret sum
+
+/// 反余弦
+pub @ acos(x: f64) -> f64:
+    if x < -1.0 || x > 1.0:
+        ret NAN
+    ret PI / 2.0 - asin(x)
+
+/// 反正切
+pub @ atan(x: f64) -> f64:
+    if abs(x) > 1.0:
+        let sign = if x < 0.0: -1.0 else 1.0
+        ret sign * (PI / 2.0) - atan(1.0 / abs(x))
+    var sum = x
+    var term = x
+    var n = 1
+    var sign = -1.0
+    while n < 30:
+        term *= x * x
+        sum += sign * term / f64(2*n + 1)
+        sign = -sign
+        n += 1
+    ret sum
+
+/// 两参数反正切
+pub @ atan2(y: f64, x: f64) -> f64:
+    if x > 0.0:
+        ret atan(y / x)
+    if x < 0.0:
+        if y >= 0.0:
+            ret atan(y / x) + PI
+        ret atan(y / x) - PI
+    if y > 0.0:
+        ret PI / 2.0
+    if y < 0.0:
+        ret -PI / 2.0
+    ret 0.0
+
+// ---------- 双曲函数 ----------
+
+/// 双曲正弦
+pub @ sinh(x: f64) -> f64:
+    ret (exp(x) - exp(-x)) / 2.0
+
+/// 双曲余弦
+pub @ cosh(x: f64) -> f64:
+    ret (exp(x) + exp(-x)) / 2.0
+
+/// 双曲正切
+pub @ tanh(x: f64) -> f64:
+    let e2x = exp(2.0 * x)
+    ret (e2x - 1.0) / (e2x + 1.0)
+
+// ---------- 杂项 ----------
+
+/// 距离 hypot(x, y) = sqrt(x^2+y^2)
+pub @ hypot(x: f64, y: f64) -> f64:
+    ret sqrt(x * x + y * y)
+
+/// 阶乘
+pub @ factorial(n: int) -> f64:
+    if n < 0:
+        ret NAN
+    var r = 1.0
+    var i = 2
+    while i <= n:
+        r *= f64(i)
+        i += 1
+    ret r
+
+/// 最大公约数
+pub @ gcd(a: int, b: int) -> int:
+    var x = abs(a)
+    var y = abs(b)
+    while y != 0:
+        let t = y
+        y = x % y
+        x = t
+    ret x
+
+/// 最小公倍数
+pub @ lcm(a: int, b: int) -> int:
+    if a == 0 || b == 0:
+        ret 0
+    ret abs(a) * abs(b) / gcd(a, b)
+
+/// 弧度转角度
+pub @ rad_to_deg(r: f64) -> f64:
+    ret r * 180.0 / PI
+
+/// 角度转弧度
+pub @ deg_to_rad(d: f64) -> f64:
+    ret d * PI / 180.0
+
+// ---------- 测试示例 ----------
+///
+/// 测试示例：
+///   io.println(sqrt(2.0))              // ~1.41421356
+///   io.println(sin(PI / 6.0))          // ~0.5
+///   io.println(cos(PI / 3.0))          // ~0.5
+///   io.println(ln(E))                  // ~1.0
+///   io.println(pow(2.0, 10.0))        // ~1024.0
+///   io.println(clamp(5.0, 0.0, 3.0))   // 3.0
