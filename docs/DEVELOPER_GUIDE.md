@@ -1,29 +1,27 @@
-# Maxx 开发者指南
+# Maxx 开发者指南（诚实版）
 
-> 版本：v2.0 | 最后更新：2026-09-20
-
----
-
-## 目录
-
-1. [快速上手](#1-快速上手)
-2. [安装和环境配置](#2-安装和环境配置)
-3. [语言基础语法教程](#3-语言基础语法教程)
-4. [标准库使用指南](#4-标准库使用指南)
-5. [编译器使用手册](#5-编译器使用手册)
-6. [文件格式详解](#6-文件格式详解)
-7. [如何写 Maxx UI 应用](#7-如何写-maxx-ui-应用)
-8. [如何打包 APK](#8-如何打包-apk)
-9. [常见问题 FAQ](#9-常见问题-faq)
-10. [最佳实践](#10-最佳实践)
+> 版本：v2.1 | 最后更新：2026-09-20
+> 本文档只记录**实际实测通过**的功能。规划中的功能单独标注。
 
 ---
 
-## 1. 快速上手
+## 1. 快速入门
 
-### 5 分钟写出第一个 Maxx 程序
+### 1.1 环境要求
 
-创建文件 `hello.max`：
+- Python 3.6+
+- gcc / clang（用于编译生成的 C 代码）
+
+### 1.2 安装
+
+```bash
+git clone https://github.com/Maxx-EX/Maxx.git
+cd Maxx/compiler
+```
+
+### 1.3 第一个程序
+
+创建 `hello.max`：
 
 ```maxx
 @ main() -> int:
@@ -31,10 +29,10 @@
     ret 0
 ```
 
-编译运行：
+运行：
 
 ```bash
-maxxc run hello.max
+python3 maxxc.py run hello.max
 ```
 
 输出：
@@ -43,64 +41,29 @@ maxxc run hello.max
 Hello, Maxx!
 ```
 
-### 程序结构
-
-每个 Maxx 程序从 `@ main() -> int:` 开始：
-
-```maxx
-// 这是注释
-@ main() -> int:
-    // 你的代码写在这里
-    ret 0  // 返回 0 表示成功
-```
-
-### 变量
-
-```maxx
-let x = 42          // 不可变变量
-var y = 10          // 可变变量
-let pi: f64 = 3.14  // 类型注解
-```
-
 ---
 
-## 2. 安装和环境配置
+## 2. 语法参考（已实现）
 
-### Linux
+### 2.1 变量
 
-```bash
-git clone https://github.com/Maxx-EX/Maxx.git
-cd Maxx/compiler
-python3 maxxc.py run hello.max
-```
-
-### Termux (Android)
-
-```bash
-pkg install python clang
-git clone https://github.com/Maxx-EX/Maxx.git
-cd Maxx
-bash tools/install-maxx.sh
-maxxc run hello.max
-```
-
-### Android App
-
-安装 `maxx-android-app-v7.apk`，直接在手机上写 Maxx 代码并运行。
-
----
-
-## 3. 语言基础语法教程
-
-### 3.1 变量
+**已实现：**
+- `let` 声明不可变变量
+- `var` 声明可变变量
+- 类型注解（可选）
 
 ```maxx
-let x = 42          // 不可变
-var y = 10          // 可变
-let pi: f64 = 3.14  // 显式类型
+let x = 42
+var y = 10
+let pi: f64 = 3.14
 ```
 
-### 3.2 函数
+### 2.2 函数
+
+**已实现：**
+- `@ 函数名(参数: 类型) -> 返回类型:` 语法
+- `ret` 返回语句
+- 多参数函数
 
 ```maxx
 @ add(a: int, b: int) -> int:
@@ -111,7 +74,13 @@ let pi: f64 = 3.14  // 显式类型
     ret 0
 ```
 
-### 3.3 控制流
+### 2.3 控制流
+
+**已实现：**
+- `if / elif / else`
+- `for i in 0..N` 范围循环
+- `while` 循环
+- `break` / `continue`
 
 ```maxx
 // if/elif/else
@@ -124,17 +93,22 @@ else:
     io.println("small")
 
 // for 循环
-for i in 0..10:
+for i in 0..5:
     io.println(str(i))
 
 // while 循环
 var i = 0
-while i < 5:
+while i < 3:
     io.println(str(i))
     i = i + 1
 ```
 
-### 3.4 结构体
+### 2.4 结构体
+
+**已实现：**
+- `# 结构体名:` 定义
+- 字段初始化
+- 字段访问 `.`
 
 ```maxx
 # Point:
@@ -147,168 +121,178 @@ while i < 5:
     ret 0
 ```
 
-### 3.5 枚举和 match
+### 2.5 枚举和 match
+
+**已实现：**
+- `# 枚举名:` 定义
+- 变体 `Color::Red`
+- `match` + `=>` 语法
 
 ```maxx
-# Color:
-    Red
-    Green
-    Blue
+# Shape:
+    Circle
+    Rect
 
 @ main() -> int:
-    let c = Color::Red
-    match c:
-        Color::Red => io.println("red")
-        Color::Green => io.println("green")
-        Color::Blue => io.println("blue")
+    let s = Shape::Circle
+    match s:
+        Shape::Circle => io.println("circle")
+        Shape::Rect => io.println("rect")
     ret 0
 ```
 
-### 3.6 Option 和 Result
+### 2.6 Option / Result
+
+**已实现：**
+- `some()` / `none()`
+- `ok()` / `err()`
+- match 解构
 
 ```maxx
-@ divide(a: int, b: int) -> Result<f64, str>:
-    if b == 0:
-        ret err("division by zero")
-    ret ok(a as f64 / b as f64)
-
 @ main() -> int:
-    match divide(10, 2):
+    let r = ok(42)
+    match r:
         ok(v) => io.println(str(v))
         err(e) => io.println(e)
     ret 0
 ```
 
----
+### 2.7 内置函数
 
-## 4. 标准库使用指南
+**已实现（实测通过）：**
 
-### 4.1 io 模块
-
-```maxx
-io.println("hello")
-io.print("no newline")
-let line = io.read_line()
-let content = io.read_file("test.txt")
-io.write_file("out.txt", "hello")
-```
-
-### 4.2 math 模块
-
-```maxx
-let x = sqrt(16.0)      // 4.0
-let y = pow(2.0, 3.0)  // 8.0
-let z = sin(0.0)        // 0.0
-```
-
-### 4.3 类型转换
-
-```maxx
-let s = str(42)        // "42"
-let i = int("42")      // 42
-let f = f64(42)        // 42.0
-```
-
----
-
-## 5. 编译器使用手册
-
-### 5.1 子命令
-
-| 命令 | 说明 |
+| 函数 | 说明 |
 |------|------|
-| `tokenize` | 词法分析 |
-| `parse` | 语法分析，打印 AST |
-| `ir` | 打印中间表示 |
-| `codegen` | 生成 C 代码 |
-| `build` | 编译为 .mxx 共享库 |
-| `pack` | 打包为 .smx 分发包 |
-| `archive` | 项目归档为 .zip |
-| `run` | 编译并运行 |
-| `repl` | 交互式 REPL |
+| `io.println(x)` | 打印并换行 |
+| `io.print(x)` | 打印不换行 |
+| `str(x)` | 转字符串 |
+| `sqrt(x)` | 平方根 |
+| `sin(x)` | 正弦 |
+| `cos(x)` | 余弦 |
+| `pow(a, b)` | 幂 |
+| `floor(x)` | 向下取整 |
+| `ceil(x)` | 向上取整 |
+| `abs(x)` | 绝对值 |
 
-### 5.2 示例
+**规划中（未实现）：**
+- `io.read_line()` — 规划中
+- `io.read_file()` — 规划中
+- `io.write_file()` — 规划中
+- `now()` / `sleep()` — 规划中
+- 泛型函数 — 规划中
+- lambda 表达式 — 规划中
+- trait — 规划中
+- task/chan 并发 — 规划中
+
+---
+
+## 3. 命令行用法
+
+### 3.1 可用子命令（实测）
 
 ```bash
-maxxc run hello.max
-maxxc codegen hello.max -o hello.c
-maxxc build lib.max -o lib.mxx
-maxxc pack lib.mxx -o lib.smx
-maxxc repl
+# 运行程序（编译 + 执行）
+python3 maxxc.py run hello.max
+
+# 词法分析
+python3 maxxc.py tokenize hello.max
+
+# 语法分析（打印 AST）
+python3 maxxc.py parse hello.max
+
+# 生成 C 代码
+python3 maxxc.py codegen hello.max -o hello.c
+
+# 交互式 REPL
+python3 maxxc.py repl
+```
+
+### 3.2 REPL 示例
+
+```
+maxx> let x = 42
+maxx> io.println(str(x))
+42
+maxx> :quit
 ```
 
 ---
 
-## 6. 文件格式详解
+## 4. 测试
 
-| 后缀 | 说明 |
-|------|------|
-| `.max` | Maxx 源代码文件 |
-| `.mxx` | 编译后的动态共享库（类似 .so） |
-| `.smx` | 分发包（whl 式 zip 容器） |
-| `.zip` | 项目归档（最终发布） |
+### 4.1 运行测试
+
+```bash
+cd compiler
+bash tests/run_tests.sh
+```
+
+### 4.2 当前测试通过情况
+
+| 测试文件 | 状态 | 说明 |
+|----------|------|------|
+| hello.max | ✅ 通过 | 基础输出 |
+| struct.max | ✅ 通过 | 结构体 |
+| loops.max | ✅ 通过 | 循环 + 条件 |
+| enum_match.max | ✅ 通过 | 枚举 + match |
+| option_result.max | ✅ 通过 | Option/Result |
+| test_variables.max | ✅ 通过 | 变量声明 |
+| test_arithmetic.max | ✅ 通过 | 算术运算 |
+| test_float.max | ✅ 通过 | 浮点数 |
+| test_bool.max | ✅ 通过 | 布尔值 |
+| test_for.max | ✅ 通过 | for 循环 |
+| test_sqrt.max | ✅ 通过 | sqrt 函数 |
+| test_pow.max | ✅ 通过 | pow 函数 |
+| ... 共 37 个 | ✅ 全部通过 | |
 
 ---
 
-## 7. 如何写 Maxx UI 应用
+## 5. 常见问题
 
-Maxx UI 使用声明式语法：
+### Q: 为什么 `io.read_line()` 不能用？
+A: 引导阶段还没实现，规划中。
+
+### Q: 为什么泛型函数报错？
+A: 泛型还没实现，规划中。
+
+### Q: 为什么 lambda 不工作？
+A: Lambda 还没实现，规划中。
+
+### Q: 标准库的文件能直接编译吗？
+A: 不能。`std/` 下的文件是 SPEC 参考文档，用的是完整 Maxx 语法，引导编译器只支持子集。
+
+---
+
+## 6. 彩蛋
+
+试试看：
 
 ```maxx
 @ main() -> int:
-    let app = UI::new("My App")
-    app.add(Button::new("Click Me"))
-    app.run()
+    io.println("hi！Maxx")
     ret 0
 ```
 
----
-
-## 8. 如何打包 APK
-
-使用 Maxx Packer App：
-
-1. 选择项目文件夹
-2. 确认项目信息
-3. 点「打包」
-4. 安装生成的 APK
+注意是中文全角感叹号 `！`。
 
 ---
 
-## 9. 常见问题 FAQ
+## 7. 项目结构
 
-### Q: Maxx 是解释型还是编译型？
-A: 引导阶段是编译到 C 再用 gcc 编译，最终目标是原生机器码。
-
-### Q: 为什么用 Python 写编译器？
-A: 这是 Level 1 引导种子，最终会用 Maxx 自身重写。
-
-### Q: 支持哪些平台？
-A: Linux x86_64 完整支持，Android/iOS/WASM 规划中。
-
-### Q: 有 GC 吗？
-A: 引导阶段用 malloc，生产版计划用 Boehm GC。
-
----
-
-## 10. 最佳实践
-
-1. 用 `let` 声明不可变变量，`var` 只在必要时用
-2. 函数名用 snake_case
-3. 类型名用 PascalCase
-4. 错误用 Result 类型处理，不用异常
-5. 模块名用小写
-6. 注释写在函数上方
-7. 每个文件一个主要模块
-8. 先写测试再写实现
-9. 保持函数短小
-10. 用类型注解提高可读性
-
----
-
-## 彩蛋
-
-试试看 `io.println("hi！Maxx")` —— 注意是中文全角感叹号！
+```
+maxx/
+├── compiler/          # 引导编译器（Python）
+│   ├── maxxc.py       # 主程序
+│   ├── lexer.py       # 词法分析
+│   ├── parser.py      # 语法分析
+│   ├── checker.py     # 类型检查
+│   ├── codegen_c.py   # C 代码生成
+│   ├── runtime_minimal.c  # C 运行时
+│   └── tests/         # 测试用例
+├── std/               # 标准库（SPEC 参考）
+├── docs/              # 文档
+└── android-app/       # Android IDE
+```
 
 ---
 
