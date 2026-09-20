@@ -1,0 +1,9 @@
+@ main() -> int:
+    let x = 5
+    if x > 10:
+        io.println("large")
+    elif x > 3:
+        io.println("medium")
+    else:
+        io.println("small")
+    ret 0

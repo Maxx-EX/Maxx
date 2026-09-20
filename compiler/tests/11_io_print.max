@@ -1,0 +1,4 @@
+@ main() -> int:
+    io.println("hello")
+    io.println("world")
+    ret 0

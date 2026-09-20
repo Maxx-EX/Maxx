@@ -1,0 +1,6 @@
+@ add(a: int, b: int) -> int:
+    ret a + b
+
+@ main() -> int:
+    io.println(str(add(1, 2)))
+    ret 0

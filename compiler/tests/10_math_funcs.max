@@ -1,0 +1,6 @@
+@ main() -> int:
+    io.println(str(sqrt(16.0)))
+    io.println(str(pow(2.0, 3.0)))
+    io.println(str(floor(3.7)))
+    io.println(str(ceil(3.2)))
+    ret 0

@@ -1,0 +1,6 @@
+@ main() -> int:
+    let r = ok(42)
+    match r:
+        ok(v) => io.println(str(v))
+        err(e) => io.println("error")
+    ret 0

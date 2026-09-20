@@ -1,0 +1,4 @@
+@ main() -> int:
+    for i in 0..3:
+        io.println(str(i))
+    ret 0

@@ -1,0 +1,10 @@
+# Shape:
+    Circle
+    Rect
+
+@ main() -> int:
+    let s = Shape::Circle
+    match s:
+        Shape::Circle => io.println("circle")
+        Shape::Rect => io.println("rect")
+    ret 0
