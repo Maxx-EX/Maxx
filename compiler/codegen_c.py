@@ -62,6 +62,20 @@ class CCodegen:
         """Emit typedefs for all Result<T,E> types used in the program."""
         results: List[str] = []
         seen = set()
+        # Add common Result types used by ok()/err() constructors.
+        common_results = [
+            ("mx_Result_int64_t_mx_str", "int64_t", "mx_str"),
+            ("mx_Result_double_mx_str", "double", "mx_str"),
+        ]
+        for name, ok_c, err_c in common_results:
+            seen.add(name)
+            results.append(
+                f"typedef struct {{\n"
+                f"    int64_t tag;\n"
+                f"    {ok_c} ok_val;\n"
+                f"    {err_c} err_val;\n"
+                f"}} {name};"
+            )
         for decl in self.program.decls:
             if not isinstance(decl, ast.FunctionDecl):
                 continue
@@ -89,7 +103,9 @@ class CCodegen:
         for decl in self.program.decls:
             if isinstance(decl, ast.EnumDecl):
                 for idx, v in enumerate(decl.variants):
+                    # Store both qualified and unqualified names.
                     self.variants[v.name] = (decl.name, idx)
+                    self.variants[f"{decl.name}::{v.name}"] = (decl.name, idx)
             if isinstance(decl, ast.FunctionDecl):
                 if decl.receiver:
                     cname = f"mx_{decl.receiver}_{decl.name}"
@@ -294,6 +310,14 @@ class CCodegen:
                     return TypeInfo(kind="scalar", name=fname)
                 if fname == "sqrt":
                     return TypeInfo(kind="scalar", name="f64")
+                if fname == "ok":
+                    return TypeInfo(kind="result",
+                                    ok_type=TypeInfo(kind="scalar", name="int"),
+                                    err_type=TypeInfo(kind="scalar", name="str"))
+                if fname == "err":
+                    return TypeInfo(kind="result",
+                                    ok_type=TypeInfo(kind="scalar", name="int"),
+                                    err_type=TypeInfo(kind="scalar", name="str"))
                 if fname in self._fn_ret_types:
                     return self._fn_ret_types[fname]
             if isinstance(e.func, ast.Field):
@@ -318,11 +342,27 @@ class CCodegen:
                 return TypeInfo(kind="scalar", name="int")
             if e.op in ("==", "!=", "<", ">", "<=", ">="):
                 return TypeInfo(kind="scalar", name="bool")
+        if isinstance(e, ast.SomeExpr):
+            return TypeInfo(kind="option", inner=TypeInfo(kind="scalar", name="int"))
+        if isinstance(e, ast.OkExpr):
+            return TypeInfo(kind="result",
+                            ok_type=TypeInfo(kind="scalar", name="int"),
+                            err_type=TypeInfo(kind="scalar", name="str"))
+        if isinstance(e, ast.ErrExpr):
+            return TypeInfo(kind="result",
+                            ok_type=TypeInfo(kind="scalar", name="int"),
+                            err_type=TypeInfo(kind="scalar", name="str"))
         if isinstance(e, ast.StructLit):
             if e.name in self.variants:
                 enum_name, _ = self.variants[e.name]
                 return TypeInfo(kind="enum", name=enum_name)
             return TypeInfo(kind="struct", name=e.name)
+        if isinstance(e, ast.Field):
+            # Check if this is an enum variant access (Shape::Circle).
+            variant_name = f"{e.obj.name}::{e.name}" if hasattr(e.obj, 'name') else None
+            if variant_name and variant_name in self.variants:
+                enum_name, _ = self.variants[variant_name]
+                return TypeInfo(kind="enum", name=enum_name)
         return TypeInfo(kind="scalar", name="int")
 
     def _gen_for(self, s: ast.ForStmt, indent: int) -> List[str]:
@@ -354,6 +394,28 @@ class CCodegen:
         for arm in s.arms:
             pat = arm.pattern
             if isinstance(pat, ast.CtorPat):
+                # Handle Result patterns: ok(v) and err(v).
+                if pat.name == "ok":
+                    out.append(f"{pad}    case 0: {{")
+                    if pat.args and isinstance(pat.args[0], ast.VarPat):
+                        arg_name = pat.args[0].name
+                        out.append(f"{pad}        int64_t {arg_name} = {scrut}.ok_val;")
+                    for b in arm.body:
+                        out.extend(self._gen_stmt(b, indent + 2))
+                    out.append(f"{pad}        break;")
+                    out.append(f"{pad}    }}")
+                    continue
+                if pat.name == "err":
+                    out.append(f"{pad}    case 1: {{")
+                    if pat.args and isinstance(pat.args[0], ast.VarPat):
+                        arg_name = pat.args[0].name
+                        out.append(f"{pad}        mx_str {arg_name} = {scrut}.err_val;")
+                    for b in arm.body:
+                        out.extend(self._gen_stmt(b, indent + 2))
+                    out.append(f"{pad}        break;")
+                    out.append(f"{pad}    }}")
+                    continue
+                # Regular enum variant.
                 enum_name, tag_idx = self.variants.get(pat.name, ("?", 0))
                 out.append(f"{pad}    case {tag_idx}: {{")
                 # Bind variant fields.
@@ -370,11 +432,20 @@ class CCodegen:
                 out.append(f"{pad}        break;")
                 out.append(f"{pad}    }}")
             elif isinstance(pat, ast.WildcardPat) or isinstance(pat, ast.VarPat):
-                out.append(f"{pad}    default: {{")
-                for b in arm.body:
-                    out.extend(self._gen_stmt(b, indent + 2))
-                out.append(f"{pad}        break;")
-                out.append(f"{pad}    }}")
+                # Check if this VarPat is actually a qualified enum variant.
+                if isinstance(pat, ast.VarPat) and pat.name in self.variants:
+                    enum_name, tag_idx = self.variants[pat.name]
+                    out.append(f"{pad}    case {tag_idx}: {{")
+                    for b in arm.body:
+                        out.extend(self._gen_stmt(b, indent + 2))
+                    out.append(f"{pad}        break;")
+                    out.append(f"{pad}    }}")
+                else:
+                    out.append(f"{pad}    default: {{")
+                    for b in arm.body:
+                        out.extend(self._gen_stmt(b, indent + 2))
+                    out.append(f"{pad}        break;")
+                    out.append(f"{pad}    }}")
         out.append(f"{pad}}}")
         return out
 
@@ -452,10 +523,10 @@ class CCodegen:
             return "((mx_opt_int){0, 0})"
         if isinstance(e, ast.OkExpr):
             inner = self._gen_expr(e.value)
-            return f"((mx_Result_double_mx_str){{0, ({inner}), {{0}}}})"
+            return f"((mx_Result_int64_t_mx_str){{0, ({inner}), {{0}}}})"
         if isinstance(e, ast.ErrExpr):
             inner = self._gen_expr(e.value)
-            return f"((mx_Result_double_mx_str){{1, {{0}}, ({inner})}})"
+            return f"((mx_Result_int64_t_mx_str){{1, {{0}}, ({inner})}})"
         if isinstance(e, ast.TryExpr):
             # Bare `x?` outside a let: should not normally happen in
             # bootstrap. Evaluate and extract.
@@ -616,6 +687,11 @@ class CCodegen:
 
     def _gen_field(self, e: ast.Field) -> str:
         obj = self._gen_expr(e.obj)
+        # Check if this is an enum variant access (Shape::Circle).
+        variant_name = f"{e.obj.name}::{e.name}" if hasattr(e.obj, 'name') else None
+        if variant_name and variant_name in self.variants:
+            enum_name, tag_idx = self.variants[variant_name]
+            return f"((mx_{enum_name}){{.tag = {tag_idx}, .data = {{0}}}})"
         # Channel creation: `chan str` is a type, not a field.
         # `ch.send(...)` etc. handled in call.
         return f"{obj}.{e.name}"

@@ -520,7 +520,9 @@ class Parser:
     def parse_match_arm(self) -> ast.MatchArm:
         ptok = self.peek()
         pattern = self.parse_pattern()
-        self.eat_punct(":")
+        # Accept either ':' or '=>' as match arm separator.
+        if self.accept_punct(":") is None:
+            self.accept_op("=>")
         self.skip_newlines()
         if self.at(TOK_INDENT):
             body = self.expect_block()
@@ -534,8 +536,23 @@ class Parser:
         if self.at_punct("_"):
             self.next()
             return ast.WildcardPat(line=t.line, col=t.col)
+        # Handle ok(v) and err(v) patterns.
+        if self.at_kw("ok") or self.at_kw("err"):
+            ctor_name = self.next().value
+            self.eat_punct("(")
+            args: List[ast.Pattern] = []
+            if not self.at_punct(")"):
+                args.append(self.parse_pattern())
+            self.eat_punct(")")
+            return ast.CtorPat(name=ctor_name, args=args,
+                               line=t.line, col=t.col)
         if self.at(TOK_IDENT):
             name = self.next().value
+            # Handle qualified names like Shape::Circle
+            if self.at_op("::"):
+                self.next()
+                variant = self.next().value
+                name = name + "::" + variant
             if self.at_punct("("):
                 self.next()
                 args: List[ast.Pattern] = []
