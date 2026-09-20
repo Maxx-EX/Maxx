@@ -144,6 +144,7 @@ class Lexer:
 
             # f-string: f"..."
             if c == "f" and self.peek(1) == '"':
+                self.advance()  # consume 'f'
                 self._lex_string(prefix="f")
                 continue
 
@@ -229,7 +230,8 @@ class Lexer:
 
     def _lex_string(self, prefix: str) -> None:
         line, col = self.line, self.col
-        assert self.peek() == '"'
+        if self.peek() != '"':
+            raise LexError("expected opening quote", line, col)
         self.advance()  # opening quote
         buf: List[str] = []
         while self.i < self.n and self.peek() != '"':

@@ -545,4 +545,12 @@ def main(argv=None) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        print("\ninterrupted", file=sys.stderr)
+        sys.exit(130)
+    except Exception as e:
+        # Convert Python traceback to Maxx-level diagnostic (P1-7).
+        print(f"maxxc: error: {e}", file=sys.stderr)
+        sys.exit(1)

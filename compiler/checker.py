@@ -112,6 +112,7 @@ class Checker:
         self.generic_funcs: Dict[str, ast.FunctionDecl] = {}
         # Scopes: list of dicts mapping variable name -> TypeInfo.
         self.scopes: List[Dict[str, TypeInfo]] = []
+        self.immutable_vars: set = set()
         self.current_fn: Optional[ast.FunctionDecl] = None
         self._type_cache: Dict[str, TypeInfo] = {}
 
@@ -122,10 +123,15 @@ class Checker:
     def pop_scope(self) -> None:
         self.scopes.pop()
 
-    def declare_var(self, name: str, t: TypeInfo) -> None:
+    def declare_var(self, name: str, t: TypeInfo, immutable: bool = False) -> None:
         if not self.scopes:
             self.push_scope()
         self.scopes[-1][name] = t
+        if immutable:
+            self.immutable_vars.add(name)
+
+    def is_immutable(self, name: str) -> bool:
+        return name in self.immutable_vars
 
     def lookup_var(self, name: str) -> Optional[TypeInfo]:
         for scope in reversed(self.scopes):
@@ -220,8 +226,13 @@ class Checker:
         if isinstance(stmt, ast.LetStmt):
             t = self._check_expr(stmt.value)
             if stmt.type_ann is not None:
-                t = self.resolve_type(stmt.type_ann)
-            self.declare_var(stmt.name, t)
+                expected = self.resolve_type(stmt.type_ann)
+                # Check implicit conversion violation (P0-2).
+                self._check_compat(expected, t, stmt)
+                t = expected
+            # Track immutability: let is immutable, var is mutable.
+            is_immutable = not getattr(stmt, "mutable", False)
+            self.declare_var(stmt.name, t, immutable=is_immutable)
             return t
         if isinstance(stmt, ast.ReturnStmt):
             if stmt.value is not None:
@@ -370,10 +381,43 @@ class Checker:
             self._check_expr(expr.end)
             return TypeInfo(kind="scalar", name="int")
         if isinstance(expr, ast.Assign):
-            return self._check_expr(expr.value)
+            t = self._check_expr(expr.value)
+            # Check immutable variable reassignment (P0-2).
+            if isinstance(expr.target, ast.Ident):
+                name = expr.target.name
+                if self.is_immutable(name):
+                    raise CheckError(
+                        f"cannot assign to immutable variable '{name}' "
+                        f"(use 'var' for mutable binding)",
+                        getattr(expr, 'line', 0), getattr(expr, 'col', 0))
+                # Check type compatibility.
+                existing = self.lookup_var(name)
+                if existing is not None:
+                    self._check_compat(existing, t, expr)
+            return t
         if isinstance(expr, ast.Lambda):
             return TypeInfo(kind="func")
         return TypeInfo(kind="unknown")
+
+    def _check_compat(self, expected: TypeInfo, actual: TypeInfo, node) -> None:
+        """Check that actual type is compatible with expected (P0-2)."""
+        if expected.kind == "unknown" or actual.kind == "unknown":
+            return
+        if expected.kind == actual.kind and expected.name == actual.name:
+            return
+        # Allow integer literal in float context (literal promotion).
+        if expected.is_float() and actual.is_int():
+            return
+        if expected.is_int() and actual.is_int():
+            return
+        if expected.is_float() and actual.is_float():
+            return
+        # Numeric family compat.
+        if expected.is_numeric() and actual.is_numeric():
+            return
+        raise CheckError(
+            f"type mismatch: expected {expected.name}, got {actual.name}",
+            getattr(node, 'line', 0), getattr(node, 'col', 0))
 
     def _check_binary_op(self, op: str, lt: TypeInfo, rt: TypeInfo,
                          node: ast.Expr) -> TypeInfo:

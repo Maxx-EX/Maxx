@@ -51,6 +51,8 @@ class Parser:
         self.toks = tokens
         self.pos = 0
         self.filename = filename
+        self.depth = 0
+        self.MAX_DEPTH = 500  # P1-9: prevent stack overflow on deep nesting
 
     # -- token stream helpers ----------------------------------------------
     def peek(self, offset: int = 0) -> Token:
@@ -579,6 +581,11 @@ class Parser:
 
     # -- expression parsing (Pratt) ---------------------------------------
     def parse_expr(self, min_prec: int = 0) -> ast.Expr:
+        self.depth += 1
+        if self.depth > self.MAX_DEPTH:
+            t = self.peek()
+            raise ParseError("expression nesting too deep (max 500)",
+                             t.line, t.col)
         left = self.parse_unary()
         while True:
             t = self.peek()

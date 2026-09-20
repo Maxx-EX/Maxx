@@ -272,6 +272,9 @@ class CCodegen:
             return TypeInfo(kind="scalar", name="str")
         if isinstance(e, ast.BoolLit):
             return TypeInfo(kind="scalar", name="bool")
+        if isinstance(e, ast.UnaryOp):
+            # P1-12: propagate type through unary negation.
+            return self._infer_type(e.operand)
         if isinstance(e, ast.Ident):
             if e.name in self._var_types:
                 return self._var_types[e.name]
