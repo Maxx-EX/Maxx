@@ -1,0 +1,8 @@
+// ui/button_demo.max - Button demo
+// TODO: UI framework not yet implemented
+~ std.io
+
+@ main() -> int:
+    io.println("UI Button Demo")
+    io.println("(UI framework is in planning stage)")
+    ret 0

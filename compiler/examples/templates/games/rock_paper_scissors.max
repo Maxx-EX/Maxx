@@ -1,0 +1,22 @@
+// games/rock_paper_scissors.max - Rock Paper Scissors
+~ std.io
+
+@ main() -> int:
+    io.println("=== Rock Paper Scissors ===")
+    io.println("Enter your choice (rock/paper/scissors):")
+    
+    let user_choice = read_line()
+    let computer_choice = "rock"  // Fixed for demo
+    
+    io.println("Computer chose: " + computer_choice)
+    
+    if user_choice == computer_choice:
+        io.println("It's a tie!")
+    elif (user_choice == "rock" && computer_choice == "scissors") ||
+         (user_choice == "paper" && computer_choice == "rock") ||
+         (user_choice == "scissors" && computer_choice == "paper"):
+        io.println("You win!")
+    else:
+        io.println("Computer wins!")
+    
+    ret 0

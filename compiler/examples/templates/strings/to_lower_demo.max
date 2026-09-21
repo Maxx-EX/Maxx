@@ -1,0 +1,9 @@
+// strings/to_lower_demo.max - String lowercase demo
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let s = "HELLO MAXX"
+    io.println("Original: " + s)
+    io.println("Lower: " + to_lower(s))
+    ret 0

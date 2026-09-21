@@ -1,0 +1,8 @@
+// net_crypto/md5_demo.max - MD5 hash demo
+~ std.io
+
+@ main() -> int:
+    let data = "Hello Maxx"
+    io.println("Data: " + data)
+    io.println("(MD5 hash demo - full implementation pending)")
+    ret 0

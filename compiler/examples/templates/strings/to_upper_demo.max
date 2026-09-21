@@ -1,0 +1,9 @@
+// strings/to_upper_demo.max - String uppercase demo
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let s = "hello maxx"
+    io.println("Original: " + s)
+    io.println("Upper: " + to_upper(s))
+    ret 0

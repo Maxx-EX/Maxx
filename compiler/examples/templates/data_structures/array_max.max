@@ -1,0 +1,16 @@
+// data_structures/array_max.max - Find maximum in array
+~ std.io
+
+@ main() -> int:
+    let arr = [3, 7, 2, 9, 4, 1, 8]
+    var max_val = arr[0]
+    var i = 1
+    let n = 7
+    
+    while i < n:
+        if arr[i] > max_val:
+            max_val = arr[i]
+        i = i + 1
+    
+    io.println("Maximum value: " + str(max_val))
+    ret 0

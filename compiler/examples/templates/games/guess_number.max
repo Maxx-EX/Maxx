@@ -1,6 +1,27 @@
-// guess_number - Maxx example template
-// Category: games
+// games/guess_number.max - Guess the number game
+~ std.io
+
 @ main() -> int:
-    io.println("Running guess_number...")
-    // TODO: implement guess_number
+    io.println("=== Guess the Number ===")
+    io.println("I'm thinking of a number between 1 and 100.")
+    io.println("Try to guess it!")
+    
+    let secret = 42
+    var attempts = 0
+    var guessed = 0
+    
+    while guessed != secret:
+        io.print("Your guess: ")
+        let input = read_line()
+        guessed = parse_int(input)
+        attempts = attempts + 1
+        
+        if guessed < secret:
+            io.println("Too low! Try again.")
+        elif guessed > secret:
+            io.println("Too high! Try again.")
+        else:
+            io.println("Congratulations! You got it!")
+            io.println("Attempts: " + str(attempts))
+    
     ret 0

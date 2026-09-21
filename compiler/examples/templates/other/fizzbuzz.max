@@ -1,6 +1,17 @@
-// fizzbuzz - Maxx example template
-// Category: other
+// other/fizzbuzz.max - FizzBuzz
+~ std.io
+
 @ main() -> int:
-    io.println("Running fizzbuzz...")
-    // TODO: implement fizzbuzz
+    io.println("=== FizzBuzz ===")
+    var i = 1
+    while i <= 20:
+        if i % 15 == 0:
+            io.println("FizzBuzz")
+        elif i % 3 == 0:
+            io.println("Fizz")
+        elif i % 5 == 0:
+            io.println("Buzz")
+        else:
+            io.println(str(i))
+        i = i + 1
     ret 0

@@ -1,0 +1,26 @@
+// data_structures/stack_demo.max - Stack implementation
+~ std.io
+
+@ main() -> int:
+    let stack = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    var top = 0
+    
+    // Push
+    stack[top] = 10
+    top = top + 1
+    stack[top] = 20
+    top = top + 1
+    stack[top] = 30
+    top = top + 1
+    
+    io.println("Stack after pushes:")
+    var i = top - 1
+    while i >= 0:
+        io.println(str(stack[i]))
+        i = i - 1
+    
+    // Pop
+    top = top - 1
+    io.println("Popped: " + str(stack[top]))
+    
+    ret 0

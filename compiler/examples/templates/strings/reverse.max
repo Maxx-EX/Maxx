@@ -1,0 +1,16 @@
+// strings/reverse.max - String reversal
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let s = "hello world"
+    io.println("Original: " + s)
+    
+    // Simple reverse by character
+    var i = str_len(s) - 1
+    io.print("Reversed: ")
+    while i >= 0:
+        io.print(str_char_at(s, i))
+        i = i - 1
+    io.println("")
+    ret 0

@@ -1,6 +1,7 @@
-// hello_world - Maxx example template
-// Category: other
+// other/hello_world.max - Hello World
+~ std.io
+
 @ main() -> int:
-    io.println("Running hello_world...")
-    // TODO: implement hello_world
+    io.println("Hello, World!")
+    io.println("Welcome to Maxx programming language!")
     ret 0

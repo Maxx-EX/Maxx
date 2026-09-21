@@ -1,0 +1,12 @@
+// net_crypto/caesar_cipher.max - Caesar cipher
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let text = "HELLO"
+    let shift = 3
+    
+    io.println("Original: " + text)
+    io.println("Shift: " + str(shift))
+    io.println("(Caesar cipher demo - full implementation pending)")
+    ret 0

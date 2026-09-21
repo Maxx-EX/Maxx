@@ -1,0 +1,9 @@
+// io/read_demo.max - File reading demo
+~ std.io
+~ std.fs
+
+@ main() -> int:
+    let content = read_file("/tmp/maxx_test.txt")
+    io.println("File content:")
+    io.println(content)
+    ret 0

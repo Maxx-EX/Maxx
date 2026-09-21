@@ -1,0 +1,9 @@
+// io/write_demo.max - File writing demo
+~ std.io
+~ std.fs
+
+@ main() -> int:
+    let content = "Hello from Maxx!\nThis is a test file.\n"
+    write_file("/tmp/maxx_test.txt", content)
+    io.println("File written successfully!")
+    ret 0

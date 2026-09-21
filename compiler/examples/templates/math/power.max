@@ -1,0 +1,13 @@
+// math/power.max - Power calculation
+~ std.io
+
+@ power(base: int, exp: int) -> int:
+    if exp == 0:
+        ret 1
+    ret base * power(base, exp - 1)
+
+@ main() -> int:
+    io.println("Power Demo")
+    io.println("2^10 = " + str(power(2, 10)))
+    io.println("3^5 = " + str(power(3, 5)))
+    ret 0

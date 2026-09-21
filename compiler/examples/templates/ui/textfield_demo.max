@@ -1,0 +1,8 @@
+// ui/textfield_demo.max - Text field demo
+// TODO: UI framework not yet implemented
+~ std.io
+
+@ main() -> int:
+    io.println("UI Text Field Demo")
+    io.println("(UI framework is in planning stage)")
+    ret 0

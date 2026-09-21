@@ -1,0 +1,13 @@
+// math/gcd.max - Greatest Common Divisor
+~ std.io
+
+@ gcd(a: int, b: int) -> int:
+    if b == 0:
+        ret a
+    ret gcd(b, a % b)
+
+@ main() -> int:
+    io.println("GCD Demo")
+    io.println("gcd(48, 18) = " + str(gcd(48, 18)))
+    io.println("gcd(100, 75) = " + str(gcd(100, 75)))
+    ret 0

@@ -1,0 +1,16 @@
+// math/fibonacci.max - Fibonacci sequence
+~ std.io
+
+@ fib(n: int) -> int:
+    if n <= 1:
+        ret n
+    ret fib(n - 1) + fib(n - 2)
+
+@ main() -> int:
+    io.println("Fibonacci Sequence")
+    var i = 0
+    while i < 10:
+        io.print("fib(" + str(i) + ") = " + str(fib(i)))
+        io.println("")
+        i = i + 1
+    ret 0

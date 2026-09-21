@@ -1,0 +1,9 @@
+// strings/trim_demo.max - String trim demo
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let s = "  hello world  "
+    io.println("Original: '" + s + "'")
+    io.println("Trimmed: '" + trim(s) + "'")
+    ret 0

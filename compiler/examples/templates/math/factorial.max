@@ -1,0 +1,15 @@
+// math/factorial.max - Factorial calculation
+~ std.io
+
+@ factorial(n: int) -> int:
+    if n <= 1:
+        ret 1
+    ret n * factorial(n - 1)
+
+@ main() -> int:
+    io.println("Factorial Demo")
+    var i = 1
+    while i <= 10:
+        io.println(str(i) + "! = " + str(factorial(i)))
+        i = i + 1
+    ret 0

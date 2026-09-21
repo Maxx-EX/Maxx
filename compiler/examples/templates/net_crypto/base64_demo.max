@@ -1,0 +1,8 @@
+// net_crypto/base64_demo.max - Base64 encoding demo
+~ std.io
+
+@ main() -> int:
+    let data = "Hello Maxx"
+    io.println("Original: " + data)
+    io.println("(Base64 encoding demo - full implementation pending)")
+    ret 0

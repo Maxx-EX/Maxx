@@ -1,0 +1,12 @@
+// io/print_demo.max - Print demo
+~ std.io
+
+@ main() -> int:
+    io.println("=== Print Demo ===")
+    io.println("This is a line with println.")
+    io.print("This is ")
+    io.print("on the ")
+    io.print("same line.")
+    io.println("")
+    io.println("Numbers: " + str(42) + " " + str(3.14))
+    ret 0
