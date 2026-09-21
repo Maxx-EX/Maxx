@@ -1,0 +1,194 @@
+//! std.random — 伪随机数生成（真实实现）。
+//!
+//! 默认算法：xoshiro256**（快速、可移植、无系统调用）。
+//! 安全随机（/dev/urandom / BCryptGenRandom）见 std.crypto。
+
+~ std.collections::Vec
+
+// ---------- 运行时位运算原语 ----------
+
+@ rol64(x: u64, n: int) -> u64
+@ shr64(x: u64, n: int) -> u64
+@ xor64(a: u64, b: u64) -> u64
+@ mul64(a: u64, b: u64) -> u64
+@ add64(a: u64, b: u64) -> u64
+
+// ---------- Rng ----------
+
+/// RNG 状态（xoshiro256**）
+pub # Rng:
+    s0: u64
+    s1: u64
+    s2: u64
+    s3: u64
+
+/// 以种子创建 Rng
+pub @ Rng::new(seed: u64) -> Rng:
+    // SplitMix64 初始化状态
+    var state = seed
+    let s0 = splitmix64(&state)
+    let s1 = splitmix64(&state)
+    let s2 = splitmix64(&state)
+    let s3 = splitmix64(&state)
+    ret Rng{ s0: s0, s1: s1, s2: s2, s3: s3 }
+
+@ splitmix64(state: &u64) -> u64:
+    let next = add64(state.v, 0x9e3779b97f4a7c15)
+    state.v = next
+    var z = next
+    z = xor64(z, shr64(z, 30))
+    z = mul64(z, 0xbf58476d1ce4e5b9)
+    z = xor64(z, shr64(z, 27))
+    z = mul64(z, 0x94d049bb133111eb)
+    z = xor64(z, shr64(z, 31))
+    ret z
+
+/// 从系统熵创建 Rng
+pub @ Rng::from_system() -> Rng:
+    // 引导阶段用固定种子；Level 2+ 读 /dev/urandom
+    ret Rng::new(0x12345678deadbeef)
+
+/// 下一 u64（xoshiro256**）
+pub @ Rng::next(r: Rng) -> u64:
+    let result = mul64(rol64(mul64(r.s1, 5), 7), 9)
+    let t = shr64(r.s1, 17)
+    r.s2 = xor64(r.s2, r.s0)
+    r.s3 = xor64(r.s3, r.s1)
+    r.s1 = xor64(r.s1, r.s2)
+    r.s0 = xor64(r.s0, r.s3)
+    r.s2 = xor64(r.s2, t)
+    r.s3 = rol64(r.s3, 45)
+    ret result
+
+/// [0, 1) 的 f64
+pub @ Rng::next_f64(r: Rng) -> f64:
+    // 取高 53 位作为 mantissa
+    let v = shr64(r.next(), 11)
+    ret f64(v) / 9007199254740992.0
+
+/// [lo, hi) 的均匀 int
+pub @ Rng::range(r: Rng, lo: int, hi: int) -> int:
+    if hi <= lo:
+        ret lo
+    let span = u64(hi - lo)
+    let v = r.next() % span
+    ret lo + int(v)
+
+/// 掷硬币 p 概率为 true
+pub @ Rng::chance(r: Rng, p: f64) -> bool:
+    ret r.next_f64() < p
+
+/// 从切片随机取一个（空则 none）
+pub @ Rng::pick<T>(r: Rng, items: Vec<T>) -> ?T:
+    if items.len() == 0:
+        ret none
+    let i = r.range(0, items.len())
+    ret some(items.at(i))
+
+/// 洗牌（Fisher-Yates）
+pub @ Rng::shuffle<T>(r: Rng, items: Vec<T>) -> Vec<T>:
+    let n = items.len()
+    var i = n - 1
+    while i > 0:
+        let j = r.range(0, i + 1)
+        let tmp = items.at(i)
+        items.set(i, items.at(j))
+        items.set(j, tmp)
+        i -= 1
+    ret items
+
+/// 生成 n 个随机数
+pub @ Rng::sequence(r: Rng, n: int) -> Vec<u64>:
+    let out = Vec<u64>::new()
+    var i = 0
+    while i < n:
+        out.push(r.next())
+        i += 1
+    ret out
+
+/// 高斯分布（Box-Muller）
+pub @ Rng::gaussian(r: Rng, mean: f64, stddev: f64) -> f64:
+    let u1 = r.next_f64() + 1e-10
+    let u2 = r.next_f64()
+    let mag = stddev * sqrt(-2.0 * ln(u1))
+    ret mean + mag * cos(2.0 * PI * u2)
+
+/// 全局 Rng（线程局部，引导阶段简化为固定实例）
+var _global_rng: Rng = Rng::new(42)
+
+pub @ global_rng() -> Rng:
+    ret _global_rng
+
+/// 全局 next_f64
+pub @ rand_f64() -> f64:
+    ret _global_rng.next_f64()
+
+/// 全局 [lo, hi) int
+pub @ rand_int(lo: int, hi: int) -> int:
+    ret _global_rng.range(lo, hi)
+
+/// 全局掷硬币
+pub @ rand_chance(p: f64) -> bool:
+    ret _global_rng.chance(p)
+
+// ---------- 扩展函数 ----------
+
+/// 从 [0, max) 取随机 int
+pub @ Rng::next_int(r: Rng, max: int) -> int:
+    ret r.range(0, max)
+
+/// 随机 bool
+pub @ Rng::next_bool(r: Rng) -> bool:
+    ret r.next_f64() < 0.5
+
+/// 从权重列表选择索引
+pub @ Rng::weighted_pick(r: Rng, weights: Vec<f64>) -> int:
+    var total = 0.0
+    var i = 0
+    while i < weights.len():
+        total += weights.at(i)
+        i += 1
+    let r = r.next_f64() * total
+    var acc = 0.0
+    i = 0
+    while i < weights.len():
+        acc += weights.at(i)
+        if r < acc:
+            ret i
+        i += 1
+    ret weights.len() - 1
+
+/// 生成随机字节数组
+pub @ Rng::next_bytes(r: Rng, n: int) -> Vec<u8>:
+    let out = Vec<u8>::new()
+    var i = 0
+    while i < n:
+        out.push(u8(r.next() % 256))
+        i += 1
+    ret out
+
+/// 洗牌副本
+pub @ Rng::shuffled<T>(r: Rng, items: Vec<T>) -> Vec<T>:
+    let copy = items.slice(0, items.len())
+    ret r.shuffle(copy)
+
+/// 随机排列 0..n
+pub @ Rng::permutation(r: Rng, n: int) -> Vec<int>:
+    let out = Vec<int>::new()
+    var i = 0
+    while i < n:
+        out.push(i)
+        i += 1
+    ret r.shuffle(out)
+
+// ---------- 测试示例 ----------
+///
+/// 测试示例：
+///   let mut r = random.Rng::new(42)
+///   io.println(r.next_f64())       // [0,1)
+///   io.println(r.range(1, 100))    // 1..99
+///   io.println(r.chance(0.5))     // true/false
+///   let mut arr = Vec<int>::new()
+///   arr.push(1); arr.push(2); arr.push(3)
+///   r.shuffle(arr)
+///   for x in arr: io.println(x)

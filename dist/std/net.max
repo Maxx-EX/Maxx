@@ -1,0 +1,168 @@
+//! std.net — 网络编程（真实实现）。
+//!
+//! TCP 客户端与简化 HTTP GET。
+//! 引导阶段封装 sys_socket/sys_connect/sys_send/sys_recv 原语。
+
+~ std.collections::Vec
+
+// ---------- 运行时原语 ----------
+
+@ sys_socket() -> ?int                    // 返回 socket fd
+@ sys_connect(fd: int, host: str, port: int) -> ?int
+@ sys_send(fd: int, data: str) -> ?int
+@ sys_recv(fd: int, buf_size: int) -> ?str
+@ sys_close_fd(fd: int) -> ()
+
+// ---------- TcpStream ----------
+
+/// TCP 流
+pub # TcpStream:
+    fd: int
+    host: str
+    port: int
+
+/// 连接到 host:port
+pub @ connect(host: str, port: int) -> Result<TcpStream, str>:
+    match sys_socket():
+        some(fd):
+            match sys_connect(fd, host, port):
+                some(_): ret ok(TcpStream{ fd: fd, host: host, port: port })
+                none:
+                    sys_close_fd(fd)
+                    ret err("connect failed")
+        none: ret err("socket creation failed")
+
+/// 发送数据
+pub @ send(s: TcpStream, data: str) -> Result<int, str>:
+    match sys_send(s.fd, data):
+        some(n): ret ok(n)
+        none: ret err("send failed")
+
+/// 接收数据
+pub @ recv(s: TcpStream, buf_size: int) -> Result<str, str>:
+    match sys_recv(s.fd, buf_size):
+        some(data): ret ok(data)
+        none: ret err("recv failed")
+
+/// 关闭连接
+pub @ close(s: TcpStream) -> ():
+    sys_close_fd(s.fd)
+
+/// 对端地址
+pub @ remote_addr(s: TcpStream) -> str:
+    ret f"{s.host}:{s.port}"
+
+// ---------- HTTP ----------
+
+/// 解析 URL：host、port、path
+@ parse_url(url: str) -> ?(str, int, str):
+    // 支持 http://host:port/path
+    let prefix = "http://"
+    if url.starts_with(prefix):
+        let rest = url.slice(prefix.len(), url.len()).unwrap()
+        // 找 / 分隔 host 和 path
+        match rest.index_of("/"):
+            some(slash):
+                let hostport = rest.slice(0, slash).unwrap()
+                let path = rest.slice(slash, rest.len()).unwrap()
+                // 找 : 分隔 port
+                match hostport.index_of(":"):
+                    some(colon):
+                        let host = hostport.slice(0, colon).unwrap()
+                        let port_str = hostport.slice(colon + 1, hostport.len()).unwrap()
+                        match port_str.parse_int():
+                            ok(p): ret some((host, p, path))
+                            err(_): ret some((host, 80, path))
+                    none: ret some((hostport, 80, path))
+            none: ret some((rest, 80, "/"))
+    ret none
+
+/// HTTP GET 请求（简化版）
+pub @ http_get(url: str) -> Result<str, str>:
+    match parse_url(url):
+        some((host, port, path)):
+            match connect(host, port):
+                some(stream):
+                    let req = f"GET {path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\n\r\n"
+                    match send(stream, req):
+                        ok(_):
+                            // 读响应（简化：一次性读）
+                            var response = ""
+                            loop:
+                                match recv(stream, 4096):
+                                    ok(chunk):
+                                        if chunk.len() == 0:
+                                            break
+                                        response += chunk
+                                    err(_): break
+                            close(stream)
+                            // 分离 header 和 body
+                            match response.indexOf("\r\n\r\n"):
+                                Some(sep):
+                                    ret ok(response.slice(sep + 4, response.len()).unwrap())
+                                none: ret ok(response)
+                        err(e):
+                            close(stream)
+                            ret err(e)
+                err(e): ret err(e)
+        none: ret err("invalid URL")
+
+/// HTTP POST（简化版）
+pub @ http_post(url: str, body: str) -> Result<str, str>:
+    match parse_url(url):
+        some((host, port, path)):
+            match connect(host, port):
+                some(stream):
+                    let req = f"POST {path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: {body.len()}\r\nConnection: close\r\n\r\n{body}"
+                    match send(stream, req):
+                        ok(_):
+                            var response = ""
+                            loop:
+                                match recv(stream, 4096):
+                                    ok(chunk):
+                                        if chunk.len() == 0: break
+                                        response += chunk
+                                    err(_): break
+                            close(stream)
+                            match response.indexOf("\r\n\r\n"):
+                                Some(sep):
+                                    ret ok(response.slice(sep + 4, response.len()).unwrap())
+                                none: ret ok(response)
+                        err(e):
+                            close(stream)
+                            ret err(e)
+                err(e): ret err(e)
+        none: ret err("invalid URL")
+
+// ---------- 扩展函数 ----------
+
+/// TCP 服务端监听（简化）
+pub @ listen(port: int) -> Result<TcpListener, str>:
+    ret err("not implemented in bootstrap")
+
+/// TCP 监听句柄
+pub # TcpListener:
+    fd: int
+
+/// 接受连接
+pub @ accept(l: TcpListener) -> Result<TcpStream, str>:
+    ret err("not implemented")
+
+/// 关闭监听
+pub @ close_listener(l: TcpListener) -> ():
+    ()
+
+/// 超时设置
+pub @ set_timeout(s: TcpStream, ms: int) -> ():
+    ()
+
+/// 解析 IP 地址（简化）
+pub @ resolve(host: str) -> Result<str, str>:
+    ret ok(host)
+
+// ---------- 测试示例 ----------
+///
+/// 测试示例：
+///   match net.http_get("http://example.com/"):
+///       ok(body): io.println(body.slice(0, 100))
+///       err(e): io.println(e)

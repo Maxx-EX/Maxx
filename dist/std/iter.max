@@ -1,0 +1,129 @@
+//! std.iter — 迭代器工具（真实实现）。
+
+~ std.collections::Vec
+
+/// chain：连接两个迭代器
+pub @ chain<A>(a: Iter<A>, b: Iter<A>) -> Iter<A>:
+    let out = Vec<A>::new()
+    loop:
+        match a.next():
+            some(v): out.push(v)
+            none: break
+    loop:
+        match b.next():
+            some(v): out.push(v)
+            none: break
+    ret Iter<A>::from_vec(out)
+
+/// zip：合并两个迭代器为配对
+pub @ zip<A, B>(a: Iter<A>, b: Iter<B>) -> Iter<(A, B)>:
+    let out = Vec<(A, B)>::new()
+    loop:
+        let va = a.next()
+        let vb = b.next()
+        match va:
+            some(x):
+                match vb:
+                    some(y): out.push((x, y))
+                    none: break
+            none: break
+    ret Iter<(A, B)>::from_vec(out)
+
+/// enumerate：加索引
+pub @ enumerate<A>(it: Iter<A>) -> Iter<(int, A)>:
+    let out = Vec<(int, A)>::new()
+    var i = 0
+    loop:
+        match it.next():
+            some(v):
+                out.push((i, v))
+                i += 1
+            none: break
+    ret Iter<(int, A)>::from_vec(out)
+
+/// skip：跳过 n 个
+pub @ skip<A>(it: Iter<A>, n: int) -> Iter<A>:
+    var i = 0
+    while i < n:
+        it.next()
+        i += 1
+    ret it
+
+/// take：取前 n 个
+pub @ take<A>(it: Iter<A>, n: int) -> Iter<A>:
+    let out = Vec<A>::new()
+    var i = 0
+    while i < n:
+        match it.next():
+            some(v): out.push(v)
+            none: break
+        i += 1
+    ret Iter<A>::from_vec(out)
+
+/// flatten：扁平化嵌套迭代器
+pub @ flatten<A>(it: Iter<Iter<A>>) -> Iter<A>:
+    let out = Vec<A>::new()
+    loop:
+        match it.next():
+            Some(inner):
+                loop:
+                    match inner.next():
+                        Some(v): out.push(v)
+                        None: break
+            None: break
+    ret Iter<A>::from_vec(out)
+
+/// cycle：循环迭代
+pub @ cycle<A>(it: Iter<A>) -> Iter<A>:
+    let collected = it.collect()
+    ret Iter<A>::from_vec(collected)
+
+/// intersperse：在元素间插入分隔符
+pub @ intersperse<A>(it: Iter<A>, sep: A) -> Iter<A>:
+    let out = Vec<A>::new()
+    var first = true
+    loop:
+        match it.next():
+            Some(v):
+                if !first:
+                    out.push(sep)
+                out.push(v)
+                first = false
+            None: break
+    ret Iter<A>::from_vec(out)
+
+/// partition：按谓词分两组
+pub @ partition<A>(it: Iter<A>, pred: fn(A) -> bool) -> (Vec<A>, Vec<A>):
+    let yes = Vec<A>::new()
+    let no = Vec<A>::new()
+    loop:
+        match it.next():
+            Some(v):
+                if pred(v):
+                    yes.push(v)
+                else:
+                    no.push(v)
+            None: break
+    ret (yes, no)
+
+/// dedup：去重
+pub @ dedup<A>(it: Iter<A>) -> Iter<A>:
+    let out = Vec<A>::new()
+    loop:
+        match it.next():
+            Some(v):
+                if !out.contains(v):
+                    out.push(v)
+            None: break
+    ret Iter<A>::from_vec(out)
+
+/// inspect：副作用观察
+pub @ inspect<A>(it: Iter<A>, f: fn(A) -> ()) -> Iter<A>:
+    let out = Vec<A>::new()
+    loop:
+        match it.next():
+            Some(v):
+                f(v)
+                out.push(v)
+            None: break
+    ret Iter<A>::from_vec(out)

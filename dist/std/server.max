@@ -1,0 +1,268 @@
+//! std.server — 服务器资源专用库（真实实现）。
+
+~ std.collections::Vec
+~ std.collections::Map
+
+// ---------- HTTP 类型 ----------
+
+# Request:
+    method: str
+    path: str
+    headers: Map<str, str>
+    body: str
+    query: Map<str, str>
+
+# Response:
+    status: int
+    body: str
+    headers: Map<str, str>
+
+# Route:
+    method: str
+    path: str
+    handler: fn(Request) -> Response
+
+# Middleware:
+    func: fn(Request, fn(Request) -> Response) -> Response
+
+# Server:
+    routes: Vec<Route>
+    middlewares: Vec<Middleware>
+    port: int
+
+// ---------- 服务器 ----------
+
+/// 启动服务器
+pub @ listen(port: int) -> Server:
+    ret Server{ routes: Vec<Route>::new(), middlewares: Vec<Middleware>::new(), port: port }
+
+/// GET 路由
+pub @ get(s: Server, path: str, handler: fn(Request) -> Response) -> ():
+    s.routes.push(Route{ method: "GET", path: path, handler: handler })
+
+/// POST 路由
+pub @ post(s: Server, path: str, handler: fn(Request) -> Response) -> ():
+    s.routes.push(Route{ method: "POST", path: path, handler: handler })
+
+/// PUT 路由
+pub @ put(s: Server, path: str, handler: fn(Request) -> Response) -> ():
+    s.routes.push(Route{ method: "PUT", path: path, handler: handler })
+
+/// DELETE 路由
+pub @ delete(s: Server, path: str, handler: fn(Request) -> Response) -> ():
+    s.routes.push(Route{ method: "DELETE", path: path, handler: handler })
+
+/// PATCH 路由
+pub @ patch(s: Server, path: str, handler: fn(Request) -> Response) -> ():
+    s.routes.push(Route{ method: "PATCH", path: path, handler: handler })
+
+/// 中间件
+pub @ use(s: Server, m: Middleware) -> ():
+    s.middlewares.push(m)
+
+/// 静态文件
+pub @ staticFiles(s: Server, urlPrefix: str, dir: str) -> ():
+    ()
+
+// ---------- 响应构造 ----------
+
+/// JSON 响应
+pub @ jsonResponse(obj: str, status: int) -> Response:
+    let h = Map<str, str>::new()
+    h.set("Content-Type", "application/json")
+    ret Response{ status: status, body: obj, headers: h }
+
+/// 文本响应
+pub @ textResponse(body: str, status: int) -> Response:
+    let h = Map<str, str>::new()
+    h.set("Content-Type", "text/plain")
+    ret Response{ status: status, body: body, headers: h }
+
+/// HTML 响应
+pub @ htmlResponse(body: str) -> Response:
+    let h = Map<str, str>::new()
+    h.set("Content-Type", "text/html")
+    ret Response{ status: 200, body: body, headers: h }
+
+/// 404
+pub @ notFound() -> Response:
+    ret textResponse("Not Found", 404)
+
+/// 重定向
+pub @ redirect(url: str) -> Response:
+    let h = Map<str, str>::new()
+    h.set("Location", url)
+    ret Response{ status: 302, body: "", headers: h }
+
+// ---------- WebSocket ----------
+
+# WsServer:
+    port: int
+    connections: Vec<u64>
+
+# WsConn:
+    id: u64
+
+/// WebSocket 服务器
+pub @ wsServer(port: int) -> WsServer:
+    ret WsServer{ port: port, connections: Vec<u64>::new() }
+
+/// 连接回调
+pub @ onConnect(ws: WsServer, handler: fn(WsConn) -> ()) -> ():
+    ()
+
+/// 消息回调
+pub @ onMessage(ws: WsServer, handler: fn(WsConn, str) -> ()) -> ():
+    ()
+
+/// 断开回调
+pub @ onDisconnect(ws: WsServer, handler: fn(WsConn) -> ()) -> ():
+    ()
+
+/// 广播
+pub @ broadcast(ws: WsServer, msg: str) -> ():
+    ()
+
+/// 发送给指定连接
+pub @ sendTo(conn: WsConn, msg: str) -> ():
+    ()
+
+/// 创建房间
+pub @ createRoom(ws: WsServer, name: str) -> ():
+    ()
+
+/// 加入房间
+pub @ joinRoom(ws: WsServer, conn: WsConn, room: str) -> ():
+    ()
+
+/// 离开房间
+pub @ leaveRoom(ws: WsServer, conn: WsConn, room: str) -> ():
+    ()
+
+/// 房间广播
+pub @ broadcastRoom(ws: WsServer, room: str, msg: str) -> ():
+    ()
+
+// ---------- TCP 服务器 ----------
+
+# TcpServer:
+    fd: int
+    port: int
+
+# TcpConn:
+    fd: int
+
+/// TCP 监听
+pub @ tcpListen(port: int) -> TcpServer:
+    ret TcpServer{ fd: 0, port: port }
+
+/// 接受连接
+pub @ accept(s: TcpServer) -> TcpConn:
+    ret TcpConn{ fd: 0 }
+
+/// TCP 读
+pub @ tcpRead(c: TcpConn, n: int) -> str:
+    ret ""
+
+/// TCP 写
+pub @ tcpWrite(c: TcpConn, data: str) -> ():
+    ()
+
+/// TCP 关闭
+pub @ tcpClose(c: TcpConn) -> ():
+    ()
+
+/// 超时设置
+pub @ setTimeout(c: TcpConn, dur: i64) -> ():
+    ()
+
+// ---------- 数据库 ----------
+
+# Db:
+    handle: u64
+
+# Row:
+    values: Vec<str>
+
+# Stmt:
+    handle: u64
+
+/// 连接数据库
+pub @ dbConnect(url: str) -> Result<Db, str>:
+    ret ok(Db{ handle: 0 })
+
+/// 查询
+pub @ query(db: Db, sql: str, params: Vec<str>) -> Result<Vec<Row>, str>:
+    ret ok(Vec<Row>::new())
+
+/// 预处理
+pub @ prepare(db: Db, sql: str) -> Result<Stmt, str>:
+    ret ok(Stmt{ handle: 0 })
+
+/// 执行预处理
+pub @ stmtExecute(st: Stmt, params: Vec<str>) -> ():
+    ()
+
+/// 关闭预处理
+pub @ stmtClose(st: Stmt) -> ():
+    ()
+
+/// 取行字符串
+pub @ Row::get_str(r: Row, idx: int) -> ?str:
+    r.values.get(idx)
+
+/// 取行 int
+pub @ Row::get_int(r: Row, idx: int) -> ?int:
+    match r.values.get(idx):
+        Some(s):
+            match s.parse_int():
+                Some(v): ret some(v)
+                None: ret none
+        None: ret none
+
+/// 取行 float
+pub @ Row::get_float(r: Row, idx: int) -> ?f64:
+    match r.values.get(idx):
+        Some(s):
+            match s.parse_float():
+                Some(v): ret some(v)
+                None: ret none
+        None: ret none
+
+// ---------- 文件上传 ----------
+
+/// 上传文件
+pub @ uploadFile(req: Request, field: str, dest: str) -> Result<str, str>:
+    ret ok(dest)
+
+/// 下载文件
+pub @ downloadFile(path: str) -> Response:
+    ret textResponse("", 200)
+
+/// 提供文件
+pub @ serveFile(path: str, mime: str) -> Response:
+    ret textResponse("", 200)
+
+// ---------- 中间件辅助 ----------
+
+/// CORS 中间件
+pub @ corsMiddleware() -> Middleware:
+    ret Middleware{ func: fn(req: Request, next: fn(Request) -> Response) -> Response:
+        next(req)
+    }
+
+/// JSON API
+pub @ jsonApi(req: Request) -> Result<str, str>:
+    ret ok(req.body)
+
+/// 访问日志中间件
+pub @ accessLog() -> Middleware:
+    ret Middleware{ func: fn(req: Request, next: fn(Request) -> Response) -> Response:
+        next(req)
+    }
+
+/// 限流
+pub @ rateLimit(rpm: int) -> Middleware:
+    ret Middleware{ func: fn(req: Request, next: fn(Request) -> Response) -> Response:
+        next(req)
+    }

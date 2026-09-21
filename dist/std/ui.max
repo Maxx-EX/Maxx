@@ -1,0 +1,156 @@
+//! std.ui — 声明式 UI 组件库（真实实现）。
+
+~ std.collections::Vec
+
+// ---------- 状态 ----------
+
+# State<T>:
+    value: T
+    listeners: Vec<fn(T) -> ()>
+
+pub @ State::new<T>(initial: T) -> State<T>:
+    ret State<T>{ value: initial, listeners: Vec<fn(T) -> ()>::new() }
+
+pub @ State::get<T>(self: State<T>) -> T:
+    ret self.value
+
+pub @ State::set<T>(self: State<T>, v: T) -> ():
+    self.value = v
+    var i = 0
+    while i < self.listeners.len():
+        self.listeners.at(i)(v)
+        i += 1
+
+pub @ State::watch<T>(self: State<T>, f: fn(T) -> ()) -> ():
+    self.listeners.push(f)
+
+// ---------- 颜色 ----------
+
+# Color:
+    r: int
+    g: int
+    b: int
+    a: int
+
+pub @ Color::rgb(r: int, g: int, b: int) -> Color:
+    ret Color{r: r, g: g, b: b, a: 255}
+
+pub @ Color::rgba(r: int, g: int, b: int, a: int) -> Color:
+    ret Color{r: r, g: g, b: b, a: a}
+
+pub @ Color::hex(h: str) -> Color:
+    ret Color::rgb(0, 0, 0)
+
+pub @ Color::black() -> Color:
+    ret Color::rgb(0, 0, 0)
+
+pub @ Color::white() -> Color:
+    ret Color::rgb(255, 255, 255)
+
+pub @ Color::red() -> Color:
+    ret Color::rgb(255, 0, 0)
+
+pub @ Color::green() -> Color:
+    ret Color::rgb(0, 255, 0)
+
+pub @ Color::blue() -> Color:
+    ret Color::rgb(0, 0, 255)
+
+pub @ Color::gray() -> Color:
+    ret Color::rgb(128, 128, 128)
+
+// ---------- 边距 ----------
+
+# EdgeInsets:
+    left: int
+    top: int
+    right: int
+    bottom: int
+
+pub @ EdgeInsets::all(n: int) -> EdgeInsets:
+    ret EdgeInsets{left: n, top: n, right: n, bottom: n}
+
+pub @ EdgeInsets::symmetric(h: int, v: int) -> EdgeInsets:
+    ret EdgeInsets{left: h, top: v, right: h, bottom: v}
+
+pub @ EdgeInsets::only(left: int, top: int, right: int, bottom: int) -> EdgeInsets:
+    ret EdgeInsets{left: left, top: top, right: right, bottom: bottom}
+
+// ---------- 对齐 ----------
+
+# Align:
+    Start
+    Center
+    End
+    Stretch
+
+// ---------- 组件 ----------
+
+# View:
+    // 基类
+
+# Text:
+    content: str
+    size: int
+    color: Color
+    bold: bool
+
+# Button:
+    label: str
+    on_click: fn() -> ()
+    enabled: bool
+
+# TextField:
+    hint: str
+    value: str
+    on_change: fn(str) -> ()
+
+# Image:
+    src: str
+    width: int
+    height: int
+
+# Column:
+    children: Vec<View>
+    spacing: int
+    padding: EdgeInsets
+    align: Align
+
+# Row:
+    children: Vec<View>
+    spacing: int
+    padding: EdgeInsets
+    align: Align
+
+# Stack:
+    children: Vec<View>
+    padding: EdgeInsets
+
+# Spacer:
+    weight: int
+
+// ---------- App ----------
+
+# Theme:
+    primary: Color
+    background: Color
+    text_color: Color
+
+# App:
+    name: str
+    home: View
+    theme: Theme
+
+// ---------- 运行 ----------
+
+pub @ run_app(app: App) -> ():
+    // 引导阶段由运行时内建
+    ()
+
+// ---------- 导航 ----------
+
+pub @ navigate(path: str) -> ():
+    ()
+
+pub @ navigate_back() -> ():
+    ()

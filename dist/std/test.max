@@ -1,0 +1,176 @@
+//! std.test — 单元测试框架（真实实现）。
+//!
+//! 收集 describe/it 块，运行全部测试，统计通过/失败。
+//! 断言失败不崩溃，记录失败并继续。
+
+~ std.io
+
+// ---------- 测试状态（模块级全局） ----------
+
+var _current_suite: str = ""
+var _total: int = 0
+var _passed: int = 0
+var _failed: int = 0
+var _skipped: int = 0
+var _failures: Vec<str> = Vec<str>::new()
+
+// ---------- 断言 ----------
+
+/// 无条件断言
+pub @ assert(cond: bool, msg: str) -> ():
+    if !cond:
+        _failed += 1
+        _failures.push(f"{_current_suite}: {msg}")
+        eprintln(f"  FAIL: {msg}")
+
+/// 断言相等
+pub @ assert_eq<T>(a: T, b: T) -> ():
+    if a != b:
+        assert(false, f"expected {a}, got {b}")
+
+/// 断言不等
+pub @ assert_ne<T>(a: T, b: T) -> ():
+    if a == b:
+        assert(false, f"expected not equal, both are {a}")
+
+/// 断言大约相等（浮点）
+pub @ assert_close(a: f64, b: f64, eps: f64) -> ():
+    let mut diff = a - b
+    if diff < 0.0:
+        diff = -diff
+    if diff > eps:
+        assert(false, f"{a} != {b} (eps={eps})")
+
+/// 断言为 true
+pub @ assert_true(v: bool) -> ():
+    if !v:
+        assert(false, "expected true")
+
+/// 断言为 false
+pub @ assert_false(v: bool) -> ():
+    if v:
+        assert(false, "expected false")
+
+/// 断言 option 为 some
+pub @ assert_some<T>(v: ?T) -> ():
+    match v:
+        some(_): ()
+        none: assert(false, "expected some, got none")
+
+/// 断言 option 为 none
+pub @ assert_none<T>(v: ?T) -> ():
+    match v:
+        some(_): assert(false, "expected none, got some")
+        none: ()
+
+/// 断言 result 为 ok
+pub @ assert_ok<T, E>(v: Result<T, E>) -> ():
+    match v:
+        ok(_): ()
+        err(_): assert(false, "expected ok, got err")
+
+/// 断言 result 为 err
+pub @ assert_err<T, E>(v: Result<T, E>) -> ():
+    match v:
+        ok(_): assert(false, "expected err, got ok")
+        err(_): ()
+
+// ---------- 测试组织 ----------
+
+/// 测试套件（描述一组测试）
+pub @ describe(name: str, body: fn() -> ()) -> ():
+    let old = _current_suite
+    _current_suite = name
+    println(f"\n{name}")
+    body()
+    _current_suite = old
+
+/// 单个测试用例
+pub @ it(name: str, body: fn() -> ()) -> ():
+    _total += 1
+    let old_failed = _failed
+    body()
+    if _failed == old_failed:
+        _passed += 1
+        println(f"  PASS {name}")
+
+/// 跳过当前用例
+pub @ skip(reason: str) -> ():
+    _skipped += 1
+    println(f"  SKIP {reason}")
+
+// ---------- 运行 ----------
+
+/// 运行所有已注册测试，返回统计
+pub @ run() -> TestStats:
+    println("\n=== Test Results ===")
+    println(f"Total:  {_total}")
+    println(f"Passed: {_passed}")
+    println(f"Failed: {_failed}")
+    println(f"Skipped: {_skipped}")
+    if _failed > 0:
+        println("\nFailures:")
+        var i = 0
+        while i < _failures.len():
+            println(f"  - {_failures.at(i)}")
+            i += 1
+    ret TestStats{
+        total: _total,
+        passed: _passed,
+        failed: _failed,
+        skipped: _skipped,
+    }
+
+/// 测试统计
+pub # TestStats:
+    total: int
+    passed: int
+    failed: int
+    skipped: int
+
+/// 是否全部通过
+pub @ TestStats::all_passed(s: TestStats) -> bool:
+    ret s.failed == 0
+
+// ---------- 扩展函数 ----------
+
+/// 断言字符串相等
+pub @ assert_str_eq(a: str, b: str) -> ():
+    if a != b:
+        assert(false, f"expected '{b}', got '{a}'")
+
+/// 断言数字在范围内
+pub @ assert_between(x: f64, lo: f64, hi: f64) -> ():
+    if x < lo || x > hi:
+        assert(false, f"{x} not in [{lo}, {hi}]")
+
+/// 断言数组长度
+pub @ assert_len<T>(arr: std.collections::Vec<T>, expected: int) -> ():
+    if arr.len() != expected:
+        assert(false, f"expected len {expected}, got {arr.len()}")
+
+/// 断言 panic（简化：引导阶段不支持）
+pub @ assert_panic(f: fn() -> ()) -> ():
+    f()
+
+/// 性能计时测试
+pub @ bench(name: str, f: fn() -> ()) -> ():
+    let start = now()
+    f()
+    let d = start.elapsed()
+    println(f"  BENCH {name}: {d.as_millis()}ms")
+
+// ---------- 测试示例 ----------
+///
+/// 测试示例：
+///   test.describe("math", fn():
+///       test.it("add", fn():
+///           test.assert_eq(1 + 1, 2)
+///       )
+///       test.it("sqrt", fn():
+///           test.assert_close(math.sqrt(2.0), 1.4142, 0.001)
+///       )
+///   )
+///   let stats = test.run()
+///   if !stats.all_passed():
+///       process.exit(1)

@@ -1,0 +1,349 @@
+//! std.regex — 正则表达式引擎（真实实现）。
+//!
+//! 支持语法：. * + ? [abc] [^abc] ^ $ | 分组 ()
+//! 引导阶段用递归下降直接匹配，不构建 NFA/DFA。
+
+~ std.collections::Vec
+
+/// 编译后的正则（内部存储模式字符串）
+pub # Regex:
+    pattern: str
+    anchored_start: bool
+    anchored_end: bool
+
+/// 编译正则
+pub @ compile(pattern: str) -> Result<Regex, str>:
+    if pattern.len() == 0:
+        ret err("empty pattern")
+    let mut a_start = false
+    let mut a_end = false
+    let mut p = pattern
+    if p.char_at(0) == some('^'):
+        a_start = true
+        p = p.slice(1, p.len()).unwrap()
+    if p.len() > 0 && p.char_at(p.len() - 1) == some('$'):
+        a_end = true
+        p = p.slice(0, p.len() - 1).unwrap()
+    ret ok(Regex{ pattern: p, anchored_start: a_start, anchored_end: a_end })
+
+/// 完全匹配
+pub @ matches(r: Regex, s: str) -> bool:
+    if r.anchored_start && r.anchored_end:
+        ret match_full(r.pattern, s)
+    if r.anchored_start:
+        ret match_from(r.pattern, s, 0) >= 0
+    if r.anchored_end:
+        let i = match_search(r.pattern, s)
+        ret i >= 0 && i + match_len(r.pattern, s, i) == s.len()
+    ret match_search(r.pattern, s) >= 0
+
+/// 搜索：返回首次匹配的起止
+pub @ search(r: Regex, s: str) -> ?(int, int):
+    let start = match_search(r.pattern, s)
+    if start < 0:
+        ret none
+    let len = match_len(r.pattern, s, start)
+    ret some((start, start + len))
+
+/// 替换
+pub @ replace(r: Regex, s: str, repl: str) -> str:
+    match search(r, s):
+        some((start, end)):
+            ret s.slice(0, start).unwrap() + repl + s.slice(end, s.len()).unwrap()
+        none: ret s
+
+/// 替换全部
+pub @ replace_all(r: Regex, s: str, repl: str) -> str:
+    var result = ""
+    var pos = 0
+    loop:
+        match search_from(r, s, pos):
+            some((start, end)):
+                result += s.slice(pos, start).unwrap()
+                result += repl
+                pos = end
+            none:
+                result += s.slice(pos, s.len()).unwrap()
+                break
+    ret result
+
+/// 按正则切分
+pub @ split(r: Regex, s: str) -> Vec<str>:
+    let parts = Vec<str>::new()
+    var pos = 0
+    loop:
+        match search_from(r, s, pos):
+            some((start, end)):
+                parts.push(s.slice(pos, start).unwrap())
+                pos = end
+            none:
+                parts.push(s.slice(pos, s.len()).unwrap())
+                break
+    ret parts
+
+// ---------- 匹配引擎（递归下降） ----------
+
+@ match_full(pat: str, s: str) -> bool:
+    let m = match_alt(pat, s, 0)
+    ret m >= 0 && m == s.len()
+
+@ match_search(pat: str, s: str) -> int:
+    var i = 0
+    while i <= s.len():
+        if match_from(pat, s, i) >= 0:
+            ret i
+        i += 1
+    ret -1
+
+@ search_from(r: Regex, s: str, from: int) -> ?(int, int):
+    var i = from
+    while i <= s.len():
+        let m = match_from(r.pattern, s, i)
+        if m >= 0:
+            ret some((i, i + m))
+        i += 1
+    ret none
+
+@ match_from(pat: str, s: str, start: int) -> int:
+    let m = match_alt(pat, s, start)
+    ret m
+
+@ match_len(pat: str, s: str, start: int) -> int:
+    let m = match_alt(pat, s, start)
+    if m < 0:
+        ret 0
+    ret m - start
+
+/// 匹配 alternation（a|b|c）
+@ match_alt(pat: str, s: str, pos: int) -> int:
+    // 简化：找 | 分割
+    var i = 0
+    var last_split = 0
+    var depth = 0
+    while i < pat.len():
+        let c = pat.char_at(i).unwrap()
+        if c == '(':
+            depth += 1
+        elif c == ')':
+            depth -= 1
+        elif c == '|' && depth == 0:
+            let branch = pat.slice(last_split, i).unwrap()
+            let m = match_concat(branch, s, pos)
+            if m >= 0:
+                ret m
+            last_split = i + 1
+        i += 1
+    let branch = pat.slice(last_split, pat.len()).unwrap()
+    ret match_concat(branch, s, pos)
+
+/// 匹配连接序列
+@ match_concat(pat: str, s: str, pos: int) -> int:
+    if pat.len() == 0:
+        ret pos
+    var p = pos
+    var i = 0
+    while i < pat.len():
+        // 读一个原子 + 量词
+        let (atom, consumed, quant) = read_atom(pat, i)
+        match quant:
+            '*':
+                // 贪婪重复
+                loop:
+                    let m = match_atom(atom, s, p)
+                    if m < 0:
+                        break
+                    p = m
+            '+':
+                let m = match_atom(atom, s, p)
+                if m < 0:
+                    ret -1
+                p = m
+                loop:
+                    let m2 = match_atom(atom, s, p)
+                    if m2 < 0:
+                        break
+                    p = m2
+            '?':
+                let m = match_atom(atom, s, p)
+                if m >= 0:
+                    p = m
+            _:
+                let m = match_atom(atom, s, p)
+                if m < 0:
+                    ret -1
+                p = m
+        i += consumed
+    ret p
+
+@ read_atom(pat: str, i: int) -> (str, int, char):
+    let c = pat.char_at(i).unwrap()
+    if c == '(':
+        // 找匹配的 )
+        var depth = 1
+        var j = i + 1
+        while j < pat.len() && depth > 0:
+            let cc = pat.char_at(j).unwrap()
+            if cc == '(': depth += 1
+            elif cc == ')': depth -= 1
+            j += 1
+        let inner = pat.slice(i + 1, j - 1).unwrap()
+        // 检查量词
+        if j < pat.len():
+            let q = pat.char_at(j).unwrap()
+            if q == '*' || q == '+' || q == '?':
+                ret (inner, j - i + 1, q)
+        ret (inner, j - i, '$')  // '$' 表示无量词
+    if c == '[':
+        var j = i + 1
+        if j < pat.len() && pat.char_at(j).unwrap() == '^':
+            j += 1
+        while j < pat.len() && pat.char_at(j).unwrap() != ']':
+            j += 1
+        j += 1  // skip ]
+        if j < pat.len():
+            let q = pat.char_at(j).unwrap()
+            if q == '*' || q == '+' || q == '?':
+                return (pat.slice(i, j + 1).unwrap(), j + 1 - i, q)
+        ret (pat.slice(i, j).unwrap(), j - i, '$')
+    if c == '.':
+        if i + 1 < pat.len():
+            let q = pat.char_at(i + 1).unwrap()
+            if q == '*' || q == '+' || q == '?':
+                return (".", 2, q)
+        return (".", 1, '$')
+    // 普通字符
+    if i + 1 < pat.len():
+        let q = pat.char_at(i + 1).unwrap()
+        if q == '*' || q == '+' || q == '?':
+            return (char_to_str(c), 2, q)
+    return (char_to_str(c), 1, '$')
+
+@ match_atom(atom: str, s: str, pos: int) -> int:
+    if atom == ".":
+        if pos < s.len():
+            return pos + 1
+        ret -1
+    if atom.starts_with("["):
+        // 字符类
+        let negated = atom.char_at(1).unwrap() == '^'
+        var start = 1
+        if negated: start = 2
+        var end = atom.len() - 1  // skip ]
+        if pos >= s.len():
+            ret -1
+        let c = s.char_at(pos).unwrap()
+        var matched = false
+        var i = start
+        while i < end:
+            let cc = atom.char_at(i).unwrap()
+            if i + 2 < end && atom.char_at(i + 1).unwrap() == '-':
+                let lo = cc
+                let hi = atom.char_at(i + 2).unwrap()
+                if c >= lo && c <= hi:
+                    matched = true
+                i += 3
+            else:
+                if c == cc:
+                    matched = true
+                i += 1
+        if negated:
+            matched = !matched
+        if matched:
+            ret pos + 1
+        ret -1
+    // 字面字符串
+    var i = 0
+    while i < atom.len():
+        if pos + i >= s.len():
+            ret -1
+        if s.char_at(pos + i).unwrap() != atom.char_at(i).unwrap():
+            ret -1
+        i += 1
+    ret pos + atom.len()
+
+@ char_to_str(c: char) -> str:
+    ret ""
+
+// ---------- 便捷 API ----------
+
+/// 测试是否匹配（完整匹配）
+pub @ test(pattern: str, s: str) -> bool:
+    match compile(pattern):
+        ok(r): ret matches(r, s)
+        err(_): ret false
+
+/// 提取首个匹配的子串
+pub @ extract(r: Regex, s: str) -> ?str:
+    match search(r, s):
+        some((start, end)): ret s.slice(start, end)
+        none: ret none
+
+/// 匹配数
+pub @ count(r: Regex, s: str) -> int:
+    var n = 0
+    var pos = 0
+    loop:
+        match search_from(r, s, pos):
+            some((start, end)):
+                n += 1
+                pos = end
+            none: break
+    ret n
+
+// ---------- 扩展函数 ----------
+
+/// 提取所有匹配子串
+pub @ extract_all(r: Regex, s: str) -> Vec<str>:
+    let out = Vec<str>::new()
+    var pos = 0
+    loop:
+        match search_from(r, s, pos):
+            some((start, end)):
+                out.push(s.slice(start, end).unwrap())
+                pos = end
+            none: break
+    ret out
+
+/// 匹配并替换（函数回调）
+pub @ replace_func(r: Regex, s: str, f: fn(str) -> str) -> str:
+    match search(r, s):
+        some((start, end)):
+            let matched = s.slice(start, end).unwrap()
+            let repl = f(matched)
+            let before = s.slice(0, start).unwrap()
+            let after = s.slice(end, s.len()).unwrap()
+            ret before + repl + after
+        none: ret s
+
+/// 判断是否包含匹配
+pub @ contains_match(r: Regex, s: str) -> bool:
+    ret match search(r, s):
+        some(_): true
+        none: false
+
+/// 匹配开头
+pub @ match_start(r: Regex, s: str) -> ?(int, int):
+    match search_from(r, s, 0):
+        some((start, end)):
+            if start == 0:
+                ret some((start, end))
+            ret none
+        none: none
+
+/// 匹配结尾
+pub @ match_end(r: Regex, s: str) -> ?(int, int):
+    match search(r, s):
+        some((start, end)):
+            if end == s.len():
+                ret some((start, end))
+            ret none
+        none: none
+
+// ---------- 测试示例 ----------
+///
+/// 测试示例：
+///   let r = regex.compile(r"(\w+)@(\w+)\.(\w+)")
+///   io.println(regex.matches(r, "user@example.com"))  // true
+///   match regex.search(r, "email: user@example.com end"):
+///       some((a, b)): io.println(s.slice(a, b))  // user@example.com
+///       none: ()

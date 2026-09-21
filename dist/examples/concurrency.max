@@ -1,0 +1,39 @@
+//! concurrency.max — task / chan 并发。
+//! 演示：启动 task、channel 收发、WaitGroup。
+//!
+//! 引导阶段（Level 1）：调度器为协作式，单线程时间片轮转；
+//! Level 2+ 后由运行时 M:N 调度器实现真正并行。
+
+~ std.io
+~ std.async::{WaitGroup}
+~ std.time::{sleep, millis}
+
+/// 工作协程：把自己的 id 发到通道
+@ worker(id: int, out: chan str) -> ():
+    sleep(millis(50))
+    out.send(f"worker #{id} done")
+
+@ main() -> int:
+    let ch = chan str
+    let n = 4
+
+    // 启动 4 个 task
+    for i in 0..n:
+        task worker(i, ch)
+
+    // 收 4 条消息
+    for _ in 0..n:
+        io.println(ch.recv().unwrap())
+
+    // WaitGroup 用法（另一种范式）
+    let wg = WaitGroup::new()
+    wg.add(3)
+    for i in 0..3:
+        task fn():
+            sleep(millis(20))
+            io.println(f"task {i} finished")
+            wg.done()
+    wg.wait()
+
+    io.println("all tasks done")
+    ret 0

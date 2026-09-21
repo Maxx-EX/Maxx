@@ -1,0 +1,60 @@
+//! std.either — 左右值（真实实现）。
+
+/// Either 类型
+pub # Either<L, R>:
+    Left(L)
+    Right(R)
+
+/// 构造 Left
+pub @ left<L, R>(v: L) -> Either<L, R>:
+    ret Either<L, R>::Left(v)
+
+/// 构造 Right
+pub @ right<L, R>(v: R) -> Either<L, R>:
+    ret Either<L, R>::Right(v)
+
+/// isLeft
+pub @ isLeft<L, R>(e: Either<L, R>) -> bool:
+    match e:
+        Either::Left(_): ret true
+        Either::Right(_): ret false
+
+/// isRight
+pub @ isRight<L, R>(e: Either<L, R>) -> bool:
+    ret !isLeft(e)
+
+/// mapLeft
+pub @ mapLeft<L1, L2, R>(e: Either<L1, R>, f: fn(L1) -> L2) -> Either<L2, R>:
+    match e:
+        Either::Left(v): ret left(f(v))
+        Either::Right(v): ret right(v)
+
+/// mapRight
+pub @ mapRight<L, R1, R2>(e: Either<L, R1>, f: fn(R1) -> R2) -> Either<L, R2>:
+    match e:
+        Either::Left(v): ret left(v)
+        Either::Right(v): ret right(f(v))
+
+/// unwrapLeft
+pub @ unwrapLeft<L, R>(e: Either<L, R>) -> L:
+    match e:
+        Either::Left(v): ret v
+        Either::Right(_): panic("unwrapLeft on Right")
+
+/// unwrapRight
+pub @ unwrapRight<L, R>(e: Either<L, R>) -> R:
+    match e:
+        Either::Right(v): ret v
+        Either::Left(_): panic("unwrapRight on Left")
+
+/// toResult
+pub @ toResult<L, R>(e: Either<L, R>) -> Result<R, L>:
+    match e:
+        Either::Right(v): ret ok(v)
+        Either::Left(v): ret err(v)
+
+/// swap 左右
+pub @ swap<L, R>(e: Either<L, R>) -> Either<R, L>:
+    match e:
+        Either::Left(v): ret right(v)
+        Either::Right(v): ret left(v)

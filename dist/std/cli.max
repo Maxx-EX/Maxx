@@ -1,0 +1,50 @@
+//! std.cli — 命令行解析（真实实现）。
+
+~ std.collections::Vec
+
+# CliArgs:
+    positional: Vec<str>
+    flags: Map<str, bool>
+    options: Map<str, str>
+
+/// 解析命令行参数
+pub @ parse(argv: Vec<str>) -> CliArgs:
+    let pos = Vec<str>::new()
+    let flags = Map<str, bool>::new()
+    let opts = Map<str, str>::new()
+    var i = 0
+    while i < argv.len():
+        let arg = argv.at(i)
+        if arg.starts_with("--"):
+            let name = arg.slice(2, arg.len()).unwrap()
+            if i + 1 < argv.len() && !argv.at(i + 1).starts_with("-"):
+                opts.set(name, argv.at(i + 1))
+                i += 1
+            else:
+                flags.set(name, true)
+        elif arg.starts_with("-"):
+            flags.set(arg.slice(1, arg.len()).unwrap(), true)
+        else:
+            pos.push(arg)
+        i += 1
+    ret CliArgs{ positional: pos, flags: flags, options: opts }
+
+/// 获取 flag
+pub @ flag(args: CliArgs, name: str, default: bool) -> bool:
+    match args.flags.get(name):
+        Some(v): ret v
+        None: ret default
+
+/// 获取 option
+pub @ option(args: CliArgs, name: str, default: str) -> str:
+    match args.options.get(name):
+        Some(v): ret v
+        None: ret default
+
+/// 获取位置参数
+pub @ positional(args: CliArgs, index: int) -> ?str:
+    args.positional.get(index)
+
+/// 帮助文本
+pub @ help() -> str:
+    ret "Usage: maxxc <command> [options]\n"

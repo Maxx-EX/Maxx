@@ -1,0 +1,607 @@
+//! std.collections — 泛型集合：Vec / Deque / Map / Set / Iter（真实实现）。
+//!
+//! 低容量操作（push/pop/get/set）由运行时内建；
+//! 本文件实现高层算法（filter/map/fold/sort/split/join 等）。
+
+// ---------- Vec<T> ----------
+
+/// 动态数组
+pub # Vec<T>:
+    ptr: Box<T>      // 运行时：堆分配的元素 buffer
+    len_: int
+    cap: int
+
+/// 空 Vec
+pub @ Vec::new<T>() -> Vec<T>:
+    ret Vec<T>{ ptr: Box<T>::null(), len_: 0, cap: 0 }
+
+/// 容量为 n 的 Vec
+pub @ Vec::with_capacity<T>(n: int) -> Vec<T>:
+    ret Vec<T>{ ptr: Box<T>::alloc(n), len_: 0, cap: n }
+
+/// 长度
+pub @ Vec::len<T>(self: Vec<T>) -> int:
+    ret self.len_
+
+/// 是否为空
+pub @ Vec::is_empty<T>(self: Vec<T>) -> bool:
+    ret self.len_ == 0
+
+/// 容量
+pub @ Vec::capacity<T>(self: Vec<T>) -> int:
+    ret self.cap
+
+/// 尾部追加
+pub @ Vec::push<T>(self: Vec<T>, v: T) -> ():
+    // 运行时：必要时扩容
+    self.len_ += 1
+
+/// 弹出尾部
+pub @ Vec::pop<T>(self: Vec<T>) -> ?T:
+    if self.len_ == 0:
+        ret none
+    self.len_ -= 1
+    ret some(self.at(self.len_))
+
+/// 插入到 index
+pub @ Vec::insert<T>(self: Vec<T>, idx: int, v: T) -> ():
+    if idx < 0 || idx > self.len_:
+        ret
+    // 把 [idx, len) 后移一位
+    var j = self.len_
+    while j > idx:
+        self.set(j, self.at(j - 1))
+        j -= 1
+    self.set(idx, v)
+    self.len_ += 1
+
+/// 移除 index
+pub @ Vec::remove<T>(self: Vec<T>, idx: int) -> T:
+    let v = self.at(idx)
+    var j = idx
+    while j < self.len_ - 1:
+        self.set(j, self.at(j + 1))
+        j += 1
+    self.len_ -= 1
+    ret v
+
+/// 清空
+pub @ Vec::clear<T>(self: Vec<T>) -> ():
+    self.len_ = 0
+
+/// 按索引读取（越界 none）
+pub @ Vec::get<T>(self: Vec<T>, idx: int) -> ?T:
+    if idx < 0 || idx >= self.len_:
+        ret none
+    ret some(self.at(idx))
+
+/// 内部：无检查读取（运行时内建）
+@ Vec::at<T>(self: Vec<T>, idx: int) -> T:
+    // 运行时内建：返回 ptr[idx]
+    ret self.ptr.read(idx)
+
+/// 内部：无检查写入（运行时内建）
+@ Vec::set<T>(self: Vec<T>, idx: int, v: T) -> ():
+    self.ptr.write(idx, v)
+
+/// 切片（半开区间 [lo, hi)）
+pub @ Vec::slice<T>(self: Vec<T>, lo: int, hi: int) -> Vec<T>:
+    let out = Vec<T>::with_capacity(hi - lo)
+    var i = lo
+    while i < hi:
+        out.push(self.at(i))
+        i += 1
+    ret out
+
+/// 追加另一个 Vec
+pub @ Vec::append<T>(self: Vec<T>, other: Vec<T>) -> ():
+    var i = 0
+    while i < other.len_:
+        self.push(other.at(i))
+        i += 1
+
+/// 过滤，返回新 Vec
+pub @ Vec::filter<T>(self: Vec<T>, f: fn(T) -> bool) -> Vec<T>:
+    let out = Vec<T>::new()
+    var i = 0
+    while i < self.len_:
+        let v = self.at(i)
+        if f(v):
+            out.push(v)
+        i += 1
+    ret out
+
+/// 映射，返回新 Vec
+pub @ Vec::map<T, U>(self: Vec<T>, f: fn(T) -> U) -> Vec<U>:
+    let out = Vec<U>::with_capacity(self.len_)
+    var i = 0
+    while i < self.len_:
+        out.push(f(self.at(i)))
+        i += 1
+    ret out
+
+/// 折叠
+pub @ Vec::fold<T, Acc>(self: Vec<T>, init: Acc, f: fn(Acc, T) -> Acc) -> Acc:
+    var acc = init
+    var i = 0
+    while i < self.len_:
+        acc = f(acc, self.at(i))
+        i += 1
+    ret acc
+
+/// 包含
+pub @ Vec::contains<T>(self: Vec<T>, v: T) -> bool:
+    var i = 0
+    while i < self.len_:
+        if self.at(i) == v:
+            ret true
+        i += 1
+    ret false
+
+/// 查找下标
+pub @ Vec::index_of<T>(self: Vec<T>, v: T) -> ?int:
+    var i = 0
+    while i < self.len_:
+        if self.at(i) == v:
+            ret some(i)
+        i += 1
+    ret none
+
+/// 反转
+pub @ Vec::reverse<T>(self: Vec<T>) -> ():
+    var i = 0
+    let n = self.len_
+    while i < n / 2:
+        let tmp = self.at(i)
+        self.set(i, self.at(n - 1 - i))
+        self.set(n - 1 - i, tmp)
+        i += 1
+
+/// 排序（冒泡；引导阶段简化）
+pub @ Vec::sort<T>(self: Vec<T>) -> ():
+    let n = self.len_
+    var i = 0
+    while i < n:
+        var j = 0
+        while j < n - i - 1:
+            if self.at(j) > self.at(j + 1):
+                let tmp = self.at(j)
+                self.set(j, self.at(j + 1))
+                self.set(j + 1, tmp)
+            j += 1
+        i += 1
+
+/// 转换为迭代器
+pub @ Vec::iter<T>(self: Vec<T>) -> Iter<T>:
+    ret Iter<T>::from_vec(self)
+
+// ---------- Deque<T> ----------
+
+/// 双端队列
+pub # Deque<T>:
+    inner: Vec<T>
+
+pub @ Deque::new<T>() -> Deque<T>:
+    ret Deque<T>{ inner: Vec<T>::new() }
+
+pub @ Deque::push_front<T>(self: Deque<T>, v: T) -> ():
+    self.inner.insert(0, v)
+
+pub @ Deque::push_back<T>(self: Deque<T>, v: T) -> ():
+    self.inner.push(v)
+
+pub @ Deque::pop_front<T>(self: Deque<T>) -> ?T:
+    if self.inner.len_ == 0:
+        ret none
+    ret some(self.inner.remove(0))
+
+pub @ Deque::pop_back<T>(self: Deque<T>) -> ?T:
+    self.inner.pop()
+
+pub @ Deque::len<T>(self: Deque<T>) -> int:
+    ret self.inner.len_
+
+// ---------- Map<K, V> ----------
+
+/// 键值对（内部）
+# Entry<K, V>:
+    key: K
+    val: V
+
+/// 哈希表（引导阶段：线性查找，小规模够用）
+pub # Map<K, V>:
+    entries: Vec<Entry<K, V>>
+
+pub @ Map::new<K, V>() -> Map<K, V>:
+    ret Map<K, V>{ entries: Vec<Entry<K, V>>::new() }
+
+pub @ Map::len<K, V>(self: Map<K, V>) -> int:
+    ret self.entries.len_
+
+pub @ Map::is_empty<K, V>(self: Map<K, V>) -> bool:
+    ret self.entries.len_ == 0
+
+pub @ Map::get<K, V>(self: Map<K, V>, k: K) -> ?V:
+    var i = 0
+    while i < self.entries.len_:
+        let e = self.entries.at(i)
+        if e.key == k:
+            ret some(e.val)
+        i += 1
+    ret none
+
+pub @ Map::set<K, V>(self: Map<K, V>, k: K, v: V) -> ():
+    var i = 0
+    while i < self.entries.len_:
+        let e = self.entries.at(i)
+        if e.key == k:
+            self.entries.set(i, Entry<K, V>{ key: k, val: v })
+            ret
+        i += 1
+    self.entries.push(Entry<K, V>{ key: k, val: v })
+
+pub @ Map::remove<K, V>(self: Map<K, V>, k: K) -> ?V:
+    var i = 0
+    while i < self.entries.len_:
+        let e = self.entries.at(i)
+        if e.key == k:
+            self.entries.remove(i)
+            ret some(e.val)
+        i += 1
+    ret none
+
+pub @ Map::contains<K, V>(self: Map<K, V>, k: K) -> bool:
+    ret self.get(k) != none
+
+pub @ Map::keys<K, V>(self: Map<K, V>) -> Vec<K>:
+    let out = Vec<K>::new()
+    var i = 0
+    while i < self.entries.len_:
+        out.push(self.entries.at(i).key)
+        i += 1
+    ret out
+
+pub @ Map::values<K, V>(self: Map<K, V>) -> Vec<V>:
+    let out = Vec<V>::new()
+    var i = 0
+    while i < self.entries.len_:
+        out.push(self.entries.at(i).val)
+        i += 1
+    ret out
+
+pub @ Map::clear<K, V>(self: Map<K, V>) -> ():
+    self.entries.clear()
+
+// ---------- Set<T> ----------
+
+/// 哈希集合（基于 Map）
+pub # Set<T>:
+    inner: Map<T, ()>
+
+pub @ Set::new<T>() -> Set<T>:
+    ret Set<T>{ inner: Map<T, ()>::new() }
+
+pub @ Set::len<T>(self: Set<T>) -> int:
+    ret self.inner.len()
+
+pub @ Set::insert<T>(self: Set<T>, v: T) -> bool:
+    if self.inner.contains(v):
+        ret false
+    self.inner.set(v, ())
+    ret true
+
+pub @ Set::remove<T>(self: Set<T>, v: T) -> bool:
+    match self.inner.remove(v):
+        some(_): ret true
+        none: ret false
+
+pub @ Set::contains<T>(self: Set<T>, v: T) -> bool:
+    ret self.inner.contains(v)
+
+pub @ Set::union<T>(self: Set<T>, other: Set<T>) -> Set<T>:
+    let out = Set<T>::new()
+    var i = 0
+    while i < self.inner.entries.len_:
+        out.insert(self.inner.entries.at(i).key)
+        i += 1
+    i = 0
+    while i < other.inner.entries.len_:
+        out.insert(other.inner.entries.at(i).key)
+        i += 1
+    ret out
+
+pub @ Set::intersect<T>(self: Set<T>, other: Set<T>) -> Set<T>:
+    let out = Set<T>::new()
+    var i = 0
+    while i < self.inner.entries.len_:
+        let k = self.inner.entries.at(i).key
+        if other.contains(k):
+            out.insert(k)
+        i += 1
+    ret out
+
+pub @ Set::iter<T>(self: Set<T>) -> Iter<T>:
+    ret self.inner.keys().iter()
+
+// ---------- Iter<T> ----------
+
+/// 迭代器
+pub # Iter<T>:
+    src: Vec<T>
+    pos: int
+
+pub @ Iter::from_vec<T>(v: Vec<T>) -> Iter<T>:
+    ret Iter<T>{ src: v, pos: 0 }
+
+pub @ Iter::next<T>(self: Iter<T>) -> ?T:
+    if self.pos >= self.src.len_:
+        ret none
+    let v = self.src.at(self.pos)
+    self.pos += 1
+    ret some(v)
+
+pub @ Iter::collect<T>(self: Iter<T>) -> Vec<T>:
+    let out = Vec<T>::new()
+    loop:
+        match self.next():
+            some(v): out.push(v)
+            none: break
+    ret out
+
+pub @ Iter::map<T, U>(self: Iter<T>, f: fn(T) -> U) -> Iter<U>:
+    let out = Vec<U>::new()
+    loop:
+        match self.next():
+            some(v): out.push(f(v))
+            none: break
+    ret Iter<U>::from_vec(out)
+
+pub @ Iter::filter<T>(self: Iter<T>, f: fn(T) -> bool) -> Iter<T>:
+    let out = Vec<T>::new()
+    loop:
+        match self.next():
+            some(v):
+                if f(v):
+                    out.push(v)
+            none: break
+    ret Iter<T>::from_vec(out)
+
+pub @ Iter::take<T>(self: Iter<T>, n: int) -> Iter<T>:
+    let out = Vec<T>::new()
+    var i = 0
+    while i < n:
+        match self.next():
+            some(v): out.push(v)
+            none: break
+        i += 1
+    ret Iter<T>::from_vec(out)
+
+pub @ Iter::skip<T>(self: Iter<T>, n: int) -> Iter<T>:
+    var i = 0
+    while i < n:
+        match self.next():
+            some(_): ()
+            none: break
+        i += 1
+    ret self
+
+pub @ Iter::fold<T, Acc>(self: Iter<T>, init: Acc, f: fn(Acc, T) -> Acc) -> Acc:
+    var acc = init
+    loop:
+        match self.next():
+            some(v): acc = f(acc, v)
+            none: break
+    ret acc
+
+pub @ Iter::sum<T>(self: Iter<T>) -> T:
+    // 引导阶段假设 T 支持 +（int/f64）
+    ret self.fold(zero<T>(), fn(acc: T, x: T) -> T: ret acc + x)
+
+@ zero<T>() -> T:
+    ret 0 as T
+
+pub @ Iter::count<T>(self: Iter<T>) -> int:
+    var n = 0
+    loop:
+        match self.next():
+            some(_): n += 1
+            none: break
+    ret n
+
+// ---------- 扩展函数 ----------
+
+/// Vec::extend — 追加另一个 Vec
+pub @ Vec::extend<T>(self: Vec<T>, other: Vec<T>) -> ():
+    self.append(other)
+
+/// Vec::first — 首元素
+pub @ Vec::first<T>(self: Vec<T>) -> ?T:
+    if self.len_ == 0:
+        ret none
+    ret some(self.at(0))
+
+/// Vec::last — 末元素
+pub @ Vec::last<T>(self: Vec<T>) -> ?T:
+    if self.len_ == 0:
+        ret none
+    ret some(self.at(self.len_ - 1))
+
+/// Vec::chunked — 分块
+pub @ Vec::chunked<T>(self: Vec<T>, size: int) -> Vec<Vec<T>>:
+    let out = Vec<Vec<T>>::new()
+    var i = 0
+    while i < self.len_:
+        let end = if i + size < self.len_: i + size else self.len_
+        out.push(self.slice(i, end))
+        i = end
+    ret out
+
+/// Vec::windows — 滑动窗口
+pub @ Vec::windows<T>(self: Vec<T>, size: int) -> Vec<Vec<T>>:
+    let out = Vec<Vec<T>>::new()
+    var i = 0
+    while i + size <= self.len_:
+        out.push(self.slice(i, i + size))
+        i += 1
+    ret out
+
+/// Vec::max — 最大值
+pub @ Vec::max<T>(self: Vec<T>) -> ?T:
+    if self.len_ == 0:
+        ret none
+    var m = self.at(0)
+    var i = 1
+    while i < self.len_:
+        if self.at(i) > m:
+            m = self.at(i)
+        i += 1
+    ret some(m)
+
+/// Vec::min — 最小值
+pub @ Vec::min<T>(self: Vec<T>) -> ?T:
+    if self.len_ == 0:
+        ret none
+    var m = self.at(0)
+    var i = 1
+    while i < self.len_:
+        if self.at(i) < m:
+            m = self.at(i)
+        i += 1
+    ret some(m)
+
+/// Vec::sum — 求和
+pub @ Vec::sum<T>(self: Vec<T>) -> T:
+    ret self.fold(zero<T>(), fn(acc: T, x: T) -> T: ret acc + x)
+
+/// Vec::product — 求积
+pub @ Vec::product<T>(self: Vec<T>) -> T:
+    ret self.fold(one<T>(), fn(acc: T, x: T) -> T: ret acc * x)
+
+@ zero<T>() -> T:
+    ret 0 as T
+
+@ one<T>() -> T:
+    ret 1 as T
+
+/// Vec::any — 是否有元素满足条件
+pub @ Vec::any<T>(self: Vec<T>, f: fn(T) -> bool) -> bool:
+    var i = 0
+    while i < self.len_:
+        if f(self.at(i)):
+            ret true
+        i += 1
+    ret false
+
+/// Vec::all — 是否所有元素满足条件
+pub @ Vec::all<T>(self: Vec<T>, f: fn(T) -> bool) -> bool:
+    var i = 0
+    while i < self.len_:
+        if !f(self.at(i)):
+            ret false
+        i += 1
+    ret true
+
+/// Vec::position — 查找首个满足条件的下标
+pub @ Vec::position<T>(self: Vec<T>, f: fn(T) -> bool) -> ?int:
+    var i = 0
+    while i < self.len_:
+        if f(self.at(i)):
+            ret some(i)
+        i += 1
+    ret none
+
+/// Vec::dedup — 去重（保持顺序）
+pub @ Vec::dedup<T>(self: Vec<T>) -> Vec<T>:
+    let out = Vec<T>::new()
+    var i = 0
+    while i < self.len_:
+        let v = self.at(i)
+        if !out.contains(v):
+            out.push(v)
+        i += 1
+    ret out
+
+/// Vec::zip — 合并两个 Vec 为配对
+pub @ Vec::zip<A, B>(self: Vec<A>, other: Vec<B>) -> Vec<(A, B)>:
+    let out = Vec<(A, B)>::new()
+    let n = if self.len_ < other.len_: self.len_ else other.len_
+    var i = 0
+    while i < n:
+        out.push((self.at(i), other.at(i)))
+        i += 1
+    ret out
+
+/// Map::entries — 键值对列表
+pub @ Map::entries<K, V>(self: Map<K, V>) -> Vec<(K, V)>:
+    let out = Vec<(K, V)>::new()
+    var i = 0
+    while i < self.entries.len_:
+        let e = self.entries.at(i)
+        out.push((e.key, e.val))
+        i += 1
+    ret out
+
+/// Map::merge — 合并另一个 Map（覆盖重复键）
+pub @ Map::merge<K, V>(self: Map<K, V>, other: Map<K, V>) -> ():
+    let keys = other.keys()
+    var i = 0
+    while i < keys.len():
+        let k = keys.at(i)
+        self.set(k, other.get(k).unwrap())
+        i += 1
+
+/// Set::is_subset — 是否为子集
+pub @ Set::is_subset<T>(self: Set<T>, other: Set<T>) -> bool:
+    var i = 0
+    while i < self.inner.entries.len_:
+        let k = self.inner.entries.at(i).key
+        if !other.contains(k):
+            ret false
+        i += 1
+    ret true
+
+/// Set::is_superset — 是否为超集
+pub @ Set::is_superset<T>(self: Set<T>, other: Set<T>) -> bool:
+    ret other.is_subset(self)
+
+/// Set::difference — 差集
+pub @ Set::difference<T>(self: Set<T>, other: Set<T>) -> Set<T>:
+    let out = Set<T>::new()
+    var i = 0
+    while i < self.inner.entries.len_:
+        let k = self.inner.entries.at(i).key
+        if !other.contains(k):
+            out.insert(k)
+        i += 1
+    ret out
+
+/// Set::symmetric_diff — 对称差
+pub @ Set::symmetric_diff<T>(self: Set<T>, other: Set<T>) -> Set<T>:
+    let out = Set<T>::new()
+    var i = 0
+    while i < self.inner.entries.len_:
+        let k = self.inner.entries.at(i).key
+        if !other.contains(k):
+            out.insert(k)
+        i += 1
+    i = 0
+    while i < other.inner.entries.len_:
+        let k = other.inner.entries.at(i).key
+        if !self.contains(k):
+            out.insert(k)
+        i += 1
+    ret out
+
+// ---------- 测试示例 ----------
+///
+/// 测试示例：
+///   let v = Vec<int>::new()
+///   v.push(1); v.push(2); v.push(3)
+///   let s = v.fold(0, fn(acc: int, x: int) -> int: ret acc + x)
+///   io.println(s)                      // 6
+///   let evens = v.filter(fn(x: int) -> bool: ret x % 2 == 0)
+///   io.println(evens.len())            // 1
+///
+///   let m = Map<str, int>::new()
+///   m.set("a", 1); m.set("b", 2)
+///   io.println(m.get("a").unwrap())    // 1

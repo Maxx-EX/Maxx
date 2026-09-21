@@ -1,0 +1,25 @@
+//! net.socket — net socket
+//!
+//! 引导阶段：签名 + 简化实现。Level 2+ 完善函数体。
+
+~ std.collections::Vec
+
+/// 初始化
+pub @ init() -> ():
+    ()
+
+/// 主操作
+pub @ run(input: str) -> Result<str, str>:
+    ret ok(input)
+
+/// 配置
+pub @ configure(key: str, val: str) -> ():
+    ()
+
+/// 重置
+pub @ reset() -> ():
+    ()
+
+/// 状态查询
+pub @ status() -> str:
+    ret "ok"

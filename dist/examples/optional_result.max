@@ -1,0 +1,42 @@
+//! optional_result.max — 无 null 世界。
+//! 演示：?T 可空类型、Result<T,E>、try 错误传播、match 解包。
+
+~ std.io
+
+/// 在数组中查找；找不到返回 none
+@ index_of(arr: std.collections::Vec<int>, v: int) -> ?int:
+    for i in 0..arr.len():
+        if arr[i] == v:
+            ret some(i)
+    ret none
+
+/// 安全除法；除零返回 err
+@ safe_div(a: f64, b: f64) -> Result<f64, str>:
+    if b == 0.0:
+        ret err("division by zero")
+    ret ok(a / b)
+
+/// 使用 ? 传播错误
+@ compute(a: f64, b: f64) -> Result<f64, str>:
+    let r = try safe_div(a, b)?       // 出错直接 return err
+    let r2 = try safe_div(r, 2.0)?
+    ret ok(r2)
+
+@ main() -> int:
+    let nums = [10, 20, 30, 40]
+
+    // 解包 ?T：用 match 强制处理 none
+    match index_of(nums, 30):
+        some(i): io.println(f"found 30 at index {i}")
+        none:    io.println("30 not found")
+
+    // 解包 Result
+    match compute(100.0, 4.0):
+        ok(v):  io.println(f"100/4/2 = {v}")
+        err(e): io.println(f"error: {e}")
+
+    match compute(100.0, 0.0):
+        ok(v):  io.println(f"unexpected: {v}")
+        err(e): io.println(f"expected error: {e}")
+
+    ret 0
