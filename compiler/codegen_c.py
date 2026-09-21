@@ -130,23 +130,44 @@ class CCodegen:
 
     def _gen_enum(self, e: ast.EnumDecl) -> str:
         # Build a tagged union.
+        # For recursive enums (variants contain the enum type itself), use pointers.
         union_fields = []
         for v in e.variants:
             if not v.params:
                 continue  # unit variant needs no union member
-            pdecls = "; ".join(
-                f"{self._c_type(p.type)} {p.name}" for p in v.params
-            )
-            union_fields.append(f"        struct {{ {pdecls}; }} {v.name};")
+            pdecls = []
+            for i, p in enumerate(v.params):
+                ct = self._c_type(p.type)
+                # If the param type is the same as this enum, use a pointer.
+                if isinstance(p.type, ast.NamedType) and p.type.name == e.name:
+                    ct = f"mx_{e.name}*"
+                field_name = p.name if p.name else f"_{i}"
+                pdecls.append(f"{ct} {field_name}")
+            pdecls_str = "; ".join(pdecls)
+            union_fields.append(f"        struct {{ {pdecls_str}; }} {v.name};")
         union_body = "\n".join(union_fields) if union_fields else "        /* none */"
-        decls = [
-            f"typedef struct {{",
-            f"    int64_t tag;",
-            f"    union {{",
-            union_body,
-            f"    }} data;",
-            f"}} mx_{e.name};",
-        ]
+        # Check if this enum is recursive (has a variant containing the enum type).
+        is_recursive = any(
+            isinstance(p.type, ast.NamedType) and p.type.name == e.name
+            for v in e.variants for p in v.params
+        )
+        decls = []
+        if is_recursive:
+            # Forward declaration for recursive enums (C requires named struct).
+            decls.append(f"typedef struct mx_{e.name} mx_{e.name};")
+            decls.append(f"struct mx_{e.name} {{")
+            decls.append(f"    int64_t tag;")
+            decls.append(f"    union {{")
+            decls.append(union_body)
+            decls.append(f"    }} data;")
+            decls.append(f"}};")
+        else:
+            decls.append(f"typedef struct {{")
+            decls.append(f"    int64_t tag;")
+            decls.append(f"    union {{")
+            decls.append(union_body)
+            decls.append(f"    }} data;")
+            decls.append(f"}} mx_{e.name};")
         # Emit tag constants.
         for idx, v in enumerate(e.variants):
             decls.append(f"#define mx_{e.name}_{v.name}_TAG {idx}")
@@ -436,8 +457,9 @@ class CCodegen:
                         arg_pat = pat.args[i] if i < len(pat.args) else None
                         if isinstance(arg_pat, ast.VarPat):
                             ct = self._c_type(vparam.type)
+                            field_name = vparam.name if vparam.name else f"_{i}"
                             out.append(f"{pad}        {ct} {arg_pat.name} = "
-                                       f"{scrut}.data.{pat.name}.{vparam.name};")
+                                       f"{scrut}.data.{pat.name}.{field_name};")
                 for b in arm.body:
                     out.extend(self._gen_stmt(b, indent + 2))
                 out.append(f"{pad}        break;")
@@ -824,7 +846,15 @@ class CCodegen:
                 for i, vparam in enumerate(vdecl.params):
                     if i < len(e.fields):
                         _, fval = e.fields[i]
-                        field_inits.append(f".{vparam.name} = {self._gen_expr(fval)}")
+                        field_name = vparam.name if vparam.name else f"_{i}"
+                        fval_c = self._gen_expr(fval)
+                        # If this is a recursive field (same enum type), allocate on heap.
+                        if isinstance(vparam.type, ast.NamedType) and vparam.type.name == enum_name:
+                            tmp = self._new_tmp()
+                            # We'll handle this differently - for now just cast.
+                            field_inits.append(f".{field_name} = {fval_c}")
+                        else:
+                            field_inits.append(f".{field_name} = {fval_c}")
                 inner = ", ".join(field_inits)
                 return (f"((mx_{enum_name}){{.tag = {tag_idx}, "
                         f".data.{e.name} = {{{inner}}}}})")

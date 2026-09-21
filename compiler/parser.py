@@ -245,9 +245,14 @@ class Parser:
                 params: List[ast.FieldDecl] = []
                 if not self.at_punct(")"):
                     while True:
-                        pname = self.eat(TOK_IDENT).value
-                        self.eat_punct(":")
-                        ptype = self.parse_type()
+                        # Support both `name: type` and just `type`.
+                        if self.at(TOK_IDENT) and self.peek(1).kind == TOK_OP and self.peek(1).value == ":":
+                            pname = self.eat(TOK_IDENT).value
+                            self.eat_punct(":")
+                            ptype = self.parse_type()
+                        else:
+                            pname = ""
+                            ptype = self.parse_type()
                         params.append(ast.FieldDecl(
                             name=pname, type=ptype,
                             line=line_tok.line, col=line_tok.col,
@@ -276,6 +281,7 @@ class Parser:
                 ))
             else:
                 # Bare identifier -> unit enum variant (e.g. `Dot`).
+                # Or parameterized variant (e.g. `Num(int)`).
                 if kind is None:
                     kind = "enum"
                 elif kind != "enum":
@@ -283,10 +289,26 @@ class Parser:
                         f"unit variant {fname} in struct {name}",
                         line_tok.line, line_tok.col,
                     )
-                variants.append(ast.VariantDecl(
-                    name=fname, params=[],
-                    line=line_tok.line, col=line_tok.col,
-                ))
+                # Check for parameterized variant: `Name(Type, Type)`.
+                if self.at_punct("("):
+                    self.next()
+                    params = []
+                    if not self.at_punct(")"):
+                        while True:
+                            ptype = self.parse_type()
+                            params.append(ast.FieldDecl(name="", type=ptype))
+                            if self.accept_punct(",") is None:
+                                break
+                    self.eat_punct(")")
+                    variants.append(ast.VariantDecl(
+                        name=fname, params=params,
+                        line=line_tok.line, col=line_tok.col,
+                    ))
+                else:
+                    variants.append(ast.VariantDecl(
+                        name=fname, params=[],
+                        line=line_tok.line, col=line_tok.col,
+                    ))
             self.skip_newlines()
 
         if self.at(TOK_DEDENT):
