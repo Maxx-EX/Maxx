@@ -182,7 +182,29 @@ int main() {
            │               │               │
         浏览器          C 嵌入 API      ARM/RISC-V
         桌面           游戏引擎        Linux/Android
+        手机 Web       应用插件        手机内核
 ```
+
+## 安装方式
+
+### 单文件安装（推荐）
+```bash
+# 一行命令安装，不需要 git clone
+curl -sSL https://raw.githubusercontent.com/Maxx-EX/Maxx/main/maxx-install | bash
+```
+
+### 从源码安装
+```bash
+git clone https://github.com/Maxx-EX/Maxx.git
+cd Maxx
+bash install.sh
+```
+
+安装完成后：
+- `maxx` — 进入 REPL
+- `maxx run hello.max` — 运行文件
+- `maxx build hello.max` — 编译
+- `maxx version` — 版本信息
 
 ## 设计原则
 1. **零开销抽象**：高级特性不增加运行时开销
@@ -190,3 +212,16 @@ int main() {
 3. **一套语法**：前端、脚本、系统，语法统一
 4. **编译优先**：AOT 编译，不是解释执行
 5. **诚实**：能跑的才说是特性，规划的标注清楚
+
+## 平台支持矩阵
+
+| 平台 | 前端 | 脚本 | 系统 | 状态 |
+|------|------|------|------|------|
+| Linux x86_64 | ✅ | ✅ | ✅ | 已支持 |
+| Linux ARM64 | ✅ | ✅ | ✅ | 已支持 |
+| Android | ✅ | ✅ | ✅ | 已支持 |
+| Web (WASM) | ✅ | ⏳ | ⏳ | 规划中 |
+| Windows | ⏳ | ⏳ | ⏳ | 规划中 |
+| macOS | ⏳ | ⏳ | ⏳ | 规划中 |
+| iOS | ⏳ | ⏳ | ⏳ | 规划中 |
+| 嵌入式 (裸机) | ❌ | ✅ | ✅ | 规划中 |
