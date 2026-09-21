@@ -828,6 +828,26 @@ class CCodegen:
                 return f"mx_chan_str_send({obj}, {arg})"
             if mname == "recv" and not e.args:
                 return f"mx_chan_str_recv({obj})"
+            # Str methods: s.to_upper(), s.substr(...)
+            str_methods = {
+                "to_upper": "mx_str_upper",
+                "to_lower": "mx_str_lower",
+                "trim": "mx_str_trim",
+                "replace": "mx_str_replace",
+                "find": "mx_str_find",
+            }
+            if mname in str_methods:
+                cfunc = str_methods[mname]
+                args_list = [obj] + [self._gen_expr(a) for a in e.args]
+                args_c = ", ".join(args_list)
+                return f"{cfunc}({args_c})"
+            if mname == "substr" and len(e.args) >= 2:
+                start = self._gen_expr(e.args[0])
+                length = self._gen_expr(e.args[1])
+                return f"mx_str_substr({obj}, (int64_t)({start}), (int64_t)({length}))"
+            if mname == "char_at" and e.args:
+                idx = self._gen_expr(e.args[0])
+                return f"mx_str_char_at({obj}, (int64_t)({idx}))"
             # Look up method.
             if mname in self.methods:
                 recv_type, cname = self.methods[mname]
