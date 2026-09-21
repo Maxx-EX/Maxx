@@ -85,7 +85,7 @@ def type_to_c(t: TypeInfo) -> str:
             "char": "uint32_t",
             "str": "mx_str",
         }
-        return mapping.get(t.name, "void*")
+        return mapping.get(t.name, "int64_t")  # generic type params default to int64
     if t.kind == "struct":
         return "mx_" + t.name
     if t.kind == "enum":

@@ -177,6 +177,8 @@ class CCodegen:
     # Function generation.
     # ------------------------------------------------------------------
     def _gen_function(self, fn: ast.FunctionDecl) -> str:
+        # Set current function in checker for generic type resolution.
+        self.checker.current_fn = fn
         ret_c = self._c_type(fn.ret_type)
         # C name.
         if fn.receiver:
@@ -295,6 +297,9 @@ class CCodegen:
         else:
             t = self._infer_type(s.value)
             ct = type_to_c(t)
+            # Fallback: if type is unknown, use int64_t.
+            if ct == "void*":
+                ct = "int64_t"
         out.append(f"{pad}{ct} {s.name} = {self._gen_expr(s.value)};")
         self._var_types[s.name] = t
         return out
@@ -352,6 +357,9 @@ class CCodegen:
                                     err_type=TypeInfo(kind="scalar", name="str"))
                 if fname in self._fn_ret_types:
                     return self._fn_ret_types[fname]
+                # Generic functions: default to int64_t.
+                if fname in self.checker.generic_funcs:
+                    return TypeInfo(kind="scalar", name="int")
             if isinstance(e.func, ast.Field):
                 mname = e.func.name
                 if mname in self.methods:
@@ -823,6 +831,9 @@ class CCodegen:
             return f"mx_double_to_str({v})"
         if t.kind == "scalar" and t.name == "bool":
             return f"mx_bool_to_str({v})"
+        # Unknown type (e.g. generic T): treat as int64_t.
+        if t.kind == "scalar":
+            return f"mx_int_to_str((int64_t)({v}))"
         return f"mx_str_lit(\"?\")"
 
     def _gen_field(self, e: ast.Field) -> str:
