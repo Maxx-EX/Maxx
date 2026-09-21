@@ -591,9 +591,25 @@ class CCodegen:
             return "((mx_opt_int){0, 0})"
         if isinstance(e, ast.OkExpr):
             inner = self._gen_expr(e.value)
+            # Use pending result type if available
+            if self._pending_result_type and self._pending_result_type.kind == "result":
+                ok_t = self._pending_result_type.ok_type
+                err_t = self._pending_result_type.err_type
+                ok_c = type_to_c(ok_t) if ok_t else "int64_t"
+                err_c = type_to_c(err_t) if err_t else "mx_str"
+                rname = f"mx_Result_{ok_c}_{err_c}"
+                return f"(({rname}){{0, ({inner}), {{0}}}})"
             return f"((mx_Result_int64_t_mx_str){{0, ({inner}), {{0}}}})"
         if isinstance(e, ast.ErrExpr):
             inner = self._gen_expr(e.value)
+            # Use pending result type if available
+            if self._pending_result_type and self._pending_result_type.kind == "result":
+                ok_t = self._pending_result_type.ok_type
+                err_t = self._pending_result_type.err_type
+                ok_c = type_to_c(ok_t) if ok_t else "int64_t"
+                err_c = type_to_c(err_t) if err_t else "mx_str"
+                rname = f"mx_Result_{ok_c}_{err_c}"
+                return f"(({rname}){{1, {{0}}, ({inner})}})"
             return f"((mx_Result_int64_t_mx_str){{1, {{0}}, ({inner})}})"
         if isinstance(e, ast.TryExpr):
             # Bare `x?` outside a let: should not normally happen in

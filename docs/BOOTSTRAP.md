@@ -19,7 +19,7 @@
 | **L0** | 机器码引导 | 手写 x86_64 汇编 | **演示性实现**（`bootstrap-machine/`），无宿主链，不承担编译器职责 |
 | **L1a** | 开发期种子引导 | Python | **当前实际运行的编译器**（`compiler/`） |
 | **L1b** | 生产引导编译器 | C | 规划中 |
-| **L2** | Maxx 自举编译器 | Maxx | **已完成核心组件**：Lexer/Parser/Checker/Codegen 均已用 Maxx 写出 |
+| **L2** | Maxx 自举编译器 | Maxx | **草稿**：`selfhost/` 下有 Lexer/Parser/Checker/Codegen 的草稿代码，但尚不能被当前编译器解析和运行 |
 | **L3** | 优化版自举编译器 | Maxx | 规划中 |
 
 > **注意**：`bootstrap-machine/` 目录下的汇编实现是**无宿主链演示**，
