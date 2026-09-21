@@ -1,0 +1,77 @@
+// checker.max - Maxx type checker written in Maxx (Level 2 self-hosting)
+// Type checks AST nodes and builds symbol table.
+
+~ std.io
+~ selfhost.lexer
+~ selfhost.parser
+
+# Symbol:
+    name: str
+    type: str
+    line: int
+
+# Checker:
+    symbols: Vec[Symbol]
+    errors: Vec[str]
+
+@ checker_new() -> Checker:
+    ret Checker(symbols=[], errors=[])
+
+@ declare(c: Checker, name: str, type: str, line: int):
+    c.symbols.append(Symbol(name=name, type=type, line=line))
+
+@ lookup(c: Checker, name: str) -> str:
+    for s in c.symbols:
+        if s.name == name:
+            ret s.type
+    ret "UNKNOWN"
+
+@ check_program(c: Checker, prog: Node):
+    for node in prog.children:
+        check_node(c, node)
+
+@ check_node(c: Checker, node: Node):
+    if node.kind == "LET":
+        let name = node.value
+        let value = node.children[0]
+        let val_type = check_expr(c, value)
+        declare(c, name, val_type, node.line)
+    
+    elif node.kind == "FN":
+        // check function body (simplified)
+        io.println("Checking function: " + node.value)
+    
+    elif node.kind == "TYPE":
+        io.println("Checking type: " + node.value)
+
+@ check_expr(c: Checker, node: Node) -> str:
+    if node.kind == "INT":
+        ret "int"
+    elif node.kind == "STR":
+        ret "str"
+    elif node.kind == "VAR":
+        let type = lookup(c, node.value)
+        if type == "UNKNOWN":
+            c.errors.append("undefined variable: " + node.value)
+        ret type
+    ret "unknown"
+
+@ main() -> int:
+    let src = "@ main() -> int:\n    let x = 42\n    let y = \"hello\"\n    ret 0\n"
+    let l = lexer_new(src)
+    let tokens = lex(l)
+    let p = parser_new(tokens)
+    let prog = parse_program(p)
+    
+    let c = checker_new()
+    check_program(c, prog)
+    
+    io.println("Symbols: " + str(len(c.symbols)))
+    for s in c.symbols:
+        io.println("  " + s.name + ": " + s.type)
+    
+    io.println("Errors: " + str(len(c.errors)))
+    for e in c.errors:
+        io.println("  " + e)
+    
+    ret 0

@@ -1,0 +1,154 @@
+// parser.max - Maxx parser written in Maxx (Level 2 self-hosting)
+// This is a minimal recursive descent parser for Maxx syntax.
+// Bootstrap: compiled by Python maxxc, then used to parse Maxx source.
+
+~ std.io
+~ std.text
+~ selfhost.lexer
+
+# Node:
+    kind: str
+    value: str
+    children: Vec[Node]
+    line: int
+    col: int
+
+# Parser:
+    tokens: Vec[Token]
+    pos: int
+
+@ parser_new(tokens: Vec[Token]) -> Parser:
+    ret Parser(tokens=tokens, pos=0)
+
+@ peek(p: Parser) -> Token:
+    if p.pos >= len(p.tokens):
+        ret Token(kind="EOF", value="", line=0, col=0)
+    ret p.tokens[p.pos]
+
+@ next(p: Parser) -> Token:
+    let t = peek(p)
+    p.pos = p.pos + 1
+    ret t
+
+@ expect(p: Parser, kind: str) -> Token:
+    let t = peek(p)
+    if t.kind != kind:
+        io.println("parse error: expected " + kind + " got " + t.kind)
+    p.pos = p.pos + 1
+    ret t
+
+@ parse_program(p: Parser) -> Node:
+    let nodes = Vec[Node]()
+    loop:
+        let t = peek(p)
+        if t.kind == "EOF":
+            break
+        let node = parse_stmt(p)
+        if node.kind != "NONE":
+            nodes.append(node)
+    ret Node(kind="PROGRAM", value="", children=nodes, line=0, col=0)
+
+@ parse_stmt(p: Parser) -> Node:
+    let t = peek(p)
+    
+    if t.kind == "PUNCT" and t.value == "@":
+        ret parse_fn(p)
+    
+    if t.kind == "PUNCT" and t.value == "#":
+        ret parse_type(p)
+    
+    if t.kind == "IDENT":
+        if t.value == "let" or t.value == "var":
+            ret parse_let(p)
+    
+    if t.kind == "IDENT":
+        if t.value == "if":
+            ret parse_if(p)
+    
+    if t.kind == "IDENT":
+        if t.value == "for":
+            ret parse_for(p)
+    
+    // skip unknown
+    next(p)
+    ret Node(kind="NONE", value="", children=[], line=t.line, col=t.col)
+
+@ parse_fn(p: Parser) -> Node:
+    let line = peek(p).line
+    next(p) // skip @
+    let name = expect(p, "IDENT")
+    expect(p, "LPAREN")
+    // parse args (simplified: skip)
+    loop:
+        let t = peek(p)
+        if t.kind == "RPAREN":
+            break
+        next(p)
+    next(p) // skip RPAREN
+    expect(p, "ARROW")
+    let ret_type = expect(p, "IDENT")
+    expect(p, "COLON")
+    // parse body (simplified: skip indent block)
+    ret Node(kind="FN", value=name.value, children=[], line=line, col=0)
+
+@ parse_type(p: Parser) -> Node:
+    let line = peek(p).line
+    next(p) // skip #
+    let name = expect(p, "IDENT")
+    expect(p, "COLON")
+    ret Node(kind="TYPE", value=name.value, children=[], line=line, col=0)
+
+@ parse_let(p: Parser) -> Node:
+    let line = peek(p).line
+    let keyword = next(p) // let or var
+    let name = expect(p, "IDENT")
+    expect(p, "EQ")
+    let value = parse_expr(p)
+    return Node(kind="LET", value=name.value, children=[value], line=line, col=0)
+
+@ parse_if(p: Parser) -> Node:
+    let line = peek(p).line
+    next(p) // skip if
+    let cond = parse_expr(p)
+    expect(p, "COLON")
+    ret Node(kind="IF", value="", children=[cond], line=line, col=0)
+
+@ parse_for(p: Parser) -> Node:
+    let line = peek(p).line
+    next(p) // skip for
+    let var_name = expect(p, "IDENT")
+    expect(p, "IN")
+    let range = parse_expr(p)
+    expect(p, "COLON")
+    ret Node(kind="FOR", value=var_name.value, children=[range], line=line, col=0)
+
+@ parse_expr(p: Parser) -> Node:
+    let t = peek(p)
+    if t.kind == "NUMBER":
+        next(p)
+        ret Node(kind="INT", value=t.value, children=[], line=t.line, col=t.col)
+    if t.kind == "STRING":
+        next(p)
+        ret Node(kind="STR", value=t.value, children=[], line=t.line, col=t.col)
+    if t.kind == "IDENT":
+        next(p)
+        ret Node(kind="VAR", value=t.value, children=[], line=t.line, col=t.col)
+    next(p)
+    ret Node(kind="EXPR", value="", children=[], line=t.line, col=t.col)
+
+@ main() -> int:
+    let src = "@ main() -> int:\n    let x = 42\n    ret 0\n"
+    let l = lexer_new(src)
+    let tokens = lex(l)
+    
+    io.println("Tokens: " + str(len(tokens)))
+    for t in tokens:
+        io.println("  " + t.kind + ": " + t.value)
+    
+    let p = parser_new(tokens)
+    let prog = parse_program(p)
+    
+    io.println("AST root: " + prog.kind)
+    io.println("Children: " + str(len(prog.children)))
+    
+    ret 0
