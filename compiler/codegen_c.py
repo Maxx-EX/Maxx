@@ -37,6 +37,8 @@ class CCodegen:
         self._var_types: Dict[str, TypeInfo] = {}
         # Track function return types.
         self._fn_ret_types: Dict[str, TypeInfo] = {}
+        # Helper functions generated on-the-fly (lambdas etc).
+        self.helper_funcs: List[str] = []
 
     # ------------------------------------------------------------------
     # Entry point.
@@ -610,7 +612,23 @@ class CCodegen:
                 return f"({target} = {val})"
             return f"({target} {e.op} {val})"
         if isinstance(e, ast.Lambda):
-            return "NULL /* lambda not implemented in bootstrap */"
+            # Bootstrap: generate a C function and return a pointer.
+            fn_name = f"mx_lambda_{id(e) & 0xFFFF}"
+            # Build function signature. Params are tuples (name, type).
+            param_strs = []
+            for p in e.params:
+                pname = p[0] if isinstance(p, tuple) else p.name
+                param_strs.append(f"int64_t {pname}")
+            params_c = ", ".join(param_strs)
+            # Body can be a single expression or a block.
+            if isinstance(e.body, list):
+                body_lines = "\n".join(self._gen_block(e.body, 1))
+            else:
+                body_expr = self._gen_expr(e.body)
+                body_lines = f"return {body_expr};"
+            fn_code = f"static int64_t {fn_name}({params_c}) {{ {body_lines} }}"
+            self.helper_funcs.append(fn_code)
+            return f"((void*){fn_name})"
         return f"/* unhandled expr {type(e).__name__} */"
 
     def _gen_binary(self, e: ast.BinaryOp) -> str:
@@ -894,6 +912,9 @@ class CCodegen:
         ]
         parts.append("/* ---- type declarations ---- */")
         parts.extend(self.type_decls)
+        parts.append("")
+        parts.append("/* ---- helper functions (lambdas etc) ---- */")
+        parts.extend(self.helper_funcs)
         parts.append("")
         parts.append("/* ---- function declarations ---- */")
         parts.extend(self.func_decls)
