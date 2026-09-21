@@ -1,0 +1,87 @@
+// codegen.max - Maxx code generator written in Maxx (Level 2 self-hosting)
+// Generates C code from AST nodes.
+
+~ std.io
+~ selfhost.lexer
+~ selfhost.parser
+~ selfhost.checker
+
+# Codegen:
+    output: Vec[str]
+    indent: int
+
+@ codegen_new() -> Codegen:
+    ret Codegen(output=[], indent=0)
+
+@ emit(cg: Codegen, line: str):
+    let spaces = ""
+    for i in 0..cg.indent:
+        spaces = spaces + "    "
+    cg.output.append(spaces + line)
+
+@ gen_program(cg: Codegen, prog: Node):
+    emit(cg, "#include <stdio.h>")
+    emit(cg, "#include <stdlib.h>")
+    emit(cg, "")
+    emit(cg, "int main() {")
+    cg.indent = 1
+    
+    for node in prog.children:
+        gen_node(cg, node)
+    
+    cg.indent = 0
+    emit(cg, "    return 0;")
+    emit(cg, "}")
+
+@ gen_node(cg: Codegen, node: Node):
+    if node.kind == "LET":
+        gen_let(cg, node)
+    elif node.kind == "FN":
+        gen_fn(cg, node)
+    elif node.kind == "TYPE":
+        gen_type(cg, node)
+
+@ gen_let(cg: Codegen, node: Node):
+    let name = node.value
+    let value = node.children[0]
+    let val_code = gen_expr(cg, value)
+    
+    if value.kind == "INT":
+        emit(cg, "int " + name + " = " + val_code + ";")
+    elif value.kind == "STR":
+        emit(cg, "char* " + name + " = \"" + val_code + "\";")
+    else:
+        emit(cg, "auto " + name + " = " + val_code + ";")
+
+@ gen_fn(cg: Codegen, node: Node):
+    let name = node.value
+    emit(cg, "// function: " + name)
+
+@ gen_type(cg: Codegen, node: Node):
+    let name = node.value
+    emit(cg, "// type: " + name)
+
+@ gen_expr(cg: Codegen, node: Node) -> str:
+    if node.kind == "INT":
+        ret node.value
+    elif node.kind == "STR":
+        ret node.value
+    elif node.kind == "VAR":
+        ret node.value
+    ret "0"
+
+@ main() -> int:
+    let src = "@ main() -> int:\n    let x = 42\n    let y = \"hello\"\n    ret 0\n"
+    let l = lexer_new(src)
+    let tokens = lex(l)
+    let p = parser_new(tokens)
+    let prog = parse_program(p)
+    
+    let cg = codegen_new()
+    gen_program(cg, prog)
+    
+    io.println("Generated C code:")
+    for line in cg.output:
+        io.println(line)
+    
+    ret 0
