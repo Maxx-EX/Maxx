@@ -583,6 +583,11 @@ class CCodegen:
             ct = self._c_type(e.type)
             return f"(({ct})({inner}))"
         if isinstance(e, ast.IsType):
+            # `is` type check is not implemented in bootstrap.
+            # Output a warning at compile time.
+            self.type_decls.append(
+                '#warning "is type check is not implemented in bootstrap compiler"'
+            )
             return "0 /* is not implemented in bootstrap */"
         if isinstance(e, ast.SomeExpr):
             inner = self._gen_expr(e.value)
