@@ -820,6 +820,19 @@ class CCodegen:
             if name == "write_file":
                 args = ", ".join(self._gen_expr(a) for a in e.args)
                 return f"mx_write_file({args})"
+            # HTTP server functions.
+            if name == "http_listen":
+                arg = self._gen_expr(e.args[0]) if e.args else "8080"
+                return f"mx_http_listen({arg})"
+            if name == "http_accept":
+                arg = self._gen_expr(e.args[0]) if e.args else "0"
+                return f"mx_http_accept({arg})"
+            if name == "http_recv":
+                arg = self._gen_expr(e.args[0]) if e.args else "0"
+                return f"mx_http_recv({arg})"
+            if name == "http_send":
+                args = ", ".join(self._gen_expr(a) for a in e.args)
+                return f"mx_http_send({args})"
             # Regular function call.
             # Check if it's a struct constructor (positional args)
             if name in self.struct_names:

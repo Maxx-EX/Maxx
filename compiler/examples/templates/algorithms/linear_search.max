@@ -1,6 +1,22 @@
-// linear_search - Maxx example template
-// Category: algorithms
+// linear_search.max - Linear search implementation
+~ std.io
+
 @ main() -> int:
-    io.println("Running linear_search...")
-    // TODO: implement linear_search
+    io.println("Linear Search Demo")
+    let arr = [5, 2, 8, 1, 9, 3, 7]
+    let target = 9
+    var found = -1
+    var i = 0
+    
+    while i < 7:
+        if arr[i] == target:
+            found = i
+            break
+        i = i + 1
+    
+    if found != -1:
+        io.println("Found " + str(target) + " at index " + str(found))
+    else:
+        io.println("Not found")
+    
     ret 0

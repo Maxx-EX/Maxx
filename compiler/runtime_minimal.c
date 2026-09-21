@@ -260,3 +260,61 @@ mx_str mx_chan_str_recv(mx_chan_str* ch) {
     ch->head++;
     return s;
 }
+
+/* ------------------------------------------------------------------ */
+/* Socket / HTTP server                                                */
+/* ------------------------------------------------------------------ */
+
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+int64_t mx_http_listen(int64_t port) {
+    int sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock < 0) return -1;
+    
+    int opt = 1;
+    setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+    
+    struct sockaddr_in addr;
+    addr.sin_family = AF_INET;
+    addr.sin_addr.s_addr = INADDR_ANY;
+    addr.sin_port = htons((uint16_t)port);
+    
+    if (bind(sock, (struct sockaddr*)&addr, sizeof(addr)) < 0) return -2;
+    if (listen(sock, 10) < 0) return -3;
+    
+    return (int64_t)sock;
+}
+
+int64_t mx_http_accept(int64_t server_sock) {
+    struct sockaddr_in client_addr;
+    socklen_t client_len = sizeof(client_addr);
+    int client = accept((int)server_sock, (struct sockaddr*)&client_addr, &client_len);
+    return (int64_t)client;
+}
+
+mx_str mx_http_recv(int64_t client_sock) {
+    char buf[4096];
+    ssize_t n = recv((int)client_sock, buf, sizeof(buf) - 1, 0);
+    if (n <= 0) return mx_str_lit("");
+    buf[n] = '\0';
+    
+    mx_str s;
+    s.ptr = strdup(buf);
+    s.len = n;
+    return s;
+}
+
+int64_t mx_http_send(int64_t client_sock, mx_str body) {
+    const char* header = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: ";
+    char len_buf[32];
+    snprintf(len_buf, sizeof(len_buf), "%ld\r\n\r\n", (long)body.len);
+    
+    send((int)client_sock, header, strlen(header), 0);
+    send((int)client_sock, len_buf, strlen(len_buf), 0);
+    send((int)client_sock, body.ptr, (size_t)body.len, 0);
+    
+    close((int)client_sock);
+    return 0;
+}

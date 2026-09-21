@@ -1,0 +1,26 @@
+// web_server.max - Minimal HTTP server in Maxx
+~ std.io
+
+@ main() -> int:
+    io.println("Starting Maxx web server on port 8080...")
+    
+    let server = http_listen(8080)
+    if server < 0:
+        io.println("Failed to start server!")
+        ret 1
+    
+    io.println("Server running! Open http://localhost:8080 in your browser.")
+    io.println("Press Ctrl+C to stop.")
+    
+    loop:
+        let client = http_accept(server)
+        if client < 0:
+            break
+        
+        let request = http_recv(client)
+        io.println("Received request!")
+        
+        let body = "Hello from Maxx!"
+        http_send(client, body)
+    
+    ret 0

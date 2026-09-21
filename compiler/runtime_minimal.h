@@ -75,4 +75,10 @@ mx_str mx_str_replace(mx_str s, mx_str from, mx_str to);
 int64_t mx_parse_int(mx_str s);
 double mx_parse_float(mx_str s);
 
+/* Socket / HTTP server. */
+int64_t mx_http_listen(int64_t port);
+int64_t mx_http_accept(int64_t server_sock);
+mx_str mx_http_recv(int64_t client_sock);
+int64_t mx_http_send(int64_t client_sock, mx_str body);
+
 #endif /* MAXX_RUNTIME_MINIMAL_H */

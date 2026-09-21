@@ -1,6 +1,28 @@
-// insertion_sort - Maxx example template
-// Category: algorithms
+// insertion_sort.max - Insertion sort implementation
+~ std.io
+
 @ main() -> int:
-    io.println("Running insertion_sort...")
-    // TODO: implement insertion_sort
+    io.println("Insertion Sort Demo")
+    let arr = [12, 11, 13, 5, 6]
+    let n = 5
+    
+    var i = 1
+    while i < n:
+        let key = arr[i]
+        var j = i - 1
+        while j >= 0 && arr[j] > key:
+            arr[j + 1] = arr[j]
+            j = j - 1
+        arr[j + 1] = key
+        i = i + 1
+    
+    io.print("Sorted: ")
+    var k = 0
+    while k < n:
+        io.print(str(arr[k]))
+        if k < n - 1:
+            io.print(", ")
+        k = k + 1
+    io.println("")
+    
     ret 0

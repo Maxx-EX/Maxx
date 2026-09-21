@@ -1,6 +1,32 @@
-// bubble_sort - Maxx example template
-// Category: algorithms
+// bubble_sort.max - Bubble sort implementation
+~ std.io
+
 @ main() -> int:
-    io.println("Running bubble_sort...")
-    // TODO: implement bubble_sort
+    let arr = [5, 2, 8, 1, 9, 3]
+    let n = 6
+    
+    io.println("Bubble Sort Demo")
+    io.println("Original: 5, 2, 8, 1, 9, 3")
+    
+    // Bubble sort
+    var i = 0
+    while i < n:
+        var j = 0
+        while j < n - i - 1:
+            if arr[j] > arr[j + 1]:
+                let temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+            j = j + 1
+        i = i + 1
+    
+    io.print("Sorted: ")
+    var k = 0
+    while k < n:
+        io.print(str(arr[k]))
+        if k < n - 1:
+            io.print(", ")
+        k = k + 1
+    io.println("")
+    
     ret 0

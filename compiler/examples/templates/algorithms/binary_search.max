@@ -1,6 +1,25 @@
-// binary_search - Maxx example template
-// Category: algorithms
+// binary_search.max - Binary search implementation
+~ std.io
+
+@ binary_search(arr: [int], target: int, low: int, high: int) -> int:
+    if high < low:
+        ret -1
+    let mid = (low + high) / 2
+    if arr[mid] == target:
+        ret mid
+    if arr[mid] > target:
+        ret binary_search(arr, target, low, mid - 1)
+    ret binary_search(arr, target, mid + 1, high)
+
 @ main() -> int:
-    io.println("Running binary_search...")
-    // TODO: implement binary_search
+    io.println("Binary Search Demo")
+    let arr = [1, 3, 5, 7, 9, 11, 13, 15]
+    let target = 7
+    let result = binary_search(arr, target, 0, 7)
+    
+    if result != -1:
+        io.println("Found " + str(target) + " at index " + str(result))
+    else:
+        io.println("Not found")
+    
     ret 0

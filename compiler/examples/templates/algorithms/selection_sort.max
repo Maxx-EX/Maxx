@@ -1,6 +1,40 @@
-// selection_sort - Maxx example template
-// Category: algorithms
+// selection_sort.max - Selection sort implementation
+~ std.io
+
 @ main() -> int:
-    io.println("Running selection_sort...")
-    // TODO: implement selection_sort
+    io.println("Selection Sort Demo")
+    let arr = [64, 25, 12, 22, 11]
+    let n = 5
+    
+    io.print("Original: ")
+    var k = 0
+    while k < n:
+        io.print(str(arr[k]))
+        if k < n - 1:
+            io.print(", ")
+        k = k + 1
+    io.println("")
+    
+    var i = 0
+    while i < n:
+        var min_idx = i
+        var j = i + 1
+        while j < n:
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+            j = j + 1
+        let temp = arr[i]
+        arr[i] = arr[min_idx]
+        arr[min_idx] = temp
+        i = i + 1
+    
+    io.print("Sorted: ")
+    var m = 0
+    while m < n:
+        io.print(str(arr[m]))
+        if m < n - 1:
+            io.print(", ")
+        m = m + 1
+    io.println("")
+    
     ret 0
