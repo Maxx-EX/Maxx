@@ -28,6 +28,9 @@ class CCodegen:
         self.variants: Dict[str, Tuple[str, int]] = {}
         # Method map: method_name -> (receiver_type, c_function_name)
         self.methods: Dict[str, Tuple[str, str]] = {}
+        # Struct names and declarations for positional construction.
+        self.struct_names: Set[str] = set()
+        self.struct_decls: Dict[str, ast.StructDecl] = {}
         # Collected C declarations (structs, enums, prototypes).
         self.type_decls: List[str] = []
         self.func_decls: List[str] = []
@@ -108,6 +111,9 @@ class CCodegen:
                     # Store both qualified and unqualified names.
                     self.variants[v.name] = (decl.name, idx)
                     self.variants[f"{decl.name}::{v.name}"] = (decl.name, idx)
+            if isinstance(decl, ast.StructDecl):
+                self.struct_names.add(decl.name)
+                self.struct_decls[decl.name] = decl
             if isinstance(decl, ast.FunctionDecl):
                 if decl.receiver:
                     cname = f"mx_{decl.receiver}_{decl.name}"
@@ -330,6 +336,9 @@ class CCodegen:
         if isinstance(e, ast.Call):
             if isinstance(e.func, ast.Ident):
                 fname = e.func.name
+                # Struct constructor: returns struct type
+                if fname in self.struct_names:
+                    return TypeInfo(kind="struct", name=fname)
                 if fname in ("str",):
                     return TypeInfo(kind="scalar", name="str")
                 if fname in ("int", "i64", "i32", "u32", "u64"):
@@ -812,6 +821,20 @@ class CCodegen:
                 args = ", ".join(self._gen_expr(a) for a in e.args)
                 return f"mx_write_file({args})"
             # Regular function call.
+            # Check if it's a struct constructor (positional args)
+            if name in self.struct_names:
+                # Get struct fields
+                sdecl = self.struct_decls.get(name)
+                if sdecl:
+                    field_inits = []
+                    for i, f in enumerate(sdecl.fields):
+                        if i < len(e.args):
+                            fval_c = self._gen_expr(e.args[i])
+                            field_inits.append(f".{f.name} = {fval_c}")
+                        else:
+                            field_inits.append(f".{f.name} = 0")
+                    inits = ", ".join(field_inits)
+                    return f"((mx_{name}){{{inits}}})"
             args = ", ".join(self._gen_expr(a) for a in e.args)
             return f"mx_{name}({args})"
 
