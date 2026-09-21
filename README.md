@@ -2,6 +2,25 @@
 
 > **Maximum simplicity × Maximum efficiency** — 一门静态强类型、缩进分块、无空值、内置代数数据类型、可 AOT 编译为原生码、手机端与桌面端同源的原创高级语言。
 
+## 安装
+
+```bash
+git clone https://github.com/Maxx-EX/Maxx.git
+cd Maxx
+bash install.sh
+```
+
+安装完成后：
+- `maxx` — 直接进入 REPL
+- `maxx run hello.max` — 运行 .max 文件
+- `maxx build hello.max` — 编译 .max 文件
+- `maxx version` — 查看版本
+
+> Termux 用户：安装脚本自动检测环境并配置 PATH。
+> Linux 用户：安装到 ~/.local/bin/，自动添加到 PATH。
+
+---
+
 Maxx 不是任何现有语言的 fork：它取 Python 的易读、Go 的简洁并发、Rust 的类型安全（但去掉借用检查）、ML 的 ADT 与模式匹配，合成一门**为了"写起来舒服、跑起来快、跨端一致"**而生的新语言。
 
 ## 三个"绝不"
