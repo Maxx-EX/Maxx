@@ -863,10 +863,34 @@ class Parser:
                         parts.append((text[i:], None))
                         break
                     expr_str = text[i+1:j].strip()
-                    # We can't easily parse the expression here without tokenizing.
-                    # For bootstrap, treat it as a variable name.
+                    # Parse the expression inside f-string.
+                    # For bootstrap, handle simple cases:
+                    # 1. Simple variable: {x}
+                    # 2. Function call: {foo(x)}
                     if expr_str:
-                        parts.append(("", ast.Ident(name=expr_str, line=tok.line, col=tok.col)))
+                        # Check if it's a function call (contains '(')
+                        if "(" in expr_str:
+                            # Extract function name and args
+                            paren_idx = expr_str.find("(")
+                            func_name = expr_str[:paren_idx].strip()
+                            args_str = expr_str[paren_idx+1:expr_str.rfind(")")].strip()
+                            
+                            # Parse args (simple comma-separated)
+                            args: List[ast.Expr] = []
+                            if args_str:
+                                for arg in args_str.split(","):
+                                    arg = arg.strip()
+                                    if arg:
+                                        args.append(ast.Ident(name=arg, line=tok.line, col=tok.col))
+                            
+                            parts.append(("", ast.Call(
+                                func=ast.Ident(name=func_name, line=tok.line, col=tok.col),
+                                args=args,
+                                line=tok.line, col=tok.col
+                            )))
+                        else:
+                            # Simple variable
+                            parts.append(("", ast.Ident(name=expr_str, line=tok.line, col=tok.col)))
                     i = j + 1
                 else:
                     # Collect text until next {.
