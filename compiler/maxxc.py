@@ -280,6 +280,68 @@ def cmd_build(args) -> int:
     return 0
 
 
+def cmd_check(args) -> int:
+    """Check .max file for errors (lex + parse + type check, no codegen)."""
+    path = args.file
+    if not os.path.exists(path):
+        print(f"error: file not found: {path}", file=sys.stderr)
+        return 1
+
+    src = open(path, "r").read()
+    errors = []
+
+    # 1. Lex check
+    try:
+        from lexer import tokenize, LexError
+        tokens = tokenize(src, path)
+    except LexError as e:
+        errors.append(f"{path}:{e.line}:{e.col}: error: {e.msg}")
+        print(f"Found {len(errors)} error(s)")
+        for err in errors:
+            print(err)
+        return 1
+
+    # 2. Parse check
+    try:
+        from parser import Parser, ParseError
+        p = Parser(tokens, path)
+        prog = p.parse_program()
+    except ParseError as e:
+        err_msg = str(e)
+        errors.append(f"{path}:{e.line}:{e.col}: error: {err_msg}")
+        # Show code line preview
+        lines = src.split("\n")
+        if e.line <= len(lines) and e.line > 0:
+            line_text = lines[e.line - 1]
+            errors.append(f"  | {line_text}")
+            errors.append(f"  | {' ' * max(0, e.col - 1)}^")
+        print(f"Found {len(errors)} error(s)")
+        for err in errors:
+            print(err)
+        return 1
+
+    # 3. Type check
+    try:
+        from checker import Checker
+        checker = Checker(prog)
+        checker.check()
+    except Exception as e:
+        errors.append(f"{path}: error: type check failed: {e}")
+        print(f"Found {len(errors)} error(s)")
+        for err in errors:
+            print(err)
+        return 1
+
+    if errors:
+        print(f"Found {len(errors)} error(s)")
+        for err in errors:
+            print(err)
+        return 1
+    else:
+        print(f"✓ {path}: no errors found")
+        return 0
+
+
 def cmd_pack(args) -> int:
     """Pack .mxx + interface .max files into .smx distribution package."""
     lib_path = args.lib
@@ -538,6 +600,10 @@ def main(argv=None) -> int:
     p_pk.add_argument("-o", "--output", default=None, help="output .smx path")
     p_pk.add_argument("--src", default=None, help="source directory to include")
     p_pk.set_defaults(func=cmd_pack)
+
+    p_chk = sub.add_parser("check", help="check .max file for errors (no codegen)")
+    p_chk.add_argument("file", help=".max file to check")
+    p_chk.set_defaults(func=cmd_check)
 
     p_ar = sub.add_parser("archive", help="archive project directory to .zip")
     p_ar.add_argument("dir", help="project directory")
