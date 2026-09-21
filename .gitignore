@@ -36,3 +36,4 @@ android-app/app/.externalNativeBuild/
 
 # Node (if any)
 node_modules/
+*.apk
