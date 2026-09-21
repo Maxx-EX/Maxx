@@ -178,6 +178,46 @@ class Parser:
             return self.parse_type_decl(is_pub)
         if self.at_punct("@"):
             return self.parse_fn_decl(is_pub)
+        # trait and impl: skip for bootstrap (just parse and ignore).
+        if self.at_kw("trait"):
+            self.next()  # trait
+            self.next()  # name
+            if self.at_punct(":"):
+                self.next()  # :
+            self.skip_newlines()
+            if self.at(TOK_INDENT):
+                self.next()
+                while not self.at(TOK_DEDENT) and not self.at(TOK_EOF):
+                    self.skip_newlines()
+                    if self.at(TOK_DEDENT) or self.at(TOK_EOF):
+                        break
+                    self.next()  # skip method signature
+                if self.at(TOK_DEDENT):
+                    self.next()
+            return None  # skip trait
+        if self.at_kw("impl"):
+            self.next()  # impl
+            self.next()  # type
+            if self.accept_op("for") is not None:
+                self.next()  # trait name
+            if self.at_punct(":"):
+                self.next()  # :
+            self.skip_newlines()
+            if self.at(TOK_INDENT):
+                self.next()
+                while not self.at(TOK_DEDENT) and not self.at(TOK_EOF):
+                    self.skip_newlines()
+                    if self.at(TOK_DEDENT) or self.at(TOK_EOF):
+                        break
+                    # Parse the function normally.
+                    if self.at_punct("@"):
+                        fn = self.parse_fn_decl(False)
+                        if fn:
+                            return fn
+                    self.next()
+                if self.at(TOK_DEDENT):
+                    self.next()
+            return None  # skip impl wrapper
 
         t = self.peek()
         raise ParseError(
