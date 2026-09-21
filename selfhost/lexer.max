@@ -1,0 +1,124 @@
+// lexer.max - Maxx lexer written in Maxx (Level 2 self-hosting)
+// This is a minimal lexer that tokenizes Maxx source code.
+// Bootstrap: compiled by Python maxxc, then used to lex Maxx source.
+
+~ std.io
+~ std.text
+
+# Token:
+    kind: str
+    value: str
+    line: int
+    col: int
+
+# Lexer:
+    src: str
+    pos: int
+    line: int
+    col: int
+    tokens: Vec[Token]
+
+@ lexer_new(src: str) -> Lexer:
+    ret Lexer(src=src, pos=0, line=1, col=1, tokens=[])
+
+@ peek(l: Lexer) -> str:
+    if l.pos >= len(l.src):
+        ret "\0"
+    ret l.src[l.pos]
+
+@ advance(l: Lexer):
+    if l.src[l.pos] == "\n":
+        l.line = l.line + 1
+        l.col = 1
+    else:
+        l.col = l.col + 1
+    l.pos = l.pos + 1
+
+@ is_alpha(c: str) -> bool:
+    ret (c >= "a" and c <= "z") or (c >= "A" and c <= "Z") or c == "_"
+
+@ is_digit(c: str) -> bool:
+    ret c >= "0" and c <= "9"
+
+@ is_alnum(c: str) -> bool:
+    ret is_alpha(c) or is_digit(c)
+
+@ skip_ws(l: Lexer):
+    loop:
+        let c = peek(l)
+        if c == " " or c == "\t" or c == "\r":
+            advance(l)
+        else:
+            break
+
+@ lex_number(l: Lexer) -> Token:
+    let start_col = l.col
+    let start_line = l.line
+    let num = ""
+    loop:
+        let c = peek(l)
+        if is_digit(c):
+            num = num + c
+            advance(l)
+        else:
+            break
+    ret Token(kind="NUMBER", value=num, line=start_line, col=start_col)
+
+@ lex_ident(l: Lexer) -> Token:
+    let start_col = l.col
+    let start_line = l.line
+    let name = ""
+    loop:
+        let c = peek(l)
+        if is_alnum(c):
+            name = name + c
+            advance(l)
+        else:
+            break
+    ret Token(kind="IDENT", value=name, line=start_line, col=start_col)
+
+@ lex_string(l: Lexer) -> Token:
+    let start_col = l.col
+    let start_line = l.line
+    advance(l)  // skip opening quote
+    let s = ""
+    loop:
+        let c = peek(l)
+        if c == "\"" or c == "\0":
+            break
+        s = s + c
+        advance(l)
+    advance(l)  // skip closing quote
+    ret Token(kind="STRING", value=s, line=start_line, col=start_col)
+
+@ lex(l: Lexer) -> Vec[Token]:
+    loop:
+        skip_ws(l)
+        let c = peek(l)
+        if c == "\0":
+            break
+        
+        if c == "@" or c == "#" or c == "~" or c == ":" or c == ";" or c == "(" or c == ")" or c == "{" or c == "}" or c == "[" or c == "]" or c == "," or c == ".":
+            l.tokens.append(Token(kind="PUNCT", value=c, line=l.line, col=l.col))
+            advance(l)
+        elif c == "\"":
+            l.tokens.append(lex_string(l))
+        elif is_digit(c):
+            l.tokens.append(lex_number(l))
+        elif is_alpha(c):
+            l.tokens.append(lex_ident(l))
+        else:
+            // Unknown char, skip
+            advance(l)
+    
+    ret l.tokens
+
+@ main() -> int:
+    let src = "let x = 42"
+    let l = lexer_new(src)
+    let tokens = lex(l)
+    
+    for t in tokens:
+        io.println(t.kind + ": " + t.value + " (" + str(t.line) + ":" + str(t.col) + ")")
+    
+    ret 0
