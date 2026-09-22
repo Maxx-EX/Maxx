@@ -1,0 +1,7 @@
+// data_structures/set_demo.max - Set demo
+~ std.io
+
+@ main() -> int:
+    io.println("Set Demo")
+    io.println("(Set data structure demo)")
+    ret 0

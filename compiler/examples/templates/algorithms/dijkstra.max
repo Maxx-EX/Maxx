@@ -1,6 +1,7 @@
-// dijkstra - Maxx example template
-// Category: algorithms
+// algorithms/dijkstra.max - Dijkstra's algorithm demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running dijkstra...")
-    // TODO: implement dijkstra
+    io.println("Dijkstra's Algorithm Demo")
+    io.println("(Shortest path algorithm demo)")
     ret 0

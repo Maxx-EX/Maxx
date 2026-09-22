@@ -1,6 +1,7 @@
-// binary_tree - Maxx example template
-// Category: data_structures
+// data_structures/binary_tree.max - Binary tree demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running binary_tree...")
-    // TODO: implement binary_tree
+    io.println("Binary Tree Demo")
+    io.println("(Binary search tree demo)")
     ret 0

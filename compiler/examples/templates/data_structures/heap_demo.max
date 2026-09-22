@@ -1,0 +1,7 @@
+// data_structures/heap_demo.max - Heap demo
+~ std.io
+
+@ main() -> int:
+    io.println("Heap Demo")
+    io.println("(Priority queue demo)")
+    ret 0

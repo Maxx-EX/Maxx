@@ -1,0 +1,8 @@
+// strings/format_demo.max - String formatting
+~ std.io
+
+@ main() -> int:
+    let name = "Maxx"
+    let version = "1.0"
+    io.println("Welcome to " + name + " version " + version)
+    ret 0

@@ -1,0 +1,12 @@
+// math/max_demo.max - Max function demo
+~ std.io
+
+@ max(a: int, b: int) -> int:
+    if a > b:
+        ret a
+    ret b
+
+@ main() -> int:
+    io.println("max(5, 10) = " + str(max(5, 10)))
+    io.println("max(20, 15) = " + str(max(20, 15)))
+    ret 0

@@ -1,6 +1,7 @@
-// url_encode - Maxx example template
-// Category: net_crypto
+// net_crypto/url_encode.max - URL encoding demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running url_encode...")
-    // TODO: implement url_encode
+    io.println("URL Encoding Demo")
+    io.println("(Percent-encoding demo)")
     ret 0

@@ -1,6 +1,7 @@
-// bfs - Maxx example template
-// Category: algorithms
+// algorithms/bfs.max - Breadth First Search demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running bfs...")
-    // TODO: implement bfs
+    io.println("BFS Demo")
+    io.println("(Graph traversal demo)")
     ret 0

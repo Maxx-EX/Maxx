@@ -1,6 +1,12 @@
-// bit_manipulation - Maxx example template
-// Category: algorithms
+// algorithms/bit_manipulation.max - Bit manipulation demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running bit_manipulation...")
-    // TODO: implement bit_manipulation
+    let x = 5  // 101 in binary
+    io.println("Bit Manipulation Demo")
+    io.println("x = " + str(x))
+    io.println("x & 1 = " + str(x & 1))
+    io.println("x | 2 = " + str(x | 2))
+    io.println("x << 1 = " + str(x << 1))
+    io.println("x >> 1 = " + str(x >> 1))
     ret 0

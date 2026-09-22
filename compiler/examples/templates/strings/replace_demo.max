@@ -1,0 +1,10 @@
+// strings/replace_demo.max - Replace in string
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let s = "hello world"
+    let result = replace(s, "world", "maxx")
+    io.println("Original: " + s)
+    io.println("Replaced: " + result)
+    ret 0

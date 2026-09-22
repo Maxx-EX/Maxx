@@ -1,0 +1,11 @@
+// strings/compare_demo.max - String comparison
+~ std.io
+
+@ main() -> int:
+    let a = "hello"
+    let b = "world"
+    if a == b:
+        io.println("Strings are equal")
+    else:
+        io.println("Strings are different")
+    ret 0

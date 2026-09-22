@@ -1,0 +1,7 @@
+// math/pi_approx.max - Pi approximation
+~ std.io
+
+@ main() -> int:
+    io.println("Pi Approximation")
+    io.println("(Monte Carlo method demo)")
+    ret 0

@@ -1,6 +1,7 @@
-// dfs - Maxx example template
-// Category: algorithms
+// algorithms/dfs.max - Depth First Search demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running dfs...")
-    // TODO: implement dfs
+    io.println("DFS Demo")
+    io.println("(Graph traversal demo)")
     ret 0

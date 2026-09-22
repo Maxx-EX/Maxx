@@ -1,0 +1,9 @@
+// math/log_demo.max - Logarithm demo
+~ std.io
+~ std.math
+
+@ main() -> int:
+    let x = 2.71828
+    let result = log(x)
+    io.println("log(e) ≈ " + str(result))
+    ret 0

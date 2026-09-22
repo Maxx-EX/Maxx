@@ -1,6 +1,7 @@
-// coin_change - Maxx example template
-// Category: algorithms
+// algorithms/coin_change.max - Coin change problem demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running coin_change...")
-    // TODO: implement coin_change
+    io.println("Coin Change Problem Demo")
+    io.println("(Dynamic programming demo)")
     ret 0

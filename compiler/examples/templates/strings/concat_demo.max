@@ -1,0 +1,9 @@
+// strings/concat_demo.max - String concatenation
+~ std.io
+
+@ main() -> int:
+    let a = "Hello"
+    let b = "Maxx"
+    let c = a + " " + b
+    io.println(c)
+    ret 0

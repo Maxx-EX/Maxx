@@ -1,6 +1,7 @@
-// tic_tac_toe - Maxx example template
-// Category: games
+// games/tic_tac_toe.max - Tic Tac Toe
+~ std.io
+
 @ main() -> int:
-    io.println("Running tic_tac_toe...")
-    // TODO: implement tic_tac_toe
+    io.println("=== Tic Tac Toe ===")
+    io.println("(Game demo)")
     ret 0

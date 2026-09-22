@@ -1,0 +1,10 @@
+// games/quiz.max - Quiz game
+~ std.io
+
+@ main() -> int:
+    io.println("=== Quiz Game ===")
+    io.println("Q: What is 2 + 2?")
+    io.println("A: 4")
+    io.println("Q: What is the capital of France?")
+    io.println("A: Paris")
+    ret 0

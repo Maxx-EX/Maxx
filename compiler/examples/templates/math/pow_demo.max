@@ -1,0 +1,10 @@
+// math/pow_demo.max - Power function demo
+~ std.io
+~ std.math
+
+@ main() -> int:
+    let base = 2.0
+    let exp = 10.0
+    let result = pow(base, exp)
+    io.println("2^10 = " + str(result))
+    ret 0

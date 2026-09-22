@@ -1,0 +1,9 @@
+// math/sqrt_demo.max - Square root demo
+~ std.io
+~ std.math
+
+@ main() -> int:
+    let x = 16.0
+    let result = sqrt(x)
+    io.println("sqrt(" + str(x) + ") = " + str(result))
+    ret 0

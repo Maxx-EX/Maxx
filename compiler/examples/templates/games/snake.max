@@ -1,6 +1,7 @@
-// snake - Maxx example template
-// Category: games
+// games/snake.max - Snake game
+~ std.io
+
 @ main() -> int:
-    io.println("Running snake...")
-    // TODO: implement snake
+    io.println("=== Snake Game ===")
+    io.println("(Game demo)")
     ret 0

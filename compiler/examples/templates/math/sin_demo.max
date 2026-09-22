@@ -1,0 +1,9 @@
+// math/sin_demo.max - Sine function demo
+~ std.io
+~ std.math
+
+@ main() -> int:
+    let x = 0.0
+    let result = sin(x)
+    io.println("sin(0) = " + str(result))
+    ret 0

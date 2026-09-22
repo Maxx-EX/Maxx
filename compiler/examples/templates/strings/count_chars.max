@@ -1,0 +1,14 @@
+// strings/count_chars.max - Count characters
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let s = "hello world"
+    var count = 0
+    var i = 0
+    let len = str_len(s)
+    while i < len:
+        count = count + 1
+        i = i + 1
+    io.println("Character count: " + str(count))
+    ret 0

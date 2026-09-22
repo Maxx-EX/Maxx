@@ -1,0 +1,9 @@
+// strings/find_demo.max - Find in string
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let s = "hello world"
+    let pos = find(s, "world")
+    io.println("Find 'world' at position: " + str(pos))
+    ret 0

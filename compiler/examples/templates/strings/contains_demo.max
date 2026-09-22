@@ -1,0 +1,11 @@
+// strings/contains_demo.max - String contains
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let s = "hello world"
+    if find(s, "hello") >= 0:
+        io.println("String contains 'hello'")
+    else:
+        io.println("String does not contain 'hello'")
+    ret 0

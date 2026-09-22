@@ -1,0 +1,7 @@
+// net_crypto/sha256_demo.max - SHA256 demo
+~ std.io
+
+@ main() -> int:
+    io.println("SHA256 Demo")
+    io.println("(Secure hash algorithm)")
+    ret 0

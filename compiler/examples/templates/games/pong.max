@@ -1,6 +1,7 @@
-// pong - Maxx example template
-// Category: games
+// games/pong.max - Pong game
+~ std.io
+
 @ main() -> int:
-    io.println("Running pong...")
-    // TODO: implement pong
+    io.println("=== Pong Game ===")
+    io.println("(Game demo)")
     ret 0

@@ -1,6 +1,7 @@
-// hash_table - Maxx example template
-// Category: data_structures
+// data_structures/hash_table.max - Hash table demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running hash_table...")
-    // TODO: implement hash_table
+    io.println("Hash Table Demo")
+    io.println("(Hash map demo)")
     ret 0

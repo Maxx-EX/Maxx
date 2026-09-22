@@ -1,0 +1,7 @@
+// net_crypto/hmac_demo.max - HMAC demo
+~ std.io
+
+@ main() -> int:
+    io.println("HMAC Demo")
+    io.println("(Hash-based message authentication code)")
+    ret 0

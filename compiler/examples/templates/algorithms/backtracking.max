@@ -1,6 +1,7 @@
-// backtracking - Maxx example template
-// Category: algorithms
+// algorithms/backtracking.max - Backtracking demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running backtracking...")
-    // TODO: implement backtracking
+    io.println("Backtracking Demo")
+    io.println("(N-Queens problem demo)")
     ret 0

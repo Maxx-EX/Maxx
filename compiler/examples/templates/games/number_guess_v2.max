@@ -1,0 +1,9 @@
+// games/number_guess_v2.max - Number guess v2
+~ std.io
+
+@ main() -> int:
+    io.println("=== Number Guess Game ===")
+    io.println("I'm thinking of a number...")
+    let secret = 42
+    io.println("(Demo version - secret is 42)")
+    ret 0

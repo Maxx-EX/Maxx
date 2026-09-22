@@ -1,6 +1,19 @@
-// dynamic_programming - Maxx example template
-// Category: algorithms
+// algorithms/dynamic_programming.max - Dynamic programming demo
+~ std.io
+
+@ fib_dp(n: int) -> int:
+    if n <= 1:
+        ret n
+    var dp = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    dp[0] = 0
+    dp[1] = 1
+    var i = 2
+    while i <= n:
+        dp[i] = dp[i - 1] + dp[i - 2]
+        i = i + 1
+    ret dp[n]
+
 @ main() -> int:
-    io.println("Running dynamic_programming...")
-    // TODO: implement dynamic_programming
+    io.println("Dynamic Programming Demo")
+    io.println("fib(10) = " + str(fib_dp(10)))
     ret 0

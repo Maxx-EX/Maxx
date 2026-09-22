@@ -1,6 +1,7 @@
-// linked_list - Maxx example template
-// Category: data_structures
+// data_structures/linked_list.max - Linked list demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running linked_list...")
-    // TODO: implement linked_list
+    io.println("Linked List Demo")
+    io.println("(Singly linked list demo)")
     ret 0

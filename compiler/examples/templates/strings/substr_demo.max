@@ -1,0 +1,9 @@
+// strings/substr_demo.max - Substring demo
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let s = "hello world"
+    io.println("Original: " + s)
+    io.println("Substring(0, 5): " + substr(s, 0, 5))
+    ret 0

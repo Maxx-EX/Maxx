@@ -1,6 +1,9 @@
-// string_length - Maxx example template
-// Category: strings
+// strings/string_length.max - String length
+~ std.io
+~ std.text
+
 @ main() -> int:
-    io.println("Running string_length...")
-    // TODO: implement string_length
+    let s = "hello world"
+    io.println("String: " + s)
+    io.println("Length: " + str(str_len(s)))
     ret 0

@@ -1,0 +1,7 @@
+// games/memory_match.max - Memory match game
+~ std.io
+
+@ main() -> int:
+    io.println("=== Memory Match ===")
+    io.println("(Game demo)")
+    ret 0

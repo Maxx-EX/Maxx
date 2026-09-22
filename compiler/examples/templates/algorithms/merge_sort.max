@@ -1,6 +1,14 @@
-// merge_sort - Maxx example template
-// Category: algorithms
+// algorithms/merge_sort.max - Merge sort demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running merge_sort...")
-    // TODO: implement merge_sort
+    io.println("Merge Sort Demo")
+    io.println("(Full implementation pending - demo version)")
+    let arr = [5, 2, 8, 1, 9, 3]
+    io.print("Array: ")
+    var i = 0
+    while i < 6:
+        io.print(str(arr[i]) + " ")
+        i = i + 1
+    io.println("")
     ret 0

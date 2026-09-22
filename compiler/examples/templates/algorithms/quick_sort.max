@@ -1,6 +1,7 @@
-// quick_sort - Maxx example template
-// Category: algorithms
+// algorithms/quick_sort.max - Quick sort demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running quick_sort...")
-    // TODO: implement quick_sort
+    io.println("Quick Sort Demo")
+    io.println("(Full implementation pending - demo version)")
     ret 0

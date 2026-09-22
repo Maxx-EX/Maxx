@@ -1,0 +1,9 @@
+// io/stdin_demo.max - Stdin demo
+~ std.io
+
+@ main() -> int:
+    io.println("=== Stdin Demo ===")
+    io.print("Enter your name: ")
+    let name = read_line()
+    io.println("Hello, " + name + "!")
+    ret 0

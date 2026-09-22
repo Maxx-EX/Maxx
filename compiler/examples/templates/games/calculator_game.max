@@ -1,0 +1,9 @@
+// games/calculator_game.max - Calculator game
+~ std.io
+
+@ main() -> int:
+    io.println("=== Calculator Game ===")
+    io.println("2 + 3 = " + str(2 + 3))
+    io.println("10 - 4 = " + str(10 - 4))
+    io.println("5 * 6 = " + str(5 * 6))
+    ret 0

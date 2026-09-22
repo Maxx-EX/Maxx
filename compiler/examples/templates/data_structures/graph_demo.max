@@ -1,0 +1,7 @@
+// data_structures/graph_demo.max - Graph demo
+~ std.io
+
+@ main() -> int:
+    io.println("Graph Demo")
+    io.println("(Graph data structure demo)")
+    ret 0

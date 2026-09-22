@@ -1,0 +1,27 @@
+// data_structures/queue_demo.max - Queue demo
+~ std.io
+
+@ main() -> int:
+    let queue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    var front = 0
+    var rear = 0
+    
+    // Enqueue
+    queue[rear] = 10
+    rear = rear + 1
+    queue[rear] = 20
+    rear = rear + 1
+    queue[rear] = 30
+    rear = rear + 1
+    
+    io.println("Queue after enqueues:")
+    var i = front
+    while i < rear:
+        io.println(str(queue[i]))
+        i = i + 1
+    
+    // Dequeue
+    io.println("Dequeued: " + str(queue[front]))
+    front = front + 1
+    
+    ret 0

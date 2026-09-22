@@ -1,0 +1,10 @@
+// strings/char_at.max - Character at index
+~ std.io
+~ std.text
+
+@ main() -> int:
+    let s = "hello"
+    io.println("String: " + s)
+    io.println("Char at 0: " + str_char_at(s, 0))
+    io.println("Char at 1: " + str_char_at(s, 1))
+    ret 0

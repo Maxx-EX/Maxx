@@ -1,0 +1,11 @@
+// games/dice_roller.max - Dice roller
+~ std.io
+
+@ main() -> int:
+    io.println("=== Dice Roller ===")
+    var i = 0
+    while i < 5:
+        let roll = (i * 7) % 6 + 1
+        io.println("Roll " + str(i + 1) + ": " + str(roll))
+        i = i + 1
+    ret 0

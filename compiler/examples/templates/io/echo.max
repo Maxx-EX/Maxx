@@ -1,0 +1,9 @@
+// io/echo.max - Echo program
+~ std.io
+
+@ main() -> int:
+    io.println("=== Echo ===")
+    io.println("(Type something and it will be echoed)")
+    let input = read_line()
+    io.println("You said: " + input)
+    ret 0

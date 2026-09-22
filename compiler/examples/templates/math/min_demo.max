@@ -1,0 +1,12 @@
+// math/min_demo.max - Min function demo
+~ std.io
+
+@ min(a: int, b: int) -> int:
+    if a < b:
+        ret a
+    ret b
+
+@ main() -> int:
+    io.println("min(5, 10) = " + str(min(5, 10)))
+    io.println("min(20, 15) = " + str(min(20, 15)))
+    ret 0

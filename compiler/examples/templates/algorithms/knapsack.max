@@ -1,6 +1,7 @@
-// knapsack - Maxx example template
-// Category: algorithms
+// algorithms/knapsack.max - Knapsack problem demo
+~ std.io
+
 @ main() -> int:
-    io.println("Running knapsack...")
-    // TODO: implement knapsack
+    io.println("Knapsack Problem Demo")
+    io.println("(0-1 knapsack demo)")
     ret 0

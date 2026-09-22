@@ -1,0 +1,7 @@
+// math/round_demo.max - Round function demo
+~ std.io
+
+@ main() -> int:
+    io.println("Round Function Demo")
+    io.println("(Rounding demo)")
+    ret 0

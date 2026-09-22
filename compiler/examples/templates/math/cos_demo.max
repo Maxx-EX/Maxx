@@ -1,0 +1,9 @@
+// math/cos_demo.max - Cosine function demo
+~ std.io
+~ std.math
+
+@ main() -> int:
+    let x = 0.0
+    let result = cos(x)
+    io.println("cos(0) = " + str(result))
+    ret 0
