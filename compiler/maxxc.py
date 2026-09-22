@@ -76,6 +76,11 @@ def _compile_to_binary(c_src: str, runtime_dir: str) -> str:
     ]
     print(f"# compiling: {' '.join(cmd)}", file=sys.stderr)
     result = subprocess.run(cmd, capture_output=True, text=True)
+    # Print gcc warnings even if compilation succeeds
+    if result.stderr:
+        for line in result.stderr.splitlines():
+            if "warning:" in line or "#warning" in line:
+                print(f"gcc: {line}", file=sys.stderr)
     if result.returncode != 0:
         print("C compilation failed:", file=sys.stderr)
         print(result.stderr, file=sys.stderr)

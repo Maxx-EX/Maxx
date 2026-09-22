@@ -347,6 +347,10 @@ class CCodegen:
                     return TypeInfo(kind="scalar", name=fname)
                 if fname == "sqrt":
                     return TypeInfo(kind="scalar", name="f64")
+                # Enum variant constructor: returns enum type
+                if fname in self.variants:
+                    enum_name, _ = self.variants[fname]
+                    return TypeInfo(kind="enum", name=enum_name)
                 # String functions return str.
                 str_funcs = {"to_upper", "to_lower", "trim", "substr", "char_at", "replace",
                              "read_line", "read_file", "http_recv"}
@@ -835,6 +839,21 @@ class CCodegen:
                 args = ", ".join(self._gen_expr(a) for a in e.args)
                 return f"mx_http_send({args})"
             # Regular function call.
+            # Check if it's an enum variant constructor (e.g., Circle(2.0))
+            if name in self.variants:
+                enum_name, tag_idx = self.variants[name]
+                # Find the variant declaration
+                vdecl = self._find_variant(enum_name, name)
+                if vdecl:
+                    field_inits = []
+                    for i, vparam in enumerate(vdecl.params):
+                        if i < len(e.args):
+                            fval_c = self._gen_expr(e.args[i])
+                            field_inits.append(f".{vparam.name if vparam.name else f'_{i}'} = {fval_c}")
+                    inner = ", ".join(field_inits)
+                    return (f"((mx_{enum_name}){{.tag = {tag_idx}, "
+                            f".data.{name} = {{{inner}}}}})")
+                return f"((mx_{enum_name}){{.tag = {tag_idx}, .data = {{0}}}})"
             # Check if it's a struct constructor (positional args)
             if name in self.struct_names:
                 # Get struct fields
