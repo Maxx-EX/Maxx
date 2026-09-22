@@ -348,7 +348,8 @@ class CCodegen:
                 if fname == "sqrt":
                     return TypeInfo(kind="scalar", name="f64")
                 # String functions return str.
-                str_funcs = {"to_upper", "to_lower", "trim", "substr", "char_at", "replace"}
+                str_funcs = {"to_upper", "to_lower", "trim", "substr", "char_at", "replace",
+                             "read_line", "read_file", "http_recv"}
                 if fname in str_funcs:
                     return TypeInfo(kind="scalar", name="str")
                 # Numeric functions return int/f64.
