@@ -247,6 +247,30 @@ class Lexer:
                 if esc in mapped:
                     buf.append(mapped[esc])
                     self.advance()
+                elif esc == "u":
+                    # Unicode escape: \uXXXX
+                    self.advance()  # consume 'u'
+                    hex_digits = ""
+                    for _ in range(4):
+                        if self.i < self.n and self.peek() in "0123456789abcdefABCDEF":
+                            hex_digits += self.peek()
+                            self.advance()
+                        else:
+                            break
+                    if len(hex_digits) == 4:
+                        code_point = int(hex_digits, 16)
+                        # For ASCII range, just use the character
+                        if code_point < 128:
+                            buf.append(chr(code_point))
+                        else:
+                            # For non-ASCII, encode as UTF-8
+                            try:
+                                buf.append(chr(code_point))
+                            except ValueError:
+                                buf.append("?")
+                    else:
+                        # Invalid \u escape, keep as-is
+                        buf.append("\\u" + hex_digits)
                 elif esc == "\n":
                     # line continuation
                     self.advance()
